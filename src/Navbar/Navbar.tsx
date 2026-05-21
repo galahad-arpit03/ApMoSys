@@ -7,13 +7,13 @@ export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const navigationItems = [
-    { label: "About Us", href: "#about", hasDropdown: true },
-    { label: "Services", href: "#services", hasDropdown: true },
-    { label: "Solutions", href: "#solutions", hasDropdown: true },
-    { label: "Industries", href: "#industries", hasDropdown: true },
-    { label: "Products", href: "#products", hasDropdown: true },
-    { label: "Blogs", href: "#blogs", hasDropdown: false },
-    { label: "Careers", href: "#careers", hasDropdown: false },
+    { label: "About Us", href: "/#about", hasDropdown: true },
+    { label: "Services", href: "/#services", hasDropdown: true },
+    { label: "Solutions", href: "/#solutions", hasDropdown: true },
+    { label: "Industries", href: "/#industries", hasDropdown: true },
+    { label: "Products", href: "/#products", hasDropdown: true },
+    { label: "Blogs", href: "/#blogs", hasDropdown: false },
+    { label: "Careers", href: "/careers", hasDropdown: false },
   ];
 
   return (

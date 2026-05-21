@@ -1,6 +1,4 @@
-import Navbar from "@/src/Navbar/Navbar";
 import ContactPage from "@/src/ContactPage/ContactPage";
-import Footer from "@/src/Footer/Footer";
 
 export const metadata = {
   title: "Contact Us | ApMoSys",
@@ -9,12 +7,8 @@ export const metadata = {
 
 export default function ContactRoute() {
   return (
-    <div className="min-h-screen bg-[#FFFFFF] text-[#121212] flex flex-col">
-      <Navbar />
-      <main className="flex-grow">
-        <ContactPage />
-      </main>
-      <Footer />
+    <div className="bg-[#FFFFFF] text-[#121212]">
+      <ContactPage />
     </div>
   );
 }

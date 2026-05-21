@@ -19,6 +19,9 @@ export const metadata: Metadata = {
   description: "Accelerating digital transformation with AI-powered quality assurance and visual analytics.",
 };
 
+import Navbar from "@/src/Navbar/Navbar";
+import Footer from "@/src/Footer/Footer";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -30,8 +33,12 @@ export default function RootLayout({
       className={`${outfit.variable} ${plusJakarta.variable} h-full antialiased`}
       suppressHydrationWarning
     >
-      <body className="min-h-full flex flex-col bg-[#121212] text-[#FAFAFA] font-sans" suppressHydrationWarning>
-        {children}
+      <body className="min-h-full flex flex-col bg-[#121212] text-[#FAFAFA] font-sans selection:bg-[#B40001] selection:text-[#FFFFFF]" suppressHydrationWarning>
+        <Navbar />
+        <main className="flex-grow">
+          {children}
+        </main>
+        <Footer />
       </body>
     </html>
   );
