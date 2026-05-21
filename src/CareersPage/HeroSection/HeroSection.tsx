@@ -31,7 +31,7 @@ export default function HeroSection() {
           </motion.span>
           
           <motion.h1 variants={fadeUp} className="font-heading text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight mb-6 text-[#FFFFFF] leading-[1.1]">
-            Engineer Your Future with <br />
+            Engineer Your Future with <br className="hidden sm:block" />
             <span className="text-[#B40001]">Precision.</span>
           </motion.h1>
           

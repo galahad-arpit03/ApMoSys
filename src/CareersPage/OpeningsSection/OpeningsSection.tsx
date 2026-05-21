@@ -104,7 +104,7 @@ export default function OpeningsSection() {
                     <h3 className="text-xl font-bold text-[#121212] group-hover:text-[#B40001] transition-colors">
                       {job.title}
                     </h3>
-                    <span className="bg-[#FFE5E5] text-[#B40001] text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-sm">
+                    <span className="bg-[#FFE5E5] text-[#B40001] text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-sm whitespace-nowrap flex-shrink-0">
                       {job.type}
                     </span>
                   </div>

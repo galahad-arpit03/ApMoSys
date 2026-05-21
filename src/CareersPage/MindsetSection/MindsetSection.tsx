@@ -82,18 +82,18 @@ export default function MindsetSection() {
             whileInView="visible"
             viewport={{ once: true, margin: "-100px" }}
             variants={fadeLeft}
-            className="relative lg:h-[500px]"
+            className="relative h-auto lg:h-[500px]"
           >
-            {/* Using a placeholder styled div grid to represent the overlapped screenshots in the design */}
-            <div className="absolute inset-0 grid grid-cols-12 grid-rows-12 gap-4">
-              <div className="col-span-8 row-span-8 col-start-1 row-start-3 rounded-xl overflow-hidden shadow-2xl border border-[#E8E8E8] relative z-10 bg-[#FAFAFA] flex items-center justify-center">
+            {/* Mobile: stacked flex, Desktop: absolute grid */}
+            <div className="flex flex-col gap-6 lg:absolute lg:inset-0 lg:grid lg:grid-cols-12 lg:grid-rows-12 lg:gap-4">
+              <div className="aspect-[4/3] lg:aspect-auto lg:col-span-8 lg:row-span-8 lg:col-start-1 lg:row-start-3 rounded-xl overflow-hidden shadow-2xl border border-[#E8E8E8] relative z-10 bg-[#FAFAFA] flex items-center justify-center">
                  <div className="absolute inset-0 bg-gradient-to-br from-[#E0E0E0] to-[#F3F3F3] flex items-center justify-center">
-                    <span className="text-[#7A7A7A] font-medium text-sm">Dashboard Image Placeholder</span>
+                    <span className="text-[#7A7A7A] font-medium text-sm px-4 text-center">Dashboard Image Placeholder</span>
                  </div>
               </div>
-              <div className="col-span-8 row-span-8 col-start-5 row-start-1 rounded-xl overflow-hidden shadow-xl border border-[#E8E8E8] relative z-0 bg-[#FFFFFF] flex items-center justify-center">
+              <div className="aspect-[4/3] lg:aspect-auto lg:col-span-8 lg:row-span-8 lg:col-start-5 lg:row-start-1 rounded-xl overflow-hidden shadow-xl border border-[#E8E8E8] relative z-0 bg-[#FFFFFF] flex items-center justify-center">
                  <div className="absolute inset-0 bg-gradient-to-tl from-[#E0E0E0] to-[#F3F3F3] flex items-center justify-center">
-                    <span className="text-[#7A7A7A] font-medium text-sm text-center">Video Call / Meet <br/> Image Placeholder</span>
+                    <span className="text-[#7A7A7A] font-medium text-sm text-center px-4">Video Call / Meet <br/> Image Placeholder</span>
                  </div>
               </div>
             </div>
