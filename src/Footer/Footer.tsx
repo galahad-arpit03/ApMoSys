@@ -18,12 +18,13 @@ export default function Footer() {
           {/* Brand Block & Socials */}
           <div className="space-y-6">
             <div>
-              <motion.span 
+              <motion.a 
+                href="/"
                 whileHover={{ scale: 1.02 }}
-                className="inline-block font-heading font-extrabold text-2xl tracking-tight text-[#FFFFFF]"
+                className="inline-block font-heading font-extrabold text-3xl tracking-tight text-[#FFFFFF] hover:text-[#FAFAFA] transition-colors"
               >
                 ApMoSys<span className="text-[#B40001]">.</span>
-              </motion.span>
+              </motion.a>
               <p className="text-xs text-[#5A5A5A] leading-relaxed mt-4">
                 Global leaders in automated quality engineering, security validation, and intelligent digital systems optimization.
               </p>
