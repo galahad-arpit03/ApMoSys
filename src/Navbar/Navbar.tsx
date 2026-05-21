@@ -7,13 +7,13 @@ export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const navigationItems = [
-    { label: "About Us", href: "#about" },
-    { label: "Services", href: "#services" },
-    { label: "Solutions", href: "#solutions" },
-    { label: "Industries", href: "#industries" },
-    { label: "Products", href: "#products" },
-    { label: "Blogs", href: "#blogs" },
-    { label: "Careers", href: "#careers" },
+    { label: "About Us", href: "#about", hasDropdown: true },
+    { label: "Services", href: "#services", hasDropdown: true },
+    { label: "Solutions", href: "#solutions", hasDropdown: true },
+    { label: "Industries", href: "#industries", hasDropdown: true },
+    { label: "Products", href: "#products", hasDropdown: true },
+    { label: "Blogs", href: "#blogs", hasDropdown: false },
+    { label: "Careers", href: "#careers", hasDropdown: false },
   ];
 
   return (
@@ -38,28 +38,30 @@ export default function Navbar() {
             </motion.a>
           </div>
 
-          {/* Desktop Navigation Links */}
-          <div className="hidden lg:flex items-center space-x-6 xl:space-x-8">
+          {/* Desktop Navigation Links & CTA Button */}
+          <div className="hidden lg:flex items-center space-x-4 xl:space-x-6 ml-auto">
             {navigationItems.map((item) => (
               <motion.a
                 key={item.label}
                 href={item.href}
                 whileHover={{ scale: 1.05, y: -1 }}
                 whileTap={{ scale: 0.95 }}
-                className="text-[#C8C8C8] hover:text-[#B40001] px-2 py-1 text-sm font-medium transition-colors duration-200"
+                className="flex items-center gap-1 text-[#C8C8C8] hover:text-[#B40001] px-2 py-1 text-sm font-medium transition-colors duration-200"
               >
                 {item.label}
+                {item.hasDropdown && (
+                  <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+                  </svg>
+                )}
               </motion.a>
             ))}
-          </div>
-
-          {/* CTA Button on Right (Contact Us) */}
-          <div className="hidden lg:block">
+            
             <motion.a
               href="/contact"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="inline-block bg-[#B40001] hover:bg-[#D10000] text-[#FFFFFF] px-6 py-2.5 rounded-md text-sm font-semibold tracking-wide shadow-md transition-colors duration-200"
+              className="inline-block bg-[#B40001] hover:bg-[#D10000] text-[#FFFFFF] px-6 py-2.5 rounded-md text-sm font-semibold tracking-wide shadow-md transition-colors duration-200 ml-4"
             >
               Contact Us
             </motion.a>
