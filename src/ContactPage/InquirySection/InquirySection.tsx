@@ -52,7 +52,7 @@ export default function InquirySection() {
             GET IN TOUCH WITH US
           </motion.span>
           <motion.h1 variants={fadeUp} className="font-heading text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight mb-6 text-[#121212]">
-            Contact us for Premium <br className="hidden sm:block" /> Business Service.
+            Contact us for Premium <br className="hidden sm:block" /> <span className="text-[#B40001]">Business</span> Service.
           </motion.h1>
           <motion.p variants={fadeUp} className="text-[#5A5A5A] text-lg leading-relaxed max-w-2xl">
             Solve your operations issues, schedule quality assurance and performance

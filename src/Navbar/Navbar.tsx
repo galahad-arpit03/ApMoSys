@@ -12,7 +12,7 @@ export default function Navbar() {
     { label: "Solutions", href: "/#solutions", hasDropdown: true },
     { label: "Industries", href: "/#industries", hasDropdown: true },
     { label: "Products", href: "/#products", hasDropdown: true },
-    { label: "Blogs", href: "/#blogs", hasDropdown: false },
+    { label: "Blogs", href: "/blogs", hasDropdown: false },
     { label: "Careers", href: "/careers", hasDropdown: false },
   ];
 

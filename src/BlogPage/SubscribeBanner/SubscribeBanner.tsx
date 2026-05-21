@@ -1,0 +1,57 @@
+"use client";
+
+import React from "react";
+import { motion } from "framer-motion";
+
+export default function SubscribeBanner() {
+  return (
+    <section className="bg-[#FFFFFF] py-16">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="bg-[#121212] rounded-2xl overflow-hidden shadow-2xl flex flex-col lg:flex-row items-center justify-between p-8 sm:p-12 gap-8 relative"
+        >
+          {/* Subtle background glow */}
+          <div className="absolute top-0 right-0 w-64 h-64 bg-[#B40001] rounded-full blur-[100px] opacity-20 pointer-events-none" />
+
+          {/* Left Text */}
+          <div className="max-w-lg relative z-10">
+            <h3 className="font-heading font-bold text-2xl text-[#FFFFFF] mb-3">
+              Stay Ahead of the Curve
+            </h3>
+            <p className="text-[#A0A0A0] text-sm leading-relaxed">
+              Get weekly technical intelligence and engineering insights delivered directly to your inbox. No fluff, just engineering.
+            </p>
+          </div>
+
+          {/* Right Form */}
+          <div className="w-full lg:w-auto relative z-10">
+            <div className="flex flex-col sm:flex-row gap-4 mb-3">
+              <input 
+                type="email" 
+                placeholder="Work Email Address" 
+                className="w-full sm:w-72 bg-[#1F1F1F] border border-[#3A3A3A] px-4 py-3.5 rounded-md text-sm focus:outline-none focus:border-[#B40001] text-[#FAFAFA] transition-colors"
+              />
+              <motion.button 
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                className="bg-[#B40001] hover:bg-[#D10000] text-[#FFFFFF] px-8 py-3.5 rounded-md text-sm font-bold transition-colors whitespace-nowrap"
+              >
+                Subscribe
+              </motion.button>
+            </div>
+            <p className="text-[#5A5A5A] text-xs">
+              By subscribing, you agree to our privacy policy and terms of service.
+            </p>
+          </div>
+          
+        </motion.div>
+        
+      </div>
+    </section>
+  );
+}
