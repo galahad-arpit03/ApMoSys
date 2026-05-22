@@ -31,7 +31,7 @@ export default function TechDeepDive() {
               transition={{ duration: 0.65, ease: "easeOut", delay: 0.1 }}
               className="lg:col-span-5 p-10 lg:p-12 flex flex-col justify-center border-b border-[#3A3A3A] lg:border-b-0 lg:border-r"
             >
-              <span className="text-[#B40001] text-xs font-bold tracking-widest uppercase mb-4 block">
+              <span className="text-primary-red text-xs font-bold tracking-widest uppercase mb-4 block">
                 Direct Access
               </span>
               <h2 className="font-heading text-3xl sm:text-4xl font-extrabold text-[#FFFFFF] mb-5 leading-tight">
@@ -44,7 +44,7 @@ export default function TechDeepDive() {
                 <motion.button
                   whileHover={{ scale: 1.03, boxShadow: "0 8px 28px rgba(180,0,1,0.30)" }}
                   whileTap={{ scale: 0.96 }}
-                  className="bg-[#B40001] hover:bg-[#D10000] text-white font-bold px-7 py-3 rounded-md text-sm tracking-wide transition-colors"
+                  className="bg-primary-red hover:bg-primary-hover text-white font-bold px-7 py-3 rounded-md text-sm tracking-wide transition-colors"
                 >
                   Schedule Consultation
                 </motion.button>
@@ -81,7 +81,7 @@ export default function TechDeepDive() {
                     transition={{ type: "spring", stiffness: 400, damping: 20 }}
                     className={`flex-shrink-0 px-3 py-2 rounded-md text-xs font-bold transition-colors ${
                       selectedDay === day
-                        ? "bg-[#B40001] text-white"
+                        ? "bg-primary-red text-white"
                         : i === today
                         ? "bg-[#3A3A3A] text-[#FAFAFA]"
                         : "bg-[#121212] border border-[#3A3A3A] text-[#7A7A7A] hover:text-[#FAFAFA]"
@@ -103,8 +103,8 @@ export default function TechDeepDive() {
                     transition={{ type: "spring", stiffness: 400, damping: 20 }}
                     className={`py-2.5 rounded-md text-xs font-semibold border transition-colors ${
                       selectedSlot === slot
-                        ? "bg-[#B40001] border-[#B40001] text-white"
-                        : "bg-[#121212] border-[#3A3A3A] text-[#A0A0A0] hover:border-[#B40001] hover:text-[#FAFAFA]"
+                        ? "bg-primary-red border-primary-red text-white"
+                        : "bg-[#121212] border-[#3A3A3A] text-[#A0A0A0] hover:border-primary-red hover:text-[#FAFAFA]"
                     }`}
                   >
                     {slot}
@@ -120,12 +120,12 @@ export default function TechDeepDive() {
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     exit={{ opacity: 0, y: 8, scale: 0.98 }}
                     transition={{ duration: 0.3, ease: "easeOut" }}
-                    className="mt-6 bg-[#B40001]/10 border border-[#B40001]/30 rounded-xl p-4 text-sm text-[#FAFAFA]"
+                    className="mt-6 bg-primary-red/10 border border-primary-red/30 rounded-xl p-4 text-sm text-[#FAFAFA]"
                   >
-                    <span className="text-[#B40001] font-bold">✓ Slot Selected:</span>{" "}
+                    <span className="text-primary-red font-bold">✓ Slot Selected:</span>{" "}
                     {selectedDay} at {selectedSlot}{" — "}
                     <button
-                      className="underline text-[#B40001] font-semibold"
+                      className="underline text-primary-red font-semibold"
                       onClick={() => { setSelectedSlot(null); setSelectedDay(null); }}
                     >
                       Clear

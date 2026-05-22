@@ -26,13 +26,13 @@ export default function HeroSection() {
           animate="visible"
           className="max-w-3xl"
         >
-          <motion.span variants={fadeUp} className="text-[#B40001] text-xs font-bold tracking-widest uppercase mb-4 block">
+          <motion.span variants={fadeUp} className="text-primary-red text-xs font-bold tracking-widest uppercase mb-4 block">
             CAREERS AT APMOSYS
           </motion.span>
           
-          <motion.h1 variants={fadeUp} className="font-heading text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight mb-6 text-[#FFFFFF] leading-[1.1]">
+          <motion.h1 variants={fadeUp} className="font-heading text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-normal mb-6 text-[#FFFFFF] leading-[1.1]">
             Engineer Your Future with <br className="hidden sm:block" />
-            <span className="text-[#B40001]">Precision.</span>
+            <span className="text-primary-red">Precision.</span>
           </motion.h1>
           
           <motion.p variants={fadeUp} className="text-[#A0A0A0] text-lg sm:text-xl leading-relaxed mb-10 max-w-2xl">
@@ -44,7 +44,7 @@ export default function HeroSection() {
               href="#openings"
               whileHover={{ scale: 1.04, boxShadow: "0 8px 24px rgba(180,0,1,0.25)" }}
               whileTap={{ scale: 0.96 }}
-              className="inline-flex justify-center items-center bg-[#B40001] hover:bg-[#D10000] text-white font-bold px-8 py-3.5 rounded-md text-sm tracking-wide uppercase transition-colors"
+              className="inline-flex justify-center items-center bg-primary-red hover:bg-primary-hover text-white font-bold px-8 py-3.5 rounded-md text-sm tracking-wide uppercase transition-colors"
             >
               View Open Roles
             </motion.a>

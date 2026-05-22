@@ -62,12 +62,13 @@ export default function GlobalPresence() {
                 <motion.div
                   whileHover={{ scale: 1.05 }}
                   transition={{ duration: 0.45, ease: "easeOut" }}
-                  className="w-full h-full"
+                  className="relative w-full h-full"
                 >
                   <Image
                     src={office.image}
                     alt={office.city}
                     fill
+                    sizes="(max-width: 768px) 100vw, 33vw"
                     className="object-cover"
                   />
                 </motion.div>
@@ -83,7 +84,7 @@ export default function GlobalPresence() {
                   rel="noopener noreferrer"
                   whileHover={{ x: 3 }}
                   transition={{ type: "spring", stiffness: 400 }}
-                  className="inline-flex items-center gap-1.5 text-xs font-bold text-[#B40001] hover:text-[#D10000] transition-colors uppercase tracking-wider"
+                  className="inline-flex items-center gap-1.5 text-xs font-bold text-primary-red hover:text-[#D10000] transition-colors uppercase tracking-wider"
                 >
                   View on Map
                   <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">

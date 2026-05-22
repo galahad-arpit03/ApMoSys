@@ -48,12 +48,12 @@ export default function PortfolioSection() {
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-6">
             <motion.div variants={fadeUp}>
               <label className="block text-xs font-bold text-[#A0A0A0] mb-2 uppercase tracking-wide">
-                Full Name <span className="text-[#B40001]">*</span>
+                Full Name <span className="text-primary-red">*</span>
               </label>
               <input
                 type="text"
                 required
-                className="w-full bg-[#121212] border border-[#3A3A3A] focus:border-[#B40001] rounded-md px-4 py-3 text-sm text-[#FAFAFA] placeholder-[#5A5A5A] outline-none transition-colors"
+                className="w-full bg-[#121212] border border-[#3A3A3A] focus:border-primary-red rounded-md px-4 py-3 text-sm text-[#FAFAFA] placeholder-[#5A5A5A] outline-none transition-colors"
                 placeholder="John Doe"
                 value={formData.fullName}
                 onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
@@ -62,12 +62,12 @@ export default function PortfolioSection() {
             
             <motion.div variants={fadeUp}>
               <label className="block text-xs font-bold text-[#A0A0A0] mb-2 uppercase tracking-wide">
-                Email Address <span className="text-[#B40001]">*</span>
+                Email Address <span className="text-primary-red">*</span>
               </label>
               <input
                 type="email"
                 required
-                className="w-full bg-[#121212] border border-[#3A3A3A] focus:border-[#B40001] rounded-md px-4 py-3 text-sm text-[#FAFAFA] placeholder-[#5A5A5A] outline-none transition-colors"
+                className="w-full bg-[#121212] border border-[#3A3A3A] focus:border-primary-red rounded-md px-4 py-3 text-sm text-[#FAFAFA] placeholder-[#5A5A5A] outline-none transition-colors"
                 placeholder="john@example.com"
                 value={formData.email}
                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
@@ -81,7 +81,7 @@ export default function PortfolioSection() {
                 Target Department
               </label>
               <select
-                className="w-full bg-[#121212] border border-[#3A3A3A] focus:border-[#B40001] rounded-md px-4 py-3 text-sm text-[#FAFAFA] outline-none transition-colors appearance-none"
+                className="w-full bg-[#121212] border border-[#3A3A3A] focus:border-primary-red rounded-md px-4 py-3 text-sm text-[#FAFAFA] outline-none transition-colors appearance-none"
                 value={formData.department}
                 onChange={(e) => setFormData({ ...formData, department: e.target.value })}
               >
@@ -98,7 +98,7 @@ export default function PortfolioSection() {
               </label>
               <input
                 type="url"
-                className="w-full bg-[#121212] border border-[#3A3A3A] focus:border-[#B40001] rounded-md px-4 py-3 text-sm text-[#FAFAFA] placeholder-[#5A5A5A] outline-none transition-colors"
+                className="w-full bg-[#121212] border border-[#3A3A3A] focus:border-primary-red rounded-md px-4 py-3 text-sm text-[#FAFAFA] placeholder-[#5A5A5A] outline-none transition-colors"
                 placeholder="https://github.com/..."
                 value={formData.portfolio}
                 onChange={(e) => setFormData({ ...formData, portfolio: e.target.value })}
@@ -110,8 +110,8 @@ export default function PortfolioSection() {
             <label className="block text-xs font-bold text-[#A0A0A0] mb-2 uppercase tracking-wide">
               Upload Resume (Optional)
             </label>
-            <div className="border-2 border-dashed border-[#3A3A3A] hover:border-[#B40001] bg-[#121212] rounded-md p-8 text-center transition-colors cursor-pointer group">
-              <svg className="w-8 h-8 text-[#5A5A5A] group-hover:text-[#B40001] mx-auto mb-3 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <div className="border-2 border-dashed border-[#3A3A3A] hover:border-primary-red bg-[#121212] rounded-md p-8 text-center transition-colors cursor-pointer group">
+              <svg className="w-8 h-8 text-[#5A5A5A] group-hover:text-primary-red mx-auto mb-3 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
               </svg>
               <span className="text-[#A0A0A0] text-sm group-hover:text-[#FAFAFA] transition-colors">
@@ -125,7 +125,7 @@ export default function PortfolioSection() {
               whileHover={{ scale: 1.02, boxShadow: "0 8px 24px rgba(180,0,1,0.25)" }}
               whileTap={{ scale: 0.98 }}
               type="submit"
-              className="w-full bg-[#B40001] hover:bg-[#D10000] text-white font-bold py-4 rounded-md text-sm tracking-wider uppercase transition-colors"
+              className="w-full bg-primary-red hover:bg-primary-hover text-white font-bold py-4 rounded-md text-sm tracking-wider uppercase transition-colors"
             >
               Submit Application
             </motion.button>

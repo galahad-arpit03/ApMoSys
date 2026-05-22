@@ -48,11 +48,11 @@ export default function InquirySection() {
           animate="visible"
           className="mb-16 max-w-3xl"
         >
-          <motion.span variants={fadeUp} className="text-[#B40001] text-xs font-bold tracking-widest uppercase mb-4 block">
+          <motion.span variants={fadeUp} className="text-primary-red text-xs font-bold tracking-widest uppercase mb-4 block">
             GET IN TOUCH WITH US
           </motion.span>
-          <motion.h1 variants={fadeUp} className="font-heading text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight mb-6 text-[#121212]">
-            Contact us for Premium <br className="hidden sm:block" /> <span className="text-[#B40001]">Business</span> Service.
+          <motion.h1 variants={fadeUp} className="font-heading text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-normal mb-6 text-[#121212]">
+            Contact us for Premium <br className="hidden sm:block" /> <span className="text-primary-red">Business</span> Service.
           </motion.h1>
           <motion.p variants={fadeUp} className="text-[#5A5A5A] text-lg leading-relaxed max-w-2xl">
             Solve your operations issues, schedule quality assurance and performance
@@ -84,12 +84,12 @@ export default function InquirySection() {
                 <motion.div variants={fadeUp} className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                   <div>
                     <label className="block text-xs font-semibold text-[#5A5A5A] mb-2 uppercase tracking-wide">
-                      Name <span className="text-[#B40001]">*</span>
+                      Name <span className="text-primary-red">*</span>
                     </label>
                     <input
                       type="text"
                       required
-                      className="w-full bg-[#FAFAFA] border border-[#E8E8E8] focus:border-[#B40001] rounded-md px-4 py-3 text-sm text-[#121212] placeholder-[#A0A0A0] outline-none transition-all duration-200 hover:border-[#C8C8C8]"
+                      className="w-full bg-[#FAFAFA] border border-[#E8E8E8] focus:border-primary-red rounded-md px-4 py-3 text-sm text-[#121212] placeholder-[#A0A0A0] outline-none transition-all duration-200 hover:border-[#C8C8C8]"
                       placeholder="Enter your name"
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
@@ -97,12 +97,12 @@ export default function InquirySection() {
                   </div>
                   <div>
                     <label className="block text-xs font-semibold text-[#5A5A5A] mb-2 uppercase tracking-wide">
-                      Email <span className="text-[#B40001]">*</span>
+                      Email <span className="text-primary-red">*</span>
                     </label>
                     <input
                       type="email"
                       required
-                      className="w-full bg-[#FAFAFA] border border-[#E8E8E8] focus:border-[#B40001] rounded-md px-4 py-3 text-sm text-[#121212] placeholder-[#A0A0A0] outline-none transition-all duration-200 hover:border-[#C8C8C8]"
+                      className="w-full bg-[#FAFAFA] border border-[#E8E8E8] focus:border-primary-red rounded-md px-4 py-3 text-sm text-[#121212] placeholder-[#A0A0A0] outline-none transition-all duration-200 hover:border-[#C8C8C8]"
                       placeholder="Enter your email-ID"
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
@@ -114,12 +114,12 @@ export default function InquirySection() {
                 <motion.div variants={fadeUp} className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                   <div>
                     <label className="block text-xs font-semibold text-[#5A5A5A] mb-2 uppercase tracking-wide">
-                      Company Name <span className="text-[#B40001]">*</span>
+                      Company Name <span className="text-primary-red">*</span>
                     </label>
                     <input
                       type="text"
                       required
-                      className="w-full bg-[#FAFAFA] border border-[#E8E8E8] focus:border-[#B40001] rounded-md px-4 py-3 text-sm text-[#121212] placeholder-[#A0A0A0] outline-none transition-all duration-200 hover:border-[#C8C8C8]"
+                      className="w-full bg-[#FAFAFA] border border-[#E8E8E8] focus:border-primary-red rounded-md px-4 py-3 text-sm text-[#121212] placeholder-[#A0A0A0] outline-none transition-all duration-200 hover:border-[#C8C8C8]"
                       placeholder="Enter your company name"
                       value={formData.company}
                       onChange={(e) => setFormData({ ...formData, company: e.target.value })}
@@ -127,12 +127,12 @@ export default function InquirySection() {
                   </div>
                   <div>
                     <label className="block text-xs font-semibold text-[#5A5A5A] mb-2 uppercase tracking-wide">
-                      Contact Number <span className="text-[#B40001]">*</span>
+                      Contact Number <span className="text-primary-red">*</span>
                     </label>
                     <input
                       type="tel"
                       required
-                      className="w-full bg-[#FAFAFA] border border-[#E8E8E8] focus:border-[#B40001] rounded-md px-4 py-3 text-sm text-[#121212] placeholder-[#A0A0A0] outline-none transition-all duration-200 hover:border-[#C8C8C8]"
+                      className="w-full bg-[#FAFAFA] border border-[#E8E8E8] focus:border-primary-red rounded-md px-4 py-3 text-sm text-[#121212] placeholder-[#A0A0A0] outline-none transition-all duration-200 hover:border-[#C8C8C8]"
                       placeholder="Enter your contact number"
                       value={formData.phone}
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
@@ -143,12 +143,12 @@ export default function InquirySection() {
                 {/* Row 3: Message */}
                 <motion.div variants={fadeUp}>
                   <label className="block text-xs font-semibold text-[#5A5A5A] mb-2 uppercase tracking-wide">
-                    Your Message <span className="text-[#B40001]">*</span>
+                    Your Message <span className="text-primary-red">*</span>
                   </label>
                   <textarea
                     rows={4}
                     required
-                    className="w-full bg-[#FAFAFA] border border-[#E8E8E8] focus:border-[#B40001] rounded-md px-4 py-3 text-sm text-[#121212] placeholder-[#A0A0A0] outline-none transition-all duration-200 hover:border-[#C8C8C8] resize-none"
+                    className="w-full bg-[#FAFAFA] border border-[#E8E8E8] focus:border-primary-red rounded-md px-4 py-3 text-sm text-[#121212] placeholder-[#A0A0A0] outline-none transition-all duration-200 hover:border-[#C8C8C8] resize-none"
                     placeholder="Enter your text message here"
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
@@ -160,7 +160,7 @@ export default function InquirySection() {
                     whileHover={{ scale: 1.02, boxShadow: "0 8px 32px rgba(180,0,1,0.25)" }}
                     whileTap={{ scale: 0.97 }}
                     type="submit"
-                    className="w-full bg-[#B40001] hover:bg-[#D10000] text-white font-bold py-4 rounded-md text-sm tracking-wider uppercase transition-colors flex items-center justify-center gap-2"
+                    className="w-full bg-primary-red hover:bg-primary-hover text-white font-bold py-4 rounded-md text-sm tracking-wider uppercase transition-colors flex items-center justify-center gap-2"
                   >
                     Submit Request
                     <motion.svg
@@ -192,7 +192,7 @@ export default function InquirySection() {
               <div className="flex items-center gap-3 mb-8">
                 <motion.div
                   whileHover={{ scale: 1.1, rotate: 5 }}
-                  className="w-8 h-8 rounded-full bg-[#FFE5E5] flex items-center justify-center text-[#B40001]"
+                  className="w-8 h-8 rounded-full bg-primary-soft flex items-center justify-center text-primary-red"
                 >
                   <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
@@ -220,7 +220,7 @@ export default function InquirySection() {
                     transition={{ type: "spring", stiffness: 300 }}
                     className="flex gap-4"
                   >
-                    <div className="mt-1 text-[#B40001]">
+                    <div className="mt-1 text-primary-red">
                       <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={item.icon} />
                       </svg>

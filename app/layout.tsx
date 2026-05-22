@@ -33,7 +33,7 @@ export default function RootLayout({
       className={`${outfit.variable} ${plusJakarta.variable} h-full antialiased`}
       suppressHydrationWarning
     >
-      <body className="min-h-full flex flex-col bg-[#121212] text-[#FAFAFA] font-sans selection:bg-[#B40001] selection:text-[#FFFFFF]" suppressHydrationWarning>
+      <body className="min-h-full flex flex-col bg-[#121212] text-[#FAFAFA] font-sans selection:bg-primary-red selection:text-[#FFFFFF]" suppressHydrationWarning>
         <Navbar />
         <main className="flex-grow">
           {children}

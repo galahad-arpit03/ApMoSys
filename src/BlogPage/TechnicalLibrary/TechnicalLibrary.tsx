@@ -34,7 +34,7 @@ export default function TechnicalLibrary() {
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            <span className="text-[#B40001] text-xs font-bold uppercase tracking-widest block mb-2">Technical Library</span>
+            <span className="text-primary-red text-xs font-bold uppercase tracking-widest block mb-2">Technical Library</span>
             <h2 className="font-heading text-2xl sm:text-3xl font-bold text-[#121212]">
               Whitepapers & Frameworks
             </h2>
@@ -46,7 +46,7 @@ export default function TechnicalLibrary() {
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            <a href="#" className="inline-flex items-center gap-2 text-sm font-bold text-[#121212] hover:text-[#B40001] transition-colors group">
+            <a href="#" className="inline-flex items-center gap-2 text-sm font-bold text-[#121212] hover:text-primary-red transition-colors group">
               Browse Library
               <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
@@ -67,7 +67,7 @@ export default function TechnicalLibrary() {
               className="bg-[#FFFFFF] border border-[#E8E8E8] rounded-xl p-8 flex flex-col h-full hover:shadow-lg transition-shadow group relative"
             >
               {/* Document Icon Top Right */}
-              <div className="absolute top-8 right-8 text-[#E8E8E8] group-hover:text-[#FFE5E5] transition-colors">
+              <div className="absolute top-8 right-8 text-[#E8E8E8] group-hover:text-primary-soft transition-colors">
                 <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                 </svg>
@@ -86,7 +86,7 @@ export default function TechnicalLibrary() {
               </p>
               
               <div className="mt-auto">
-                <a href="#" className="inline-flex items-center gap-2 text-[#B40001] text-xs font-bold uppercase tracking-wider hover:text-[#D10000] transition-colors group/btn">
+                <a href="#" className="inline-flex items-center gap-2 text-primary-red text-xs font-bold uppercase tracking-wider hover:text-[#D10000] transition-colors group/btn">
                   Download PDF
                   <svg className="w-3.5 h-3.5 group-hover/btn:translate-y-0.5 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />

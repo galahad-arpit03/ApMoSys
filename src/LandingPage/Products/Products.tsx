@@ -17,21 +17,21 @@ export default function Products() {
             
             <div className="space-y-4">
               <div className="flex items-start gap-4">
-                <span className="text-[#B40001] mt-1">✓</span>
+                <span className="text-primary-red mt-1">✓</span>
                 <div>
                   <h4 className="font-bold text-[#FFFFFF]">cliQTest Suite</h4>
                   <p className="text-xs text-[#7A7A7A] mt-1">Saves up to 60% setup time for multi-platform environments.</p>
                 </div>
               </div>
               <div className="flex items-start gap-4">
-                <span className="text-[#B40001] mt-1">✓</span>
+                <span className="text-primary-red mt-1">✓</span>
                 <div>
                   <h4 className="font-bold text-[#FFFFFF]">Netraa Vision Engine</h4>
                   <p className="text-xs text-[#7A7A7A] mt-1">Guarantees layout compliance and flags regressions in seconds.</p>
                 </div>
               </div>
               <div className="flex items-start gap-4">
-                <span className="text-[#B40001] mt-1">✓</span>
+                <span className="text-primary-red mt-1">✓</span>
                 <div>
                   <h4 className="font-bold text-[#FFFFFF]">AIOps Monitor</h4>
                   <p className="text-xs text-[#7A7A7A] mt-1">Resolves bottlenecks proactively using advanced data pattern metrics.</p>
@@ -45,7 +45,7 @@ export default function Products() {
             <div className="bg-[#1F1F1F] border border-[#3A3A3A] p-6 rounded-lg flex flex-col justify-between">
               <span className="text-[#7A7A7A] font-mono text-xs uppercase block">Release Speed</span>
               <div>
-                <span className="text-4xl font-bold font-heading text-[#B40001] block mt-4">10x</span>
+                <span className="text-4xl font-bold font-heading text-primary-red block mt-4">10x</span>
                 <p className="text-[#A0A0A0] text-xs leading-relaxed mt-2">Faster visual validation compared to manual testing procedures.</p>
               </div>
             </div>
@@ -69,7 +69,7 @@ export default function Products() {
             <div className="bg-[#1F1F1F] border border-[#3A3A3A] p-6 rounded-lg flex flex-col justify-between">
               <span className="text-[#7A7A7A] font-mono text-xs uppercase block">Friction Reduction</span>
               <div>
-                <span className="text-4xl font-bold font-heading text-[#B40001] block mt-4">75%</span>
+                <span className="text-4xl font-bold font-heading text-primary-red block mt-4">75%</span>
                 <p className="text-[#A0A0A0] text-xs leading-relaxed mt-2">Fewer false positives compared to traditional testing frameworks.</p>
               </div>
             </div>

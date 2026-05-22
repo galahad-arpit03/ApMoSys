@@ -22,7 +22,7 @@ export default function FeaturedPost() {
           className="max-w-4xl flex flex-col items-start"
         >
           <motion.div variants={fadeUp} className="flex items-center gap-4 mb-8">
-            <span className="bg-[#B40001] text-[#FFFFFF] text-xs font-bold tracking-widest uppercase px-3 py-1.5 rounded-sm">
+            <span className="bg-primary-red text-[#FFFFFF] text-xs font-bold tracking-widest uppercase px-3 py-1.5 rounded-sm">
               FEATURED REPORT
             </span>
             <span className="text-[#A0A0A0] text-sm font-medium tracking-wide">
@@ -30,7 +30,7 @@ export default function FeaturedPost() {
             </span>
           </motion.div>
           
-          <motion.h1 variants={fadeUp} className="font-heading text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight mb-8 text-[#FFFFFF] leading-[1.15]">
+          <motion.h1 variants={fadeUp} className="font-heading text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-normal mb-8 text-[#FFFFFF] leading-[1.15]">
             Quantifying the ROI of AI-Driven Performance Engineering
           </motion.h1>
           
@@ -43,7 +43,7 @@ export default function FeaturedPost() {
               href="#read"
               whileHover={{ scale: 1.04, boxShadow: "0 8px 24px rgba(180,0,1,0.25)" }}
               whileTap={{ scale: 0.96 }}
-              className="inline-flex justify-center items-center gap-2 bg-[#B40001] hover:bg-[#D10000] text-white font-bold px-8 py-3.5 rounded-md text-sm tracking-wide uppercase transition-all"
+              className="inline-flex justify-center items-center gap-2 bg-primary-red hover:bg-primary-hover text-white font-bold px-8 py-3.5 rounded-md text-sm tracking-wide uppercase transition-all"
             >
               Read More
               <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>

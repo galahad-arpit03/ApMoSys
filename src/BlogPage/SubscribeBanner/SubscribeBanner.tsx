@@ -16,7 +16,7 @@ export default function SubscribeBanner() {
           className="bg-[#121212] rounded-2xl overflow-hidden shadow-2xl flex flex-col lg:flex-row items-center justify-between p-8 sm:p-12 gap-8 relative"
         >
           {/* Subtle background glow */}
-          <div className="absolute top-0 right-0 w-64 h-64 bg-[#B40001] rounded-full blur-[100px] opacity-20 pointer-events-none" />
+          <div className="absolute top-0 right-0 w-64 h-64 bg-primary-red rounded-full blur-[100px] opacity-20 pointer-events-none" />
 
           {/* Left Text */}
           <div className="max-w-lg relative z-10">
@@ -34,12 +34,12 @@ export default function SubscribeBanner() {
               <input 
                 type="email" 
                 placeholder="Work Email Address" 
-                className="w-full sm:w-72 bg-[#1F1F1F] border border-[#3A3A3A] px-4 py-3.5 rounded-md text-sm focus:outline-none focus:border-[#B40001] text-[#FAFAFA] transition-colors"
+                className="w-full sm:w-72 bg-[#1F1F1F] border border-[#3A3A3A] px-4 py-3.5 rounded-md text-sm focus:outline-none focus:border-primary-red text-[#FAFAFA] transition-colors"
               />
               <motion.button 
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                className="bg-[#B40001] hover:bg-[#D10000] text-[#FFFFFF] px-8 py-3.5 rounded-md text-sm font-bold transition-colors whitespace-nowrap"
+                className="bg-primary-red hover:bg-primary-hover text-[#FFFFFF] px-8 py-3.5 rounded-md text-sm font-bold transition-colors whitespace-nowrap"
               >
                 Subscribe
               </motion.button>

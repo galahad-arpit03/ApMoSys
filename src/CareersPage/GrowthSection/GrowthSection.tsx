@@ -74,9 +74,9 @@ export default function GrowthSection() {
               className="bg-[#FFFFFF] border border-[#E8E8E8] p-8 rounded-xl shadow-sm transition-all relative overflow-hidden group"
             >
               {/* Subtle top accent */}
-              <div className="absolute top-0 left-0 w-full h-1 bg-[#B40001] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <div className="absolute top-0 left-0 w-full h-1 bg-primary-red opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               
-              <div className="w-12 h-12 bg-[#FFE5E5] rounded-lg flex items-center justify-center text-[#B40001] mb-6 group-hover:scale-110 transition-transform duration-300">
+              <div className="w-12 h-12 bg-primary-soft rounded-lg flex items-center justify-center text-primary-red mb-6 group-hover:scale-110 transition-transform duration-300">
                 <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                   <path strokeLinecap="round" strokeLinejoin="round" d={perk.icon} />
                 </svg>

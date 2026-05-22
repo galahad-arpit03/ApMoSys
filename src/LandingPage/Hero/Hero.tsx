@@ -8,12 +8,12 @@ export default function Hero() {
           
           {/* Left Content */}
           <div className="sm:text-center md:max-w-2xl md:mx-auto lg:col-span-6 lg:text-left">
-            <div className="inline-flex items-center gap-2 bg-[#7A0000]/20 border border-[#B40001]/30 px-3 py-1.5 rounded-full text-xs font-semibold text-[#B40001] mb-6">
-              <span className="w-2 h-2 rounded-full bg-[#B40001] animate-pulse" />
+            <div className="inline-flex items-center gap-2 bg-primary-dark/20 border border-primary-red/30 px-3 py-1.5 rounded-full text-xs font-semibold text-[#FFFFFF] mb-6">
+              <span className="w-2 h-2 rounded-full bg-primary-red" />
               Advanced QA & IT Automation
             </div>
-            <h1 className="font-heading text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-[#FFFFFF] leading-none mb-6">
-              Performance Solutions For <span className="text-[#B40001]">Enterprise Scale</span>
+            <h1 className="font-heading text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-normal text-[#FFFFFF] leading-none mb-6">
+              Performance Solutions For <span className="text-primary-red">Enterprise Scale</span>
             </h1>
             <p className="text-base sm:text-lg text-[#A0A0A0] leading-relaxed mb-8 max-w-xl">
               ApMoSys delivers state-of-the-art testing, process automation, and intelligent software engineering that guarantees robust security and optimal performance.
@@ -21,7 +21,7 @@ export default function Hero() {
             <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
               <a
                 href="#contact"
-                className="w-full sm:w-auto bg-[#B40001] hover:bg-[#D10000] text-[#FFFFFF] font-semibold text-center px-8 py-3.5 rounded-md text-sm tracking-wide transition-colors"
+                className="w-full sm:w-auto bg-primary-red hover:bg-primary-hover text-[#FFFFFF] font-semibold text-center px-8 py-3.5 rounded-md text-sm tracking-wide transition-colors"
               >
                 Schedule Consultation
               </a>
@@ -40,7 +40,7 @@ export default function Hero() {
               {/* Window header */}
               <div className="flex items-center justify-between border-b border-[#3A3A3A] pb-4 mb-6">
                 <div className="flex items-center gap-2">
-                  <span className="w-3 h-3 rounded-full bg-[#B40001]" />
+                  <span className="w-3 h-3 rounded-full bg-primary-red" />
                   <span className="w-3 h-3 rounded-full bg-[#3A3A3A]" />
                   <span className="w-3 h-3 rounded-full bg-[#5A5A5A]" />
                 </div>
@@ -52,7 +52,7 @@ export default function Hero() {
                 <div className="grid grid-cols-3 gap-4">
                   <div className="bg-[#121212] border border-[#3A3A3A] p-4 rounded-md">
                     <span className="text-[10px] text-[#7A7A7A] uppercase font-semibold tracking-wider block">Automation</span>
-                    <span className="text-xl font-bold font-heading text-[#B40001] mt-1 block">94.8%</span>
+                    <span className="text-xl font-bold font-heading text-primary-red mt-1 block">94.8%</span>
                   </div>
                   <div className="bg-[#121212] border border-[#3A3A3A] p-4 rounded-md">
                     <span className="text-[10px] text-[#7A7A7A] uppercase font-semibold tracking-wider block">Scan Rate</span>
@@ -60,12 +60,12 @@ export default function Hero() {
                   </div>
                   <div className="bg-[#121212] border border-[#3A3A3A] p-4 rounded-md">
                     <span className="text-[10px] text-[#7A7A7A] uppercase font-semibold tracking-wider block">Incidents</span>
-                    <span className="text-xl font-bold font-heading text-[#B40001] mt-1 block">0</span>
+                    <span className="text-xl font-bold font-heading text-primary-red mt-1 block">0</span>
                   </div>
                 </div>
 
                 <div className="bg-[#121212] border border-[#3A3A3A] p-4 rounded-md font-mono text-xs text-[#A0A0A0]">
-                  <div className="flex items-center justify-between text-[#B40001] mb-2 font-semibold">
+                  <div className="flex items-center justify-between text-primary-red mb-2 font-semibold">
                     <span>✓ cliQTest Suite Loaded</span>
                     <span>Active</span>
                   </div>
@@ -77,7 +77,7 @@ export default function Hero() {
                 </div>
 
                 <div className="flex items-center justify-between text-xs text-[#7A7A7A] pt-2">
-                  <span>Node Status: <span className="text-[#B40001] font-bold">Operational</span></span>
+                  <span>Node Status: <span className="text-primary-red font-bold">Operational</span></span>
                   <span>Lat: 12ms</span>
                 </div>
               </div>

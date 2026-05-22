@@ -72,7 +72,7 @@ export default function FAQSection() {
                 <motion.span
                   animate={{ rotate: openIndex === idx ? 45 : 0 }}
                   transition={{ duration: 0.25, ease: "easeInOut" }}
-                  className="flex-shrink-0 w-7 h-7 rounded-full bg-[#B40001] flex items-center justify-center"
+                  className="flex-shrink-0 w-7 h-7 rounded-full bg-primary-red flex items-center justify-center"
                 >
                   <svg className="w-3.5 h-3.5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m8-8H4" />

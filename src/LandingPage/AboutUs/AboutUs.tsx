@@ -28,7 +28,7 @@ export default function AboutUs() {
             viewport={{ once: true, margin: "-100px" }}
             className="mb-12 lg:mb-0"
           >
-            <motion.span variants={fadeUp} className="text-[#B40001] text-xs font-bold tracking-widest uppercase mb-4 block">
+            <motion.span variants={fadeUp} className="text-primary-red text-xs font-bold tracking-widest uppercase mb-4 block">
               About ApMoSys
             </motion.span>
             
@@ -84,7 +84,7 @@ export default function AboutUs() {
                 transition={{ duration: 0.3 }}
                 className="bg-[#1F1F1F] border border-[#3A3A3A] rounded-xl p-8 flex flex-col justify-center transition-colors"
               >
-                <h3 className="font-heading text-4xl sm:text-5xl font-extrabold text-[#B40001] mb-2">
+                <h3 className="font-heading text-4xl sm:text-5xl font-extrabold text-primary-red mb-2">
                   {item.stat}
                 </h3>
                 <p className="text-[#A0A0A0] text-sm font-semibold uppercase tracking-wider">

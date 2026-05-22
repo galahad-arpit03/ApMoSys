@@ -11,7 +11,7 @@ export default function ContactPage() {
       <InquirySection />
       <GlobalPresence />
       <WorldMapSection />
-      <TechDeepDive />
+      {/* <TechDeepDive /> */}
       <FAQSection />
     </>
   );

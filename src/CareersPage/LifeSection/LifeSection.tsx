@@ -56,7 +56,7 @@ export default function LifeSection() {
             </div>
             
             <div className="absolute bottom-0 left-0 p-8 z-20">
-              <span className="text-[#B40001] text-xs font-bold uppercase tracking-widest mb-2 block">
+              <span className="text-primary-red text-xs font-bold uppercase tracking-widest mb-2 block">
                 Workspace
               </span>
               <h3 className="text-[#FFFFFF] text-2xl font-bold">Innovation Labs</h3>
@@ -92,7 +92,7 @@ export default function LifeSection() {
           {/* Bottom Right Split 2 (Awards) */}
           <motion.div
             variants={fadeUp}
-            className="md:col-span-3 md:row-span-1 relative rounded-xl overflow-hidden bg-[#B40001] flex flex-col items-center justify-center p-6 min-h-[250px]"
+            className="md:col-span-3 md:row-span-1 relative rounded-xl overflow-hidden bg-primary-red flex flex-col items-center justify-center p-6 min-h-[250px]"
           >
              <h3 className="font-heading text-6xl font-extrabold text-[#FFFFFF] mb-2">14+</h3>
              <span className="text-[#FAFAFA]/80 text-sm font-bold tracking-widest uppercase">Industry Awards</span>

@@ -45,7 +45,7 @@ export default function BlogList() {
           <div className="flex flex-col md:flex-row md:items-center justify-between py-4 gap-4">
             
             <div className="flex overflow-x-auto hide-scrollbar gap-8">
-              <a href="#" className="whitespace-nowrap text-sm font-bold text-[#121212] border-b-2 border-[#B40001] pb-1">
+              <a href="#" className="whitespace-nowrap text-sm font-bold text-[#121212] border-b-2 border-primary-red pb-1">
                 All Resources
               </a>
               <a href="#" className="whitespace-nowrap text-sm font-medium text-[#7A7A7A] hover:text-[#121212] transition-colors pb-1">
@@ -69,7 +69,7 @@ export default function BlogList() {
               <input 
                 type="text" 
                 placeholder="Search technical intelligence..." 
-                className="w-full bg-[#FAFAFA] border border-[#E8E8E8] rounded-md pl-10 pr-4 py-2 text-sm focus:outline-none focus:border-[#B40001] transition-colors"
+                className="w-full bg-[#FAFAFA] border border-[#E8E8E8] rounded-md pl-10 pr-4 py-2 text-sm focus:outline-none focus:border-primary-red transition-colors"
               />
             </div>
           </div>
@@ -104,11 +104,11 @@ export default function BlogList() {
                   </div>
                   
                   <div className="flex items-center justify-between mb-3">
-                    <span className="text-[#B40001] text-[10px] font-bold uppercase tracking-widest">{post.tag}</span>
+                    <span className="text-primary-red text-[10px] font-bold uppercase tracking-widest">{post.tag}</span>
                     <span className="text-[#A0A0A0] text-xs font-medium">{post.readTime}</span>
                   </div>
                   
-                  <h4 className="font-heading font-bold text-xl text-[#121212] group-hover:text-[#B40001] transition-colors mb-4 line-clamp-2">
+                  <h4 className="font-heading font-bold text-xl text-[#121212] group-hover:text-primary-red transition-colors mb-4 line-clamp-2">
                     {post.title}
                   </h4>
                   
@@ -135,7 +135,7 @@ export default function BlogList() {
                   <a
                     key={tag}
                     href="#"
-                    className="bg-[#FAFAFA] border border-[#E8E8E8] hover:border-[#B40001] hover:text-[#B40001] text-[#5A5A5A] text-xs font-medium px-3 py-1.5 rounded-md transition-colors"
+                    className="bg-[#FAFAFA] border border-[#E8E8E8] hover:border-primary-red hover:text-primary-red text-[#5A5A5A] text-xs font-medium px-3 py-1.5 rounded-md transition-colors"
                   >
                     {tag}
                   </a>
@@ -149,22 +149,22 @@ export default function BlogList() {
               
               <div className="bg-[#FAFAFA] border border-[#E8E8E8] rounded-xl p-6">
                 <div className="mb-6">
-                  <span className="text-[#B40001] text-xs font-bold uppercase tracking-wider block mb-1">March 22, 2024</span>
-                  <h4 className="font-bold text-[#121212] hover:text-[#B40001] transition-colors text-sm leading-snug cursor-pointer">
+                  <span className="text-primary-red text-xs font-bold uppercase tracking-wider block mb-1">March 22, 2024</span>
+                  <h4 className="font-bold text-[#121212] hover:text-primary-red transition-colors text-sm leading-snug cursor-pointer">
                     The Evolution of Shift-Left Testing in Agile Teams
                   </h4>
                 </div>
                 
                 <div className="mb-6 border-t border-[#E8E8E8] pt-6">
-                  <span className="text-[#B40001] text-xs font-bold uppercase tracking-wider block mb-1">March 18, 2024</span>
-                  <h4 className="font-bold text-[#121212] hover:text-[#B40001] transition-colors text-sm leading-snug cursor-pointer">
+                  <span className="text-primary-red text-xs font-bold uppercase tracking-wider block mb-1">March 18, 2024</span>
+                  <h4 className="font-bold text-[#121212] hover:text-primary-red transition-colors text-sm leading-snug cursor-pointer">
                     Optimizing Cloud Costs with Automated Resource Scaling
                   </h4>
                 </div>
 
                 <div className="mb-6 border-t border-[#E8E8E8] pt-6">
-                  <span className="text-[#B40001] text-xs font-bold uppercase tracking-wider block mb-1">March 15, 2024</span>
-                  <h4 className="font-bold text-[#121212] hover:text-[#B40001] transition-colors text-sm leading-snug cursor-pointer">
+                  <span className="text-primary-red text-xs font-bold uppercase tracking-wider block mb-1">March 15, 2024</span>
+                  <h4 className="font-bold text-[#121212] hover:text-primary-red transition-colors text-sm leading-snug cursor-pointer">
                     Security Validations in Modern CI/CD Pipelines
                   </h4>
                 </div>

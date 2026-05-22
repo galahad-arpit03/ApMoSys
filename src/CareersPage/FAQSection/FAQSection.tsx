@@ -53,14 +53,14 @@ export default function FAQSection() {
                 onClick={() => setOpenIndex(openIndex === idx ? null : idx)}
                 className="w-full flex items-center justify-between py-6 text-left group"
               >
-                <span className="font-bold text-base sm:text-lg text-[#121212] group-hover:text-[#B40001] transition-colors pr-6">
+                <span className="font-bold text-base sm:text-lg text-[#121212] group-hover:text-primary-red transition-colors pr-6">
                   {faq.question}
                 </span>
 
                 <motion.span
                   animate={{ rotate: openIndex === idx ? 180 : 0 }}
                   transition={{ duration: 0.25, ease: "easeInOut" }}
-                  className="flex-shrink-0 text-[#7A7A7A] group-hover:text-[#B40001]"
+                  className="flex-shrink-0 text-[#7A7A7A] group-hover:text-primary-red"
                 >
                   <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />

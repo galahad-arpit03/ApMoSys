@@ -101,10 +101,10 @@ export default function OpeningsSection() {
               >
                 <div>
                   <div className="flex items-center gap-3 mb-2">
-                    <h3 className="text-xl font-bold text-[#121212] group-hover:text-[#B40001] transition-colors">
+                    <h3 className="text-xl font-bold text-[#121212] group-hover:text-primary-red transition-colors">
                       {job.title}
                     </h3>
-                    <span className="bg-[#FFE5E5] text-[#B40001] text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-sm whitespace-nowrap flex-shrink-0">
+                    <span className="bg-primary-soft text-primary-red text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-sm whitespace-nowrap flex-shrink-0">
                       {job.type}
                     </span>
                   </div>
@@ -118,7 +118,7 @@ export default function OpeningsSection() {
                     href="#apply"
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
-                    className="inline-block bg-[#121212] hover:bg-[#B40001] text-white font-bold px-8 py-3 rounded-md text-sm transition-colors"
+                    className="inline-block bg-[#121212] hover:bg-primary-red text-white font-bold px-8 py-3 rounded-md text-sm transition-colors"
                   >
                     Apply Now
                   </motion.a>

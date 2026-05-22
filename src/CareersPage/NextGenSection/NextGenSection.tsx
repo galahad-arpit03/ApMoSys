@@ -19,7 +19,7 @@ export default function NextGenSection() {
           >
             <h2 className="font-heading text-3xl sm:text-4xl font-extrabold text-[#121212] mb-4 leading-tight">
               The Next Generation of <br />
-              <span className="text-[#B40001]">Architects.</span>
+              <span className="text-primary-red">Architects.</span>
             </h2>
             <p className="text-[#5A5A5A] text-base leading-relaxed mb-8 max-w-lg">
               We do not just hire talent; we groom it. Our specialized training programs are designed to transform promising graduates into elite software architects and automation specialists ready for industry challenges.
@@ -46,7 +46,7 @@ export default function NextGenSection() {
             className="col-span-6 lg:pl-10"
           >
             <div className="bg-[#FAFAFA] border border-[#E8E8E8] p-10 rounded-2xl relative">
-              <svg className="absolute top-6 right-8 w-12 h-12 text-[#FFE5E5]" fill="currentColor" viewBox="0 0 24 24">
+              <svg className="absolute top-6 right-8 w-12 h-12 text-primary-soft" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
               </svg>
               

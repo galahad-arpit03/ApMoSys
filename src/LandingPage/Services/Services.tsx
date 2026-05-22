@@ -65,7 +65,7 @@ export default function Services() {
           variants={containerVariants}
           className="text-center max-w-3xl mx-auto mb-20"
         >
-          <motion.span variants={fadeUp} className="text-[#B40001] text-xs font-bold tracking-widest uppercase mb-4 block">
+          <motion.span variants={fadeUp} className="text-primary-red text-xs font-bold tracking-widest uppercase mb-4 block">
             Core Competencies
           </motion.span>
           <motion.h2 variants={fadeUp} className="font-heading text-4xl sm:text-5xl font-extrabold text-[#FFFFFF] mb-6 leading-tight">
@@ -94,10 +94,10 @@ export default function Services() {
               className="group bg-[#121212] border border-[#3A3A3A] p-8 rounded-xl transition-all duration-300 relative overflow-hidden"
             >
               {/* Top accent line */}
-              <div className="absolute top-0 left-0 w-full h-1 bg-[#B40001] transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-out" />
+              <div className="absolute top-0 left-0 w-full h-1 bg-primary-red transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-out" />
               
               <div className="flex items-center justify-between mb-8">
-                <div className="w-12 h-12 bg-[#1F1F1F] rounded-lg flex items-center justify-center text-[#B40001] group-hover:bg-[#B40001] group-hover:text-[#FFFFFF] transition-colors duration-300">
+                <div className="w-12 h-12 bg-[#1F1F1F] rounded-lg flex items-center justify-center text-primary-red group-hover:bg-primary-red group-hover:text-[#FFFFFF] transition-colors duration-300">
                   <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                     <path strokeLinecap="round" strokeLinejoin="round" d={service.icon} />
                   </svg>
@@ -133,7 +133,7 @@ export default function Services() {
         >
           <a
             href="/contact"
-            className="inline-flex items-center gap-2 text-[#B40001] hover:text-[#D10000] font-bold text-sm tracking-widest uppercase transition-colors"
+            className="inline-flex items-center gap-2 text-primary-red hover:text-[#D10000] font-bold text-sm tracking-widest uppercase transition-colors"
           >
             Discuss Your Architecture
             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>

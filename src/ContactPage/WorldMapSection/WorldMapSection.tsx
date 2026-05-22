@@ -44,9 +44,9 @@ export default function WorldMapSection() {
               <motion.span
                 animate={{ scale: [1, 1.6, 1], opacity: [0.5, 0, 0.5] }}
                 transition={{ duration: 2.2, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute inset-0 rounded-full bg-[#B40001]/40"
+                className="absolute inset-0 rounded-full bg-primary-red/40"
               />
-              <div className="relative w-11 h-11 bg-[#B40001] rounded-full flex items-center justify-center shadow-lg">
+              <div className="relative w-11 h-11 bg-primary-red rounded-full flex items-center justify-center shadow-lg">
                 <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
                 </svg>
@@ -93,7 +93,7 @@ export default function WorldMapSection() {
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            whileHover={{ scale: 1.05, borderColor: "#B40001", color: "#B40001" }}
+            whileHover={{ scale: 1.05, borderColor: "#B40001", color: "var(--color-primary-red)" }}
             whileTap={{ scale: 0.95 }}
             transition={{ duration: 0.55, delay: 0.8, ease: [0.22, 1, 0.36, 1] }}
             className="inline-block border border-[#FFFFFF]/30 text-[#FFFFFF] px-8 py-3 text-xs font-bold uppercase tracking-widest rounded-sm transition-colors"

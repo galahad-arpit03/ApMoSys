@@ -14,7 +14,7 @@ export default function Consultation() {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <span className="text-[#B40001] text-xs font-bold uppercase tracking-widest block mb-4">
+          <span className="text-primary-red text-xs font-bold uppercase tracking-widest block mb-4">
             Consultation Deep-Dive
           </span>
           <h2 className="font-heading text-3xl sm:text-4xl font-extrabold text-[#121212] mb-6">
@@ -29,7 +29,7 @@ export default function Consultation() {
               href="#"
               whileHover={{ scale: 1.04, boxShadow: "0 8px 24px rgba(180,0,1,0.25)" }}
               whileTap={{ scale: 0.96 }}
-              className="w-full sm:w-auto inline-flex justify-center items-center bg-[#B40001] hover:bg-[#D10000] text-white font-bold px-8 py-3.5 rounded-md text-sm tracking-wide transition-colors"
+              className="w-full sm:w-auto inline-flex justify-center items-center bg-primary-red hover:bg-primary-hover text-white font-bold px-8 py-3.5 rounded-md text-sm tracking-wide transition-colors"
             >
               Schedule a Deep-Dive
             </motion.a>

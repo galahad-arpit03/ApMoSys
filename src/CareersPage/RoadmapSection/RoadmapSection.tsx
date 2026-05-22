@@ -67,9 +67,9 @@ export default function RoadmapSection() {
             <motion.div
               key={step.num}
               variants={fadeUp}
-              className="relative z-10 flex flex-col items-center text-center bg-[#1F1F1F] border border-[#3A3A3A] p-8 rounded-xl hover:border-[#B40001] transition-colors group"
+              className="relative z-10 flex flex-col items-center text-center bg-[#1F1F1F] border border-[#3A3A3A] p-8 rounded-xl hover:border-primary-red transition-colors group"
             >
-              <div className="w-12 h-12 bg-[#B40001] text-white rounded-full flex items-center justify-center font-bold text-lg mb-6 group-hover:scale-110 transition-transform">
+              <div className="w-12 h-12 bg-primary-red text-white rounded-full flex items-center justify-center font-bold text-lg mb-6 group-hover:scale-110 transition-transform">
                 {step.num}
               </div>
               <h3 className="text-[#FFFFFF] text-lg font-bold mb-3">
