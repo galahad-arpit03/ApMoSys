@@ -33,7 +33,7 @@ export default function SectionThemeWrapper({
       {isAdmin && (
         <button
           onClick={toggleTheme}
-          className="absolute top-4 right-4 z-50 bg-[#121212]/80 hover:bg-[#B40001] text-[#FFFFFF] border border-[#2A2A2A] rounded-full px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider flex items-center gap-1.5 shadow-lg backdrop-blur-sm opacity-0 group-hover/theme:opacity-100 transition-opacity duration-300 cursor-pointer"
+          className="absolute top-4 right-4 z-50 bg-[#121212]/80 hover:bg-[#B40001] text-[#FFFFFF] border border-[#2A2A2A] rounded-full px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider flex items-center gap-1.5 shadow-lg backdrop-blur-sm opacity-100 md:opacity-0 md:group-hover/theme:opacity-100 transition-opacity duration-300 cursor-pointer"
           title="Toggle Section Theme (Light / Dark)"
         >
           <span>🎨</span>
