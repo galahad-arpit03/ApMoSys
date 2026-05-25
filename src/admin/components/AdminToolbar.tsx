@@ -4,7 +4,7 @@ import React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
-import { useContentStore, useToastStore } from "@/src/admin/store/adminStore";
+import { useContentStore, useToastStore, useAdminUIStore } from "@/src/admin/store/adminStore";
 
 interface AdminToolbarProps {
   onLogout: () => void;
@@ -26,6 +26,7 @@ export default function AdminToolbar({ onLogout }: AdminToolbarProps) {
   const pathname = usePathname();
   const { isDirty, markSaved } = useContentStore();
   const { addToast } = useToastStore();
+  const { deviceMode, setDeviceMode, sidebarCollapsed, toggleSidebar } = useAdminUIStore();
 
   const handleSave = () => {
     markSaved();
@@ -46,13 +47,27 @@ export default function AdminToolbar({ onLogout }: AdminToolbarProps) {
       className="fixed top-0 left-0 right-0 z-[200] h-10 bg-[#0A0A0A] border-b border-primary-red/30 flex items-center px-4 gap-4"
       style={{ backdropFilter: "blur(10px)" }}
     >
-      {/* Left: Brand */}
+      {/* Left: Brand / Mobile Sidebar Hamburger */}
       <div className="flex items-center gap-3 flex-shrink-0">
-        <div className="w-2 h-2 rounded-full bg-primary-red animate-pulse" />
-        <span className="font-heading font-bold text-[11px] text-[#FAFAFA] uppercase tracking-wider">
+        <button
+          onClick={toggleSidebar}
+          className="md:hidden text-[#7A7A7A] hover:text-[#FAFAFA] transition-colors p-1 rounded hover:bg-[#1A1A1A] cursor-pointer flex items-center justify-center"
+          title="Toggle Navigation Menu"
+        >
+          <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+            {sidebarCollapsed ? (
+              <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+            ) : (
+              <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+            )}
+          </svg>
+        </button>
+
+        <div className="w-2 h-2 rounded-full bg-primary-red animate-pulse max-sm:hidden" />
+        <span className="font-heading font-bold text-[11px] text-[#FAFAFA] uppercase tracking-wider max-sm:hidden">
           Admin Mode
         </span>
-        <span className="text-[#3A3A3A]">|</span>
+        <span className="text-[#3A3A3A] max-sm:hidden">|</span>
         <span className="text-[11px] text-[#7A7A7A] font-medium">{currentPage}</span>
       </div>
 
@@ -72,6 +87,22 @@ export default function AdminToolbar({ onLogout }: AdminToolbarProps) {
           </svg>
           Preview
         </a>
+
+        {/* Phone Preview button */}
+        <button
+          onClick={() => setDeviceMode(deviceMode === "mobile" ? "desktop" : "mobile")}
+          className={`flex items-center gap-1.5 px-2.5 py-1 rounded text-[10px] font-medium transition-all cursor-pointer ${
+            deviceMode === "mobile"
+              ? "text-[#FAFAFA] bg-primary-red/20 border border-primary-red/50 shadow-[0_0_8px_rgba(180,0,1,0.2)]"
+              : "text-[#7A7A7A] hover:text-[#FAFAFA] border border-[#2A2A2A] hover:border-[#3A3A3A]"
+          }`}
+          title="Toggle Mobile (Phone) View"
+        >
+          <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
+          </svg>
+          phone
+        </button>
 
         {/* Save button */}
         <motion.button

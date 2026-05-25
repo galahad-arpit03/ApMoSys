@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import FeaturedPost from "./FeaturedPost/FeaturedPost";
 import BlogList from "./BlogList/BlogList";

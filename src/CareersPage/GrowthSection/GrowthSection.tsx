@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { usePathname } from "next/navigation";
 import { useContentStore } from "@/src/admin/store/adminStore";
 import EditableText from "@/src/admin/components/EditableText";
+import SectionThemeWrapper from "@/src/admin/components/SectionThemeWrapper";
 
 const containerVariants = {
   hidden: {},
@@ -40,168 +41,191 @@ export default function GrowthSection() {
   const paginatedPerks = perks.slice(startIndex, startIndex + itemsPerPage);
 
   return (
-    <section className="bg-[#FAFAFA] text-[#121212] py-24 border-t border-[#E8E8E8] overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.65, ease: "easeOut" }}
-          className="text-center max-w-3xl mx-auto mb-16"
-        >
-          <EditableText
-            path="careers.growth.heading"
-            fallback="Engineered for Your Growth."
-            as="h2"
-            className="font-heading text-3xl sm:text-4xl font-extrabold text-[#121212] mb-4 block"
-          />
-          <EditableText
-            path="careers.growth.subheading"
-            fallback="We invest heavily in our team's well-being and professional development. Here is what you get when you join our ranks."
-            as="p"
-            className="text-[#5A5A5A] text-sm sm:text-base leading-relaxed block"
-            multiline
-          />
-        </motion.div>
+    <SectionThemeWrapper sectionId="careers_growth" defaultTheme="light">
+      {(theme) => {
+        const isDark = theme === "dark";
+        return (
+          <section className={`py-24 border-t transition-colors duration-300 overflow-hidden ${
+            isDark ? "bg-[#121212] border-[#2A2A2A] text-[#FFFFFF]" : "bg-[#FAFAFA] border-[#E8E8E8] text-[#121212]"
+          }`}>
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              
+              {/* Header */}
+              <motion.div
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.65, ease: "easeOut" }}
+                className="text-center max-w-3xl mx-auto mb-16"
+              >
+                <EditableText
+                  path="careers.growth.heading"
+                  fallback="Engineered for Your Growth."
+                  as="h2"
+                  className={`font-heading text-3xl sm:text-4xl font-extrabold mb-4 block ${
+                    isDark ? "text-[#FFFFFF]" : "text-[#121212]"
+                  }`}
+                />
+                <EditableText
+                  path="careers.growth.subheading"
+                  fallback="We invest heavily in our team's well-being and professional development. Here is what you get when you join our ranks."
+                  as="p"
+                  className={`text-sm sm:text-base leading-relaxed block ${
+                    isDark ? "text-[#CCCCCC]" : "text-[#5A5A5A]"
+                  }`}
+                  multiline
+                />
+              </motion.div>
 
-        {/* Perks Grid - 3 items in a row max */}
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-50px" }}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
-        >
-          <AnimatePresence mode="popLayout">
-            {paginatedPerks.map((perk, index) => {
-              const globalIndex = startIndex + index;
-              return (
-                <motion.div
-                  key={perk.id}
-                  variants={fadeUp}
-                  layout
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.9 }}
-                  whileHover={{ y: -6, boxShadow: "0 20px 40px rgba(0,0,0,0.06)" }}
-                  transition={{ duration: 0.3 }}
-                  className="bg-[#FFFFFF] border border-[#E8E8E8] p-8 rounded-xl shadow-sm transition-all relative overflow-hidden group"
-                >
-                  {/* Subtle top accent */}
-                  <div className="absolute top-0 left-0 w-full h-1 bg-primary-red opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                  
-                  {/* Delete Button (Admin Only) */}
+              {/* Perks Grid - 3 items in a row max */}
+              <motion.div
+                variants={containerVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-50px" }}
+                className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
+              >
+                <AnimatePresence mode="popLayout">
+                  {paginatedPerks.map((perk, index) => {
+                    const globalIndex = startIndex + index;
+                    return (
+                      <motion.div
+                        key={perk.id}
+                        variants={fadeUp}
+                        layout
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        exit={{ opacity: 0, scale: 0.9 }}
+                        whileHover={{ y: -6, boxShadow: isDark ? "0 20px 40px rgba(0,0,0,0.4)" : "0 20px 40px rgba(0,0,0,0.06)" }}
+                        transition={{ duration: 0.3 }}
+                        className={`p-8 rounded-xl shadow-sm transition-all relative overflow-hidden group border ${
+                          isDark ? "bg-[#1A1A1A] border-[#2A2A2A] text-[#FFFFFF]" : "bg-[#FFFFFF] border-[#E8E8E8] text-[#121212]"
+                        }`}
+                      >
+                        {/* Subtle top accent */}
+                        <div className="absolute top-0 left-0 w-full h-1 bg-primary-red opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                        
+                        {/* Delete Button (Admin Only) */}
+                        {isEditRoute && (
+                          <button
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              deleteCareerPerk(perk.id);
+                              // Reset page if empty
+                              if (paginatedPerks.length === 1 && currentPage > 1) {
+                                setCurrentPage(currentPage - 1);
+                              }
+                            }}
+                            className={`absolute top-4 right-4 p-1.5 rounded-full transition-colors z-30 cursor-pointer ${
+                              isDark ? "text-red-400 hover:text-red-300 bg-red-950/50 hover:bg-red-900/50" : "text-red-500 hover:text-red-700 bg-red-50 hover:bg-red-100"
+                            }`}
+                            title="Delete perk card"
+                          >
+                            <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                              <path strokeLinecap="round" strokeLinejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                            </svg>
+                          </button>
+                        )}
+
+                        <div className={`w-12 h-12 rounded-lg flex items-center justify-center text-primary-red mb-6 group-hover:scale-110 transition-transform duration-300 ${
+                          isDark ? "bg-primary-red/10" : "bg-primary-soft"
+                        }`}>
+                          <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                            <path strokeLinecap="round" strokeLinejoin="round" d={iconMap[perk.icon] || iconMap.bolt} />
+                          </svg>
+                        </div>
+                        
+                        <EditableText
+                          path={`careers.growth.items.${globalIndex}.title`}
+                          fallback={perk.title}
+                          as="h3"
+                          className={`font-bold text-lg mb-3 block ${isDark ? "text-[#FFFFFF]" : "text-[#121212]"}`}
+                        />
+                        
+                        <EditableText
+                          path={`careers.growth.items.${globalIndex}.description`}
+                          fallback={perk.description}
+                          as="p"
+                          className={`text-sm leading-relaxed block ${isDark ? "text-[#CCCCCC]" : "text-[#7A7A7A]"}`}
+                          multiline
+                        />
+                      </motion.div>
+                    );
+                  })}
+
+                  {/* "Add Perk" Card (Admin Only) */}
                   {isEditRoute && (
-                    <button
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        deleteCareerPerk(perk.id);
-                        // Reset page if empty
-                        if (paginatedPerks.length === 1 && currentPage > 1) {
-                          setCurrentPage(currentPage - 1);
-                        }
-                      }}
-                      className="absolute top-4 right-4 text-red-500 hover:text-red-700 bg-red-50 hover:bg-red-100 p-1.5 rounded-full transition-colors z-30 cursor-pointer"
-                      title="Delete perk card"
+                    <motion.button
+                      key="add-perk-card"
+                      variants={fadeUp}
+                      onClick={addCareerPerk}
+                      className={`p-8 rounded-xl shadow-sm transition-all flex flex-col items-center justify-center text-center min-h-[220px] group cursor-pointer border-2 border-dashed ${
+                        isDark ? "bg-[#1A1A1A] border-[#333333] hover:border-primary-red/50 text-[#FFFFFF]" : "bg-[#FFFFFF] border-[#E8E8E8] hover:border-primary-red/50 text-[#121212]"
+                      }`}
                     >
-                      <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                      </svg>
-                    </button>
+                      <div className={`w-10 h-10 rounded-lg flex items-center justify-center text-primary-red mb-4 group-hover:scale-115 transition-transform duration-300 ${
+                        isDark ? "bg-primary-red/10" : "bg-primary-soft"
+                      }`}>
+                        <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m8-8H4" />
+                        </svg>
+                      </div>
+                      <span className={`font-bold text-sm group-hover:text-primary-red transition-colors ${isDark ? "text-[#FFFFFF]" : "text-[#121212]"}`}>
+                        Add Benefit Card
+                      </span>
+                      <span className="text-[#9A9A9A] text-xs mt-1 max-w-[200px]">
+                        Pushes a new dynamic benefit card to this list grid
+                      </span>
+                    </motion.button>
                   )}
+                </AnimatePresence>
+              </motion.div>
 
-                  <div className="w-12 h-12 bg-primary-soft rounded-lg flex items-center justify-center text-primary-red mb-6 group-hover:scale-110 transition-transform duration-300">
-                    <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d={iconMap[perk.icon] || iconMap.bolt} />
-                    </svg>
-                  </div>
-                  
-                  <EditableText
-                    path={`careers.growth.items.${globalIndex}.title`}
-                    fallback={perk.title}
-                    as="h3"
-                    className="font-bold text-[#121212] text-lg mb-3 block"
-                  />
-                  
-                  <EditableText
-                    path={`careers.growth.items.${globalIndex}.description`}
-                    fallback={perk.description}
-                    as="p"
-                    className="text-[#7A7A7A] text-sm leading-relaxed block"
-                    multiline
-                  />
-                </motion.div>
-              );
-            })}
-
-            {/* "Add Perk" Card (Admin Only) */}
-            {isEditRoute && (
-              <motion.button
-                key="add-perk-card"
-                variants={fadeUp}
-                onClick={addCareerPerk}
-                className="bg-[#FFFFFF] border-2 border-dashed border-[#E8E8E8] hover:border-primary-red/50 p-8 rounded-xl shadow-sm transition-all flex flex-col items-center justify-center text-center min-h-[220px] group cursor-pointer"
-              >
-                <div className="w-10 h-10 bg-primary-soft rounded-lg flex items-center justify-center text-primary-red mb-4 group-hover:scale-115 transition-transform duration-300">
-                  <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m8-8H4" />
-                  </svg>
+              {/* Pagination Controls */}
+              {totalPages > 1 && (
+                <div className="flex justify-center items-center gap-2 mt-12">
+                  <button
+                    onClick={() => setCurrentPage(Math.max(1, currentPage - 1))}
+                    disabled={currentPage === 1}
+                    className={`px-3 py-1.5 rounded-lg text-xs font-semibold border transition-all cursor-pointer ${
+                      currentPage === 1
+                        ? (isDark ? "border-[#2A2A2A] text-[#5A5A5A] opacity-50 cursor-not-allowed" : "border-[#E8E8E8] text-[#9A9A9A] opacity-50 cursor-not-allowed")
+                        : (isDark ? "border-[#3A3A3A] text-[#FFFFFF] hover:bg-white hover:text-black" : "border-[#D8D8D8] text-[#121212] hover:bg-black hover:text-white")
+                    }`}
+                  >
+                    Prev
+                  </button>
+                  {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+                    <button
+                      key={page}
+                      onClick={() => setCurrentPage(page)}
+                      className={`w-8 h-8 rounded-lg text-xs font-semibold border transition-all cursor-pointer ${
+                        currentPage === page
+                          ? "bg-primary-red text-white border-primary-red shadow-lg shadow-primary-red/20"
+                          : (isDark ? "border-[#3A3A3A] text-[#FFFFFF] hover:bg-white hover:text-black" : "border-[#D8D8D8] text-[#121212] hover:bg-black hover:text-white")
+                      }`}
+                    >
+                      {page}
+                    </button>
+                  ))}
+                  <button
+                    onClick={() => setCurrentPage(Math.min(totalPages, currentPage + 1))}
+                    disabled={currentPage === totalPages}
+                    className={`px-3 py-1.5 rounded-lg text-xs font-semibold border transition-all cursor-pointer ${
+                      currentPage === totalPages
+                        ? (isDark ? "border-[#2A2A2A] text-[#5A5A5A] opacity-50 cursor-not-allowed" : "border-[#E8E8E8] text-[#9A9A9A] opacity-50 cursor-not-allowed")
+                        : (isDark ? "border-[#3A3A3A] text-[#FFFFFF] hover:bg-white hover:text-black" : "border-[#D8D8D8] text-[#121212] hover:bg-black hover:text-white")
+                    }`}
+                  >
+                    Next
+                  </button>
                 </div>
-                <span className="font-bold text-[#121212] text-sm group-hover:text-primary-red transition-colors">
-                  Add Benefit Card
-                </span>
-                <span className="text-[#9A9A9A] text-xs mt-1 max-w-[200px]">
-                  Pushes a new dynamic benefit card to this list grid
-                </span>
-              </motion.button>
-            )}
-          </AnimatePresence>
-        </motion.div>
+              )}
 
-        {/* Pagination Controls */}
-        {totalPages > 1 && (
-          <div className="flex justify-center items-center gap-2 mt-12">
-            <button
-              onClick={() => setCurrentPage(Math.max(1, currentPage - 1))}
-              disabled={currentPage === 1}
-              className={`px-3 py-1.5 rounded-lg text-xs font-semibold border transition-all cursor-pointer ${
-                currentPage === 1
-                  ? "border-[#E8E8E8] text-[#9A9A9A] opacity-50 cursor-not-allowed"
-                  : "border-[#D8D8D8] text-[#121212] hover:bg-black hover:text-white"
-              }`}
-            >
-              Prev
-            </button>
-            {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
-              <button
-                key={page}
-                onClick={() => setCurrentPage(page)}
-                className={`w-8 h-8 rounded-lg text-xs font-semibold border transition-all cursor-pointer ${
-                  currentPage === page
-                    ? "bg-primary-red text-white border-primary-red shadow-lg shadow-primary-red/20"
-                    : "border-[#D8D8D8] text-[#121212] hover:bg-black hover:text-white"
-                }`}
-              >
-                {page}
-              </button>
-            ))}
-            <button
-              onClick={() => setCurrentPage(Math.min(totalPages, currentPage + 1))}
-              disabled={currentPage === totalPages}
-              className={`px-3 py-1.5 rounded-lg text-xs font-semibold border transition-all cursor-pointer ${
-                currentPage === totalPages
-                  ? "border-[#E8E8E8] text-[#9A9A9A] opacity-50 cursor-not-allowed"
-                  : "border-[#D8D8D8] text-[#121212] hover:bg-black hover:text-white"
-              }`}
-            >
-              Next
-            </button>
-          </div>
-        )}
-
-      </div>
-    </section>
+            </div>
+          </section>
+        );
+      }}
+    </SectionThemeWrapper>
   );
 }

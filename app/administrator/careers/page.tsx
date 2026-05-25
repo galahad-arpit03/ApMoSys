@@ -1,3 +1,5 @@
+"use client";
+
 import AdminEditOverlay from "@/src/admin/components/AdminEditOverlay";
 import CareersPage from "@/src/CareersPage/CareersPage";
 

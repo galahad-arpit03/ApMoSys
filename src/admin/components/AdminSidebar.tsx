@@ -1,9 +1,10 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
+import { useAdminUIStore } from "@/src/admin/store/adminStore";
 
 const navItems = [
   { label: "Dashboard", href: "/administrator/home", icon: "⊞" },
@@ -21,21 +22,19 @@ const navItems = [
   { label: "Settings", href: "/administrator/settings", icon: "⚙️" },
 ];
 
-interface AdminSidebarProps {
-  collapsed: boolean;
-  onToggle: () => void;
-}
-
-export default function AdminSidebar({ collapsed, onToggle }: AdminSidebarProps) {
+export default function AdminSidebar() {
   const pathname = usePathname();
+  const { sidebarCollapsed: collapsed, toggleSidebar: onToggle } = useAdminUIStore();
 
   return (
     <motion.aside
       initial={{ x: -20, opacity: 0 }}
       animate={{ x: 0, opacity: 1 }}
       transition={{ duration: 0.3 }}
-      className={`fixed top-10 left-0 h-[calc(100vh-40px)] bg-[#0D0D0D] border-r border-[#2A2A2A] z-40 flex flex-col transition-all duration-300 ${
-        collapsed ? "w-16" : "w-64"
+      className={`fixed top-10 left-0 h-[calc(100vh-40px)] bg-[#0D0D0D] border-r border-[#2A2A2A] z-45 flex flex-col transition-all duration-300 ${
+        collapsed
+          ? "w-16 max-md:w-0 max-md:opacity-0 max-md:pointer-events-none max-md:-translate-x-full overflow-hidden border-none"
+          : "w-64 max-md:z-50 max-md:shadow-[5px_0_25px_rgba(0,0,0,0.6)]"
       }`}
     >
       {/* Header */}

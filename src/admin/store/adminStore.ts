@@ -71,6 +71,8 @@ export interface ContactOffice {
   address: string;
   image: string;
   link: string;
+  phone?: string;
+  email?: string;
 }
 
 export interface CareerJob {
@@ -211,9 +213,11 @@ export interface SiteContent {
     socialTwitter: string;
     socialFacebook: string;
   };
+  sectionThemes?: Record<string, "dark" | "light">;
 }
 
 const defaultContent: SiteContent = {
+  sectionThemes: {},
   navbar: {
     logo: "ApMoSys",
     ctaLabel: "Contact Us",
@@ -496,6 +500,8 @@ const defaultContent: SiteContent = {
         address: "Office No. C315, 3rd Floor, Apeejay House, 39/12, Haddows Road, Nungambakkam, Chennai – 600 006",
         image: "/Contact Us/mumbai_hq.png",
         link: "https://www.google.com/maps/place/Apeejay+Business+Centre/@13.0631753,80.2453564,17z/data=!3m2!4b1!5s0x3a52666945ca8d3d:0xdd03801419888d34!4m6!3m5!1s0x3a526669439ac537:0x2e28741298f598ea!8m2!3d13.0631753!4d80.2479313!16s%2Fg%2F1tjtgpsz?entry=ttu&g_ep=EgoyMDI2MDUxMy4wIKXMDSoASAFQAw%3D%3D",
+        phone: "+91 44 4976 5601",
+        email: "chennai@apmosys.com",
       },
       {
         id: "2",
@@ -503,6 +509,8 @@ const defaultContent: SiteContent = {
         address: "ApMoSys Technologies Pvt. Ltd., Fortune Towers, 4th Floor, A Zone, Nandankanan Road, Chandrasekharpur, Bhubaneswar – 751023, Odisha",
         image: "/Contact Us/dubai_office.png",
         link: "https://www.google.com/maps/place/ApMoSys+Technologies+Pvt+Ltd/@20.3094975,85.8169395,17z/data=!3m1!4b1!4m6!3m5!1s0x3a1909005ebd71a1:0xf02ca3f5e8cf8ad5!8m2!3d20.3094975!4d85.8195144!16s%2Fg%2F11xt2cgl14?entry=ttu&g_ep=EgoyMDI2MDUxMy4wIKXMDSoASAFQAw%3D%3D",
+        phone: "+91 674 4976 5602",
+        email: "bbsr@apmosys.com",
       },
       {
         id: "3",
@@ -510,6 +518,8 @@ const defaultContent: SiteContent = {
         address: "ApMoSys Technology FZ-LLC, B05-716A Business Center 04, RAKEZ Business Zone – FZ RAK, UAE. PO BOX 10055",
         image: "/Contact Us/ontario_office.png",
         link: "https://www.google.com/maps/search/ApMoSys+Technology+FZ-LLC,+B05-716A+Business+Center+04,+RAKEZ+Business+Zone+-FZ+RAK,+United+Arab+Emirates.+PO+BOX+10055./@25.452999,55.3465905,9z/data=!3m1!4b1?entry=ttu&g_ep=EgoyMDI2MDUxMy4wIKXMDSoASAFQAw%3D%3D",
+        phone: "+971 4 4976 5603",
+        email: "uae@apmosys.com",
       },
     ],
     faqItems: [
@@ -863,6 +873,8 @@ export const useContentStore = create<ContentState>()(
               address: "ApMoSys Technologies, Sector-11, Mahape, Navi Mumbai - 400710",
               image: "/Contact Us/mumbai_hq.png",
               link: "https://maps.google.com",
+              phone: "+91 22 4976 5600",
+              email: "contact@apmosys.com",
             },
           ];
           return {
@@ -1149,4 +1161,21 @@ export const useToastStore = create<ToastState>((set) => ({
   },
   removeToast: (id) =>
     set((state) => ({ toasts: state.toasts.filter((t) => t.id !== id) })),
+}));
+
+// ─── UI Store ─────────────────────────────────────────────────────────────────
+interface UIState {
+  deviceMode: "desktop" | "mobile";
+  setDeviceMode: (mode: "desktop" | "mobile") => void;
+  sidebarCollapsed: boolean;
+  setSidebarCollapsed: (collapsed: boolean) => void;
+  toggleSidebar: () => void;
+}
+
+export const useAdminUIStore = create<UIState>((set) => ({
+  deviceMode: "desktop",
+  setDeviceMode: (mode) => set({ deviceMode: mode }),
+  sidebarCollapsed: true,
+  setSidebarCollapsed: (collapsed) => set({ sidebarCollapsed: collapsed }),
+  toggleSidebar: () => set((state) => ({ sidebarCollapsed: !state.sidebarCollapsed })),
 }));
