@@ -2,7 +2,7 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import Image from "next/image";
+import EditableText from "@/src/admin/components/EditableText";
 
 const containerVariants = {
   hidden: {},
@@ -27,12 +27,19 @@ export default function LifeSection() {
           transition={{ duration: 0.65, ease: "easeOut" }}
           className="mb-12"
         >
-          <h2 className="font-heading text-3xl sm:text-4xl font-extrabold text-[#FFFFFF] mb-4">
-            Life at ApMoSys
-          </h2>
-          <p className="text-[#A0A0A0] text-sm sm:text-base max-w-2xl">
-            Modern architecture, international collaboration, and a relentless pursuit of quality.
-          </p>
+          <EditableText
+            path="careers.life.heading"
+            fallback="Life at ApMoSys"
+            as="h2"
+            className="font-heading text-3xl sm:text-4xl font-extrabold text-[#FFFFFF] mb-4 block"
+          />
+          <EditableText
+            path="careers.life.subheading"
+            fallback="Modern architecture, international collaboration, and a relentless pursuit of quality."
+            as="p"
+            className="text-[#A0A0A0] text-sm sm:text-base max-w-2xl block"
+            multiline
+          />
         </motion.div>
 
         {/* Bento Grid */}
@@ -55,11 +62,16 @@ export default function LifeSection() {
               <span className="text-[#FAFAFA] font-bold tracking-widest uppercase">Office / Team Image Placeholder</span>
             </div>
             
-            <div className="absolute bottom-0 left-0 p-8 z-20">
+            <div className="absolute bottom-0 left-0 p-8 z-20 w-full">
               <span className="text-primary-red text-xs font-bold uppercase tracking-widest mb-2 block">
                 Workspace
               </span>
-              <h3 className="text-[#FFFFFF] text-2xl font-bold">Innovation Labs</h3>
+              <EditableText
+                path="careers.life.bento1Title"
+                fallback="Innovation Labs"
+                as="h3"
+                className="text-[#FFFFFF] text-2xl font-bold block"
+              />
             </div>
           </motion.div>
 
@@ -73,8 +85,13 @@ export default function LifeSection() {
                 <span className="text-[#FAFAFA] font-bold text-sm tracking-widest uppercase">Tech / Screen Placeholder</span>
              </div>
              
-             <div className="absolute bottom-0 left-0 p-6 z-20">
-              <h3 className="text-[#FFFFFF] text-lg font-bold">State-of-the-art Infrastructure</h3>
+             <div className="absolute bottom-0 left-0 p-6 z-20 w-full">
+              <EditableText
+                path="careers.life.bento2Title"
+                fallback="State-of-the-art Infrastructure"
+                as="h3"
+                className="text-[#FFFFFF] text-lg font-bold block"
+              />
             </div>
           </motion.div>
 
@@ -86,7 +103,12 @@ export default function LifeSection() {
              <svg className="w-10 h-10 text-[#7A7A7A] mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
              </svg>
-             <h3 className="text-[#FFFFFF] text-sm font-bold tracking-widest uppercase text-center">3 Global Offices</h3>
+             <EditableText
+               path="careers.life.bento3Title"
+               fallback="3 Global Offices"
+               as="h3"
+               className="text-[#FFFFFF] text-sm font-bold tracking-widest uppercase text-center block"
+             />
           </motion.div>
 
           {/* Bottom Right Split 2 (Awards) */}
@@ -94,8 +116,18 @@ export default function LifeSection() {
             variants={fadeUp}
             className="md:col-span-3 md:row-span-1 relative rounded-xl overflow-hidden bg-primary-red flex flex-col items-center justify-center p-6 min-h-[250px]"
           >
-             <h3 className="font-heading text-6xl font-extrabold text-[#FFFFFF] mb-2">14+</h3>
-             <span className="text-[#FAFAFA]/80 text-sm font-bold tracking-widest uppercase">Industry Awards</span>
+             <EditableText
+               path="careers.life.bento4Val"
+               fallback="14+"
+               as="h3"
+               className="font-heading text-6xl font-extrabold text-[#FFFFFF] mb-2 block text-center"
+             />
+             <EditableText
+               path="careers.life.bento4Label"
+               fallback="Industry Awards"
+               as="span"
+               className="text-[#FAFAFA]/80 text-sm font-bold tracking-widest uppercase block text-center"
+             />
           </motion.div>
 
         </motion.div>

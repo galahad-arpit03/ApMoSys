@@ -2,6 +2,7 @@
 
 import React from "react";
 import { motion } from "framer-motion";
+import EditableText from "@/src/admin/components/EditableText";
 
 const containerVariants = {
   hidden: {},
@@ -17,23 +18,31 @@ export default function RoadmapSection() {
   const steps = [
     {
       num: 1,
-      title: "Initial Chat",
-      desc: "Cultural fit and alignment with our company values and goals."
+      titlePath: "careers.roadmap.step1Title",
+      descPath: "careers.roadmap.step1Desc",
+      fallbackTitle: "Initial Chat",
+      fallbackDesc: "Cultural fit and alignment with our company values and goals."
     },
     {
       num: 2,
-      title: "Technical Deep-Dive",
-      desc: "Live coding or architecture whiteboard session with engineering leads."
+      titlePath: "careers.roadmap.step2Title",
+      descPath: "careers.roadmap.step2Desc",
+      fallbackTitle: "Technical Deep-Dive",
+      fallbackDesc: "Live coding or architecture whiteboard session with engineering leads."
     },
     {
       num: 3,
-      title: "Architecture Review",
-      desc: "In-depth discussion on system design, scalability, and previous projects."
+      titlePath: "careers.roadmap.step3Title",
+      descPath: "careers.roadmap.step3Desc",
+      fallbackTitle: "Architecture Review",
+      fallbackDesc: "In-depth discussion on system design, scalability, and previous projects."
     },
     {
       num: 4,
-      title: "The Offer",
-      desc: "Welcome to the premier engineering team."
+      titlePath: "careers.roadmap.step4Title",
+      descPath: "careers.roadmap.step4Desc",
+      fallbackTitle: "The Offer",
+      fallbackDesc: "Welcome to the premier engineering team."
     }
   ];
 
@@ -48,9 +57,12 @@ export default function RoadmapSection() {
           transition={{ duration: 0.6, ease: "easeOut" }}
           className="text-center mb-16"
         >
-          <h2 className="font-heading text-3xl sm:text-4xl font-extrabold text-[#FFFFFF]">
-            Hiring Roadmap
-          </h2>
+          <EditableText
+            path="careers.roadmap.heading"
+            fallback="Hiring Roadmap"
+            as="h2"
+            className="font-heading text-3xl sm:text-4xl font-extrabold text-[#FFFFFF] block text-center"
+          />
         </motion.div>
 
         <motion.div
@@ -72,12 +84,19 @@ export default function RoadmapSection() {
               <div className="w-12 h-12 bg-primary-red text-white rounded-full flex items-center justify-center font-bold text-lg mb-6 group-hover:scale-110 transition-transform">
                 {step.num}
               </div>
-              <h3 className="text-[#FFFFFF] text-lg font-bold mb-3">
-                {step.title}
-              </h3>
-              <p className="text-[#A0A0A0] text-sm leading-relaxed">
-                {step.desc}
-              </p>
+              <EditableText
+                path={step.titlePath}
+                fallback={step.fallbackTitle}
+                as="h3"
+                className="text-[#FFFFFF] text-lg font-bold mb-3 block text-center"
+              />
+              <EditableText
+                path={step.descPath}
+                fallback={step.fallbackDesc}
+                as="p"
+                className="text-[#A0A0A0] text-sm leading-relaxed block text-center"
+                multiline
+              />
             </motion.div>
           ))}
         </motion.div>

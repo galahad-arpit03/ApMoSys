@@ -1,24 +1,46 @@
 "use client";
+
 import React from "react";
 import { motion } from "framer-motion";
+import EditableText from "@/src/admin/components/EditableText";
 
 export default function TechnicalCapabilities() {
+  const capabilities = [
+    {
+      titlePath: "industries.technical.item1Title",
+      descPath: "industries.technical.item1Desc",
+      fallbackTitle: "API Architecture",
+      fallbackDesc: "Build resilient, fast, and scalable API gateways across multi-cloud environments."
+    },
+    {
+      titlePath: "industries.technical.item2Title",
+      descPath: "industries.technical.item2Desc",
+      fallbackTitle: "Cloud Engineering",
+      fallbackDesc: "Native cloud orchestration optimized for AWS, Azure, and GCP efficiency."
+    },
+    {
+      titlePath: "industries.technical.item3Title",
+      descPath: "industries.technical.item3Desc",
+      fallbackTitle: "DevSecOps",
+      fallbackDesc: "End-to-end security pipeline automation bridging the gap between dev and operations."
+    }
+  ];
+
   return (
     <section className="py-24 bg-[#121212] relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="lg:grid lg:grid-cols-2 lg:gap-16 items-center">
           
           <div>
-            <h2 className="font-heading text-3xl sm:text-4xl font-extrabold text-[#FFFFFF] mb-12 leading-tight">
-              Technical Capabilities Tailored for Scale
-            </h2>
+            <EditableText
+              path="industries.technical.heading"
+              fallback="Technical Capabilities Tailored for Scale"
+              as="h2"
+              className="font-heading text-3xl sm:text-4xl font-extrabold text-[#FFFFFF] mb-12 leading-tight block"
+            />
             
             <div className="space-y-6">
-              {[
-                { title: "API Architecture", desc: "Build resilient, fast, and scalable API gateways across multi-cloud environments." },
-                { title: "Cloud Engineering", desc: "Native cloud orchestration optimized for AWS, Azure, and GCP efficiency." },
-                { title: "DevSecOps", desc: "End-to-end security pipeline automation bridging the gap between dev and operations." }
-              ].map((item, idx) => (
+              {capabilities.map((item, idx) => (
                 <motion.div 
                   key={idx}
                   initial={{ opacity: 0, x: -20 }}
@@ -32,9 +54,20 @@ export default function TechnicalCapabilities() {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                     </svg>
                   </div>
-                  <div>
-                    <h3 className="font-bold text-[#FFFFFF] mb-1">{item.title}</h3>
-                    <p className="text-sm text-[#A0A0A0] leading-relaxed">{item.desc}</p>
+                  <div className="w-full">
+                    <EditableText
+                      path={item.titlePath}
+                      fallback={item.fallbackTitle}
+                      as="h3"
+                      className="font-bold text-[#FFFFFF] mb-1 block"
+                    />
+                    <EditableText
+                      path={item.descPath}
+                      fallback={item.fallbackDesc}
+                      as="p"
+                      className="text-sm text-[#A0A0A0] leading-relaxed block"
+                      multiline
+                    />
                   </div>
                 </motion.div>
               ))}
@@ -67,8 +100,18 @@ export default function TechnicalCapabilities() {
               transition={{ delay: 0.4, duration: 0.5 }}
               className="absolute -bottom-6 -left-6 bg-primary-red p-6 rounded-xl shadow-xl z-20"
             >
-              <div className="font-heading text-3xl font-extrabold text-[#FFFFFF] mb-1">15+</div>
-              <div className="text-xs font-semibold text-[#FFFFFF]/80 uppercase tracking-wider">Active Partners</div>
+              <EditableText
+                path="industries.technical.badgeVal"
+                fallback="15+"
+                as="div"
+                className="font-heading text-3xl font-extrabold text-[#FFFFFF] mb-1 block text-center"
+              />
+              <EditableText
+                path="industries.technical.badgeLabel"
+                fallback="Active Partners"
+                as="div"
+                className="text-xs font-semibold text-[#FFFFFF]/80 uppercase tracking-wider block text-center"
+              />
             </motion.div>
           </div>
           

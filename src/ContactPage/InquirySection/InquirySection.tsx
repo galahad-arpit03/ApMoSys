@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import { motion } from "framer-motion";
+import EditableText from "@/src/admin/components/EditableText";
 
 const containerVariants = {
   hidden: {},
@@ -52,11 +53,21 @@ export default function InquirySection() {
             GET IN TOUCH WITH US
           </motion.span>
           <motion.h1 variants={fadeUp} className="font-heading text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-normal mb-6 text-[#121212]">
-            Contact us for Premium <br className="hidden sm:block" /> <span className="text-primary-red">Business</span> Service.
+            <EditableText
+              path="contact.heading"
+              fallback="Contact us for Premium Business Service."
+              as="span"
+              className="font-heading text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-normal text-[#121212]"
+            />
           </motion.h1>
           <motion.p variants={fadeUp} className="text-[#5A5A5A] text-lg leading-relaxed max-w-2xl">
-            Solve your operations issues, schedule quality assurance and performance
-            monitoring validation. Our technical experts are ready to collaborate on enterprise-grade deployment strategies.
+            <EditableText
+              path="contact.subheading"
+              fallback="Solve your operations issues, schedule quality assurance and performance monitoring validation. Our technical experts are ready to collaborate on enterprise-grade deployment strategies."
+              as="span"
+              multiline
+              className="text-[#5A5A5A] text-lg leading-relaxed"
+            />
           </motion.p>
         </motion.div>
 
@@ -227,7 +238,14 @@ export default function InquirySection() {
                     </div>
                     <div>
                       <h4 className="text-xs font-bold text-[#7A7A7A] uppercase tracking-wider mb-1">{item.label}</h4>
-                      <p className="text-sm font-semibold text-[#121212]">{item.value}</p>
+                      <p className="text-sm font-semibold text-[#121212]">
+                        <EditableText
+                          path={i === 0 ? "contact.salesEmail" : "contact.careersEmail"}
+                          fallback={item.value}
+                          as="span"
+                          className="text-sm font-semibold text-[#121212]"
+                        />
+                      </p>
                     </div>
                   </motion.div>
                 ))}
@@ -236,8 +254,8 @@ export default function InquirySection() {
 
             <motion.div variants={fadeRight} className="grid grid-cols-2 gap-6">
               {[
-                { label: "Contact Us", value: "+91 2241-222-250" },
-                { label: "Careers", value: "+91 2241-222-251" },
+                { label: "Contact Us", value: "+91 2241-222-250", path: "contact.phone" },
+                { label: "Careers", value: "+91 2241-222-251", path: "contact.careersPhone" },
               ].map((card, i) => (
                 <motion.div
                   key={i}
@@ -246,7 +264,14 @@ export default function InquirySection() {
                   className="bg-[#FAFAFA] border border-[#E8E8E8] rounded-xl p-6 shadow-sm"
                 >
                   <h4 className="text-xs font-bold text-[#7A7A7A] uppercase tracking-wider mb-2">{card.label}</h4>
-                  <p className="text-sm font-semibold text-[#121212]">{card.value}</p>
+                  <p className="text-sm font-semibold text-[#121212]">
+                    <EditableText
+                      path={card.path}
+                      fallback={card.value}
+                      as="span"
+                      className="text-sm font-semibold text-[#121212]"
+                    />
+                  </p>
                 </motion.div>
               ))}
             </motion.div>

@@ -1,8 +1,10 @@
 "use client";
 
 import React from "react";
-import { motion } from "framer-motion";
-import Image from "next/image";
+import { motion, AnimatePresence } from "framer-motion";
+import { usePathname } from "next/navigation";
+import { useContentStore } from "@/src/admin/store/adminStore";
+import EditableText from "@/src/admin/components/EditableText";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
@@ -19,7 +21,18 @@ const fadeLeft = {
   visible: { opacity: 1, x: 0, transition: { duration: 0.7, ease: "easeOut" as const } },
 };
 
+const iconMap: Record<string, string> = {
+  bolt: "M13 10V3L4 14h7v7l9-11h-7z",
+  shield: "M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
+};
+
 export default function MindsetSection() {
+  const pathname = usePathname();
+  const isEditRoute = pathname?.startsWith("/administrator");
+
+  const { content, addCareerMindset, deleteCareerMindset } = useContentStore();
+  const mindsetItems = content.careers.mindset.items || [];
+
   return (
     <section className="bg-[#FFFFFF] text-[#121212] py-24 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -33,46 +46,85 @@ export default function MindsetSection() {
             transition={{ staggerChildren: 0.15 }}
             className="mb-16 lg:mb-0"
           >
-            <motion.h2 variants={fadeRight} className="font-heading text-3xl sm:text-4xl font-extrabold text-[#121212] mb-6 leading-tight">
-              The ApMoSys Mindset.
-            </motion.h2>
-            <motion.p variants={fadeRight} className="text-[#5A5A5A] text-lg leading-relaxed mb-10">
-              We look for individuals who are not only technically proficient but also possess the drive to innovate. 
-              Our culture is built on continuous learning and agile methodologies.
-            </motion.p>
+            <EditableText
+              path="careers.mindset.heading"
+              fallback="The ApMoSys Mindset."
+              as="h2"
+              className="font-heading text-3xl sm:text-4xl font-extrabold text-[#121212] mb-6 leading-tight block"
+            />
+            <EditableText
+              path="careers.mindset.subheading"
+              fallback="We look for individuals who are not only technically proficient but also possess the drive to innovate. Our culture is built on continuous learning and agile methodologies."
+              as="p"
+              className="text-[#5A5A5A] text-lg leading-relaxed mb-10 block"
+              multiline
+            />
             
             <div className="space-y-8">
-              <motion.div variants={fadeRight} className="flex gap-4">
-                <div className="flex-shrink-0 mt-1">
-                  <div className="w-8 h-8 rounded-full bg-primary-soft flex items-center justify-center text-primary-red">
-                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
-                    </svg>
-                  </div>
-                </div>
-                <div>
-                  <h3 className="text-xl font-bold text-[#121212] mb-2">Scale and Agility</h3>
-                  <p className="text-[#5A5A5A] text-sm leading-relaxed">
-                    We adapt quickly to the ever-evolving tech landscape, ensuring our solutions always remain competitive.
-                  </p>
-                </div>
-              </motion.div>
+              <AnimatePresence mode="popLayout">
+                {mindsetItems.map((item, index) => (
+                  <motion.div
+                    key={item.id}
+                    variants={fadeRight}
+                    layout
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: -20 }}
+                    className="flex gap-4 relative group"
+                  >
+                    <div className="flex-shrink-0 mt-1">
+                      <div className="w-8 h-8 rounded-full bg-primary-soft flex items-center justify-center text-primary-red">
+                        <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                          <path strokeLinecap="round" strokeLinejoin="round" d={iconMap[item.icon] || iconMap.bolt} />
+                        </svg>
+                      </div>
+                    </div>
+                    <div className="flex-1 min-w-0 pr-8">
+                      <EditableText
+                        path={`careers.mindset.items.${index}.title`}
+                        fallback={item.title}
+                        as="h3"
+                        className="text-xl font-bold text-[#121212] mb-2 block"
+                      />
+                      <EditableText
+                        path={`careers.mindset.items.${index}.description`}
+                        fallback={item.description}
+                        as="p"
+                        className="text-[#5A5A5A] text-sm leading-relaxed block"
+                        multiline
+                      />
+                    </div>
 
-              <motion.div variants={fadeRight} className="flex gap-4">
-                <div className="flex-shrink-0 mt-1">
-                  <div className="w-8 h-8 rounded-full bg-primary-soft flex items-center justify-center text-primary-red">
-                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                    {/* Delete button (Admin Only) */}
+                    {isEditRoute && (
+                      <button
+                        onClick={() => deleteCareerMindset(item.id)}
+                        className="absolute right-0 top-1 text-red-500 hover:text-red-700 bg-red-50 hover:bg-red-100 p-1.5 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-200 z-30 cursor-pointer"
+                        title="Delete mindset pillar"
+                      >
+                        <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                        </svg>
+                      </button>
+                    )}
+                  </motion.div>
+                ))}
+
+                {/* Add Mindset Pillar Button (Admin Only) */}
+                {isEditRoute && (
+                  <motion.button
+                    key="add-mindset-btn"
+                    variants={fadeRight}
+                    onClick={addCareerMindset}
+                    className="w-full flex items-center justify-center gap-2 border-2 border-dashed border-[#E8E8E8] hover:border-primary-red/50 py-3.5 rounded-xl text-sm font-bold text-[#121212] hover:text-primary-red transition-all cursor-pointer group mt-4"
+                  >
+                    <svg className="w-4 h-4 text-[#7A7A7A] group-hover:text-primary-red transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m8-8H4" />
                     </svg>
-                  </div>
-                </div>
-                <div>
-                  <h3 className="text-xl font-bold text-[#121212] mb-2">Intelligent Automation</h3>
-                  <p className="text-[#5A5A5A] text-sm leading-relaxed">
-                    AI is deeply embedded in everything we build. We strive to automate the mundane and focus on creativity.
-                  </p>
-                </div>
-              </motion.div>
+                    Add Mindset Pillar
+                  </motion.button>
+                )}
+              </AnimatePresence>
             </div>
           </motion.div>
 

@@ -2,6 +2,7 @@
 
 import React from "react";
 import { motion } from "framer-motion";
+import EditableText from "@/src/admin/components/EditableText";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
@@ -10,11 +11,11 @@ const fadeUp = {
 
 export default function FeaturedPost() {
   return (
-    <section className="bg-[#000000] text-[#FAFAFA] pt-32 pb-24 border-b border-[#1F1F1F] overflow-hidden relative">
+    <section className="bg-[#000000] text-[#FAFAFA] min-h-screen flex items-center pt-32 pb-24 border-b border-[#1F1F1F] overflow-hidden relative">
       {/* Background gradients for premium feel */}
       <div className="absolute inset-0 bg-gradient-to-br from-[#B40001]/10 to-transparent opacity-30 pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
         <motion.div
           initial="hidden"
           animate="visible"
@@ -23,7 +24,11 @@ export default function FeaturedPost() {
         >
           <motion.div variants={fadeUp} className="flex items-center gap-4 mb-8">
             <span className="bg-primary-red text-[#FFFFFF] text-xs font-bold tracking-widest uppercase px-3 py-1.5 rounded-sm">
-              FEATURED REPORT
+              <EditableText
+                path="blogs.featured.tag"
+                fallback="FEATURED REPORT"
+                as="span"
+              />
             </span>
             <span className="text-[#A0A0A0] text-sm font-medium tracking-wide">
               March 24, 2024
@@ -31,11 +36,22 @@ export default function FeaturedPost() {
           </motion.div>
           
           <motion.h1 variants={fadeUp} className="font-heading text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-normal mb-8 text-[#FFFFFF] leading-[1.15]">
-            Quantifying the ROI of AI-Driven Performance Engineering
+            <EditableText
+              path="blogs.featured.heading"
+              fallback="Quantifying the ROI of AI-Driven Performance Engineering"
+              as="span"
+              className="font-heading text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-normal text-[#FFFFFF] leading-[1.15]"
+            />
           </motion.h1>
           
           <motion.p variants={fadeUp} className="text-[#A0A0A0] text-lg sm:text-xl leading-relaxed mb-10">
-            A deep dive into how modern enterprises are leveraging autonomous observability and automated root-cause analysis to reduce MTTR by 60%.
+            <EditableText
+              path="blogs.featured.excerpt"
+              fallback="A deep dive into how modern enterprises are leveraging autonomous observability and automated root-cause analysis to reduce MTTR by 60%."
+              as="span"
+              multiline
+              className="text-[#A0A0A0] text-lg sm:text-xl leading-relaxed"
+            />
           </motion.p>
           
           <motion.div variants={fadeUp}>

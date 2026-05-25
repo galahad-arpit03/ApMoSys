@@ -34,3 +34,40 @@ body {
   color: var(--foreground);
   font-family: var(--font-sans);
 }
+
+/* ── Admin Edit Mode ─────────────────────────────────────────────── */
+/* Activated when .admin-edit-mode wraps a frontend page */
+.admin-edit-mode .admin-editable-text {
+  position: relative;
+  cursor: text;
+  transition: outline 0.15s ease;
+}
+
+.admin-edit-mode .admin-editable-text:hover {
+  outline: 1.5px dashed rgba(180, 0, 1, 0.5);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* Scrollbar for admin panels */
+.admin-edit-mode *::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+.admin-edit-mode *::-webkit-scrollbar-track {
+  background: #0A0A0A;
+}
+.admin-edit-mode *::-webkit-scrollbar-thumb {
+  background: #2A2A2A;
+  border-radius: 2px;
+}
+
+/* Hide scrollbar utility */
+.hide-scrollbar::-webkit-scrollbar {
+  display: none !important;
+}
+.hide-scrollbar {
+  -ms-overflow-style: none !important;
+  scrollbar-width: none !important;
+}
+

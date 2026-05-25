@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Outfit, Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
+import ConditionalShell from "@/src/components/ConditionalShell";
 
 const outfit = Outfit({
   variable: "--font-outfit",
@@ -19,9 +20,6 @@ export const metadata: Metadata = {
   description: "Accelerating digital transformation with AI-powered quality assurance and visual analytics.",
 };
 
-import Navbar from "@/src/Navbar/Navbar";
-import Footer from "@/src/Footer/Footer";
-
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -34,11 +32,9 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <body className="min-h-full flex flex-col bg-[#121212] text-[#FAFAFA] font-sans selection:bg-primary-red selection:text-[#FFFFFF]" suppressHydrationWarning>
-        <Navbar />
-        <main className="flex-grow">
+        <ConditionalShell>
           {children}
-        </main>
-        <Footer />
+        </ConditionalShell>
       </body>
     </html>
   );

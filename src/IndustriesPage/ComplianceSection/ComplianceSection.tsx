@@ -1,4 +1,5 @@
 import React from "react";
+import EditableText from "@/src/admin/components/EditableText";
 
 export default function ComplianceSection() {
   return (
@@ -6,10 +7,19 @@ export default function ComplianceSection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col md:flex-row justify-between items-center gap-10">
           <div className="max-w-lg text-center md:text-left">
-            <h2 className="font-heading text-2xl font-bold text-[#FFFFFF] mb-4">Engineered for Global Compliance</h2>
-            <p className="text-sm text-[#A0A0A0] leading-relaxed">
-              We adhere to strict regulatory and technical standards across all implementations globally, guaranteeing peace of mind for enterprise operations.
-            </p>
+            <EditableText
+              path="industries.compliance.heading"
+              fallback="Engineered for Global Compliance"
+              as="h2"
+              className="font-heading text-2xl font-bold text-[#FFFFFF] mb-4 block"
+            />
+            <EditableText
+              path="industries.compliance.subheading"
+              fallback="We adhere to strict regulatory and technical standards across all implementations globally, guaranteeing peace of mind for enterprise operations."
+              as="p"
+              className="text-sm text-[#A0A0A0] leading-relaxed block"
+              multiline
+            />
           </div>
           
           <div className="flex flex-wrap justify-center md:justify-end gap-10 opacity-70 grayscale hover:grayscale-0 transition-all duration-500">

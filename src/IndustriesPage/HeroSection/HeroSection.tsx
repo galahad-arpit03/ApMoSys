@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import { motion, type Variants } from "framer-motion";
+import EditableText from "@/src/admin/components/EditableText";
 
 const containerVariants: Variants = {
   hidden: { opacity: 0 },
@@ -17,9 +18,9 @@ const fadeUp: Variants = {
 
 export default function HeroSection() {
   return (
-    <section className="bg-[#000000] text-[#FAFAFA] relative overflow-hidden pt-32 pb-24 border-b border-[#1F1F1F]">
+    <section className="bg-[#000000] text-[#FAFAFA] relative overflow-hidden min-h-screen flex items-center pt-32 pb-24 border-b border-[#1F1F1F]">
       <div className="absolute inset-0  z-0" />
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
         <motion.div
           className="max-w-3xl"
           variants={containerVariants}
@@ -27,21 +28,37 @@ export default function HeroSection() {
           animate="visible"
         >
           <motion.span variants={fadeUp} className="text-primary-red text-xs font-bold tracking-widest uppercase mb-4 block">
-            Industries we serve
+            <EditableText
+              path="industries.hero.badge"
+              fallback="Industries we serve"
+              as="span"
+              className="text-primary-red text-xs font-bold tracking-widest uppercase"
+            />
           </motion.span>
 
           <motion.h1
             variants={fadeUp}
             className="font-heading text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-normal text-[#FFFFFF] leading-none mb-6"
           >
-            Engineering Precision <span className="text-primary-red">Across Every Sector.</span>
+            <EditableText
+              path="industries.hero.heading"
+              fallback="Engineering Precision Across Every Sector."
+              as="span"
+              className="font-heading text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-normal text-[#FFFFFF] leading-none"
+            />
           </motion.h1>
 
           <motion.p
             variants={fadeUp}
             className="text-base sm:text-lg text-[#A0A0A0] leading-relaxed mb-10 max-w-2xl"
           >
-            Bridging the gap between legacy infrastructure and future-proof digital business. ApMoSys provides robust, tailored digital transformations for the world&apos;s most demanding sectors.
+            <EditableText
+              path="industries.hero.subheading"
+              fallback="Bridging the gap between legacy infrastructure and future-proof digital business. ApMoSys provides robust, tailored digital transformations for the world's most demanding sectors."
+              as="span"
+              multiline
+              className="text-base sm:text-lg text-[#A0A0A0] leading-relaxed"
+            />
           </motion.p>
 
           <motion.div variants={fadeUp} className="flex flex-col sm:flex-row gap-4">

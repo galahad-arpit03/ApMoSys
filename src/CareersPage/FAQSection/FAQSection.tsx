@@ -2,24 +2,18 @@
 
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-
-const faqs = [
-  {
-    question: "What does the initial tech stack look like?",
-    answer: "Our core platform leverages React/Next.js on the frontend, with Node.js/Go backend microservices running on Kubernetes. We use Playwright and Selenium extensively for our automation pipelines.",
-  },
-  {
-    question: "Do you offer remote work options?",
-    answer: "Yes, we operate on a hybrid and remote-friendly model. While certain highly collaborative architectural sessions benefit from in-office presence, daily execution is flexible based on your team's structure.",
-  },
-  {
-    question: "How long does the onboarding process take?",
-    answer: "Our standard engineering onboarding spans 4 weeks. This includes deep dives into our CI/CD pipelines, security protocols, and shadowing a senior architect on an active enterprise deployment.",
-  },
-];
+import { usePathname } from "next/navigation";
+import { useContentStore } from "@/src/admin/store/adminStore";
+import EditableText from "@/src/admin/components/EditableText";
 
 export default function FAQSection() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
+  
+  const pathname = usePathname();
+  const isEditRoute = pathname?.startsWith("/administrator");
+
+  const { content, addCareerFAQItem, deleteCareerFAQItem } = useContentStore();
+  const faqs = content.careers.faqItems || [];
 
   return (
     <section className="bg-[#FFFFFF] text-[#121212] py-24 overflow-hidden">
@@ -33,59 +27,106 @@ export default function FAQSection() {
           transition={{ duration: 0.65, ease: "easeOut" }}
           className="text-center mb-12"
         >
-          <h2 className="font-heading text-3xl sm:text-4xl font-extrabold text-[#121212] mb-4">
-            Frequently Asked Questions
-          </h2>
+          <EditableText
+            path="careers.faq.heading"
+            fallback="Frequently Asked Questions"
+            as="h2"
+            className="font-heading text-3xl sm:text-4xl font-extrabold text-[#121212] mb-4 block"
+          />
         </motion.div>
 
         {/* Accordion */}
         <div className="space-y-3">
-          {faqs.map((faq, idx) => (
-            <motion.div
-              key={idx}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: idx * 0.09, ease: "easeOut" }}
-              className="border-b border-[#E8E8E8]"
-            >
-              <button
-                onClick={() => setOpenIndex(openIndex === idx ? null : idx)}
-                className="w-full flex items-center justify-between py-6 text-left group"
+          <AnimatePresence mode="popLayout">
+            {faqs.map((faq, idx) => (
+              <motion.div
+                key={faq.id}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                layout
+                transition={{ duration: 0.4 }}
+                className="border-b border-[#E8E8E8] relative group"
               >
-                <span className="font-bold text-base sm:text-lg text-[#121212] group-hover:text-primary-red transition-colors pr-6">
-                  {faq.question}
-                </span>
-
-                <motion.span
-                  animate={{ rotate: openIndex === idx ? 180 : 0 }}
-                  transition={{ duration: 0.25, ease: "easeInOut" }}
-                  className="flex-shrink-0 text-[#7A7A7A] group-hover:text-primary-red"
-                >
-                  <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
-                  </svg>
-                </motion.span>
-              </button>
-
-              <AnimatePresence initial={false}>
-                {openIndex === idx && (
-                  <motion.div
-                    key="content"
-                    initial={{ height: 0, opacity: 0 }}
-                    animate={{ height: "auto", opacity: 1 }}
-                    exit={{ height: 0, opacity: 0 }}
-                    transition={{ duration: 0.32, ease: "easeInOut" }}
-                    className="overflow-hidden"
+                <div className="flex items-center justify-between">
+                  <button
+                    onClick={() => setOpenIndex(openIndex === idx ? null : idx)}
+                    className="flex-grow flex items-center justify-between py-6 text-left group pr-12"
                   >
-                    <p className="pb-6 text-[#5A5A5A] leading-relaxed">
-                      {faq.answer}
-                    </p>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </motion.div>
-          ))}
+                    <span className="font-bold text-base sm:text-lg text-[#121212] group-hover:text-primary-red transition-colors pr-6 block w-full">
+                      <EditableText
+                        path={`careers.faqItems.${idx}.question`}
+                        fallback={faq.question}
+                        as="span"
+                        className="block cursor-pointer"
+                      />
+                    </span>
+
+                    <motion.span
+                      animate={{ rotate: openIndex === idx ? 180 : 0 }}
+                      transition={{ duration: 0.25, ease: "easeInOut" }}
+                      className="flex-shrink-0 text-[#7A7A7A] group-hover:text-primary-red"
+                    >
+                      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+                      </svg>
+                    </motion.span>
+                  </button>
+
+                  {/* Delete Button (Admin Only) */}
+                  {isEditRoute && (
+                    <button
+                      onClick={() => deleteCareerFAQItem(faq.id)}
+                      className="absolute right-0 top-6 text-red-500 hover:text-red-700 bg-red-50 hover:bg-red-100 p-1.5 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-200 z-30 cursor-pointer"
+                      title="Delete FAQ item"
+                    >
+                      <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                      </svg>
+                    </button>
+                  )}
+                </div>
+
+                <AnimatePresence initial={false}>
+                  {openIndex === idx && (
+                    <motion.div
+                      key="content"
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.3, ease: "easeInOut" }}
+                      className="overflow-hidden"
+                    >
+                      <div className="pb-6 text-[#5A5A5A] leading-relaxed block">
+                        <EditableText
+                          path={`careers.faqItems.${idx}.answer`}
+                          fallback={faq.answer}
+                          as="p"
+                          className="block cursor-pointer"
+                          multiline
+                        />
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </motion.div>
+            ))}
+
+            {/* Add FAQ Button (Admin Only) */}
+            {isEditRoute && (
+              <motion.button
+                key="add-faq-btn"
+                layout
+                onClick={addCareerFAQItem}
+                className="w-full flex items-center justify-center gap-2 border-2 border-dashed border-[#E8E8E8] hover:border-primary-red/50 py-3.5 rounded-xl text-sm font-bold text-[#121212] hover:text-primary-red transition-all cursor-pointer group mt-6"
+              >
+                <svg className="w-4 h-4 text-[#7A7A7A] group-hover:text-primary-red transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m8-8H4" />
+                </svg>
+                Add FAQ Accordion
+              </motion.button>
+            )}
+          </AnimatePresence>
         </div>
       </div>
     </section>

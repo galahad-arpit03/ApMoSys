@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import { motion } from "framer-motion";
+import EditableText from "@/src/admin/components/EditableText";
 
 export default function CTASection() {
   return (
@@ -18,16 +19,31 @@ export default function CTASection() {
           
           <div className="relative z-10 max-w-2xl mx-auto">
             <h2 className="font-heading text-3xl md:text-4xl font-extrabold text-[#FFFFFF] mb-4">
-              Scale Your Industry Impact
+              <EditableText
+                path="industries.cta.heading"
+                fallback="Scale Your Industry Impact"
+                as="span"
+                className="font-heading text-3xl md:text-4xl font-extrabold text-[#FFFFFF]"
+              />
             </h2>
             <p className="text-primary-soft text-base mb-8 leading-relaxed">
-              Join the hundreds of industry leaders globally that trust ApMoSys to drive their technological evolution.
+              <EditableText
+                path="industries.cta.subheading"
+                fallback="Join the hundreds of industry leaders globally that trust ApMoSys to drive their technological evolution."
+                as="span"
+                multiline
+                className="text-primary-soft text-base leading-relaxed"
+              />
             </p>
             <a
               href="#contact"
               className="inline-block bg-[#FFFFFF] hover:bg-[#FAFAFA] text-[#121212] font-bold text-center px-10 py-4 rounded-md text-sm tracking-wide transition-colors shadow-lg hover:shadow-xl"
             >
-              Start Your Transformation
+              <EditableText
+                path="industries.cta.ctaLabel"
+                fallback="Start Your Transformation"
+                as="span"
+              />
             </a>
           </div>
         </motion.div>

@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import { motion } from "framer-motion";
+import EditableText from "@/src/admin/components/EditableText";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
@@ -27,12 +28,18 @@ export default function PortfolioSection() {
           transition={{ duration: 0.6, ease: "easeOut" }}
           className="text-center mb-16"
         >
-          <h2 className="font-heading text-3xl sm:text-4xl font-extrabold text-[#FFFFFF] mb-4">
-            Submit Your Portfolio
-          </h2>
-          <p className="text-[#A0A0A0] text-sm sm:text-base">
-            Show us what you've built. We are always looking for exceptional talent.
-          </p>
+          <EditableText
+            path="careers.portfolio.heading"
+            fallback="Submit Your Portfolio"
+            as="h2"
+            className="font-heading text-3xl sm:text-4xl font-extrabold text-[#FFFFFF] mb-4 block"
+          />
+          <EditableText
+            path="careers.portfolio.subheading"
+            fallback="Show us what you've built. We are always looking for exceptional talent."
+            as="p"
+            className="text-[#A0A0A0] text-sm sm:text-base block"
+          />
         </motion.div>
 
         <motion.form
