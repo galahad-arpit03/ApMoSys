@@ -1005,12 +1005,6 @@ export const themePresets: Record<string, ColorTheme> = {
     primaryDark: "#B45309",
     primaryHover: "#F59E0B",
   },
-  rose: {
-    ...defaultTheme,
-    primaryRed: "#E11D48",
-    primaryDark: "#BE123C",
-    primaryHover: "#F43F5E",
-  },
 };
 
 export const useThemeStore = create<ThemeState>()(

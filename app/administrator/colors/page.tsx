@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { motion } from "framer-motion";
 import { useThemeStore, themePresets, useToastStore, ColorTheme } from "@/src/admin/store/adminStore";
 
@@ -20,13 +20,45 @@ const presetList = [
   { key: "emerald", label: "Emerald", color: "#059669" },
   { key: "violet", label: "Violet", color: "#7C3AED" },
   { key: "amber", label: "Amber", color: "#D97706" },
-  { key: "rose", label: "Rose", color: "#E11D48" },
 ];
+
+function darkenColor(hex: string, percent: number): string {
+  hex = hex.replace(/^\s*#|\s*$/g, "");
+  if (hex.length === 3) {
+    hex = hex.replace(/(.)/g, "$1$1");
+  }
+  const r = parseInt(hex.substring(0, 2), 16);
+  const g = parseInt(hex.substring(2, 4), 16);
+  const b = parseInt(hex.substring(4, 6), 16);
+
+  const newR = Math.max(0, Math.floor(r * (1 - percent)));
+  const newG = Math.max(0, Math.floor(g * (1 - percent)));
+  const newB = Math.max(0, Math.floor(b * (1 - percent)));
+
+  return `#${newR.toString(16).padStart(2, "0")}${newG.toString(16).padStart(2, "0")}${newB.toString(16).padStart(2, "0")}`;
+}
+
+function lightenColor(hex: string, percent: number): string {
+  hex = hex.replace(/^\s*#|\s*$/g, "");
+  if (hex.length === 3) {
+    hex = hex.replace(/(.)/g, "$1$1");
+  }
+  const r = parseInt(hex.substring(0, 2), 16);
+  const g = parseInt(hex.substring(2, 4), 16);
+  const b = parseInt(hex.substring(4, 6), 16);
+
+  const newR = Math.min(255, Math.floor(r + (255 - r) * percent));
+  const newG = Math.min(255, Math.floor(g + (255 - g) * percent));
+  const newB = Math.min(255, Math.floor(b + (255 - b) * percent));
+
+  return `#${newR.toString(16).padStart(2, "0")}${newG.toString(16).padStart(2, "0")}${newB.toString(16).padStart(2, "0")}`;
+}
 
 export default function AdminColorsPage() {
   const { theme, updateColor, applyPreset, resetTheme, activePreset } = useThemeStore();
   const { addToast } = useToastStore();
   const [livePreview, setLivePreview] = useState(true);
+  const colorPickerRef = useRef<HTMLInputElement>(null);
 
   const handleColorChange = (key: keyof ColorTheme, value: string) => {
     updateColor(key, value);
@@ -46,6 +78,25 @@ export default function AdminColorsPage() {
         document.documentElement.style.setProperty(cssVar, value);
       }
     }
+  };
+
+  const handleCustomColorAdd = (color: string) => {
+    updateColor("primaryRed", color);
+    
+    const dark = darkenColor(color, 0.2);
+    const hover = lightenColor(color, 0.15);
+    
+    updateColor("primaryDark", dark);
+    updateColor("primaryHover", hover);
+    
+    if (livePreview) {
+      document.documentElement.style.setProperty("--color-primary-red", color);
+      document.documentElement.style.setProperty("--color-primary-dark", dark);
+      document.documentElement.style.setProperty("--color-primary-hover", hover);
+    }
+    
+    useThemeStore.setState({ activePreset: "custom" });
+    addToast("Custom color added and theme updated!", "success");
   };
 
   const handlePreset = (key: string) => {
@@ -103,7 +154,50 @@ export default function AdminColorsPage() {
                   )}
                 </motion.button>
               ))}
+
+              {/* Dynamic Custom Preset if activePreset is "custom" */}
+              {activePreset === "custom" && (
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="flex flex-col items-center gap-2 p-3 rounded-lg border border-[#B40001] bg-[#B40001]/10 cursor-pointer"
+                >
+                  <div
+                    className="w-8 h-8 rounded-full border-2 border-white/10 shadow-lg"
+                    style={{ backgroundColor: theme.primaryRed }}
+                  />
+                  <span className="text-[10px] text-[#7A7A7A] font-medium text-center leading-tight">
+                    Custom Color
+                  </span>
+                  <div className="w-1.5 h-1.5 rounded-full bg-[#B40001]" />
+                </motion.button>
+              )}
+
+              {/* Add Custom Color Preset Button */}
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={() => colorPickerRef.current?.click()}
+                className="flex flex-col items-center justify-center gap-2 p-3 rounded-lg border-2 border-dashed border-[#2A2A2A] hover:border-[#B40001] hover:bg-[#B40001]/5 transition-all cursor-pointer bg-[#0A0A0A] group"
+              >
+                <div className="w-8 h-8 rounded-full bg-[#1A1A1A] border border-[#2A2A2A] flex items-center justify-center group-hover:border-[#B40001] transition-colors">
+                  <svg className="w-4 h-4 text-[#7A7A7A] group-hover:text-[#FAFAFA] transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m8-8H4" />
+                  </svg>
+                </div>
+                <span className="text-[10px] text-[#7A7A7A] font-bold uppercase tracking-wider text-center leading-tight">
+                  Add Color
+                </span>
+              </motion.button>
             </div>
+
+            {/* Hidden native color picker */}
+            <input
+              ref={colorPickerRef}
+              type="color"
+              className="hidden"
+              onChange={(e) => handleCustomColorAdd(e.target.value)}
+            />
           </div>
 
           {/* Custom Colors */}

@@ -22,7 +22,7 @@ export default function AdminEditOverlay({ page, children }: AdminEditOverlayPro
         <span className="text-[10px] font-semibold text-[#7A7A7A] uppercase tracking-wider">
           Editing: <span className="text-[#FAFAFA]">{page}</span>
         </span>
-        <span className="text-[10px] text-[#3A3A3A] ml-1">— hover text to edit</span>
+        {/* <span className="text-[10px] text-[#3A3A3A] ml-1">— hover text to edit</span> */}
       </div>
       {children}
     </div>
