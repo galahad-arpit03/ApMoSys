@@ -112,17 +112,17 @@ export default function AdminColorsPage() {
               <h2 className="font-heading font-bold text-sm text-[#FAFAFA] flex items-center gap-2">
                 <span>🎨</span> Custom Colors
               </h2>
-              <label className="flex items-center gap-2 cursor-pointer">
+              <label className="flex items-center gap-2 cursor-pointer select-none">
                 <span className="text-xs text-[#5A5A5A]">Live Preview</span>
                 <div
                   onClick={() => setLivePreview(!livePreview)}
-                  className={`w-9 h-5 rounded-full transition-colors cursor-pointer ${
+                  className={`relative w-9 h-5 rounded-full transition-colors duration-200 ease-in-out cursor-pointer ${
                     livePreview ? "bg-[#B40001]" : "bg-[#2A2A2A]"
                   }`}
                 >
                   <div
-                    className={`w-3.5 h-3.5 bg-white rounded-full mt-0.5 transition-transform ${
-                      livePreview ? "translate-x-4.5 ml-[18px]" : "ml-0.5"
+                    className={`absolute top-0.5 left-0.5 w-4 h-4 bg-white rounded-full transition-transform duration-200 ease-in-out ${
+                      livePreview ? "translate-x-4" : "translate-x-0"
                     }`}
                   />
                 </div>
