@@ -1,10 +1,9 @@
 import React from "react";
-import Container from "@/src/components/Container";
 
 export default function Hero() {
   return (
     <section className="relative overflow-hidden pt-20 pb-28 border-b border-[#1F1F1F]">
-      <Container>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="lg:grid lg:grid-cols-12 lg:gap-8 items-center">
           
           {/* Left Content */}
@@ -86,7 +85,7 @@ export default function Hero() {
           </div>
 
         </div>
-      </Container>
+      </div>
     </section>
   );
 }

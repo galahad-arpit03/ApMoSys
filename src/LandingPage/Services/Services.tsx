@@ -2,7 +2,6 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import Container from "@/src/components/Container";
 
 const containerVariants = {
   hidden: {},
@@ -56,7 +55,7 @@ const services = [
 export default function Services() {
   return (
     <section id="services" className="bg-[#000000] text-[#FAFAFA] py-24 border-t border-[#1F1F1F] overflow-hidden">
-      <Container>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header */}
         <motion.div
@@ -143,7 +142,7 @@ export default function Services() {
           </a>
         </motion.div>
         
-      </Container>
+      </div>
     </section>
   );
 }

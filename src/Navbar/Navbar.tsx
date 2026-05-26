@@ -2,7 +2,6 @@
 
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import Container from "@/src/components/Container";
 
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -63,7 +62,7 @@ export default function Navbar() {
       transition={{ duration: 0.6, ease: "easeOut" }}
       className="bg-[#000000] border-b border-[#3A3A3A] sticky top-0 z-50"
     >
-      <Container>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           
           {/* Logo Text on Left */}
@@ -184,7 +183,7 @@ export default function Navbar() {
           </div>
 
         </div>
-      </Container>
+      </div>
 
       {/* Mobile Menu */}
       <AnimatePresence>

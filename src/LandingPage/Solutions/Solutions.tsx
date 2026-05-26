@@ -1,14 +1,13 @@
 "use client";
 
 import React, { useState } from "react";
-import Container from "@/src/components/Container";
 
 export default function Solutions() {
   const [selectedTab, setSelectedTab] = useState<"services" | "solutions" | "industries">("services");
 
   return (
     <section id="solutions" className="py-24 border-b border-[#1F1F1F]">
-      <Container>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         <div className="text-center max-w-3xl mx-auto mb-16">
           <h2 className="font-heading text-3xl sm:text-4xl font-extrabold text-[#FFFFFF] mb-4">
@@ -122,7 +121,7 @@ export default function Solutions() {
           )}
         </div>
 
-      </Container>
+      </div>
     </section>
   );
 }

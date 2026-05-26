@@ -2,7 +2,6 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import Container from "@/src/components/Container";
 
 const containerVariants = {
   hidden: {},
@@ -17,7 +16,8 @@ const fadeUp = {
 export default function AboutUs() {
   return (
     <section id="about" className="bg-[#121212] text-[#FAFAFA] py-24 border-t border-[#1F1F1F] overflow-hidden">
-      <Container>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
         <div className="lg:grid lg:grid-cols-2 lg:gap-16 items-center">
           
           {/* Left Side: Text Content */}
@@ -95,7 +95,7 @@ export default function AboutUs() {
           </motion.div>
           
         </div>
-      </Container>
+      </div>
     </section>
   );
 }
