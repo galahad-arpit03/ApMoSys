@@ -26,14 +26,15 @@ export default function HeroSection() {
         const isDark = theme === "dark";
         return (
           <section
-            className={`relative overflow-hidden min-h-screen flex items-center pt-32 pb-24 border-b transition-colors duration-300 ${
+            className={`relative pt-20 pb-28 border-b transition-colors duration-300 ${
               isDark ? "bg-[#000000] text-[#FAFAFA] border-[#1F1F1F]" : "bg-[#FAFAFA] text-[#121212] border-[#E8E8E8]"
             }`}
           >
             <div className="absolute inset-0 z-0" />
-                        <Container className="relative z-10 w-full">
-              <motion.div
-                className="max-w-3xl"
+            <Container className="relative z-10 w-full">
+              <div className="lg:grid lg:grid-cols-12 lg:gap-8 items-center">
+                <motion.div
+                  className="sm:text-center md:max-w-2xl md:mx-auto lg:col-span-6 lg:text-left"
                 variants={containerVariants}
                 initial="hidden"
                 animate="visible"
@@ -92,8 +93,9 @@ export default function HeroSection() {
                     Contact Expert
                   </a>
                 </motion.div>
-              </motion.div>
-                        </Container>
+                </motion.div>
+              </div>
+            </Container>
           </section>
         );
       }}

@@ -16,7 +16,7 @@ export default function FeaturedPost() {
         const isDark = theme === "dark";
         return (
           <section
-            className={`min-h-screen flex items-center pt-32 pb-24 border-b overflow-hidden relative transition-colors duration-300 ${
+            className={`relative pt-20 pb-28 border-b transition-colors duration-300 ${
               isDark ? "bg-[#000000] text-[#FAFAFA] border-[#1F1F1F]" : "bg-[#FAFAFA] text-[#121212] border-[#E8E8E8]"
             }`}
           >
@@ -25,13 +25,14 @@ export default function FeaturedPost() {
               isDark ? "from-[#B40001]/10 to-transparent" : "from-[#B40001]/5 to-transparent"
             }`} />
 
-                        <Container className="relative z-10 w-full">
-              <motion.div
-                initial="hidden"
-                animate="visible"
-                variants={{ visible: { transition: { staggerChildren: 0.15 } } }}
-                className="max-w-4xl flex flex-col items-start"
-              >
+            <Container className="relative z-10 w-full">
+              <div className="lg:grid lg:grid-cols-12 lg:gap-8 items-center">
+                <motion.div
+                  initial="hidden"
+                  animate="visible"
+                  variants={{ visible: { transition: { staggerChildren: 0.15 } } }}
+                  className="sm:text-center md:max-w-2xl md:mx-auto lg:col-span-6 lg:text-left flex flex-col items-start"
+                >
                 <motion.div variants={fadeUp} className="flex items-center gap-4 mb-8">
                   <span className="bg-primary-red text-[#FFFFFF] text-xs font-bold tracking-widest uppercase px-3 py-1.5 rounded-sm">
                     <EditableText
@@ -81,8 +82,9 @@ export default function FeaturedPost() {
                     </svg>
                   </motion.a>
                 </motion.div>
-              </motion.div>
-                        </Container>
+                </motion.div>
+              </div>
+            </Container>
           </section>
         );
       }}

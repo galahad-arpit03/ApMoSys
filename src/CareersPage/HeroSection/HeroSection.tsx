@@ -22,19 +22,20 @@ export default function HeroSection() {
       {(theme) => {
         const isDark = theme === "dark";
         return (
-          <section className={`min-h-screen flex items-center pt-32 pb-24 border-b overflow-hidden relative transition-colors duration-300 ${
+          <section className={`relative pt-20 pb-28 border-b transition-colors duration-300 ${
             isDark ? "bg-[#000000] text-[#FAFAFA] border-[#1F1F1F]" : "bg-[#FAFAFA] text-[#121212] border-[#E8E8E8]"
           }`}>
             {/* Background gradient */}
             {isDark && <div className="absolute inset-0 bg-gradient-to-b from-[#B40001]/10 to-transparent opacity-30 pointer-events-none" />}
 
-                        <Container className="relative z-10 w-full">
-              <motion.div
-                variants={containerVariants}
-                initial="hidden"
-                animate="visible"
-                className="max-w-3xl"
-              >
+            <Container className="relative z-10 w-full">
+              <div className="lg:grid lg:grid-cols-12 lg:gap-8 items-center">
+                <motion.div
+                  variants={containerVariants}
+                  initial="hidden"
+                  animate="visible"
+                  className="sm:text-center md:max-w-2xl md:mx-auto lg:col-span-6 lg:text-left"
+                >
                 <motion.span variants={fadeUp} className="text-primary-red text-xs font-bold tracking-widest uppercase mb-4 block">
                   <EditableText
                     path="careers.hero.badge"
@@ -99,8 +100,9 @@ export default function HeroSection() {
                     />
                   </motion.a>
                 </motion.div>
-              </motion.div>
-                        </Container>
+                </motion.div>
+              </div>
+            </Container>
           </section>
         );
       }}
