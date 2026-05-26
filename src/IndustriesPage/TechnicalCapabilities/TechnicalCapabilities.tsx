@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Container from "@/src/components/Container";
 import { motion } from "framer-motion";
 import EditableText from "@/src/admin/components/EditableText";
 import SectionThemeWrapper from "@/src/admin/components/SectionThemeWrapper";
@@ -35,7 +36,7 @@ export default function TechnicalCapabilities() {
           <section className={`py-24 relative overflow-hidden transition-colors duration-300 ${
             isDark ? "bg-[#121212] text-[#FAFAFA]" : "bg-[#FAFAFA] text-[#121212]"
           }`}>
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                        <Container className="relative z-10">
               <div className="lg:grid lg:grid-cols-2 lg:gap-16 items-center">
                 
                 <div>
@@ -139,7 +140,7 @@ export default function TechnicalCapabilities() {
                 </div>
                 
               </div>
-            </div>
+                        </Container>
           </section>
         );
       }}

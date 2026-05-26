@@ -1,9 +1,10 @@
 import React from "react";
+import Container from "@/src/components/Container";
 
 export default function Products() {
   return (
     <section id="products" className="py-24 border-b border-[#1F1F1F]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <Container>
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
           
           {/* Left Info Column */}
@@ -76,7 +77,7 @@ export default function Products() {
           </div>
 
         </div>
-      </div>
+      </Container>
     </section>
   );
 }

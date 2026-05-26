@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Container from "@/src/components/Container";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { useContentStore } from "@/src/admin/store/adminStore";
@@ -23,7 +24,7 @@ export default function GlobalPresence() {
           <section className={`py-20 border-t transition-colors duration-300 overflow-hidden ${
             isDark ? "bg-[#161616] border-[#2A2A2A] text-[#FFFFFF]" : "bg-[#FAFAFA] border-[#E8E8E8] text-[#121212]"
           }`}>
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                        <Container>
 
               {/* Heading */}
               <motion.div
@@ -180,7 +181,7 @@ export default function GlobalPresence() {
                   </motion.button>
                 )}
               </div>
-            </div>
+                        </Container>
           </section>
         );
       }}

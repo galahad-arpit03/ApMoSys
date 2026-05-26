@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Container from "@/src/components/Container";
 import { motion } from "framer-motion";
 import EditableText from "@/src/admin/components/EditableText";
 import SectionThemeWrapper from "@/src/admin/components/SectionThemeWrapper";
@@ -27,7 +28,7 @@ export default function LifeSection() {
               isDark ? "bg-[#121212] text-[#FAFAFA] border-[#1F1F1F]" : "bg-[#FAFAFA] text-[#121212] border-[#E8E8E8]"
             }`}
           >
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                        <Container>
               
               {/* Header */}
               <motion.div
@@ -159,7 +160,7 @@ export default function LifeSection() {
                 </motion.div>
 
               </motion.div>
-            </div>
+                        </Container>
           </section>
         );
       }}

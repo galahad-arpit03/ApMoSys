@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import Container from "@/src/components/Container";
 import { motion } from "framer-motion";
 import EditableText from "@/src/admin/components/EditableText";
 
@@ -48,7 +49,7 @@ export default function InquirySection() {
           <section className={`py-20 lg:py-28 overflow-hidden transition-colors duration-300 ${
             isDark ? "bg-[#121212] text-[#FFFFFF]" : "bg-[#FFFFFF] text-[#121212]"
           }`}>
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                        <Container>
 
               {/* Hero Text — staggered reveal */}
               <motion.div
@@ -319,7 +320,7 @@ export default function InquirySection() {
                   </motion.div>
                 </motion.div>
               </div>
-            </div>
+                        </Container>
           </section>
         );
       }}

@@ -2,6 +2,7 @@
 
 import React from "react";
 import { motion } from "framer-motion";
+import Container from "@/src/components/Container";
 
 export default function Footer() {
   return (
@@ -12,7 +13,7 @@ export default function Footer() {
       transition={{ duration: 0.8, ease: "easeOut" }}
       className="bg-[#000000] border-t border-[#3A3A3A] py-16 mt-auto text-sm text-[#7A7A7A]"
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <Container>
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
           
           {/* Brand Block & Socials */}
@@ -140,7 +141,7 @@ export default function Footer() {
           </div>
         </div>
 
-      </div>
+      </Container>
     </motion.footer>
   );
 }

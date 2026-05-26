@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Container from "@/src/components/Container";
 import { motion } from "framer-motion";
 import SectionThemeWrapper from "@/src/admin/components/SectionThemeWrapper";
 
@@ -20,7 +21,7 @@ export default function ImpactSection() {
           <section className={`py-24 border-t transition-colors duration-300 ${
             isDark ? "bg-[#121212] border-[#1F1F1F]" : "bg-[#FAFAFA] border-[#E8E8E8]"
           }`}>
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                        <Container>
               <div className="text-center mb-16">
                 <h2 className={`font-heading text-3xl font-extrabold ${
                   isDark ? "text-[#FFFFFF]" : "text-[#121212]"
@@ -44,7 +45,7 @@ export default function ImpactSection() {
                   </motion.div>
                 ))}
               </div>
-            </div>
+                        </Container>
           </section>
         );
       }}

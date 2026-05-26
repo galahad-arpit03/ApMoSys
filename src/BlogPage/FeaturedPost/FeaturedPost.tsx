@@ -1,4 +1,5 @@
 import React from "react";
+import Container from "@/src/components/Container";
 import { motion } from "framer-motion";
 import EditableText from "@/src/admin/components/EditableText";
 import SectionThemeWrapper from "@/src/admin/components/SectionThemeWrapper";
@@ -24,7 +25,7 @@ export default function FeaturedPost() {
               isDark ? "from-[#B40001]/10 to-transparent" : "from-[#B40001]/5 to-transparent"
             }`} />
 
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
+                        <Container className="relative z-10 w-full">
               <motion.div
                 initial="hidden"
                 animate="visible"
@@ -81,7 +82,7 @@ export default function FeaturedPost() {
                   </motion.a>
                 </motion.div>
               </motion.div>
-            </div>
+                        </Container>
           </section>
         );
       }}

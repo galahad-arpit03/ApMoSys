@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Container from "@/src/components/Container";
 import { motion } from "framer-motion";
 import SectionThemeWrapper from "@/src/admin/components/SectionThemeWrapper";
 
@@ -11,7 +12,7 @@ export default function SubscribeBanner() {
         const isDark = theme === "dark";
         return (
           <section className={`py-16 transition-colors duration-300 ${isDark ? "bg-[#121212]" : "bg-[#FFFFFF]"}`}>
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                        <Container>
               
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -60,7 +61,7 @@ export default function SubscribeBanner() {
                 
               </motion.div>
               
-            </div>
+                        </Container>
           </section>
         );
       }}

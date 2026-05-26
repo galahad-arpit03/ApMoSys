@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import Container from "@/src/components/Container";
 import { motion, AnimatePresence } from "framer-motion";
 import { usePathname } from "next/navigation";
 import { useContentStore } from "@/src/admin/store/adminStore";
@@ -55,7 +56,7 @@ export default function IndustryGrid() {
               isDark ? "bg-[#121212] text-[#FAFAFA]" : "bg-[#FFFFFF] text-[#121212]"
             }`}
           >
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                        <Container>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 <AnimatePresence mode="popLayout">
                   {paginatedIndustries.map((item, index) => {
@@ -213,7 +214,7 @@ export default function IndustryGrid() {
                 </div>
               )}
 
-            </div>
+                        </Container>
           </section>
         );
       }}

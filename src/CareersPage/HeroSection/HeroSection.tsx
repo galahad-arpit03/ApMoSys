@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Container from "@/src/components/Container";
 import { motion } from "framer-motion";
 import EditableText from "@/src/admin/components/EditableText";
 import SectionThemeWrapper from "@/src/admin/components/SectionThemeWrapper";
@@ -27,7 +28,7 @@ export default function HeroSection() {
             {/* Background gradient */}
             {isDark && <div className="absolute inset-0 bg-gradient-to-b from-[#B40001]/10 to-transparent opacity-30 pointer-events-none" />}
 
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
+                        <Container className="relative z-10 w-full">
               <motion.div
                 variants={containerVariants}
                 initial="hidden"
@@ -99,7 +100,7 @@ export default function HeroSection() {
                   </motion.a>
                 </motion.div>
               </motion.div>
-            </div>
+                        </Container>
           </section>
         );
       }}

@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Container from "@/src/components/Container";
 import EditableText from "@/src/admin/components/EditableText";
 import SectionThemeWrapper from "@/src/admin/components/SectionThemeWrapper";
 
@@ -13,7 +14,7 @@ export default function ComplianceSection() {
           <section className={`py-20 border-t transition-colors duration-300 ${
             isDark ? "bg-[#121212] border-[#1F1F1F]" : "bg-[#FAFAFA] border-[#E8E8E8]"
           }`}>
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                        <Container>
               <div className="flex flex-col md:flex-row justify-between items-center gap-10">
                 <div className="max-w-lg text-center md:text-left">
                   <EditableText
@@ -52,7 +53,7 @@ export default function ComplianceSection() {
                   ))}
                 </div>
               </div>
-            </div>
+                        </Container>
           </section>
         );
       }}

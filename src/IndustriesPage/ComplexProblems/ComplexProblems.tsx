@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Container from "@/src/components/Container";
 import { motion, AnimatePresence } from "framer-motion";
 import { usePathname } from "next/navigation";
 import { useContentStore } from "@/src/admin/store/adminStore";
@@ -24,7 +25,7 @@ export default function ComplexProblems() {
               isDark ? "bg-[#121212] text-[#FAFAFA] border-[#1F1F1F]" : "bg-[#FFFFFF] text-[#121212] border-[#E8E8E8]"
             }`}
           >
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                        <Container>
               
               <EditableText
                 path="industries.complex.heading"
@@ -105,7 +106,7 @@ export default function ComplexProblems() {
                 </div>
               )}
 
-            </div>
+                        </Container>
           </section>
         );
       }}

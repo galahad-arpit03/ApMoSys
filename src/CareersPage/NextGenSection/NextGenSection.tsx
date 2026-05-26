@@ -1,4 +1,5 @@
 import React from "react";
+import Container from "@/src/components/Container";
 import { motion } from "framer-motion";
 import EditableText from "@/src/admin/components/EditableText";
 import SectionThemeWrapper from "@/src/admin/components/SectionThemeWrapper";
@@ -14,7 +15,7 @@ export default function NextGenSection() {
               isDark ? "bg-[#121212] text-[#FAFAFA] border-[#1F1F1F]" : "bg-[#FFFFFF] text-[#121212] border-[#E8E8E8]"
             }`}
           >
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                        <Container>
               <div className="lg:grid lg:grid-cols-12 lg:gap-16 items-center">
                 
                 {/* Left Text */}
@@ -147,7 +148,7 @@ export default function NextGenSection() {
                 </motion.div>
                 
               </div>
-            </div>
+                        </Container>
           </section>
         );
       }}

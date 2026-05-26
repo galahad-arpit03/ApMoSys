@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import Container from "@/src/components/Container";
 import { motion, AnimatePresence } from "framer-motion";
 
 const timeSlots = ["9:00", "10:00", "11:00", "14:00", "15:00", "16:00"];
@@ -13,7 +14,7 @@ export default function TechDeepDive() {
 
   return (
     <section className="bg-[#121212] text-[#FAFAFA] py-20 border-t border-[#1F1F1F] overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <Container>
         <motion.div
           initial={{ opacity: 0, y: 28 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -136,7 +137,7 @@ export default function TechDeepDive() {
             </motion.div>
           </div>
         </motion.div>
-      </div>
+            </Container>
     </section>
   );
 }

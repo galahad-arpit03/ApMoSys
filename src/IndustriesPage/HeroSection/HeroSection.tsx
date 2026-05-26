@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Container from "@/src/components/Container";
 import { motion, type Variants } from "framer-motion";
 import EditableText from "@/src/admin/components/EditableText";
 import SectionThemeWrapper from "@/src/admin/components/SectionThemeWrapper";
@@ -30,7 +31,7 @@ export default function HeroSection() {
             }`}
           >
             <div className="absolute inset-0 z-0" />
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
+                        <Container className="relative z-10 w-full">
               <motion.div
                 className="max-w-3xl"
                 variants={containerVariants}
@@ -92,7 +93,7 @@ export default function HeroSection() {
                   </a>
                 </motion.div>
               </motion.div>
-            </div>
+                        </Container>
           </section>
         );
       }}

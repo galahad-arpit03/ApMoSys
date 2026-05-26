@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import Container from "@/src/components/Container";
 import { motion, AnimatePresence } from "framer-motion";
 import { usePathname } from "next/navigation";
 import { useContentStore } from "@/src/admin/store/adminStore";
@@ -48,7 +49,7 @@ export default function GrowthSection() {
           <section className={`py-24 border-t transition-colors duration-300 overflow-hidden ${
             isDark ? "bg-[#121212] border-[#2A2A2A] text-[#FFFFFF]" : "bg-[#FAFAFA] border-[#E8E8E8] text-[#121212]"
           }`}>
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                        <Container>
               
               {/* Header */}
               <motion.div
@@ -222,7 +223,7 @@ export default function GrowthSection() {
                 </div>
               )}
 
-            </div>
+                        </Container>
           </section>
         );
       }}
