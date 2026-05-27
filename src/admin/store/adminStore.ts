@@ -1,4 +1,4 @@
-// Admin CMS Global Store — Zustand
+  // Admin CMS Global Store — Zustand
 // Manages: auth session, editable content, color theme, settings
 "use client";
 
@@ -957,6 +957,7 @@ export interface ColorTheme {
   border: string;
   borderRadius: string;
   shadowIntensity: string;
+  fontFamily: string;
 }
 
 const defaultTheme: ColorTheme = {
@@ -969,6 +970,7 @@ const defaultTheme: ColorTheme = {
   border: "#3A3A3A",
   borderRadius: "6",
   shadowIntensity: "medium",
+  fontFamily: "default",
 };
 
 interface ThemeState {

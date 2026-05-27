@@ -282,6 +282,42 @@ export default function AdminColorsPage() {
             </div>
           </div>
 
+          {/* Typography */}
+          <div className="bg-[#111111] border border-[#1E1E1E] rounded-xl p-6">
+            <h2 className="font-heading font-bold text-sm text-[#FAFAFA] mb-4 flex items-center gap-2">
+              <span>🔤</span> Typography
+            </h2>
+            <div className="space-y-3">
+              {[
+                { name: "Default Theme", variable: "default", type: "Jakarta (Body) + Outfit (Heading)" },
+                { name: "Plus Jakarta Sans", variable: "var(--font-jakarta)", type: "Full Site Sans-serif" },
+                { name: "Outfit", variable: "var(--font-outfit)", type: "Full Site Sans-serif" }
+              ].map((font) => (
+                <button
+                  key={font.name}
+                  onClick={() => updateColor("fontFamily", font.variable)}
+                  className={`w-full text-left px-4 py-3 rounded-lg border transition-all cursor-pointer ${
+                    theme.fontFamily === font.variable
+                      ? "border-[#B40001] bg-[#B40001]/10"
+                      : "border-[#2A2A2A] hover:border-[#3A3A3A] bg-[#0A0A0A]"
+                  }`}
+                >
+                  <p
+                    className={`text-sm font-medium ${
+                      theme.fontFamily === font.variable ? "text-[#B40001]" : "text-[#FAFAFA]"
+                    }`}
+                    style={{ fontFamily: font.variable !== "default" ? font.variable : "inherit" }}
+                  >
+                    {font.name}
+                  </p>
+                  <p className="text-xs text-[#7A7A7A] mt-0.5 font-sans">
+                    {font.type}
+                  </p>
+                </button>
+              ))}
+            </div>
+          </div>
+
           {/* Actions */}
           <div className="flex gap-3">
             <motion.button
