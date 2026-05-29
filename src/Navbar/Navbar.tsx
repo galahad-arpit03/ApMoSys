@@ -1,7 +1,8 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useContentStore, defaultContent } from "@/src/admin/store/adminStore";
 
 const megaMenuData: Record<string, any> = {
   Services: {
@@ -118,6 +119,18 @@ export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
   const [activeDropdown, setActiveDropdown] = React.useState<string | null>(null);
   const [activeCategory, setActiveCategory] = React.useState<string | null>(null);
+  const [langDropdownOpen, setLangDropdownOpen] = React.useState(false);
+
+  const storedLanguages = useContentStore((state) => state.content.settings.languages);
+  const languages = storedLanguages && storedLanguages.length > 0 ? storedLanguages : defaultContent.settings.languages;
+  const activeLanguages = languages.filter((lang: any) => lang.isActive);
+  const [activeLanguage, setActiveLanguage] = React.useState(activeLanguages[0] || defaultContent.settings.languages[0]);
+
+  React.useEffect(() => {
+    if (activeLanguages.length > 0 && !activeLanguages.find(l => l.id === activeLanguage.id)) {
+      setActiveLanguage(activeLanguages[0]);
+    }
+  }, [activeLanguages, activeLanguage.id]);
 
   React.useEffect(() => {
     if (activeDropdown && megaMenuData[activeDropdown]) {
@@ -141,11 +154,8 @@ export default function Navbar() {
   const navBgColor = isExpanded ? "bg-[#1E2222]" : "bg-[#000000]";
 
   return (
-    <motion.nav 
-      initial={{ y: -80, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.6, ease: "easeOut" }}
-      className={`${navBgColor} border-b ${isExpanded ? 'border-transparent' : 'border-[#3A3A3A]'} sticky top-0 z-50 transition-colors duration-300`}
+    <nav 
+      className={`${navBgColor} ${isExpanded ? 'border-transparent' : 'border-[#3A3A3A]'} sticky top-0 z-50 transition-colors duration-300`}
       onMouseLeave={() => setActiveDropdown(null)}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -206,14 +216,55 @@ export default function Navbar() {
           </div>
             
           {/* Desktop CTA Button (Right) */}
-          <div className="hidden lg:flex items-center justify-end lg:flex-1 z-50">
-            <motion.a
+          <div className="hidden lg:flex items-center justify-end lg:flex-1 z-50 space-x-6">
+            
+            {/* Language Dropdown */}
+            <div 
+              className="relative"
+              onMouseEnter={() => setLangDropdownOpen(true)}
+              onMouseLeave={() => setLangDropdownOpen(false)}
+            >
+              <button className="flex items-center gap-1.5 text-[#C8C8C8] hover:text-[#FFFFFF] text-sm font-medium transition-colors">
+                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
+                </svg>
+                {activeLanguage.code} - EN
+                <svg className={`w-3.5 h-3.5 transition-transform duration-200 ${langDropdownOpen ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+              <AnimatePresence>
+                {langDropdownOpen && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 5 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 5 }}
+                    transition={{ duration: 0.15 }}
+                    className="absolute right-0 mt-2 w-40 bg-[#1E2222] border border-[#3A3A3A] rounded-md shadow-lg overflow-hidden z-50 py-1"
+                  >
+                    {activeLanguages.map((lang: any) => (
+                      <button
+                        key={lang.id}
+                        onClick={() => {
+                          setActiveLanguage(lang);
+                          setLangDropdownOpen(false);
+                        }}
+                        className="w-full text-left px-4 py-2 text-sm text-[#C8C8C8] hover:text-[#FFFFFF] hover:bg-[#333535] transition-colors"
+                      >
+                        {lang.label}
+                      </button>
+                    ))}
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+
+            <a
               href="/contact"
-              whileTap={{ scale: 0.95 }}
-              className="inline-block bg-primary-red text-[#FFFFFF] px-6 py-2.5 rounded-md text-sm font-semibold tracking-wide shadow-md"
+              className="text-[#C8C8C8] hover:text-[#FFFFFF] text-sm font-medium transition-colors"
             >
               Contact Us
-            </motion.a>
+            </a>
           </div>
 
           {/* Mobile Menu Button */}
@@ -382,6 +433,6 @@ export default function Navbar() {
           </motion.div>
         )}
       </AnimatePresence>
-    </motion.nav>
+    </nav>
   );
 }

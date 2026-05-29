@@ -1,4 +1,4 @@
-  // Admin CMS Global Store — Zustand
+// Admin CMS Global Store — Zustand
 // Manages: auth session, editable content, color theme, settings
 "use client";
 
@@ -18,7 +18,7 @@ export const useAuthStore = create<AuthState>()(
     (set) => ({
       isAuthenticated: false,
       login: (password: string) => {
-        if (password === "123456789") {
+        if (password === "123") {
           set({ isAuthenticated: true });
           return true;
         }
@@ -26,8 +26,8 @@ export const useAuthStore = create<AuthState>()(
       },
       logout: () => set({ isAuthenticated: false }),
     }),
-    { name: "admin-auth" }
-  )
+    { name: "admin-auth" },
+  ),
 );
 
 // ─── Site Content ────────────────────────────────────────────────────────────
@@ -73,6 +73,13 @@ export interface ContactOffice {
   link: string;
   phone?: string;
   email?: string;
+}
+
+export interface LanguageItem {
+  id: string;
+  code: string;
+  label: string;
+  isActive: boolean;
 }
 
 export interface CareerJob {
@@ -212,11 +219,12 @@ export interface SiteContent {
     socialLinkedIn: string;
     socialTwitter: string;
     socialFacebook: string;
+    languages: LanguageItem[];
   };
   sectionThemes?: Record<string, "dark" | "light">;
 }
 
-const defaultContent: SiteContent = {
+export const defaultContent: SiteContent = {
   sectionThemes: {},
   navbar: {
     logo: "ApMoSys",
@@ -327,28 +335,32 @@ const defaultContent: SiteContent = {
       {
         id: "1",
         title: "BFSI",
-        description: "Banking, Financial Services, and Insurance. We ensure maximum security, fraud detection, and high-performance trading platform stability.",
+        description:
+          "Banking, Financial Services, and Insurance. We ensure maximum security, fraud detection, and high-performance trading platform stability.",
         linkText: "EXPLORE FINANCIAL SOLUTIONS",
         icon: "bank",
       },
       {
         id: "2",
         title: "Retail & E-commerce",
-        description: "Delivering seamless shopping experiences with zero downtime during peak seasonal traffic and flash sales.",
+        description:
+          "Delivering seamless shopping experiences with zero downtime during peak seasonal traffic and flash sales.",
         linkText: "EXPLORE RETAIL SOLUTIONS",
         icon: "cart",
       },
       {
         id: "3",
         title: "Manufacturing",
-        description: "IoT integration and advanced predictive analytics for automated assembly lines and supply chain optimization.",
+        description:
+          "IoT integration and advanced predictive analytics for automated assembly lines and supply chain optimization.",
         linkText: "EXPLORE MANUFACTURING SOLUTIONS",
         icon: "wrench",
       },
       {
         id: "4",
         title: "Healthcare & Life Sciences",
-        description: "HIPAA-compliant software testing and robust quality assurance for mission-critical medical devices and patient data systems.",
+        description:
+          "HIPAA-compliant software testing and robust quality assurance for mission-critical medical devices and patient data systems.",
         linkText: "EXPLORE HEALTHCARE SOLUTIONS",
         icon: "heart",
       },
@@ -357,17 +369,20 @@ const defaultContent: SiteContent = {
       {
         id: "1",
         title: "Legacy Migration",
-        description: "Seamlessly transition from monolithic to microservices with zero operational downtime.",
+        description:
+          "Seamlessly transition from monolithic to microservices with zero operational downtime.",
       },
       {
         id: "2",
         title: "Core Silos",
-        description: "Intelligently connect and standardize data architectures across fragmented global systems.",
+        description:
+          "Intelligently connect and standardize data architectures across fragmented global systems.",
       },
       {
         id: "3",
         title: "Real-time Observability",
-        description: "Full stack monitoring to proactively identify and resolve bottlenecks before they impact users.",
+        description:
+          "Full stack monitoring to proactively identify and resolve bottlenecks before they impact users.",
       },
     ],
   },
@@ -396,25 +411,29 @@ const defaultContent: SiteContent = {
         {
           id: "1",
           title: "Premium Healthcare",
-          description: "Comprehensive medical, dental, and vision coverage for you and your dependents.",
+          description:
+            "Comprehensive medical, dental, and vision coverage for you and your dependents.",
           icon: "heart",
         },
         {
           id: "2",
           title: "Learning Credits",
-          description: "Annual budget for courses, certifications, conferences, and continuous education.",
+          description:
+            "Annual budget for courses, certifications, conferences, and continuous education.",
           icon: "book",
         },
         {
           id: "3",
           title: "Work Flexibility",
-          description: "Hybrid and remote-friendly structures so you can work where you are most productive.",
+          description:
+            "Hybrid and remote-friendly structures so you can work where you are most productive.",
           icon: "globe",
         },
         {
           id: "4",
           title: "Pro Equipment",
-          description: "Top-tier Mac or PC setup, plus a home office stipend to build your ideal workspace.",
+          description:
+            "Top-tier Mac or PC setup, plus a home office stipend to build your ideal workspace.",
           icon: "monitor",
         },
       ],
@@ -427,13 +446,15 @@ const defaultContent: SiteContent = {
         {
           id: "1",
           title: "Scale and Agility",
-          description: "We adapt quickly to the ever-evolving tech landscape, ensuring our solutions always remain competitive.",
+          description:
+            "We adapt quickly to the ever-evolving tech landscape, ensuring our solutions always remain competitive.",
           icon: "bolt",
         },
         {
           id: "2",
           title: "Intelligent Automation",
-          description: "AI is deeply embedded in everything we build. We strive to automate the mundane and focus on creativity.",
+          description:
+            "AI is deeply embedded in everything we build. We strive to automate the mundane and focus on creativity.",
           icon: "shield",
         },
       ],
@@ -442,17 +463,20 @@ const defaultContent: SiteContent = {
       {
         id: "1",
         question: "What does the initial tech stack look like?",
-        answer: "Our core platform leverages React/Next.js on the frontend, with Node.js/Go backend microservices running on Kubernetes. We use Playwright and Selenium extensively for our automation pipelines.",
+        answer:
+          "Our core platform leverages React/Next.js on the frontend, with Node.js/Go backend microservices running on Kubernetes. We use Playwright and Selenium extensively for our automation pipelines.",
       },
       {
         id: "2",
         question: "Do you offer remote work options?",
-        answer: "Yes, we operate on a hybrid and remote-friendly model. While certain highly collaborative architectural sessions benefit from in-office presence, daily execution is flexible based on your team's structure.",
+        answer:
+          "Yes, we operate on a hybrid and remote-friendly model. While certain highly collaborative architectural sessions benefit from in-office presence, daily execution is flexible based on your team's structure.",
       },
       {
         id: "3",
         question: "How long does the onboarding process take?",
-        answer: "Our standard engineering onboarding spans 4 weeks. This includes deep dives into our CI/CD pipelines, security protocols, and shadowing a senior architect on an active enterprise deployment.",
+        answer:
+          "Our standard engineering onboarding spans 4 weeks. This includes deep dives into our CI/CD pipelines, security protocols, and shadowing a senior architect on an active enterprise deployment.",
       },
     ],
     jobs: [
@@ -497,7 +521,8 @@ const defaultContent: SiteContent = {
       {
         id: "1",
         city: "Chennai",
-        address: "Office No. C315, 3rd Floor, Apeejay House, 39/12, Haddows Road, Nungambakkam, Chennai – 600 006",
+        address:
+          "Office No. C315, 3rd Floor, Apeejay House, 39/12, Haddows Road, Nungambakkam, Chennai – 600 006",
         image: "/Contact Us/mumbai_hq.png",
         link: "https://www.google.com/maps/place/Apeejay+Business+Centre/@13.0631753,80.2453564,17z/data=!3m2!4b1!5s0x3a52666945ca8d3d:0xdd03801419888d34!4m6!3m5!1s0x3a526669439ac537:0x2e28741298f598ea!8m2!3d13.0631753!4d80.2479313!16s%2Fg%2F1tjtgpsz?entry=ttu&g_ep=EgoyMDI2MDUxMy4wIKXMDSoASAFQAw%3D%3D",
         phone: "+91 44 4976 5601",
@@ -506,7 +531,8 @@ const defaultContent: SiteContent = {
       {
         id: "2",
         city: "Bhubaneswar",
-        address: "ApMoSys Technologies Pvt. Ltd., Fortune Towers, 4th Floor, A Zone, Nandankanan Road, Chandrasekharpur, Bhubaneswar – 751023, Odisha",
+        address:
+          "ApMoSys Technologies Pvt. Ltd., Fortune Towers, 4th Floor, A Zone, Nandankanan Road, Chandrasekharpur, Bhubaneswar – 751023, Odisha",
         image: "/Contact Us/dubai_office.png",
         link: "https://www.google.com/maps/place/ApMoSys+Technologies+Pvt+Ltd/@20.3094975,85.8169395,17z/data=!3m1!4b1!4m6!3m5!1s0x3a1909005ebd71a1:0xf02ca3f5e8cf8ad5!8m2!3d20.3094975!4d85.8195144!16s%2Fg%2F11xt2cgl14?entry=ttu&g_ep=EgoyMDI2MDUxMy4wIKXMDSoASAFQAw%3D%3D",
         phone: "+91 674 4976 5602",
@@ -515,7 +541,8 @@ const defaultContent: SiteContent = {
       {
         id: "3",
         city: "United Arab Emirates",
-        address: "ApMoSys Technology FZ-LLC, B05-716A Business Center 04, RAKEZ Business Zone – FZ RAK, UAE. PO BOX 10055",
+        address:
+          "ApMoSys Technology FZ-LLC, B05-716A Business Center 04, RAKEZ Business Zone – FZ RAK, UAE. PO BOX 10055",
         image: "/Contact Us/ontario_office.png",
         link: "https://www.google.com/maps/search/ApMoSys+Technology+FZ-LLC,+B05-716A+Business+Center+04,+RAKEZ+Business+Zone+-FZ+RAK,+United+Arab+Emirates.+PO+BOX+10055./@25.452999,55.3465905,9z/data=!3m1!4b1?entry=ttu&g_ep=EgoyMDI2MDUxMy4wIKXMDSoASAFQAw%3D%3D",
         phone: "+971 4 4976 5603",
@@ -525,7 +552,8 @@ const defaultContent: SiteContent = {
     faqItems: [
       {
         id: "1",
-        question: "What are your application performance monitoring capabilities?",
+        question:
+          "What are your application performance monitoring capabilities?",
         answer:
           "Our AIOps Monitor continuously tracks server response times, memory usage, and latency spikes in real time. We integrate with Prometheus, Grafana, and custom telemetry pipelines to provide unified observability dashboards across your entire infrastructure stack.",
       },
@@ -559,6 +587,21 @@ const defaultContent: SiteContent = {
     socialLinkedIn: "https://linkedin.com/company/apmosys",
     socialTwitter: "https://twitter.com/apmosys",
     socialFacebook: "https://facebook.com/apmosys",
+    languages: [
+      { id: "1", code: "EN", label: "Global (En)", isActive: true },
+      { id: "2", code: "IN", label: "IN - EN", isActive: true },
+      { id: "3", code: "DE", label: "Germany (De)", isActive: false },
+      { id: "4", code: "FR", label: "France (Fr)", isActive: false },
+      { id: "5", code: "ES", label: "Spain (Es)", isActive: false },
+      { id: "6", code: "JP", label: "Japan (Jp)", isActive: false },
+      { id: "7", code: "CN", label: "China (Cn)", isActive: false },
+      { id: "8", code: "BR", label: "Brazil (Pt)", isActive: false },
+      { id: "9", code: "IT", label: "Italy (It)", isActive: false },
+      { id: "10", code: "RU", label: "Russia (Ru)", isActive: false },
+      { id: "11", code: "KR", label: "South Korea (Kr)", isActive: false },
+      { id: "12", code: "AE", label: "UAE (Ar)", isActive: false },
+      { id: "13", code: "SA", label: "Saudi Arabia (Ar)", isActive: false },
+    ],
   },
 };
 
@@ -585,10 +628,15 @@ interface ContentState {
   deleteContactOffice: (id: string) => void;
   addContactFAQItem: () => void;
   deleteContactFAQItem: (id: string) => void;
+  toggleLanguageActive: (id: string) => void;
 }
 
 // Utility: nested path setter
-function setNestedValue(obj: Record<string, unknown>, path: string, value: string): Record<string, unknown> {
+function setNestedValue(
+  obj: Record<string, unknown>,
+  path: string,
+  value: string,
+): Record<string, unknown> {
   const keys = path.split(".");
   const result = { ...obj };
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -612,14 +660,34 @@ export const useContentStore = create<ContentState>()(
           content: setNestedValue(
             state.content as unknown as Record<string, unknown>,
             path,
-            value
+            value,
           ) as unknown as SiteContent,
           isDirty: true,
         })),
-      resetContent: () =>
-        set({ content: defaultContent, isDirty: false }),
+      resetContent: () => set({ content: defaultContent, isDirty: false }),
       markSaved: () =>
         set({ isDirty: false, savedAt: new Date().toISOString() }),
+      toggleLanguageActive: (id: string) =>
+        set((state) => {
+          const currentLangs =
+            state.content.settings.languages &&
+            state.content.settings.languages.length > 0
+              ? state.content.settings.languages
+              : defaultContent.settings.languages;
+          const newLangs = currentLangs.map((lang) =>
+            lang.id === id ? { ...lang, isActive: !lang.isActive } : lang,
+          );
+          return {
+            content: {
+              ...state.content,
+              settings: {
+                ...state.content.settings,
+                languages: newLangs,
+              },
+            },
+            isDirty: true,
+          };
+        }),
       addCareerPerk: () =>
         set((state) => {
           const currentItems = state.content.careers.growth.items || [];
@@ -716,7 +784,8 @@ export const useContentStore = create<ContentState>()(
             {
               id: Date.now().toString(),
               title: "New Industry Domain",
-              description: "Describe the industry focus and the automated services we provide here.",
+              description:
+                "Describe the industry focus and the automated services we provide here.",
               linkText: "EXPLORE NEW INDUSTRY",
               icon: "bank",
             },
@@ -755,7 +824,8 @@ export const useContentStore = create<ContentState>()(
             {
               id: Date.now().toString(),
               title: "New Architectural Challenge",
-              description: "Details about legacy hurdles, bottlenecks, and the technical solutions.",
+              description:
+                "Details about legacy hurdles, bottlenecks, and the technical solutions.",
             },
           ];
           return {
@@ -792,7 +862,8 @@ export const useContentStore = create<ContentState>()(
             {
               id: Date.now().toString(),
               question: "New FAQ Question?",
-              answer: "Provide the detailed answer to the frequently asked question here.",
+              answer:
+                "Provide the detailed answer to the frequently asked question here.",
             },
           ];
           return {
@@ -870,7 +941,8 @@ export const useContentStore = create<ContentState>()(
             {
               id: Date.now().toString(),
               city: "New Office Branch",
-              address: "ApMoSys Technologies, Sector-11, Mahape, Navi Mumbai - 400710",
+              address:
+                "ApMoSys Technologies, Sector-11, Mahape, Navi Mumbai - 400710",
               image: "/Contact Us/mumbai_hq.png",
               link: "https://maps.google.com",
               phone: "+91 22 4976 5600",
@@ -891,7 +963,9 @@ export const useContentStore = create<ContentState>()(
       deleteContactOffice: (id: string) =>
         set((state) => {
           const currentOffices = state.content.contact.offices || [];
-          const newOffices = currentOffices.filter((office) => office.id !== id);
+          const newOffices = currentOffices.filter(
+            (office) => office.id !== id,
+          );
           return {
             content: {
               ...state.content,
@@ -941,8 +1015,8 @@ export const useContentStore = create<ContentState>()(
           };
         }),
     }),
-    { name: "admin-content" }
-  )
+    { name: "admin-content" },
+  ),
 );
 
 // ─── Color Theme ─────────────────────────────────────────────────────────────
@@ -1024,11 +1098,10 @@ export const useThemeStore = create<ThemeState>()(
           theme: themePresets[preset] || defaultTheme,
           activePreset: preset,
         }),
-      resetTheme: () =>
-        set({ theme: defaultTheme, activePreset: "default" }),
+      resetTheme: () => set({ theme: defaultTheme, activePreset: "default" }),
     }),
-    { name: "admin-theme" }
-  )
+    { name: "admin-theme" },
+  ),
 );
 
 // ─── Blog CMS ─────────────────────────────────────────────────────────────────
@@ -1106,15 +1179,12 @@ export const useBlogStore = create<BlogState>()(
       blogs: defaultBlogs,
       addBlog: (blog) =>
         set((state) => ({
-          blogs: [
-            ...state.blogs,
-            { ...blog, id: Date.now().toString() },
-          ],
+          blogs: [...state.blogs, { ...blog, id: Date.now().toString() }],
         })),
       updateBlog: (id, updates) =>
         set((state) => ({
           blogs: state.blogs.map((b) =>
-            b.id === id ? { ...b, ...updates } : b
+            b.id === id ? { ...b, ...updates } : b,
           ),
         })),
       deleteBlog: (id) =>
@@ -1124,12 +1194,12 @@ export const useBlogStore = create<BlogState>()(
       togglePublish: (id) =>
         set((state) => ({
           blogs: state.blogs.map((b) =>
-            b.id === id ? { ...b, published: !b.published } : b
+            b.id === id ? { ...b, published: !b.published } : b,
           ),
         })),
     }),
-    { name: "admin-blogs" }
-  )
+    { name: "admin-blogs" },
+  ),
 );
 
 // ─── Toast ────────────────────────────────────────────────────────────────────
@@ -1173,5 +1243,6 @@ export const useAdminUIStore = create<UIState>((set) => ({
   setDeviceMode: (mode) => set({ deviceMode: mode }),
   sidebarCollapsed: true,
   setSidebarCollapsed: (collapsed) => set({ sidebarCollapsed: collapsed }),
-  toggleSidebar: () => set((state) => ({ sidebarCollapsed: !state.sidebarCollapsed })),
+  toggleSidebar: () =>
+    set((state) => ({ sidebarCollapsed: !state.sidebarCollapsed })),
 }));

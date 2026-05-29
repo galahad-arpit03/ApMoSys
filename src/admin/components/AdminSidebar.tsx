@@ -19,6 +19,7 @@ const navItems = [
   { label: "Contact", href: "/administrator/contact", icon: "📞" },
   { divider: true },
   { label: "Colors", href: "/administrator/colors", icon: "🎨" },
+  { label: "Languages", href: "/administrator/languages", icon: "🌐" },
   { label: "Settings", href: "/administrator/settings", icon: "⚙️" },
 ];
 
