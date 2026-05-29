@@ -22,7 +22,7 @@ export default function HeroSection() {
       {(theme) => {
         const isDark = theme === "dark";
         return (
-          <section className={`relative pt-20 pb-28 border-b transition-colors duration-300 ${
+          <section className={`relative min-h-[550px] lg:min-h-[600px] flex items-center pt-20 pb-28 border-b transition-colors duration-300 ${
             isDark ? "bg-[#000000] text-[#FAFAFA] border-[#1F1F1F]" : "bg-[#FAFAFA] text-[#121212] border-[#E8E8E8]"
           }`}>
             {/* Background gradient */}

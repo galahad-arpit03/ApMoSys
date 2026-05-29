@@ -1,10 +1,131 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
+const megaMenuData: Record<string, any> = {
+  Services: {
+    title: "Our Services",
+    description: "We deliver excellence and create value for customers and communities – everyday. With the best talent and the latest technology we help customers turn complexity into opportunities.",
+    linkText: "Adaptability starts here",
+    linkHref: "/services",
+    categories: [
+      {
+        id: "core",
+        label: "Core Services",
+        subLinks: [
+          "Quality Engineering",
+          "Performance Engineering",
+          "Test Automation",
+          "Security Testing",
+        ]
+      },
+      {
+        id: "digital",
+        label: "Digital Transformation",
+        subLinks: [
+          "Cloud Engineering",
+          "DevOps Services",
+          "Data Analytics",
+          "Artificial Intelligence",
+        ]
+      },
+      {
+        id: "consulting",
+        label: "Consulting",
+        subLinks: [
+          "Strategy",
+          "Management",
+          "Operations",
+          "Technology",
+        ]
+      }
+    ]
+  },
+  Solutions: {
+    title: "Innovative Solutions",
+    description: "Empowering businesses with cutting-edge technological solutions for modern challenges. Built to evolve continuously and confidently.",
+    linkText: "Explore solutions",
+    linkHref: "/solutions",
+    categories: [
+      {
+        id: "industries",
+        label: "Industries",
+        subLinks: [
+          "Banking",
+          "Capital Markets",
+          "Consumer Packaged Goods and Distribution",
+          "Communications, Media, and Information Services",
+          "Education",
+          "Energy, Resources, and Utilities",
+          "Healthcare",
+          "High Tech",
+          "Insurance",
+          "Life Sciences",
+          "Manufacturing",
+          "Public Services",
+          "Retail",
+          "Travel and Logistics"
+        ]
+      },
+      {
+        id: "platforms",
+        label: "Products and Platforms",
+        subLinks: [
+          "Enterprise Platform",
+          "Analytics Platform",
+          "Integration Services"
+        ]
+      },
+      {
+        id: "research",
+        label: "Research & Innovation",
+        subLinks: [
+          "AI Labs",
+          "Blockchain COE",
+          "IoT Center"
+        ]
+      }
+    ]
+  },
+  Products: {
+    title: "Our Products",
+    description: "Next-generation products designed to accelerate your business growth. We provide comprehensive testing and management platforms.",
+    linkText: "View all products",
+    linkHref: "/products",
+    categories: [
+      {
+        id: "testing",
+        label: "Testing Platforms",
+        subLinks: [
+          "Netraa",
+          "Cliqtest"
+        ]
+      },
+      {
+        id: "management",
+        label: "Management Tools",
+        subLinks: [
+          "ApMoSys ALM",
+          "Test Manager"
+        ]
+      }
+    ]
+  }
+};
+
 export default function Navbar() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
+  const [activeDropdown, setActiveDropdown] = React.useState<string | null>(null);
+  const [activeCategory, setActiveCategory] = React.useState<string | null>(null);
+
+  React.useEffect(() => {
+    if (activeDropdown && megaMenuData[activeDropdown]) {
+      setActiveCategory(megaMenuData[activeDropdown].categories[0].id);
+    } else {
+      setActiveCategory(null);
+    }
+  }, [activeDropdown]);
 
   const navigationItems = [
     { label: "About Us", href: "/#about", hasDropdown: false },
@@ -16,18 +137,22 @@ export default function Navbar() {
     { label: "Careers", href: "/careers", hasDropdown: false },
   ];
 
+  const isExpanded = activeDropdown !== null;
+  const navBgColor = isExpanded ? "bg-[#1E2222]" : "bg-[#000000]";
+
   return (
     <motion.nav 
       initial={{ y: -80, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
-      className="bg-[#000000] border-b border-[#3A3A3A] sticky top-0 z-50"
+      className={`${navBgColor} border-b ${isExpanded ? 'border-transparent' : 'border-[#3A3A3A]'} sticky top-0 z-50 transition-colors duration-300`}
+      onMouseLeave={() => setActiveDropdown(null)}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           
           {/* Logo Text on Left */}
-          <div className="flex-shrink-0 flex items-center lg:flex-1">
+          <div className="flex-shrink-0 flex items-center lg:flex-1 z-50">
             <motion.a 
               href="/" 
               whileHover={{ scale: 1.02 }}
@@ -39,41 +164,60 @@ export default function Navbar() {
           </div>
 
           {/* Desktop Navigation Links */}
-          <div className="hidden lg:flex items-center justify-center space-x-1 xl:space-x-2">
+          <div className="hidden lg:flex items-center justify-center space-x-1 xl:space-x-2 z-50 h-full">
             {navigationItems.map((item) => (
-              <motion.a
+              <div 
                 key={item.label}
-                href={item.href}
-                whileHover={{ scale: 1.05, y: -1 }}
-                whileTap={{ scale: 0.95 }}
-                className="flex items-center gap-1 text-[#C8C8C8] hover:text-primary-red px-2 py-1 text-sm font-medium transition-colors duration-200 shrink-0"
+                className="h-full flex items-center"
+                onMouseEnter={() => {
+                  if (item.hasDropdown) {
+                    setActiveDropdown(item.label);
+                  } else {
+                    setActiveDropdown(null);
+                  }
+                }}
               >
-                <span className="whitespace-nowrap">{item.label}</span>
-                {item.hasDropdown && (
-                  <svg className="w-3.5 h-3.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
-                  </svg>
-                )}
-              </motion.a>
+                <motion.a
+                  href={item.href}
+                  whileTap={{ scale: 0.95 }}
+                  className={`flex items-center gap-1 px-3 py-2 text-sm font-medium transition-colors duration-200 shrink-0 ${
+                    activeDropdown === item.label 
+                      ? "text-[#FFFFFF]" 
+                      : "text-[#C8C8C8] hover:text-[#FFFFFF]"
+                  }`}
+                >
+                  <span className="whitespace-nowrap relative pb-1">
+                    {item.label}
+                  </span>
+                  {item.hasDropdown && (
+                    <svg 
+                      className={`w-3.5 h-3.5 shrink-0 transition-transform duration-300 ${activeDropdown === item.label ? 'rotate-180' : ''}`} 
+                      fill="none" 
+                      viewBox="0 0 24 24" 
+                      stroke="currentColor" 
+                      strokeWidth={2}
+                    >
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+                    </svg>
+                  )}
+                </motion.a>
+              </div>
             ))}
-
-
           </div>
             
           {/* Desktop CTA Button (Right) */}
-          <div className="hidden lg:flex items-center justify-end lg:flex-1">
+          <div className="hidden lg:flex items-center justify-end lg:flex-1 z-50">
             <motion.a
               href="/contact"
-              whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="inline-block bg-primary-red hover:bg-primary-hover text-[#FFFFFF] px-6 py-2.5 rounded-md text-sm font-semibold tracking-wide shadow-md transition-colors duration-200"
+              className="inline-block bg-primary-red text-[#FFFFFF] px-6 py-2.5 rounded-md text-sm font-semibold tracking-wide shadow-md"
             >
               Contact Us
             </motion.a>
           </div>
 
           {/* Mobile Menu Button */}
-          <div className="lg:hidden">
+          <div className="lg:hidden z-50">
             <motion.button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               type="button"
@@ -97,6 +241,112 @@ export default function Navbar() {
         </div>
       </div>
 
+      {/* Mega Menu Dropdown */}
+      <AnimatePresence>
+        {isExpanded && megaMenuData[activeDropdown] && (
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.2 }}
+            className="absolute top-16 left-0 w-full bg-[#1E2222] z-40 pb-16 pt-10 shadow-2xl"
+          >
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                
+                {/* Left Column (Title & Description) - 3/12 */}
+                <div className="lg:col-span-3 flex flex-col justify-between pr-4">
+                  <div>
+                    <h2 className="text-2xl font-bold text-[#FFFFFF] mb-4">
+                      {megaMenuData[activeDropdown].title}
+                    </h2>
+                    <p className="text-[#C8C8C8] text-sm leading-relaxed mb-8">
+                      {megaMenuData[activeDropdown].description}
+                    </p>
+                  </div>
+                  <a 
+                    href={megaMenuData[activeDropdown].linkHref}
+                    className="inline-flex items-center text-[#FFFFFF] text-sm font-medium hover:text-primary-red transition-colors group"
+                  >
+                    {megaMenuData[activeDropdown].linkText}
+                    <svg className="ml-2 w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                    </svg>
+                  </a>
+                </div>
+
+                {/* Middle Column (Categories) - 3/12 */}
+                <div className="lg:col-span-3 flex flex-col border-t border-[#3A3A3A]">
+                  {megaMenuData[activeDropdown].categories.map((category: any) => {
+                    const isActive = activeCategory === category.id;
+                    return (
+                      <div
+                        key={category.id}
+                        onMouseEnter={() => setActiveCategory(category.id)}
+                        onClick={() => setActiveCategory(category.id)}
+                        className={`flex items-center justify-between cursor-pointer border-b border-[#3A3A3A] px-4 py-3 transition-colors duration-200 ${
+                          isActive ? "bg-[#333535] text-[#FFFFFF]" : "text-[#C8C8C8] hover:text-[#FFFFFF]"
+                        }`}
+                      >
+                        <span className="text-sm font-medium">{category.label}</span>
+                        <svg className={`w-4 h-4 transition-transform ${isActive ? "translate-x-1 text-[#FFFFFF]" : "text-[#888]"}`} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                        </svg>
+                      </div>
+                    );
+                  })}
+                </div>
+
+                {/* Right Columns (Sublinks for active category) - 6/12 */}
+                <div className="lg:col-span-6 pl-4">
+                  {megaMenuData[activeDropdown].categories.map((category: any) => {
+                    if (category.id !== activeCategory) return null;
+                    
+                    const midPoint = Math.ceil(category.subLinks.length / 2);
+                    const leftLinks = category.subLinks.slice(0, midPoint);
+                    const rightLinks = category.subLinks.slice(midPoint);
+
+                    return (
+                      <motion.div 
+                        key={category.id}
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ duration: 0.2 }}
+                        className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-1"
+                      >
+                        <div className="flex flex-col space-y-1">
+                          {leftLinks.map((link: string, idx: number) => (
+                            <a 
+                              key={idx} 
+                              href="#"
+                              className="py-1.5 text-sm text-[#C8C8C8] hover:text-[#FFFFFF] transition-colors"
+                            >
+                              {link}
+                            </a>
+                          ))}
+                        </div>
+                        <div className="flex flex-col space-y-1">
+                          {rightLinks.map((link: string, idx: number) => (
+                            <a 
+                              key={idx} 
+                              href="#"
+                              className="py-1.5 text-sm text-[#C8C8C8] hover:text-[#FFFFFF] transition-colors"
+                            >
+                              {link}
+                            </a>
+                          ))}
+                        </div>
+                      </motion.div>
+                    );
+                  })}
+                </div>
+
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       {/* Mobile Menu */}
       <AnimatePresence>
         {mobileMenuOpen && (
@@ -113,20 +363,18 @@ export default function Navbar() {
                 href={item.href}
                 onClick={() => setMobileMenuOpen(false)}
                 whileTap={{ scale: 0.98 }}
-                className="block text-[#C8C8C8] hover:text-primary-red hover:bg-[#1F1F1F] px-3 py-2 rounded-md text-base font-medium transition-colors"
+                className="block text-[#C8C8C8] hover:text-[#FFFFFF] hover:bg-[#1F1F1F] px-3 py-2 rounded-md text-base font-medium transition-colors"
               >
                 {item.label}
               </motion.a>
             ))}
-
-
 
             <div className="pt-4 border-t border-[#3A3A3A] mt-4">
               <motion.a
                 href="/contact"
                 onClick={() => setMobileMenuOpen(false)}
                 whileTap={{ scale: 0.95 }}
-                className="block text-center bg-primary-red hover:bg-primary-hover text-[#FFFFFF] px-4 py-3 rounded-md text-base font-semibold transition-colors"
+                className="block text-center bg-primary-red text-[#FFFFFF] px-4 py-3 rounded-md text-base font-semibold"
               >
                 Contact Us
               </motion.a>
