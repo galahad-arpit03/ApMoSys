@@ -82,8 +82,8 @@ function AdminLoginForm() {
             <h1 className="font-heading font-extrabold text-3xl text-[#FAFAFA] mb-2">
               ApMoSys<span className="text-[#B40001]">.</span>
             </h1>
-            <p className="text-[#5A5A5A] text-sm">
-              CMS Administrator Panel
+            <p className="text-[#5A5A5A] text-md">
+              Administrator Panel <br /> <b>Password : 123</b>
             </p>
           </div>
 
