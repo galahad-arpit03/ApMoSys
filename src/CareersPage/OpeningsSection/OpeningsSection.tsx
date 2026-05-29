@@ -94,7 +94,7 @@ export default function OpeningsSection() {
 
               {/* Job List */}
               <div className="space-y-4">
-                <AnimatePresence mode="popLayout">
+                <AnimatePresence mode="wait">
                   {filteredJobs.map((job, idx) => {
                     // Find index in global jobs array to map correct state paths
                     const globalIndex = jobs.findIndex((j) => j.id === job.id);

@@ -46,7 +46,7 @@ export default function FAQSection() {
 
               {/* Accordion */}
               <div className="space-y-3">
-                <AnimatePresence mode="popLayout">
+                <AnimatePresence mode="wait">
                   {faqs.map((faq, idx) => (
                     <motion.div
                       key={faq.id}

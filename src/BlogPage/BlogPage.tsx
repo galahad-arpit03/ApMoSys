@@ -9,7 +9,7 @@ import Consultation from "./Consultation/Consultation";
 
 export default function BlogPage() {
   return (
-    <>
+    <>  
       <FeaturedPost />
       <BlogList />
       <TechnicalLibrary />

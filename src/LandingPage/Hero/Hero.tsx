@@ -15,8 +15,8 @@ const fadeUp: Variants = {
 
 export default function Hero() {
   return (
-    <section className="relative overflow-hidden pt-20 pb-28 border-b border-[#1F1F1F]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="relative overflow-hidden w-full h-[calc(100vh-64px)] flex flex-col justify-center border-b border-[#1F1F1F]">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
         <div className="lg:grid lg:grid-cols-12 lg:gap-8 items-center">
           
           {/* Left Content */}

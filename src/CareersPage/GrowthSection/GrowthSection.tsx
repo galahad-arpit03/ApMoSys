@@ -86,7 +86,7 @@ export default function GrowthSection() {
                 viewport={{ once: true, margin: "-50px" }}
                 className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
               >
-                <AnimatePresence mode="popLayout">
+                <AnimatePresence mode="wait">
                   {paginatedPerks.map((perk, index) => {
                     const globalIndex = startIndex + index;
                     return (

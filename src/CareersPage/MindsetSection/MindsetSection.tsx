@@ -73,7 +73,7 @@ export default function MindsetSection() {
                   />
                   
                   <div className="space-y-8">
-                    <AnimatePresence mode="popLayout">
+                    <AnimatePresence mode="wait">
                       {mindsetItems.map((item, index) => (
                         <motion.div
                           key={item.id}

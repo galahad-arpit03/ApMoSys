@@ -190,7 +190,7 @@ export default function Navbar() {
                   }
                 }}
               >
-                <a
+                <Link
                   href={item.href}
                   className={`group flex items-center gap-1 px-2 py-2 text-sm font-medium transition-colors duration-200 shrink-0 ${
                     activeDropdown === item.label 
@@ -220,19 +220,19 @@ export default function Navbar() {
                       <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
                     </svg>
                   )}
-                </a>
+                </Link>
               </div>
             ))}
           </div>
             
           {/* Desktop CTA Button (Right) */}
           <div className="hidden lg:flex items-center justify-end lg:flex-1 z-50 space-x-6">
-            <a
+            <Link
               href="/contact"
               className="text-[#C8C8C8] hover:text-[#FFFFFF] text-sm font-medium transition-colors"
             >
               Contact Us
-            </a>
+            </Link>
           </div>
 
           {/* Mobile Menu Button */}
@@ -277,7 +277,7 @@ export default function Navbar() {
                     {megaMenuData[activeDropdown].description}
                   </p>
                 </div>
-                <a 
+                <Link 
                   href={megaMenuData[activeDropdown].linkHref}
                   className="inline-flex items-center text-[#FFFFFF] text-sm font-medium hover:text-primary-red transition-colors group"
                 >
@@ -285,7 +285,7 @@ export default function Navbar() {
                   <svg className="ml-2 w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
                   </svg>
-                </a>
+                </Link>
               </div>
 
               {/* Middle Column (Categories) - 3/12 */}
@@ -326,24 +326,24 @@ export default function Navbar() {
                     >
                       <div className="flex flex-col space-y-1">
                         {leftLinks.map((link: string, idx: number) => (
-                          <a 
+                          <Link 
                             key={idx} 
                             href="#"
                             className="py-1.5 text-sm text-[#C8C8C8] hover:text-[#FFFFFF] transition-colors"
                           >
                             {link}
-                          </a>
+                          </Link>
                         ))}
                       </div>
                       <div className="flex flex-col space-y-1">
                         {rightLinks.map((link: string, idx: number) => (
-                          <a 
+                          <Link 
                             key={idx} 
                             href="#"
                             className="py-1.5 text-sm text-[#C8C8C8] hover:text-[#FFFFFF] transition-colors"
                           >
                             {link}
-                          </a>
+                          </Link>
                         ))}
                       </div>
                     </div>
@@ -380,13 +380,13 @@ export default function Navbar() {
                   </svg>
                 </button>
               ) : (
-                <a
+                <Link
                   href={item.href}
                   onClick={() => setMobileMenuOpen(false)}
                   className="block text-[#C8C8C8] hover:text-[#FFFFFF] hover:bg-[#1F1F1F] px-3 py-2 rounded-md text-base font-medium transition-colors"
                 >
                   {item.label}
-                </a>
+                </Link>
               )}
               
               {/* Accordion content for mobile */}
@@ -396,7 +396,7 @@ export default function Navbar() {
                     <p className="text-xs text-[#A0A0A0] leading-relaxed mb-2">
                       {megaMenuData[item.label].description}
                     </p>
-                    <a 
+                    <Link 
                       href={megaMenuData[item.label].linkHref}
                       onClick={() => setMobileMenuOpen(false)}
                       className="text-sm text-primary-red hover:text-red-400 font-medium inline-flex items-center"
@@ -405,21 +405,21 @@ export default function Navbar() {
                       <svg className="ml-1 w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                         <path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
                       </svg>
-                    </a>
+                    </Link>
                   </div>
                   {megaMenuData[item.label].categories.map((category) => (
                     <div key={category.id} className="space-y-1">
                       <div className="text-sm font-semibold text-[#FFFFFF] mb-2">{category.label}</div>
                       <div className="flex flex-col space-y-1 border-l border-[#3A3A3A] pl-3">
                         {category.subLinks.map((sublink, idx) => (
-                          <a 
+                          <Link 
                             key={idx} 
                             href="#" 
                             onClick={() => setMobileMenuOpen(false)}
                             className="text-sm text-[#A0A0A0] hover:text-[#FFFFFF] py-1.5 transition-colors"
                           >
                             {sublink}
-                          </a>
+                          </Link>
                         ))}
                       </div>
                     </div>
@@ -430,13 +430,13 @@ export default function Navbar() {
           ))}
 
           <div className="pt-4 border-t border-[#3A3A3A] mt-4">
-            <a
+            <Link
               href="/contact"
               onClick={() => setMobileMenuOpen(false)}
               className="block text-center bg-primary-red text-[#FFFFFF] px-4 py-3 rounded-md text-base font-semibold"
             >
               Contact Us
-            </a>
+            </Link>
           </div>
         </div>
       )}
