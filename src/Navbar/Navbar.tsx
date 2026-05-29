@@ -134,6 +134,7 @@ export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
   const [activeDropdown, setActiveDropdown] = React.useState<string | null>(null);
   const [activeCategory, setActiveCategory] = React.useState<string | null>(null);
+  const [mobileExpandedItem, setMobileExpandedItem] = React.useState<string | null>(null);
 
   React.useEffect(() => {
     if (activeDropdown && megaMenuData[activeDropdown]) {
@@ -358,17 +359,74 @@ export default function Navbar() {
       {/* Mobile Menu */}
       {mobileMenuOpen && (
         <div 
-          className="lg:hidden bg-[#000000] border-b border-[#3A3A3A] px-4 pt-2 pb-6 space-y-2 overflow-hidden transition-all duration-300 ease-in-out"
+          className="lg:hidden bg-[#000000] border-b border-[#3A3A3A] px-4 pt-2 pb-6 space-y-2 overflow-y-auto max-h-[calc(100vh-4rem)] transition-all duration-300 ease-in-out"
         >
           {navigationItems.map((item) => (
-            <a
-              key={item.label}
-              href={item.href}
-              onClick={() => setMobileMenuOpen(false)}
-              className="block text-[#C8C8C8] hover:text-[#FFFFFF] hover:bg-[#1F1F1F] px-3 py-2 rounded-md text-base font-medium transition-colors"
-            >
-              {item.label}
-            </a>
+            <div key={item.label}>
+              {item.hasDropdown ? (
+                <button
+                  onClick={() => setMobileExpandedItem(mobileExpandedItem === item.label ? null : item.label)}
+                  className="w-full flex items-center justify-between text-[#C8C8C8] hover:text-[#FFFFFF] hover:bg-[#1F1F1F] px-3 py-2 rounded-md text-base font-medium transition-colors"
+                >
+                  {item.label}
+                  <svg 
+                    className={`w-4 h-4 transition-transform duration-300 ${mobileExpandedItem === item.label ? 'rotate-180' : ''}`} 
+                    fill="none" 
+                    viewBox="0 0 24 24" 
+                    stroke="currentColor" 
+                    strokeWidth={2}
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+                  </svg>
+                </button>
+              ) : (
+                <a
+                  href={item.href}
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="block text-[#C8C8C8] hover:text-[#FFFFFF] hover:bg-[#1F1F1F] px-3 py-2 rounded-md text-base font-medium transition-colors"
+                >
+                  {item.label}
+                </a>
+              )}
+              
+              {/* Accordion content for mobile */}
+              {item.hasDropdown && mobileExpandedItem === item.label && megaMenuData[item.label] && (
+                <div className="pl-4 pr-2 py-3 space-y-4 bg-[#0A0A0A] rounded-md mt-1 mb-2 border border-[#1F1F1F]">
+                  <div className="mb-3">
+                    <p className="text-xs text-[#A0A0A0] leading-relaxed mb-2">
+                      {megaMenuData[item.label].description}
+                    </p>
+                    <a 
+                      href={megaMenuData[item.label].linkHref}
+                      onClick={() => setMobileMenuOpen(false)}
+                      className="text-sm text-primary-red hover:text-red-400 font-medium inline-flex items-center"
+                    >
+                      {megaMenuData[item.label].linkText}
+                      <svg className="ml-1 w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                      </svg>
+                    </a>
+                  </div>
+                  {megaMenuData[item.label].categories.map((category) => (
+                    <div key={category.id} className="space-y-1">
+                      <div className="text-sm font-semibold text-[#FFFFFF] mb-2">{category.label}</div>
+                      <div className="flex flex-col space-y-1 border-l border-[#3A3A3A] pl-3">
+                        {category.subLinks.map((sublink, idx) => (
+                          <a 
+                            key={idx} 
+                            href="#" 
+                            onClick={() => setMobileMenuOpen(false)}
+                            className="text-sm text-[#A0A0A0] hover:text-[#FFFFFF] py-1.5 transition-colors"
+                          >
+                            {sublink}
+                          </a>
+                        ))}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
           ))}
 
           <div className="pt-4 border-t border-[#3A3A3A] mt-4">

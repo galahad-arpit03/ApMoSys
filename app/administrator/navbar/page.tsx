@@ -2,7 +2,6 @@
 
 import React from "react";
 import { useContentStore } from "@/src/admin/store/adminStore";
-import AdminToolbar from "@/src/admin/components/AdminToolbar";
 import Navbar from "@/src/Navbar/Navbar";
 
 export default function AdminNavbarPage() {
@@ -10,13 +9,12 @@ export default function AdminNavbarPage() {
 
   return (
     <div className="flex flex-col min-h-screen bg-[#0A0A0A]">
-      <AdminToolbar title="Navbar Settings" />
-      <div className="flex-1 p-8 overflow-auto">
-        <div className="max-w-4xl mx-auto space-y-8">
+      <div className="flex-1 p-4 lg:p-8 overflow-auto w-full">
+        <div className="max-w-7xl mx-auto space-y-8 w-full">
           
-          <div className="bg-[#111111] border border-[#2A2A2A] rounded-xl p-6">
-            <h2 className="text-[#FAFAFA] font-heading font-bold text-lg mb-4">Live Preview</h2>
-            <div className="border border-[#3A3A3A] rounded-lg overflow-hidden bg-[#121212]">
+          <div className="mb-4 lg:mb-8">
+            <h2 className="text-[#FAFAFA] font-heading font-bold text-lg mb-4 px-2">Live Preview</h2>
+            <div className="w-full overflow-hidden border border-[#1A1A1A] rounded-xl shadow-2xl">
               <Navbar />
             </div>
           </div>

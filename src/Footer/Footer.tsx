@@ -109,13 +109,13 @@ export default function Footer() {
         <div className="border-t border-[#1F1F1F] py-10 flex flex-col md:flex-row md:items-end justify-between gap-8">
           <div className="max-w-md w-full">
             <h5 className="font-heading font-bold text-sm text-[#FAFAFA] mb-4">Stay updated on QA innovations.</h5>
-            <div className="flex gap-4">
+            <div className="flex flex-col sm:flex-row gap-4">
               <input 
                 type="email" 
                 placeholder="Work Email Address" 
-                className="bg-[#121212] border border-[#3A3A3A] px-4 py-3 rounded-md text-sm flex-grow focus:outline-none focus:border-primary-red text-[#FAFAFA] transition-colors"
+                className="bg-[#121212] border border-[#3A3A3A] px-4 py-3 rounded-md text-sm flex-grow focus:outline-none focus:border-primary-red text-[#FAFAFA] transition-colors w-full"
               />
-              <button className="bg-primary-red hover:bg-primary-hover text-[#FFFFFF] px-6 py-3 rounded-md text-sm font-bold transition-colors">
+              <button className="bg-primary-red hover:bg-primary-hover text-[#FFFFFF] px-6 py-3 rounded-md text-sm font-bold transition-colors w-full sm:w-auto whitespace-nowrap">
                 Subscribe
               </button>
             </div>
@@ -126,11 +126,11 @@ export default function Footer() {
         </div>
 
         {/* Copyright */}
-        <div className="border-t border-[#1F1F1F] pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div className="border-t border-[#1F1F1F] pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
           <p className="text-xs text-[#5A5A5A]">
             © {new Date().getFullYear()} ApMoSys Technologies. All rights reserved.
           </p>
-          <div className="flex gap-6 text-xs text-[#5A5A5A]">
+          <div className="flex flex-wrap justify-center sm:justify-end gap-4 sm:gap-6 text-xs text-[#5A5A5A]">
             <motion.a whileHover={{ color: "#FAFAFA" }} href="#" className="hover:text-[#FAFAFA] transition-colors">Privacy Policy</motion.a>
             <motion.a whileHover={{ color: "#FAFAFA" }} href="#" className="hover:text-[#FAFAFA] transition-colors">Terms of Service</motion.a>
             <motion.a whileHover={{ color: "#FAFAFA" }} href="#" className="hover:text-[#FAFAFA] transition-colors">SLA Agreement</motion.a>
