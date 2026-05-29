@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import Container from "@/src/components/Container";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, Variants } from "framer-motion";
 import { usePathname } from "next/navigation";
 import { useContentStore } from "@/src/admin/store/adminStore";
 import EditableText from "@/src/admin/components/EditableText";
@@ -13,7 +13,7 @@ const containerVariants = {
   visible: { transition: { staggerChildren: 0.05 } },
 };
 
-const fadeUp: any = {
+const fadeUp: Variants = {
   hidden: { opacity: 0, y: 20 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
 };

@@ -9,6 +9,8 @@ import { useAdminUIStore } from "@/src/admin/store/adminStore";
 const navItems = [
   { label: "Dashboard", href: "/administrator/home", icon: "⊞" },
   { label: "Home", href: "/administrator", icon: "🏠" },
+  { label: "Navbar", href: "/administrator/navbar", icon: "🧭" },
+  { label: "Footer", href: "/administrator/footer", icon: "🦶" },
   { label: "About", href: "/administrator/about", icon: "👥" },
   { label: "Services", href: "/administrator/services", icon: "⚙️" },
   { label: "Solutions", href: "/administrator/solutions", icon: "💡" },
@@ -19,7 +21,6 @@ const navItems = [
   { label: "Contact", href: "/administrator/contact", icon: "📞" },
   { divider: true },
   { label: "Colors", href: "/administrator/colors", icon: "🎨" },
-  { label: "Languages", href: "/administrator/languages", icon: "🌐" },
   { label: "Settings", href: "/administrator/settings", icon: "⚙️" },
 ];
 

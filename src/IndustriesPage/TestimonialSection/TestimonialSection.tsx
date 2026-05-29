@@ -24,13 +24,13 @@ export default function TestimonialSection() {
                 <div className={`absolute top-8 right-10 text-8xl font-serif leading-none pointer-events-none select-none ${
                   isDark ? "text-[#2A2A2A]" : "text-[#E8E8E8]"
                 }`}>
-                  "
+                  &quot;
                 </div>
                 
                 <p className={`text-lg md:text-xl font-medium leading-relaxed mb-6 relative z-10 ${
                   isDark ? "text-[#E8E8E8]" : "text-[#121212]"
                 }`}>
-                  "ApMoSys didn't just provide a service; they redesigned our technical DNA. Their precision in handling our legacy migration allowed us to scale our global financial operations by 300% in a single fiscal year."
+                  &quot;ApMoSys didn&apos;t just provide a service; they redesigned our technical DNA. Their precision in handling our legacy migration allowed us to scale our global financial operations by 300% in a single fiscal year.&quot;
                 </p>
                 
                 <div className="flex items-center gap-4 relative z-10">

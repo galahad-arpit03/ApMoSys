@@ -1,12 +1,12 @@
 "use client";
 
 import React, { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, Variants } from "framer-motion";
 import { useRouter } from "next/navigation";
 import { useBlogStore } from "@/src/admin/store/adminStore";
 import SectionThemeWrapper from "@/src/admin/components/SectionThemeWrapper";
 
-const pageTransition: any = {
+const pageTransition: Variants = {
   initial: { opacity: 0, x: 15 },
   animate: { opacity: 1, x: 0, transition: { duration: 0.35, ease: "easeOut" } },
   exit: { opacity: 0, x: -15, transition: { duration: 0.25, ease: "easeIn" } },

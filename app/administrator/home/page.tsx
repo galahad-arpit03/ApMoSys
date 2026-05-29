@@ -7,6 +7,8 @@ import { useContentStore, useBlogStore, useThemeStore } from "@/src/admin/store/
 
 const quickLinks = [
   { label: "Home Page", href: "/administrator", icon: "🏠", desc: "Edit hero, stats, sections" },
+  { label: "Navbar", href: "/administrator/navbar", icon: "🧭", desc: "Manage top navigation" },
+  { label: "Footer", href: "/administrator/footer", icon: "🦶", desc: "Manage bottom navigation" },
   { label: "About", href: "/administrator/about", icon: "👥", desc: "Company info & values" },
   { label: "Services", href: "/administrator/services", icon: "⚙️", desc: "Service cards & descriptions" },
   { label: "Solutions", href: "/administrator/solutions", icon: "💡", desc: "Solution offerings" },
@@ -68,7 +70,7 @@ export default function AdminHomePage() {
             },
             {
               label: "Total Pages",
-              value: "11",
+              value: quickLinks.length.toString(),
               sub: "All editable",
               color: "text-[#FAFAFA]",
               bg: "bg-[#1A1A1A] border-[#2A2A2A]",

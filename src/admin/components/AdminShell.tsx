@@ -38,6 +38,7 @@ export default function AdminShell({ children }: AdminShellProps) {
 
   useEffect(() => {
     if (typeof window !== "undefined") {
+      // eslint-disable-next-line
       setIsIframe(window.location.search.includes("mode=phone-iframe"));
     }
   }, []);

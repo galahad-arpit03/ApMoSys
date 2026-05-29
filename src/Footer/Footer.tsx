@@ -2,8 +2,11 @@
 
 import React from "react";
 import { motion } from "framer-motion";
+import { useContentStore } from "@/src/admin/store/adminStore";
 
 export default function Footer() {
+  const { content } = useContentStore();
+
   return (
     <motion.footer 
       initial={{ opacity: 0, y: 20 }}
@@ -23,7 +26,7 @@ export default function Footer() {
                 whileHover={{ scale: 1.02 }}
                 className="inline-block font-heading font-extrabold text-3xl tracking-normal text-[#FFFFFF] hover:text-[#FAFAFA] transition-colors"
               >
-                ApMoSys<span className="text-primary-red">.</span>
+                ApMoSys<span className="text-[#B40001] inline-block transform rotate-[45deg]">.</span>
               </motion.a>
               <p className="text-xs text-[#5A5A5A] leading-relaxed mt-4">
                 Global leaders in automated quality engineering, security validation, and intelligent digital systems optimization.
@@ -54,21 +57,18 @@ export default function Footer() {
           <div>
             <h5 className="font-heading font-bold text-xs uppercase tracking-wider text-[#FAFAFA] mb-4">Company</h5>
             <ul className="space-y-2 text-xs">
-              {[
-                { label: "About Us", href: "/#about" },
-                { label: "Careers", href: "/careers" },
-                { label: "Blogs & News", href: "/#blogs" },
-                { label: "Press Releases", href: "/#press" }
-              ].map((link) => (
-                <li key={link.label}>
-                  <motion.a 
-                    href={link.href} 
-                    whileHover={{ x: 4, color: "var(--color-primary-red)" }}
-                    className="inline-block hover:text-primary-red transition-colors"
-                  >
-                    {link.label}
-                  </motion.a>
-                </li>
+              {content.footer.companyLinks
+                .filter((link) => link.visible !== false)
+                .map((link) => (
+                  <li key={link.label}>
+                    <motion.a 
+                      href={link.href} 
+                      whileHover={{ x: 4, color: "var(--color-primary-red)" }}
+                      className="inline-block hover:text-primary-red transition-colors"
+                    >
+                      {link.label}
+                    </motion.a>
+                  </li>
               ))}
             </ul>
           </div>
@@ -77,21 +77,18 @@ export default function Footer() {
           <div>
             <h5 className="font-heading font-bold text-xs uppercase tracking-wider text-[#FAFAFA] mb-4">Core Systems</h5>
             <ul className="space-y-2 text-xs">
-              {[
-                { label: "cliQTest Platform", href: "#" },
-                { label: "Netraa AI Vision", href: "#" },
-                { label: "Performance Tuning", href: "#" },
-                { label: "Continuous QA", href: "#" }
-              ].map((link) => (
-                <li key={link.label}>
-                  <motion.a 
-                    href={link.href} 
-                    whileHover={{ x: 4, color: "var(--color-primary-red)" }}
-                    className="inline-block hover:text-primary-red transition-colors"
-                  >
-                    {link.label}
-                  </motion.a>
-                </li>
+              {content.footer.coreSystemsLinks
+                .filter((link) => link.visible !== false)
+                .map((link) => (
+                  <li key={link.label}>
+                    <motion.a 
+                      href={link.href} 
+                      whileHover={{ x: 4, color: "var(--color-primary-red)" }}
+                      className="inline-block hover:text-primary-red transition-colors"
+                    >
+                      {link.label}
+                    </motion.a>
+                  </li>
               ))}
             </ul>
           </div>

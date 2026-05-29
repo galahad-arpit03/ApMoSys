@@ -1,4 +1,17 @@
+"use client";
+
 import React from "react";
+import { motion } from "framer-motion";
+
+const containerVariants = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.1, delayChildren: 0.1 } },
+};
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
+};
 
 export default function Hero() {
   return (
@@ -7,32 +20,44 @@ export default function Hero() {
         <div className="lg:grid lg:grid-cols-12 lg:gap-8 items-center">
           
           {/* Left Content */}
-          <div className="sm:text-center md:max-w-2xl md:mx-auto lg:col-span-6 lg:text-left">
-            <div className="inline-flex items-center gap-2 bg-primary-dark/20 border border-primary-red/30 px-3 py-1.5 rounded-full text-xs font-semibold text-[#FFFFFF] mb-6">
-              <span className="w-2 h-2 rounded-full bg-primary-red" />
+          <motion.div 
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+            className="sm:text-center md:max-w-2xl md:mx-auto lg:col-span-6 lg:text-left"
+          >
+            <motion.div variants={fadeUp} className="inline-flex items-center gap-2 bg-primary-dark/20 border border-primary-red/30 px-3 py-1.5 rounded-full text-xs font-semibold text-[#FFFFFF] mb-6">
+              <span className="w-2 h-2 rounded-full bg-primary-red animate-pulse" />
               Advanced QA & IT Automation
-            </div>
-            <h1 className="font-heading text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-normal text-[#FFFFFF] leading-none mb-6">
+            </motion.div>
+            
+            <motion.h1 variants={fadeUp} className="font-heading text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-normal text-[#FFFFFF] leading-none mb-6">
               Performance Solutions For <span className="text-primary-red">Enterprise Scale</span>
-            </h1>
-            <p className="text-base sm:text-lg text-[#A0A0A0] leading-relaxed mb-8 max-w-xl">
+            </motion.h1>
+            
+            <motion.p variants={fadeUp} className="text-base sm:text-lg text-[#A0A0A0] leading-relaxed mb-8 max-w-xl">
               ApMoSys delivers state-of-the-art testing, process automation, and intelligent software engineering that guarantees robust security and optimal performance.
-            </p>
-            <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
-              <a
+            </motion.p>
+            
+            <motion.div variants={fadeUp} className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
+              <motion.a
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
                 href="#contact"
                 className="w-full sm:w-auto bg-primary-red hover:bg-primary-hover text-[#FFFFFF] font-semibold text-center px-8 py-3.5 rounded-md text-sm tracking-wide transition-colors"
               >
                 Schedule Consultation
-              </a>
-              <a
+              </motion.a>
+              <motion.a
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
                 href="#services"
                 className="w-full sm:w-auto bg-[#1F1F1F] hover:bg-[#3A3A3A] border border-[#3A3A3A] text-[#FAFAFA] font-semibold text-center px-8 py-3.5 rounded-md text-sm tracking-wide transition-colors"
               >
                 Explore Capabilities
-              </a>
-            </div>
-          </div>
+              </motion.a>
+            </motion.div>
+          </motion.div>
 
           {/* Right Interactive Dashboard Graphic */}
           <div className="mt-16 lg:mt-0 lg:col-span-6">

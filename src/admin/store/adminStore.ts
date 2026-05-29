@@ -75,13 +75,6 @@ export interface ContactOffice {
   email?: string;
 }
 
-export interface LanguageItem {
-  id: string;
-  code: string;
-  label: string;
-  isActive: boolean;
-}
-
 export interface CareerJob {
   id: string;
   title: string;
@@ -97,12 +90,12 @@ export interface SiteContent {
     logo: string;
     ctaLabel: string;
     ctaHref: string;
-    links: { label: string; href: string }[];
+    links: { label: string; href: string; visible?: boolean }[];
   };
   footer: {
     tagline: string;
-    companyLinks: { label: string; href: string }[];
-    coreSystemsLinks: { label: string; href: string }[];
+    companyLinks: { label: string; href: string; visible?: boolean }[];
+    coreSystemsLinks: { label: string; href: string; visible?: boolean }[];
     address: string;
     email: string;
     phone: string;
@@ -219,13 +212,14 @@ export interface SiteContent {
     socialLinkedIn: string;
     socialTwitter: string;
     socialFacebook: string;
-    languages: LanguageItem[];
   };
   sectionThemes?: Record<string, "dark" | "light">;
+  sectionVisibilities?: Record<string, boolean>;
 }
 
 export const defaultContent: SiteContent = {
   sectionThemes: {},
+  sectionVisibilities: {},
   navbar: {
     logo: "ApMoSys",
     ctaLabel: "Contact Us",
@@ -587,21 +581,6 @@ export const defaultContent: SiteContent = {
     socialLinkedIn: "https://linkedin.com/company/apmosys",
     socialTwitter: "https://twitter.com/apmosys",
     socialFacebook: "https://facebook.com/apmosys",
-    languages: [
-      { id: "1", code: "EN", label: "Global (En)", isActive: true },
-      { id: "2", code: "IN", label: "IN - EN", isActive: true },
-      { id: "3", code: "DE", label: "Germany (De)", isActive: false },
-      { id: "4", code: "FR", label: "France (Fr)", isActive: false },
-      { id: "5", code: "ES", label: "Spain (Es)", isActive: false },
-      { id: "6", code: "JP", label: "Japan (Jp)", isActive: false },
-      { id: "7", code: "CN", label: "China (Cn)", isActive: false },
-      { id: "8", code: "BR", label: "Brazil (Pt)", isActive: false },
-      { id: "9", code: "IT", label: "Italy (It)", isActive: false },
-      { id: "10", code: "RU", label: "Russia (Ru)", isActive: false },
-      { id: "11", code: "KR", label: "South Korea (Kr)", isActive: false },
-      { id: "12", code: "AE", label: "UAE (Ar)", isActive: false },
-      { id: "13", code: "SA", label: "Saudi Arabia (Ar)", isActive: false },
-    ],
   },
 };
 
@@ -628,7 +607,11 @@ interface ContentState {
   deleteContactOffice: (id: string) => void;
   addContactFAQItem: () => void;
   deleteContactFAQItem: (id: string) => void;
-  toggleLanguageActive: (id: string) => void;
+  toggleNavbarLink: (index: number) => void;
+  updateNavbarLink: (index: number, updates: Partial<{label: string, href: string}>) => void;
+  toggleFooterLink: (section: "companyLinks" | "coreSystemsLinks", index: number) => void;
+  updateFooterLink: (section: "companyLinks" | "coreSystemsLinks", index: number, updates: Partial<{label: string, href: string}>) => void;
+  toggleSectionVisibility: (sectionId: string) => void;
 }
 
 // Utility: nested path setter
@@ -667,27 +650,6 @@ export const useContentStore = create<ContentState>()(
       resetContent: () => set({ content: defaultContent, isDirty: false }),
       markSaved: () =>
         set({ isDirty: false, savedAt: new Date().toISOString() }),
-      toggleLanguageActive: (id: string) =>
-        set((state) => {
-          const currentLangs =
-            state.content.settings.languages &&
-            state.content.settings.languages.length > 0
-              ? state.content.settings.languages
-              : defaultContent.settings.languages;
-          const newLangs = currentLangs.map((lang) =>
-            lang.id === id ? { ...lang, isActive: !lang.isActive } : lang,
-          );
-          return {
-            content: {
-              ...state.content,
-              settings: {
-                ...state.content.settings,
-                languages: newLangs,
-              },
-            },
-            isDirty: true,
-          };
-        }),
       addCareerPerk: () =>
         set((state) => {
           const currentItems = state.content.careers.growth.items || [];
@@ -1012,6 +974,81 @@ export const useContentStore = create<ContentState>()(
               },
             },
             isDirty: true,
+          };
+        }),
+      toggleNavbarLink: (index: number) =>
+        set((state) => {
+          const newLinks = [...state.content.navbar.links];
+          newLinks[index] = { ...newLinks[index], visible: newLinks[index].visible === false ? true : false };
+          return {
+            content: {
+              ...state.content,
+              navbar: {
+                ...state.content.navbar,
+                links: newLinks
+              }
+            },
+            isDirty: true
+          };
+        }),
+      updateNavbarLink: (index: number, updates: Partial<{label: string, href: string}>) =>
+        set((state) => {
+          const newLinks = [...state.content.navbar.links];
+          newLinks[index] = { ...newLinks[index], ...updates };
+          return {
+            content: {
+              ...state.content,
+              navbar: {
+                ...state.content.navbar,
+                links: newLinks
+              }
+            },
+            isDirty: true
+          };
+        }),
+      toggleFooterLink: (section: "companyLinks" | "coreSystemsLinks", index: number) =>
+        set((state) => {
+          const newLinks = [...state.content.footer[section]];
+          newLinks[index] = { ...newLinks[index], visible: newLinks[index].visible === false ? true : false };
+          return {
+            content: {
+              ...state.content,
+              footer: {
+                ...state.content.footer,
+                [section]: newLinks
+              }
+            },
+            isDirty: true
+          };
+        }),
+      updateFooterLink: (section: "companyLinks" | "coreSystemsLinks", index: number, updates: Partial<{label: string, href: string}>) =>
+        set((state) => {
+          const newLinks = [...state.content.footer[section]];
+          newLinks[index] = { ...newLinks[index], ...updates };
+          return {
+            content: {
+              ...state.content,
+              footer: {
+                ...state.content.footer,
+                [section]: newLinks
+              }
+            },
+            isDirty: true
+          };
+        }),
+      toggleSectionVisibility: (sectionId: string) =>
+        set((state) => {
+          const currentVisibilities = state.content.sectionVisibilities || {};
+          const isCurrentlyVisible = currentVisibilities[sectionId] !== false; // default true
+          return {
+            content: {
+              ...state.content,
+              sectionVisibilities: {
+                ...currentVisibilities,
+                [sectionId]: !isCurrentlyVisible
+              }
+            },
+            isDirty: true
           };
         }),
     }),

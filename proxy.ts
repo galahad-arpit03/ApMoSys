@@ -18,9 +18,19 @@ export function proxy(request: NextRequest) {
     }
   }
 
+  // Skip files and API routes, and administrator paths
+  if (
+    pathname.includes(".") ||
+    pathname.startsWith("/api") ||
+    pathname.startsWith("/administrator") ||
+    pathname.startsWith("/_next")
+  ) {
+    return NextResponse.next();
+  }
+
   return NextResponse.next();
 }
 
 export const config = {
-  matcher: ["/administrator/:path*"],
+  matcher: ["/((?!_next|api|favicon.ico).*)"],
 };

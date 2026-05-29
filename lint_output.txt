@@ -1,0 +1,92 @@
+
+> apmosys@0.1.0 lint
+> eslint
+
+
+/home/arpit.gupta@apmosys.mahape/Videos/Internal/Netraa X Cliqtest X Apmosys/Apmosys/app/administrator/colors/page.tsx
+  5:25  warning  'themePresets' is defined but never used  @typescript-eslint/no-unused-vars
+
+/home/arpit.gupta@apmosys.mahape/Videos/Internal/Netraa X Cliqtest X Apmosys/Apmosys/app/administrator/login/page.tsx
+  166:11  error  Do not use an `<a>` element to navigate to `/`. Use `<Link />` from `next/link` instead. See: https://nextjs.org/docs/messages/no-html-link-for-pages  @next/next/no-html-link-for-pages
+
+/home/arpit.gupta@apmosys.mahape/Videos/Internal/Netraa X Cliqtest X Apmosys/Apmosys/app/blogs/[slug]/page.tsx
+  11:9   warning  'router' is assigned a value but never used                                                                                                                                                                                                                                              @typescript-eslint/no-unused-vars
+  91:13  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+/home/arpit.gupta@apmosys.mahape/Videos/Internal/Netraa X Cliqtest X Apmosys/Apmosys/src/BlogPage/BlogList/BlogList.tsx
+    9:23  error    Unexpected any. Specify a different type                                                                                                                                                                                                                                                 @typescript-eslint/no-explicit-any
+  144:35  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+/home/arpit.gupta@apmosys.mahape/Videos/Internal/Netraa X Cliqtest X Apmosys/Apmosys/src/CareersPage/GrowthSection/GrowthSection.tsx
+  16:15  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/home/arpit.gupta@apmosys.mahape/Videos/Internal/Netraa X Cliqtest X Apmosys/Apmosys/src/CareersPage/MindsetSection/MindsetSection.tsx
+  11:7  warning  'fadeUp' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+/home/arpit.gupta@apmosys.mahape/Videos/Internal/Netraa X Cliqtest X Apmosys/Apmosys/src/CareersPage/OpeningsSection/OpeningsSection.tsx
+  98:43  warning  'idx' is defined but never used  @typescript-eslint/no-unused-vars
+
+/home/arpit.gupta@apmosys.mahape/Videos/Internal/Netraa X Cliqtest X Apmosys/Apmosys/src/ContactPage/ContactPage.tsx
+  5:8  warning  'TechDeepDive' is defined but never used  @typescript-eslint/no-unused-vars
+
+/home/arpit.gupta@apmosys.mahape/Videos/Internal/Netraa X Cliqtest X Apmosys/Apmosys/src/ContactPage/GlobalPresence/GlobalPresence.tsx
+  5:8  warning  'Image' is defined but never used  @typescript-eslint/no-unused-vars
+
+/home/arpit.gupta@apmosys.mahape/Videos/Internal/Netraa X Cliqtest X Apmosys/Apmosys/src/IndustriesPage/TestimonialSection/TestimonialSection.tsx
+  27:19   error  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+  33:19   error  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+  33:32   error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+  33:227  error  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+
+/home/arpit.gupta@apmosys.mahape/Videos/Internal/Netraa X Cliqtest X Apmosys/Apmosys/src/LandingPage/Services/Services.tsx
+  88:35  warning  'index' is defined but never used  @typescript-eslint/no-unused-vars
+
+/home/arpit.gupta@apmosys.mahape/Videos/Internal/Netraa X Cliqtest X Apmosys/Apmosys/src/Navbar/Navbar.tsx
+    4:27  warning  'defaultContent' is defined but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            @typescript-eslint/no-unused-vars
+    6:36  error    Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              @typescript-eslint/no-explicit-any
+  124:7   error    Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+/home/arpit.gupta@apmosys.mahape/Videos/Internal/Netraa X Cliqtest X Apmosys/Apmosys/src/Navbar/Navbar.tsx:124:7
+  122 |   React.useEffect(() => {
+  123 |     if (activeDropdown && megaMenuData[activeDropdown]) {
+> 124 |       setActiveCategory(megaMenuData[activeDropdown].categories[0].id);
+      |       ^^^^^^^^^^^^^^^^^ Avoid calling setState() directly within an effect
+  125 |     } else {
+  126 |       setActiveCategory(null);
+  127 |     }  react-hooks/set-state-in-effect
+  153:13  error    Do not use an `<a>` element to navigate to `/`. Use `<Link />` from `next/link` instead. See: https://nextjs.org/docs/messages/no-html-link-for-pages                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 @next/next/no-html-link-for-pages
+  275:73  error    Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              @typescript-eslint/no-explicit-any
+  297:73  error    Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              @typescript-eslint/no-explicit-any
+
+/home/arpit.gupta@apmosys.mahape/Videos/Internal/Netraa X Cliqtest X Apmosys/Apmosys/src/admin/components/AdminShell.tsx
+  41:7  error  Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+/home/arpit.gupta@apmosys.mahape/Videos/Internal/Netraa X Cliqtest X Apmosys/Apmosys/src/admin/components/AdminShell.tsx:41:7
+  39 |   useEffect(() => {
+  40 |     if (typeof window !== "undefined") {
+> 41 |       setIsIframe(window.location.search.includes("mode=phone-iframe"));
+     |       ^^^^^^^^^^^ Avoid calling setState() directly within an effect
+  42 |     }
+  43 |   }, []);
+  44 |  react-hooks/set-state-in-effect
+
+/home/arpit.gupta@apmosys.mahape/Videos/Internal/Netraa X Cliqtest X Apmosys/Apmosys/src/admin/components/AdminToolbar.tsx
+  4:8  warning  'Link' is defined but never used  @typescript-eslint/no-unused-vars
+
+/home/arpit.gupta@apmosys.mahape/Videos/Internal/Netraa X Cliqtest X Apmosys/Apmosys/src/admin/components/ThemeApplicator.tsx
+  3:8  warning  'React' is defined but never used  @typescript-eslint/no-unused-vars
+
+✖ 25 problems (13 errors, 12 warnings)
+

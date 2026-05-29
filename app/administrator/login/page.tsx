@@ -3,6 +3,7 @@
 import React, { useState, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { motion } from "framer-motion";
+import Link from "next/link";
 import { useAuthStore, useToastStore } from "@/src/admin/store/adminStore";
 
 function AdminLoginForm() {
@@ -163,7 +164,7 @@ function AdminLoginForm() {
 
         {/* Back to site */}
         <div className="text-center mt-4">
-          <a
+          <Link
             href="/"
             className="text-[#3A3A3A] hover:text-[#7A7A7A] text-xs transition-colors inline-flex items-center gap-1"
           >
@@ -171,7 +172,7 @@ function AdminLoginForm() {
               <path strokeLinecap="round" strokeLinejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
             </svg>
             Back to Website
-          </a>
+          </Link>
         </div>
       </motion.div>
     </div>
