@@ -172,12 +172,12 @@ export default function Navbar() {
               href="/" 
               className="font-heading font-extrabold text-3xl tracking-normal text-[#FFFFFF] hover:text-[#FAFAFA] transition-colors"
             >
-              ApMoSys<span className="text-primary-red inline-block transform rotate-[40deg] translate-y-[-2px]">.</span>
+              ApMoSys<span className="text-primary-red">.</span>
             </Link>
           </div>
 
           {/* Desktop Navigation Links */}
-          <div className="hidden lg:flex items-center justify-center space-x-0 z-50 h-full">
+          <div className="hidden lg:flex items-center justify-center space-x-1 z-50 h-full">
             {navigationItems.map((item) => (
               <div 
                 key={item.label}
