@@ -194,7 +194,7 @@ export default function Navbar() {
                         isActive ? "bg-[#333535] text-[#FFFFFF]" : "text-[#C8C8C8] hover:text-[#FFFFFF]"
                       }`}
                     >
-                      <span className="text-sm font-medium">{category.label}</span>
+                      <span className="text-[13px] font-medium">{category.label}</span>
                       <svg className={`w-4 h-4 transition-transform ${isActive ? "translate-x-1 text-[#FFFFFF]" : "text-[#888]"}`} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                         <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
                       </svg>
@@ -223,7 +223,7 @@ export default function Navbar() {
                             key={idx} 
                             href={link.href}
                             onClick={() => setActiveDropdown(null)}
-                            className="py-1.5 text-sm text-[#C8C8C8] hover:text-[#FFFFFF] transition-colors"
+                            className="py-1.5 text-[13px] text-[#C8C8C8] hover:text-[#FFFFFF] transition-colors"
                           >
                             {link.label}
                           </Link>
@@ -235,7 +235,7 @@ export default function Navbar() {
                             key={idx} 
                             href={link.href}
                             onClick={() => setActiveDropdown(null)}
-                            className="py-1.5 text-sm text-[#C8C8C8] hover:text-[#FFFFFF] transition-colors"
+                            className="py-1.5 text-[13px] text-[#C8C8C8] hover:text-[#FFFFFF] transition-colors"
                           >
                             {link.label}
                           </Link>
