@@ -95,7 +95,7 @@ export default function Navbar() {
                     {item.label}
                     {/* Animated Red Underline */}
                     <span 
-                      className={`absolute bottom-0 left-0 w-full h-[1.5px] bg-primary-red transform origin-left transition-transform duration-300 ease-out ${
+                      className={`absolute bottom-0 left-0 w-full h-[1px] bg-primary-red transform origin-left transition-transform duration-300 ease-out ${
                         activeDropdown === item.label 
                           ? "scale-x-100" 
                           : "scale-x-0 group-hover:scale-x-100"
