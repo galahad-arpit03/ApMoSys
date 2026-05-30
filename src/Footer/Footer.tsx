@@ -4,11 +4,12 @@ import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useContentStore } from "@/src/admin/store/adminStore";
 
-import { megaMenuData, MegaMenuCategory } from "@/src/Navbar/Navbar";
+import { MegaMenuCategory, MegaMenuItem } from "@/src/admin/store/adminStore";
 
-const getDropdownItems = (label: string): string[] | null => {
+const getDropdownItems = (label: string, megaMenuData?: Record<string, MegaMenuItem>): {label: string, href: string}[] | null => {
+  if (!megaMenuData) return null;
   if (megaMenuData[label]) {
-    return megaMenuData[label].categories.map((c: MegaMenuCategory) => c.label);
+    return megaMenuData[label].categories.map((c: MegaMenuCategory) => ({ label: c.label, href: megaMenuData[label].linkHref }));
   }
   for (const key in megaMenuData) {
     const category = megaMenuData[key].categories.find((c: MegaMenuCategory) => c.label === label);
@@ -19,8 +20,8 @@ const getDropdownItems = (label: string): string[] | null => {
   return null;
 };
 
-const FooterLinkItem = ({ link, expandedSections, toggleSection }: { link: {label: string, href: string}, expandedSections: Record<string, boolean>, toggleSection: (label: string) => void }) => {
-  const dropdownItems = getDropdownItems(link.label);
+const FooterLinkItem = ({ link, expandedSections, toggleSection, megaMenuData }: { link: {label: string, href: string}, expandedSections: Record<string, boolean>, toggleSection: (label: string) => void, megaMenuData?: Record<string, MegaMenuItem> }) => {
+  const dropdownItems = getDropdownItems(link.label, megaMenuData);
   const isExpanded = expandedSections[link.label];
 
   if (dropdownItems && dropdownItems.length > 0) {
@@ -47,11 +48,11 @@ const FooterLinkItem = ({ link, expandedSections, toggleSection }: { link: {labe
               {dropdownItems.map((item, idx) => (
                 <li key={idx}>
                   <motion.a 
-                    href="#" 
+                    href={item.href} 
                     whileHover={{ x: 2, color: "var(--color-primary-red)" }}
                     className="inline-block hover:text-primary-red transition-colors text-[11px] py-0.5"
                   >
-                    {item}
+                    {item.label}
                   </motion.a>
                 </li>
               ))}
@@ -135,7 +136,7 @@ export default function Footer() {
               {content.footer.companyLinks
                 .filter((link) => link.visible !== false)
                 .map((link) => (
-                  <FooterLinkItem key={link.label} link={link} expandedSections={expandedSections} toggleSection={toggleSection} />
+                  <FooterLinkItem key={link.label} link={link} expandedSections={expandedSections} toggleSection={toggleSection} megaMenuData={content.navbar.megaMenuData} />
               ))}
             </ul>
           </div>
@@ -147,7 +148,7 @@ export default function Footer() {
               {content.footer.coreSystemsLinks
                 .filter((link) => link.visible !== false)
                 .map((link) => (
-                  <FooterLinkItem key={link.label} link={link} expandedSections={expandedSections} toggleSection={toggleSection} />
+                  <FooterLinkItem key={link.label} link={link} expandedSections={expandedSections} toggleSection={toggleSection} megaMenuData={content.navbar.megaMenuData} />
               ))}
             </ul>
           </div>

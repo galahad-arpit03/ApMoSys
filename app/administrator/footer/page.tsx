@@ -3,9 +3,10 @@
 import React from "react";
 import { useContentStore } from "@/src/admin/store/adminStore";
 import Footer from "@/src/Footer/Footer";
+import { ArrowUp, ArrowDown } from "lucide-react";
 
 export default function AdminFooterPage() {
-  const { content, toggleFooterLink, updateFooterLink } = useContentStore();
+  const { content, toggleFooterLink, updateFooterLink, moveFooterLink } = useContentStore();
 
   return (
     <div className="flex flex-col min-h-screen bg-[#0A0A0A]">
@@ -54,6 +55,22 @@ export default function AdminFooterPage() {
                       />
                       <div className="w-9 h-5 bg-[#3A3A3A] peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-primary-red"></div>
                     </label>
+                    <div className="flex flex-col ml-2 border-l border-[#3A3A3A] pl-2 gap-1">
+                      <button 
+                        onClick={() => moveFooterLink("companyLinks", idx, "up")}
+                        disabled={idx === 0}
+                        className="p-1 text-[#A0A0A0] hover:text-[#FAFAFA] disabled:opacity-30 transition-colors"
+                      >
+                        <ArrowUp size={14} />
+                      </button>
+                      <button 
+                        onClick={() => moveFooterLink("companyLinks", idx, "down")}
+                        disabled={idx === content.footer.companyLinks.length - 1}
+                        className="p-1 text-[#A0A0A0] hover:text-[#FAFAFA] disabled:opacity-30 transition-colors"
+                      >
+                        <ArrowDown size={14} />
+                      </button>
+                    </div>
                   </div>
                 ))}
               </div>
@@ -93,6 +110,22 @@ export default function AdminFooterPage() {
                       />
                       <div className="w-9 h-5 bg-[#3A3A3A] peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-primary-red"></div>
                     </label>
+                    <div className="flex flex-col ml-2 border-l border-[#3A3A3A] pl-2 gap-1">
+                      <button 
+                        onClick={() => moveFooterLink("coreSystemsLinks", idx, "up")}
+                        disabled={idx === 0}
+                        className="p-1 text-[#A0A0A0] hover:text-[#FAFAFA] disabled:opacity-30 transition-colors"
+                      >
+                        <ArrowUp size={14} />
+                      </button>
+                      <button 
+                        onClick={() => moveFooterLink("coreSystemsLinks", idx, "down")}
+                        disabled={idx === content.footer.coreSystemsLinks.length - 1}
+                        className="p-1 text-[#A0A0A0] hover:text-[#FAFAFA] disabled:opacity-30 transition-colors"
+                      >
+                        <ArrowDown size={14} />
+                      </button>
+                    </div>
                   </div>
                 ))}
               </div>

@@ -3,9 +3,10 @@
 import React from "react";
 import { useContentStore } from "@/src/admin/store/adminStore";
 import Navbar from "@/src/Navbar/Navbar";
+import { ArrowUp, ArrowDown } from "lucide-react";
 
 export default function AdminNavbarPage() {
-  const { content, toggleNavbarLink, updateNavbarLink } = useContentStore();
+  const { content, toggleNavbarLink, updateNavbarLink, moveNavbarLink } = useContentStore();
 
   return (
     <div className="flex flex-col min-h-screen bg-[#0A0A0A]">
@@ -56,6 +57,22 @@ export default function AdminNavbarPage() {
                       {link.visible !== false ? "Visible" : "Hidden"}
                     </span>
                   </label>
+                  <div className="flex flex-col ml-4 border-l border-[#3A3A3A] pl-4">
+                    <button 
+                      onClick={() => moveNavbarLink(idx, "up")}
+                      disabled={idx === 0}
+                      className="p-1 text-[#A0A0A0] hover:text-[#FAFAFA] disabled:opacity-30 transition-colors"
+                    >
+                      <ArrowUp size={16} />
+                    </button>
+                    <button 
+                      onClick={() => moveNavbarLink(idx, "down")}
+                      disabled={idx === content.navbar.links.length - 1}
+                      className="p-1 text-[#A0A0A0] hover:text-[#FAFAFA] disabled:opacity-30 transition-colors"
+                    >
+                      <ArrowDown size={16} />
+                    </button>
+                  </div>
                 </div>
               ))}
             </div>

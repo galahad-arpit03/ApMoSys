@@ -5,238 +5,16 @@ import { useContentStore } from "@/src/admin/store/adminStore";
 
 import Link from "next/link";
 
-export interface MegaMenuCategory {
-  id: string;
-  label: string;
-  subLinks: string[];
-}
-
-export interface MegaMenuItem {
-  title: string;
-  description: string;
-  linkText: string;
-  linkHref: string;
-  categories: MegaMenuCategory[];
-}
-
-export const megaMenuData: Record<string, MegaMenuItem> = {
-  "What we do": {
-    title: "What we do",
-    description: "Empowering businesses with cutting-edge technological solutions for modern challenges. Built to evolve continuously and confidently.",
-    linkText: "Explore our services",
-    linkHref: "/what-we-do",
-    categories: [
-      {
-        id: "services",
-        label: "Services",
-        subLinks: [
-          "AI Engineering",
-          "Digital Assurance Engineering",
-          "Interface Engineering",
-          "NextGen Automation Engineering",
-          "NFR Engineering",
-          "Accessibility & Compliance Engineering",
-          "Observability Engineering",
-          "DevOps & Cloud Engineering",
-          "Intelligent Automation",
-          "Development Engineering",
-          "ITSM & Digital Operations",
-          "Command Centre Operations",
-          "Resiliency Operations Centre (ROC)",
-          "Quality Center of Excellence (QCoE)"
-        ]
-      },
-      {
-        id: "products",
-        label: "Products and Platform",
-        subLinks: [
-          "CliqTest",
-          "Netraa",
-          "Jupiter",
-          "ShieldVue",
-          "Swikrti",
-          "FinXplore",
-          "Saransh",
-          "Protean Device Lab"
-        ]
-      },
-      {
-        id: "coe",
-        label: "CoE and Innovations",
-        subLinks: [
-          "AI Center of Excellence",
-          "Banking CoE",
-          "Insurance CoE",
-          "Research Papers",
-          "Innovation Labs"
-        ]
-      },
-      {
-        id: "alliance",
-        label: "Alliance",
-        subLinks: []
-      },
-      {
-        id: "industries",
-        label: "Industries",
-        subLinks: [
-          "Banking & Financial Services",
-          "Insurance",
-          "Capital Markets",
-          "FinTech",
-          "Government & PSU",
-          "Healthcare",
-          "Retail & E-Commerce",
-          "Telecom",
-          "Manufacturing",
-          "Logistics",
-          "Education",
-          "Travel & Hospitality"
-        ]
-      }
-    ]
-  },
-  "Who we are": {
-    title: "Who we are",
-    description: "We are a team of world-class engineers and innovators working on the hardest problems in enterprise automation.",
-    linkText: "Learn about us",
-    linkHref: "/who-we-are",
-    categories: [
-      {
-        id: "about",
-        label: "About Us",
-        subLinks: [
-          "About Us",
-          "Leadership",
-          "Our Team",
-          "Community"
-        ]
-      },{
-        id: "leader",
-        label: "Leadership",
-        subLinks: [
-          "About Us",
-          "Leadership",
-          "Our Team",
-          "Community"
-        ]
-      },{
-        id: "team",
-        label: "Our Team",
-        subLinks: [
-          "About Us",
-          "Leadership",
-          "Our Team",
-          "Community"
-        ]
-      },{
-        id: "community",
-        label: "Community",
-        subLinks: [
-          "Community",  
-          "Leadership",
-          "Our Team",
-          "Community"
-        ]
-      }
-    ]
-  },
-  "Newsrooms": {
-    title: "Newsrooms",
-    description: "Stay updated with our latest press releases, events, awards, and customer stories.",
-    linkText: "Go to Newsrooms",
-    linkHref: "/newsrooms",
-    categories: [
-      {
-        id: "press-releases",
-        label: "Press Releases",
-        subLinks: [
-          "Latest Announcements",
-          "Company News",
-          "Archived Releases"
-        ]
-      },
-      {
-        id: "events",
-        label: "Events",
-        subLinks: [
-          "Upcoming Events",
-          "Past Webinars",
-          "Annual Conferences"
-        ]
-      },
-      {
-        id: "awards-recognition",
-        label: "Awards & Recognition",
-        subLinks: [
-          "Industry Awards",
-          "Certifications",
-          "Partner Accolades"
-        ]
-      },
-      {
-        id: "industry-insights",
-        label: "Industry Insights",
-        subLinks: [
-          "Tech Trends",
-          "Market Analysis",
-          "Expert Opinions"
-        ]
-      },
-      {
-        id: "media-coverage",
-        label: "Media Coverage",
-        subLinks: [
-          "In the News",
-          "Press Mentions",
-          "Interviews"
-        ]
-      },
-      {
-        id: "podcasts-webinars",
-        label: "Podcasts & Webinars",
-        subLinks: [
-          "Tech Talks",
-          "Leadership Series",
-          "Guest Speakers"
-        ]
-      },
-      {
-        id: "customer-stories",
-        label: "Customer Stories",
-        subLinks: [
-          "Case Studies",
-          "Success Stories",
-          "Client Interviews"
-        ]
-      },
-      {
-        id: "success-metrics",
-        label: "Success Metrics",
-        subLinks: [
-          "ROI Reports",
-          "Performance Data",
-          "Impact Studies"
-        ]
-      },
-      {
-        id: "transformation-journeys",
-        label: "Transformation Journeys",
-        subLinks: [
-          "Digital Transformation",
-          "Agile Adoption",
-          "Cloud Migration"
-        ]
-      }
-    ]
-  }
-};
+// Types imported from adminStore
 
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
   const [activeDropdown, setActiveDropdown] = React.useState<string | null>(null);
   const [activeCategory, setActiveCategory] = React.useState<string | null>(null);
   const [mobileExpandedItem, setMobileExpandedItem] = React.useState<string | null>(null);
+
+  const { content } = useContentStore();
+  const megaMenuData = content.navbar.megaMenuData || {};
 
   React.useEffect(() => {
     if (activeDropdown && megaMenuData[activeDropdown]) {
@@ -245,25 +23,36 @@ export default function Navbar() {
     } else {
       setActiveCategory(null);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activeDropdown]);
-
-  const { content } = useContentStore();
 
   const navigationItems = content.navbar.links.filter(link => link.visible !== false).map(link => {
     return {
       label: link.label,
       href: link.href,
-      hasDropdown: ["What we do", "Who we are", "Newsrooms"].includes(link.label)
+      hasDropdown: !!megaMenuData[link.label]
     };
   });
 
   const isExpanded = activeDropdown !== null;
   const navBgColor = isExpanded ? "bg-[#1E2222]" : "bg-[#000000]";
 
+  // Close dropdown on click outside
+  React.useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      const nav = document.getElementById('navbar-container');
+      if (nav && !nav.contains(event.target as Node)) {
+        setActiveDropdown(null);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
   return (
     <nav 
+      id="navbar-container"
       className={`${navBgColor} ${isExpanded ? 'border-transparent' : 'border-[#3A3A3A]'} sticky top-0 z-50 transition-colors duration-300`}
-      onMouseLeave={() => setActiveDropdown(null)}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
@@ -272,6 +61,7 @@ export default function Navbar() {
           <div className="flex-shrink-0 flex items-center lg:flex-1 z-50">
             <Link 
               href="/" 
+              onClick={() => setActiveDropdown(null)}
               className="font-heading font-extrabold text-3xl tracking-normal text-[#FFFFFF] hover:text-[#FAFAFA] transition-colors"
             >
               ApMoSys<span className="text-primary-red">.</span>
@@ -284,16 +74,17 @@ export default function Navbar() {
               <div 
                 key={item.label}
                 className="h-full flex items-center"
-                onMouseEnter={() => {
-                  if (item.hasDropdown) {
-                    setActiveDropdown(item.label);
-                  } else {
-                    setActiveDropdown(null);
-                  }
-                }}
               >
                 <Link
                   href={item.href}
+                  onClick={(e) => {
+                    if (item.hasDropdown) {
+                      e.preventDefault();
+                      setActiveDropdown(activeDropdown === item.label ? null : item.label);
+                    } else {
+                      setActiveDropdown(null);
+                    }
+                  }}
                   className={`group flex items-center gap-1 px-2 py-2 text-sm font-medium transition-colors duration-200 shrink-0 ${
                     activeDropdown === item.label 
                       ? "text-[#FFFFFF]" 
@@ -427,24 +218,26 @@ export default function Navbar() {
                       className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-1 animate-fadeIn"
                     >
                       <div className="flex flex-col space-y-1">
-                        {leftLinks.map((link: string, idx: number) => (
+                        {leftLinks.map((link: { label: string; href: string }, idx: number) => (
                           <Link 
                             key={idx} 
-                            href="#"
+                            href={link.href}
+                            onClick={() => setActiveDropdown(null)}
                             className="py-1.5 text-sm text-[#C8C8C8] hover:text-[#FFFFFF] transition-colors"
                           >
-                            {link}
+                            {link.label}
                           </Link>
                         ))}
                       </div>
                       <div className="flex flex-col space-y-1">
-                        {rightLinks.map((link: string, idx: number) => (
+                        {rightLinks.map((link: { label: string; href: string }, idx: number) => (
                           <Link 
                             key={idx} 
-                            href="#"
+                            href={link.href}
+                            onClick={() => setActiveDropdown(null)}
                             className="py-1.5 text-sm text-[#C8C8C8] hover:text-[#FFFFFF] transition-colors"
                           >
-                            {link}
+                            {link.label}
                           </Link>
                         ))}
                       </div>
@@ -513,14 +306,17 @@ export default function Navbar() {
                     <div key={category.id} className="space-y-1">
                       <div className="text-sm font-semibold text-[#FFFFFF] mb-2">{category.label}</div>
                       <div className="flex flex-col space-y-1 border-l border-[#3A3A3A] pl-3">
-                        {category.subLinks.map((sublink, idx) => (
+                        {category.subLinks.map((sublink: { label: string; href: string }, idx) => (
                           <Link 
                             key={idx} 
-                            href="#" 
-                            onClick={() => setMobileMenuOpen(false)}
-                            className="text-sm text-[#A0A0A0] hover:text-[#FFFFFF] py-1.5 transition-colors"
+                            href={sublink.href} 
+                            onClick={() => {
+                              setMobileMenuOpen(false);
+                              setMobileExpandedItem(null);
+                            }}
+                            className="text-xs text-[#A0A0A0] hover:text-[#FFFFFF] transition-colors py-1"
                           >
-                            {sublink}
+                            {sublink.label}
                           </Link>
                         ))}
                       </div>
