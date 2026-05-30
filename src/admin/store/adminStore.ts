@@ -225,29 +225,28 @@ export const defaultContent: SiteContent = {
     ctaLabel: "Contact Us",
     ctaHref: "/contact",
     links: [
-      { label: "About Us", href: "/#about" },
-      { label: "Services", href: "/#services" },
-      { label: "Solutions", href: "/#solutions" },
-      { label: "Products", href: "/#products" },
-      { label: "Industries", href: "/industries" },
-      { label: "Blogs", href: "/blogs" },
+      { label: "What we do", href: "/what-we-do" },
+      { label: "Who we are", href: "/who-we-are" },
+      { label: "Newsrooms", href: "/newsrooms" },
       { label: "Careers", href: "/careers" },
+      { label: "Blogs", href: "/blogs" },
     ],
   },
   footer: {
     tagline:
       "Global leaders in automated quality engineering, security validation, and intelligent digital systems optimization.",
     companyLinks: [
-      { label: "About Us", href: "/#about" },
+      { label: "Who we are", href: "/who-we-are" },
+      { label: "Newsrooms", href: "/newsrooms" },
       { label: "Careers", href: "/careers" },
-      { label: "Blogs & News", href: "/#blogs" },
-      { label: "Press Releases", href: "/#press" },
+      { label: "Blogs", href: "/blogs" },
+      { label: "Contact Us", href: "/contact" },
     ],
     coreSystemsLinks: [
-      { label: "cliQTest Platform", href: "#" },
-      { label: "Netraa AI Vision", href: "#" },
-      { label: "Performance Tuning", href: "#" },
-      { label: "Continuous QA", href: "#" },
+      { label: "Services", href: "/services" },
+      { label: "Products and Platform", href: "/products" },
+      { label: "CoE and Innovations", href: "/coe" },
+      { label: "Industries", href: "/industries" },
     ],
     address: "Mahape, Navi Mumbai, India",
     email: "contact@apmosys.com",
@@ -1052,7 +1051,25 @@ export const useContentStore = create<ContentState>()(
           };
         }),
     }),
-    { name: "admin-content" },
+    {
+      name: "admin-content",
+      version: 3,
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      migrate: (persistedState: any, version: number) => {
+        if (version <= 2) {
+          // Force update navbar and footer links on migration
+          return {
+            ...persistedState,
+            content: {
+              ...persistedState.content,
+              navbar: defaultContent.navbar,
+              footer: defaultContent.footer,
+            },
+          };
+        }
+        return persistedState;
+      },
+    },
   ),
 );
 

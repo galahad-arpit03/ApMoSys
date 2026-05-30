@@ -1,11 +1,86 @@
 "use client";
 
 import React from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { useContentStore } from "@/src/admin/store/adminStore";
+
+import { megaMenuData, MegaMenuCategory } from "@/src/Navbar/Navbar";
+
+const getDropdownItems = (label: string): string[] | null => {
+  if (megaMenuData[label]) {
+    return megaMenuData[label].categories.map((c: MegaMenuCategory) => c.label);
+  }
+  for (const key in megaMenuData) {
+    const category = megaMenuData[key].categories.find((c: MegaMenuCategory) => c.label === label);
+    if (category && category.subLinks && category.subLinks.length > 0) {
+      return category.subLinks;
+    }
+  }
+  return null;
+};
+
+const FooterLinkItem = ({ link, expandedSections, toggleSection }: { link: {label: string, href: string}, expandedSections: Record<string, boolean>, toggleSection: (label: string) => void }) => {
+  const dropdownItems = getDropdownItems(link.label);
+  const isExpanded = expandedSections[link.label];
+
+  if (dropdownItems && dropdownItems.length > 0) {
+    return (
+      <li className="flex flex-col">
+        <button 
+          onClick={() => toggleSection(link.label)}
+          className="flex items-center justify-between w-full transition-colors text-left group"
+        >
+          <motion.span whileHover={{ x: 4, color: "var(--color-primary-red)" }} className="group-hover:text-primary-red transition-colors">{link.label}</motion.span>
+          <svg className={`w-3 h-3 text-[#A0A0A0] group-hover:text-primary-red transition-transform ${isExpanded ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+          </svg>
+        </button>
+        <AnimatePresence initial={false}>
+          {isExpanded && (
+            <motion.ul 
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: "auto", opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              transition={{ duration: 0.3, ease: "easeInOut" }}
+              className="pl-3 mt-2 space-y-2 border-l border-[#3A3A3A] text-[#7A7A7A] overflow-hidden"
+            >
+              {dropdownItems.map((item, idx) => (
+                <li key={idx}>
+                  <motion.a 
+                    href="#" 
+                    whileHover={{ x: 2, color: "var(--color-primary-red)" }}
+                    className="inline-block hover:text-primary-red transition-colors text-[11px] py-0.5"
+                  >
+                    {item}
+                  </motion.a>
+                </li>
+              ))}
+            </motion.ul>
+          )}
+        </AnimatePresence>
+      </li>
+    );
+  }
+
+  return (
+    <li>
+      <motion.a 
+        href={link.href} 
+        whileHover={{ x: 4, color: "var(--color-primary-red)" }}
+        className="inline-block hover:text-primary-red transition-colors"
+      >
+        {link.label}
+      </motion.a>
+    </li>
+  );
+};
 
 export default function Footer() {
   const { content } = useContentStore();
+  const [expandedSections, setExpandedSections] = React.useState<Record<string, boolean>>({});
+  const toggleSection = (label: string) => {
+    setExpandedSections(prev => ({ ...prev, [label]: !prev[label] }));
+  };
 
   return (
     <motion.footer 
@@ -60,35 +135,19 @@ export default function Footer() {
               {content.footer.companyLinks
                 .filter((link) => link.visible !== false)
                 .map((link) => (
-                  <li key={link.label}>
-                    <motion.a 
-                      href={link.href} 
-                      whileHover={{ x: 4, color: "var(--color-primary-red)" }}
-                      className="inline-block hover:text-primary-red transition-colors"
-                    >
-                      {link.label}
-                    </motion.a>
-                  </li>
+                  <FooterLinkItem key={link.label} link={link} expandedSections={expandedSections} toggleSection={toggleSection} />
               ))}
             </ul>
           </div>
 
           {/* Services */}
           <div>
-            <h5 className="font-heading font-bold text-xs uppercase tracking-wider text-[#FAFAFA] mb-4">Core Systems</h5>
+            <h5 className="font-heading font-bold text-xs uppercase tracking-wider text-[#FAFAFA] mb-4">What we do</h5>
             <ul className="space-y-2 text-xs">
               {content.footer.coreSystemsLinks
                 .filter((link) => link.visible !== false)
                 .map((link) => (
-                  <li key={link.label}>
-                    <motion.a 
-                      href={link.href} 
-                      whileHover={{ x: 4, color: "var(--color-primary-red)" }}
-                      className="inline-block hover:text-primary-red transition-colors"
-                    >
-                      {link.label}
-                    </motion.a>
-                  </li>
+                  <FooterLinkItem key={link.label} link={link} expandedSections={expandedSections} toggleSection={toggleSection} />
               ))}
             </ul>
           </div>

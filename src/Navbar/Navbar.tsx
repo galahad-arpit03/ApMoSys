@@ -1,17 +1,17 @@
 "use client";
 
 import React from "react";
-import { useContentStore, defaultContent } from "@/src/admin/store/adminStore";
+import { useContentStore } from "@/src/admin/store/adminStore";
 
 import Link from "next/link";
 
-interface MegaMenuCategory {
+export interface MegaMenuCategory {
   id: string;
   label: string;
   subLinks: string[];
 }
 
-interface MegaMenuItem {
+export interface MegaMenuItem {
   title: string;
   description: string;
   linkText: string;
@@ -19,111 +19,213 @@ interface MegaMenuItem {
   categories: MegaMenuCategory[];
 }
 
-const megaMenuData: Record<string, MegaMenuItem> = {
-  Services: {
-    title: "Our Services",
-    description: "We deliver excellence and create value for customers and communities – everyday. With the best talent and the latest technology we help customers turn complexity into opportunities.",
-    linkText: "Adaptability starts here",
-    linkHref: "/services",
-    categories: [
-      {
-        id: "core",
-        label: "Core Services",
-        subLinks: [
-          "Quality Engineering",
-          "Performance Engineering",
-          "Test Automation",
-          "Security Testing",
-        ]
-      },
-      {
-        id: "digital",
-        label: "Digital Transformation",
-        subLinks: [
-          "Cloud Engineering",
-          "DevOps Services",
-          "Data Analytics",
-          "Artificial Intelligence",
-        ]
-      },
-      {
-        id: "consulting",
-        label: "Consulting",
-        subLinks: [
-          "Strategy",
-          "Management",
-          "Operations",
-          "Technology",
-        ]
-      }
-    ]
-  },
-  Solutions: {
-    title: "Innovative Solutions",
+export const megaMenuData: Record<string, MegaMenuItem> = {
+  "What we do": {
+    title: "What we do",
     description: "Empowering businesses with cutting-edge technological solutions for modern challenges. Built to evolve continuously and confidently.",
-    linkText: "Explore solutions",
-    linkHref: "/solutions",
+    linkText: "Explore our services",
+    linkHref: "/what-we-do",
     categories: [
+      {
+        id: "services",
+        label: "Services",
+        subLinks: [
+          "AI Engineering",
+          "Digital Assurance Engineering",
+          "Interface Engineering",
+          "NextGen Automation Engineering",
+          "NFR Engineering",
+          "Accessibility & Compliance Engineering",
+          "Observability Engineering",
+          "DevOps & Cloud Engineering",
+          "Intelligent Automation",
+          "Development Engineering",
+          "ITSM & Digital Operations",
+          "Command Centre Operations",
+          "Resiliency Operations Centre (ROC)",
+          "Quality Center of Excellence (QCoE)"
+        ]
+      },
+      {
+        id: "products",
+        label: "Products and Platform",
+        subLinks: [
+          "CliqTest",
+          "Netraa",
+          "Jupiter",
+          "ShieldVue",
+          "Swikrti",
+          "FinXplore",
+          "Saransh",
+          "Protean Device Lab"
+        ]
+      },
+      {
+        id: "coe",
+        label: "CoE and Innovations",
+        subLinks: [
+          "AI Center of Excellence",
+          "Banking CoE",
+          "Insurance CoE",
+          "Research Papers",
+          "Innovation Labs"
+        ]
+      },
+      {
+        id: "alliance",
+        label: "Alliance",
+        subLinks: []
+      },
       {
         id: "industries",
         label: "Industries",
         subLinks: [
-          "Banking",
-          "Capital Markets",
-          "Consumer Packaged Goods and Distribution",
-          "Communications, Media, and Information Services",
-          "Education",
-          "Energy, Resources, and Utilities",
-          "Healthcare",
-          "High Tech",
+          "Banking & Financial Services",
           "Insurance",
-          "Life Sciences",
+          "Capital Markets",
+          "FinTech",
+          "Government & PSU",
+          "Healthcare",
+          "Retail & E-Commerce",
+          "Telecom",
           "Manufacturing",
-          "Public Services",
-          "Retail",
-          "Travel and Logistics"
-        ]
-      },
-      {
-        id: "platforms",
-        label: "Products and Platforms",
-        subLinks: [
-          "Enterprise Platform",
-          "Analytics Platform",
-          "Integration Services"
-        ]
-      },
-      {
-        id: "research",
-        label: "Research & Innovation",
-        subLinks: [
-          "AI Labs",
-          "Blockchain COE",
-          "IoT Center"
+          "Logistics",
+          "Education",
+          "Travel & Hospitality"
         ]
       }
     ]
   },
-  Products: {
-    title: "Our Products",
-    description: "Next-generation products designed to accelerate your business growth. We provide comprehensive testing and management platforms.",
-    linkText: "View all products",
-    linkHref: "/products",
+  "Who we are": {
+    title: "Who we are",
+    description: "We are a team of world-class engineers and innovators working on the hardest problems in enterprise automation.",
+    linkText: "Learn about us",
+    linkHref: "/who-we-are",
     categories: [
       {
-        id: "testing",
-        label: "Testing Platforms",
+        id: "about",
+        label: "About Us",
         subLinks: [
-          "Netraa",
-          "Cliqtest"
+          "About Us",
+          "Leadership",
+          "Our Team",
+          "Community"
+        ]
+      },{
+        id: "leader",
+        label: "Leadership",
+        subLinks: [
+          "About Us",
+          "Leadership",
+          "Our Team",
+          "Community"
+        ]
+      },{
+        id: "team",
+        label: "Our Team",
+        subLinks: [
+          "About Us",
+          "Leadership",
+          "Our Team",
+          "Community"
+        ]
+      },{
+        id: "community",
+        label: "Community",
+        subLinks: [
+          "Community",  
+          "Leadership",
+          "Our Team",
+          "Community"
+        ]
+      }
+    ]
+  },
+  "Newsrooms": {
+    title: "Newsrooms",
+    description: "Stay updated with our latest press releases, events, awards, and customer stories.",
+    linkText: "Go to Newsrooms",
+    linkHref: "/newsrooms",
+    categories: [
+      {
+        id: "press-releases",
+        label: "Press Releases",
+        subLinks: [
+          "Latest Announcements",
+          "Company News",
+          "Archived Releases"
         ]
       },
       {
-        id: "management",
-        label: "Management Tools",
+        id: "events",
+        label: "Events",
         subLinks: [
-          "ApMoSys ALM",
-          "Test Manager"
+          "Upcoming Events",
+          "Past Webinars",
+          "Annual Conferences"
+        ]
+      },
+      {
+        id: "awards-recognition",
+        label: "Awards & Recognition",
+        subLinks: [
+          "Industry Awards",
+          "Certifications",
+          "Partner Accolades"
+        ]
+      },
+      {
+        id: "industry-insights",
+        label: "Industry Insights",
+        subLinks: [
+          "Tech Trends",
+          "Market Analysis",
+          "Expert Opinions"
+        ]
+      },
+      {
+        id: "media-coverage",
+        label: "Media Coverage",
+        subLinks: [
+          "In the News",
+          "Press Mentions",
+          "Interviews"
+        ]
+      },
+      {
+        id: "podcasts-webinars",
+        label: "Podcasts & Webinars",
+        subLinks: [
+          "Tech Talks",
+          "Leadership Series",
+          "Guest Speakers"
+        ]
+      },
+      {
+        id: "customer-stories",
+        label: "Customer Stories",
+        subLinks: [
+          "Case Studies",
+          "Success Stories",
+          "Client Interviews"
+        ]
+      },
+      {
+        id: "success-metrics",
+        label: "Success Metrics",
+        subLinks: [
+          "ROI Reports",
+          "Performance Data",
+          "Impact Studies"
+        ]
+      },
+      {
+        id: "transformation-journeys",
+        label: "Transformation Journeys",
+        subLinks: [
+          "Digital Transformation",
+          "Agile Adoption",
+          "Cloud Migration"
         ]
       }
     ]
@@ -151,7 +253,7 @@ export default function Navbar() {
     return {
       label: link.label,
       href: link.href,
-      hasDropdown: ["Services", "Solutions", "Products"].includes(link.label)
+      hasDropdown: ["What we do", "Who we are", "Newsrooms"].includes(link.label)
     };
   });
 
