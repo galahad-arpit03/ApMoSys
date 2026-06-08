@@ -5,23 +5,23 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { useAdminUIStore } from "@/src/admin/store/adminStore";
-
+import { LayoutDashboard, Home, Navigation, Footprints, Users, Settings, Lightbulb, Factory, Package, FileText, Briefcase, Phone, Palette } from "lucide-react";
 const navItems = [
-  { label: "Dashboard", href: "/administrator/home", icon: "⊞" },
-  { label: "Home", href: "/administrator", icon: "🏠" },
-  { label: "Navbar", href: "/administrator/navbar", icon: "🧭" },
-  { label: "Footer", href: "/administrator/footer", icon: "🦶" },
-  { label: "About", href: "/administrator/about", icon: "👥" },
-  { label: "Services", href: "/administrator/services", icon: "⚙️" },
-  { label: "Solutions", href: "/administrator/solutions", icon: "💡" },
-  { label: "Industries", href: "/administrator/industries", icon: "🏭" },
-  { label: "Products", href: "/administrator/products", icon: "📦" },
-  { label: "Blogs", href: "/administrator/blogs", icon: "📝" },
-  { label: "Careers", href: "/administrator/careers", icon: "💼" },
-  { label: "Contact", href: "/administrator/contact", icon: "📞" },
+  { label: "Dashboard", href: "/administrator/home", icon: <LayoutDashboard className="w-4 h-4" /> },
+  { label: "Home", href: "/administrator", icon: <Home className="w-4 h-4" /> },
+  { label: "Navbar", href: "/administrator/navbar", icon: <Navigation className="w-4 h-4" /> },
+  { label: "Footer", href: "/administrator/footer", icon: <Footprints className="w-4 h-4" /> },
+  { label: "About", href: "/administrator/about", icon: <Users className="w-4 h-4" /> },
+  { label: "Services", href: "/administrator/services", icon: <Settings className="w-4 h-4" /> },
+  { label: "Solutions", href: "/administrator/solutions", icon: <Lightbulb className="w-4 h-4" /> },
+  { label: "Industries", href: "/administrator/industries", icon: <Factory className="w-4 h-4" /> },
+  { label: "Products", href: "/administrator/products", icon: <Package className="w-4 h-4" /> },
+  { label: "Blogs", href: "/administrator/blogs", icon: <FileText className="w-4 h-4" /> },
+  { label: "Careers", href: "/administrator/careers", icon: <Briefcase className="w-4 h-4" /> },
+  { label: "Contact", href: "/administrator/contact", icon: <Phone className="w-4 h-4" /> },
   { divider: true },
-  { label: "Colors", href: "/administrator/colors", icon: "🎨" },
-  { label: "Settings", href: "/administrator/settings", icon: "⚙️" },
+  { label: "Colors", href: "/administrator/colors", icon: <Palette className="w-4 h-4" /> },
+  { label: "Settings", href: "/administrator/settings", icon: <Settings className="w-4 h-4" /> },
 ];
 
 export default function AdminSidebar() {
