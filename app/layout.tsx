@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Outfit, Plus_Jakarta_Sans } from "next/font/google";
+import { Outfit, Plus_Jakarta_Sans, Space_Grotesk } from "next/font/google";
 import "@/app/globals.css";
 import ConditionalShell from "@/src/components/ConditionalShell";
 
@@ -11,6 +11,12 @@ const outfit = Outfit({
 
 const plusJakarta = Plus_Jakarta_Sans({
   variable: "--font-jakarta",
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+});
+
+const spaceGrotesk = Space_Grotesk({
+  variable: "--font-space",
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
 });
@@ -28,7 +34,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${outfit.variable} ${plusJakarta.variable} h-full antialiased`}
+      className={`${outfit.variable} ${plusJakarta.variable} ${spaceGrotesk.variable} h-full antialiased`}
       suppressHydrationWarning
     >
       <body className="min-h-full flex flex-col bg-[#121212] text-[#FAFAFA] font-sans selection:bg-primary-red selection:text-[#FFFFFF]" suppressHydrationWarning>

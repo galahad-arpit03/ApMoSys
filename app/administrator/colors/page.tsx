@@ -291,7 +291,8 @@ export default function AdminColorsPage() {
               {[
                 { name: "Default Theme", variable: "default", type: "Jakarta (Body) + Outfit (Heading)" },
                 { name: "Plus Jakarta Sans", variable: "var(--font-jakarta)", type: "Full Site Sans-serif" },
-                { name: "Outfit", variable: "var(--font-outfit)", type: "Full Site Sans-serif" }
+                { name: "Outfit", variable: "var(--font-outfit)", type: "Full Site Sans-serif" },
+                { name: "Space Grotesk", variable: "var(--font-space)", type: "Full Site Sans-serif" }
               ].map((font) => (
                 <button
                   key={font.name}
