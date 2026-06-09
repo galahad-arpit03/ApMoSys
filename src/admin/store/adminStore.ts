@@ -230,6 +230,46 @@ export interface SiteContent {
   };
   sectionThemes?: Record<string, "dark" | "light">;
   sectionVisibilities?: Record<string, boolean>;
+  about: {
+    hero: {
+      badge: string;
+      heading: string;
+      subheading: string;
+      ctaPrimary: string;
+      ctaSecondary: string;
+    };
+
+    story: {
+      sectionLabel: string;
+      heading: string;
+      paragraph1: string;
+      paragraph2: string;
+    };
+
+    mission: {
+      heading: string;
+      description: string;
+    };
+
+    vision: {
+      heading: string;
+      description: string;
+    };
+
+    stats: {
+      stat1Value: string;
+      stat1Label: string;
+
+      stat2Value: string;
+      stat2Label: string;
+
+      stat3Value: string;
+      stat3Label: string;
+
+      stat4Value: string;
+      stat4Label: string;
+    };
+  }
 }
 
 export const defaultContent: SiteContent = {
@@ -248,465 +288,465 @@ export const defaultContent: SiteContent = {
     ],
     megaMenuData: {
       "What we do": {
-            title: "What we do",
-            description: "Empowering businesses with cutting-edge technological solutions for modern challenges. Built to evolve continuously and confidently.",
-            linkText: "Explore our services",
-            linkHref: "/what-we-do",
-            categories: [
-                  {
-                        id: "services",
-                        label: "Services",
-                        subLinks: [
-                              {
-                                    label: "AI Engineering",
-                                    href: "/services"
-                              },
-                              {
-                                    label: "Digital Assurance Engineering",
-                                    href: "/services"
-                              },
-                              {
-                                    label: "Interface Engineering",
-                                    href: "/services"
-                              },
-                              {
-                                    label: "NextGen Automation Engineering",
-                                    href: "/services"
-                              },
-                              {
-                                    label: "NFR Engineering",
-                                    href: "/services"
-                              },
-                              {
-                                    label: "Accessibility & Compliance Engineering",
-                                    href: "/services"
-                              },
-                              {
-                                    label: "Observability Engineering",
-                                    href: "/services"
-                              },
-                              {
-                                    label: "DevOps & Cloud Engineering",
-                                    href: "/services"
-                              },
-                              {
-                                    label: "Intelligent Automation",
-                                    href: "/services"
-                              },
-                              {
-                                    label: "Development Engineering",
-                                    href: "/services"
-                              },
-                              {
-                                    label: "ITSM & Digital Operations",
-                                    href: "/services"
-                              },
-                              {
-                                    label: "Command Centre Operations",
-                                    href: "/services"
-                              },
-                              {
-                                    label: "Resiliency Operations Centre (ROC)",
-                                    href: "/services"
-                              },
-                              {
-                                    label: "Quality Center of Excellence (QCoE)",
-                                    href: "/services"
-                              }
-                        ]
-                  },
-                  {
-                        id: "products",
-                        label: "Products and Platform",
-                        subLinks: [
-                              {
-                                    label: "CliqTest",
-                                    href: "/products"
-                              },
-                              {
-                                    label: "Netraa",
-                                    href: "/products"
-                              },
-                              {
-                                    label: "Jupiter",
-                                    href: "/products"
-                              },
-                              {
-                                    label: "ShieldVue",
-                                    href: "/products"
-                              },
-                              {
-                                    label: "Swikrti",
-                                    href: "/products"
-                              },
-                              {
-                                    label: "FinXplore",
-                                    href: "/products"
-                              },
-                              {
-                                    label: "Saransh",
-                                    href: "/products"
-                              },
-                              {
-                                    label: "Protean Device Lab",
-                                    href: "/products"
-                              }
-                        ]
-                  },
-                  {
-                        id: "coe",
-                        label: "CoE and Innovations",
-                        subLinks: [
-                              {
-                                    label: "AI Center of Excellence",
-                                    href: "/coe"
-                              },
-                              {
-                                    label: "Banking CoE",
-                                    href: "/coe"
-                              },
-                              {
-                                    label: "Insurance CoE",
-                                    href: "/coe"
-                              },
-                              {
-                                    label: "Research Papers",
-                                    href: "/coe"
-                              },
-                              {
-                                    label: "Innovation Labs",
-                                    href: "/coe"
-                              }
-                        ]
-                  },
-                  {
-                        id: "alliance",
-                        label: "Alliance",
-                        subLinks: []
-                  },
-                  {
-                        id: "industries",
-                        label: "Industries",
-                        subLinks: [
-                              {
-                                    label: "Banking & Financial Services",
-                                    href: "/industries"
-                              },
-                              {
-                                    label: "Insurance",
-                                    href: "/industries"
-                              },
-                              {
-                                    label: "Capital Markets",
-                                    href: "/industries"
-                              },
-                              {
-                                    label: "FinTech",
-                                    href: "/industries"
-                              },
-                              {
-                                    label: "Government & PSU",
-                                    href: "/industries"
-                              },
-                              {
-                                    label: "Healthcare",
-                                    href: "/industries"
-                              },
-                              {
-                                    label: "Retail & E-Commerce",
-                                    href: "/industries"
-                              },
-                              {
-                                    label: "Telecom",
-                                    href: "/industries"
-                              },
-                              {
-                                    label: "Manufacturing",
-                                    href: "/industries"
-                              },
-                              {
-                                    label: "Logistics",
-                                    href: "/industries"
-                              },
-                              {
-                                    label: "Education",
-                                    href: "/industries"
-                              },
-                              {
-                                    label: "Travel & Hospitality",
-                                    href: "/industries"
-                              }
-                        ]
-                  }
+        title: "What we do",
+        description: "Empowering businesses with cutting-edge technological solutions for modern challenges. Built to evolve continuously and confidently.",
+        linkText: "Explore our services",
+        linkHref: "/what-we-do",
+        categories: [
+          {
+            id: "services",
+            label: "Services",
+            subLinks: [
+              {
+                label: "AI Engineering",
+                href: "/services"
+              },
+              {
+                label: "Digital Assurance Engineering",
+                href: "/services"
+              },
+              {
+                label: "Interface Engineering",
+                href: "/services"
+              },
+              {
+                label: "NextGen Automation Engineering",
+                href: "/services"
+              },
+              {
+                label: "NFR Engineering",
+                href: "/services"
+              },
+              {
+                label: "Accessibility & Compliance Engineering",
+                href: "/services"
+              },
+              {
+                label: "Observability Engineering",
+                href: "/services"
+              },
+              {
+                label: "DevOps & Cloud Engineering",
+                href: "/services"
+              },
+              {
+                label: "Intelligent Automation",
+                href: "/services"
+              },
+              {
+                label: "Development Engineering",
+                href: "/services"
+              },
+              {
+                label: "ITSM & Digital Operations",
+                href: "/services"
+              },
+              {
+                label: "Command Centre Operations",
+                href: "/services"
+              },
+              {
+                label: "Resiliency Operations Centre (ROC)",
+                href: "/services"
+              },
+              {
+                label: "Quality Center of Excellence (QCoE)",
+                href: "/services"
+              }
             ]
+          },
+          {
+            id: "products",
+            label: "Products and Platform",
+            subLinks: [
+              {
+                label: "CliqTest",
+                href: "/products"
+              },
+              {
+                label: "Netraa",
+                href: "/products"
+              },
+              {
+                label: "Jupiter",
+                href: "/products"
+              },
+              {
+                label: "ShieldVue",
+                href: "/products"
+              },
+              {
+                label: "Swikrti",
+                href: "/products"
+              },
+              {
+                label: "FinXplore",
+                href: "/products"
+              },
+              {
+                label: "Saransh",
+                href: "/products"
+              },
+              {
+                label: "Protean Device Lab",
+                href: "/products"
+              }
+            ]
+          },
+          {
+            id: "coe",
+            label: "CoE and Innovations",
+            subLinks: [
+              {
+                label: "AI Center of Excellence",
+                href: "/coe"
+              },
+              {
+                label: "Banking CoE",
+                href: "/coe"
+              },
+              {
+                label: "Insurance CoE",
+                href: "/coe"
+              },
+              {
+                label: "Research Papers",
+                href: "/coe"
+              },
+              {
+                label: "Innovation Labs",
+                href: "/coe"
+              }
+            ]
+          },
+          {
+            id: "alliance",
+            label: "Alliance",
+            subLinks: []
+          },
+          {
+            id: "industries",
+            label: "Industries",
+            subLinks: [
+              {
+                label: "Banking & Financial Services",
+                href: "/industries"
+              },
+              {
+                label: "Insurance",
+                href: "/industries"
+              },
+              {
+                label: "Capital Markets",
+                href: "/industries"
+              },
+              {
+                label: "FinTech",
+                href: "/industries"
+              },
+              {
+                label: "Government & PSU",
+                href: "/industries"
+              },
+              {
+                label: "Healthcare",
+                href: "/industries"
+              },
+              {
+                label: "Retail & E-Commerce",
+                href: "/industries"
+              },
+              {
+                label: "Telecom",
+                href: "/industries"
+              },
+              {
+                label: "Manufacturing",
+                href: "/industries"
+              },
+              {
+                label: "Logistics",
+                href: "/industries"
+              },
+              {
+                label: "Education",
+                href: "/industries"
+              },
+              {
+                label: "Travel & Hospitality",
+                href: "/industries"
+              }
+            ]
+          }
+        ]
       },
       "Who we are": {
-            title: "Who we are",
-            description: "We are a team of world-class engineers and innovators working on the hardest problems in enterprise automation.",
-            linkText: "Learn about us",
-            linkHref: "/who-we-are",
-            categories: [
-                  {
-                        id: "about",
-                        label: "About Us",
-                        subLinks: [
-                              {
-                                    label: "About Us",
-                                    href: "/who-we-are#about"
-                              },
-                              {
-                                    label: "Leadership",
-                                    href: "/who-we-are#leadership"
-                              },
-                              {
-                                    label: "Our Team",
-                                    href: "/who-we-are#team"
-                              },
-                              {
-                                    label: "Community",
-                                    href: "/who-we-are#community"
-                              }
-                        ]
-                  },
-                  {
-                        id: "leader",
-                        label: "Leadership",
-                        subLinks: [
-                              {
-                                    label: "About Us",
-                                    href: "/who-we-are#about"
-                              },
-                              {
-                                    label: "Leadership",
-                                    href: "/who-we-are#leadership"
-                              },
-                              {
-                                    label: "Our Team",
-                                    href: "/who-we-are#team"
-                              },
-                              {
-                                    label: "Community",
-                                    href: "/who-we-are#community"
-                              }
-                        ]
-                  },
-                  {
-                        id: "team",
-                        label: "Our Team",
-                        subLinks: [
-                              {
-                                    label: "About Us",
-                                    href: "/who-we-are#about"
-                              },
-                              {
-                                    label: "Leadership",
-                                    href: "/who-we-are#leadership"
-                              },
-                              {
-                                    label: "Our Team",
-                                    href: "/who-we-are#team"
-                              },
-                              {
-                                    label: "Community",
-                                    href: "/who-we-are#community"
-                              }
-                        ]
-                  },
-                  {
-                        id: "community",
-                        label: "Community",
-                        subLinks: [
-                              {
-                                    label: "Community",
-                                    href: "/who-we-are#community"
-                              },
-                              {
-                                    label: "Leadership",
-                                    href: "/who-we-are#leadership"
-                              },
-                              {
-                                    label: "Our Team",
-                                    href: "/who-we-are#team"
-                              },
-                              {
-                                    label: "Community",
-                                    href: "/who-we-are#community"
-                              }
-                        ]
-                  }
+        title: "Who we are",
+        description: "We are a team of world-class engineers and innovators working on the hardest problems in enterprise automation.",
+        linkText: "Learn about us",
+        linkHref: "/who-we-are",
+        categories: [
+          {
+            id: "about",
+            label: "About Us",
+            subLinks: [
+              {
+                label: "About Us",
+                href: "/about"
+              },
+              {
+                label: "Leadership",
+                href: "/leadership"
+              },
+              {
+                label: "Our Team",
+                href: "/team"
+              },
+              {
+                label: "Community",
+                href: "/community"
+              }
             ]
+          },
+          {
+            id: "leader",
+            label: "Leadership",
+            subLinks: [
+              {
+                label: "About Us",
+                href: "/about"
+              },
+              {
+                label: "Leadership",
+                href: "/leadership"
+              },
+              {
+                label: "Our Team",
+                href: "/team"
+              },
+              {
+                label: "Community",
+                href: "/community"
+              }
+            ]
+          },
+          {
+            id: "team",
+            label: "Our Team",
+            subLinks: [
+              {
+                label: "About Us",
+                href: "/about"
+              },
+              {
+                label: "Leadership",
+                href: "/leadership"
+              },
+              {
+                label: "Our Team",
+                href: "/team"
+              },
+              {
+                label: "Community",
+                href: "/community"
+              }
+            ]
+          },
+          {
+            id: "community",
+            label: "Community",
+            subLinks: [
+              {
+                label: "About Us",
+                href: "/about"
+              },
+              {
+                label: "Leadership",
+                href: "/leadership"
+              },
+              {
+                label: "Our Team",
+                href: "/team"
+              },
+              {
+                label: "Community",
+                href: "/community"
+              }
+            ]
+          }
+        ]
       },
       Newsrooms: {
-            title: "Newsrooms",
-            description: "Stay updated with our latest press releases, events, awards, and customer stories.",
-            linkText: "Go to Newsrooms",
-            linkHref: "/newsrooms",
-            categories: [
-                  {
-                        id: "press-releases",
-                        label: "Press Releases",
-                        subLinks: [
-                              {
-                                    label: "Latest Announcements",
-                                    href: "/newsrooms"
-                              },
-                              {
-                                    label: "Company News",
-                                    href: "/newsrooms"
-                              },
-                              {
-                                    label: "Archived Releases",
-                                    href: "/newsrooms"
-                              }
-                        ]
-                  },
-                  {
-                        id: "events",
-                        label: "Events",
-                        subLinks: [
-                              {
-                                    label: "Upcoming Events",
-                                    href: "/newsrooms"
-                              },
-                              {
-                                    label: "Past Webinars",
-                                    href: "/newsrooms"
-                              },
-                              {
-                                    label: "Annual Conferences",
-                                    href: "/newsrooms"
-                              }
-                        ]
-                  },
-                  {
-                        id: "awards-recognition",
-                        label: "Awards & Recognition",
-                        subLinks: [
-                              {
-                                    label: "Industry Awards",
-                                    href: "/newsrooms"
-                              },
-                              {
-                                    label: "Certifications",
-                                    href: "/newsrooms"
-                              },
-                              {
-                                    label: "Partner Accolades",
-                                    href: "/newsrooms"
-                              }
-                        ]
-                  },
-                  {
-                        id: "industry-insights",
-                        label: "Industry Insights",
-                        subLinks: [
-                              {
-                                    label: "Tech Trends",
-                                    href: "/newsrooms"
-                              },
-                              {
-                                    label: "Market Analysis",
-                                    href: "/newsrooms"
-                              },
-                              {
-                                    label: "Expert Opinions",
-                                    href: "/newsrooms"
-                              }
-                        ]
-                  },
-                  {
-                        id: "media-coverage",
-                        label: "Media Coverage",
-                        subLinks: [
-                              {
-                                    label: "In the News",
-                                    href: "/newsrooms"
-                              },
-                              {
-                                    label: "Press Mentions",
-                                    href: "/newsrooms"
-                              },
-                              {
-                                    label: "Interviews",
-                                    href: "/newsrooms"
-                              }
-                        ]
-                  },
-                  {
-                        id: "podcasts-webinars",
-                        label: "Podcasts & Webinars",
-                        subLinks: [
-                              {
-                                    label: "Tech Talks",
-                                    href: "/newsrooms"
-                              },
-                              {
-                                    label: "Leadership Series",
-                                    href: "/newsrooms"
-                              },
-                              {
-                                    label: "Guest Speakers",
-                                    href: "/newsrooms"
-                              }
-                        ]
-                  },
-                  {
-                        id: "customer-stories",
-                        label: "Customer Stories",
-                        subLinks: [
-                              {
-                                    label: "Case Studies",
-                                    href: "/newsrooms"
-                              },
-                              {
-                                    label: "Success Stories",
-                                    href: "/newsrooms"
-                              },
-                              {
-                                    label: "Client Interviews",
-                                    href: "/newsrooms"
-                              }
-                        ]
-                  },
-                  {
-                        id: "success-metrics",
-                        label: "Success Metrics",
-                        subLinks: [
-                              {
-                                    label: "ROI Reports",
-                                    href: "/newsrooms"
-                              },
-                              {
-                                    label: "Performance Data",
-                                    href: "/newsrooms"
-                              },
-                              {
-                                    label: "Impact Studies",
-                                    href: "/newsrooms"
-                              }
-                        ]
-                  },
-                  {
-                        id: "transformation-journeys",
-                        label: "Transformation Journeys",
-                        subLinks: [
-                              {
-                                    label: "Digital Transformation",
-                                    href: "/newsrooms"
-                              },
-                              {
-                                    label: "Agile Adoption",
-                                    href: "/newsrooms"
-                              },
-                              {
-                                    label: "Cloud Migration",
-                                    href: "/newsrooms"
-                              }
-                        ]
-                  }
+        title: "Newsrooms",
+        description: "Stay updated with our latest press releases, events, awards, and customer stories.",
+        linkText: "Go to Newsrooms",
+        linkHref: "/newsrooms",
+        categories: [
+          {
+            id: "press-releases",
+            label: "Press Releases",
+            subLinks: [
+              {
+                label: "Latest Announcements",
+                href: "/newsrooms"
+              },
+              {
+                label: "Company News",
+                href: "/newsrooms"
+              },
+              {
+                label: "Archived Releases",
+                href: "/newsrooms"
+              }
             ]
+          },
+          {
+            id: "events",
+            label: "Events",
+            subLinks: [
+              {
+                label: "Upcoming Events",
+                href: "/newsrooms"
+              },
+              {
+                label: "Past Webinars",
+                href: "/newsrooms"
+              },
+              {
+                label: "Annual Conferences",
+                href: "/newsrooms"
+              }
+            ]
+          },
+          {
+            id: "awards-recognition",
+            label: "Awards & Recognition",
+            subLinks: [
+              {
+                label: "Industry Awards",
+                href: "/newsrooms"
+              },
+              {
+                label: "Certifications",
+                href: "/newsrooms"
+              },
+              {
+                label: "Partner Accolades",
+                href: "/newsrooms"
+              }
+            ]
+          },
+          {
+            id: "industry-insights",
+            label: "Industry Insights",
+            subLinks: [
+              {
+                label: "Tech Trends",
+                href: "/newsrooms"
+              },
+              {
+                label: "Market Analysis",
+                href: "/newsrooms"
+              },
+              {
+                label: "Expert Opinions",
+                href: "/newsrooms"
+              }
+            ]
+          },
+          {
+            id: "media-coverage",
+            label: "Media Coverage",
+            subLinks: [
+              {
+                label: "In the News",
+                href: "/newsrooms"
+              },
+              {
+                label: "Press Mentions",
+                href: "/newsrooms"
+              },
+              {
+                label: "Interviews",
+                href: "/newsrooms"
+              }
+            ]
+          },
+          {
+            id: "podcasts-webinars",
+            label: "Podcasts & Webinars",
+            subLinks: [
+              {
+                label: "Tech Talks",
+                href: "/newsrooms"
+              },
+              {
+                label: "Leadership Series",
+                href: "/newsrooms"
+              },
+              {
+                label: "Guest Speakers",
+                href: "/newsrooms"
+              }
+            ]
+          },
+          {
+            id: "customer-stories",
+            label: "Customer Stories",
+            subLinks: [
+              {
+                label: "Case Studies",
+                href: "/newsrooms"
+              },
+              {
+                label: "Success Stories",
+                href: "/newsrooms"
+              },
+              {
+                label: "Client Interviews",
+                href: "/newsrooms"
+              }
+            ]
+          },
+          {
+            id: "success-metrics",
+            label: "Success Metrics",
+            subLinks: [
+              {
+                label: "ROI Reports",
+                href: "/newsrooms"
+              },
+              {
+                label: "Performance Data",
+                href: "/newsrooms"
+              },
+              {
+                label: "Impact Studies",
+                href: "/newsrooms"
+              }
+            ]
+          },
+          {
+            id: "transformation-journeys",
+            label: "Transformation Journeys",
+            subLinks: [
+              {
+                label: "Digital Transformation",
+                href: "/newsrooms"
+              },
+              {
+                label: "Agile Adoption",
+                href: "/newsrooms"
+              },
+              {
+                label: "Cloud Migration",
+                href: "/newsrooms"
+              }
+            ]
+          }
+        ]
       }
-},
+    },
   },
   footer: {
     tagline:
@@ -1057,6 +1097,52 @@ export const defaultContent: SiteContent = {
     socialTwitter: "https://twitter.com/apmosys",
     socialFacebook: "https://facebook.com/apmosys",
   },
+  about: {
+    hero: {
+      badge: "Who We Are",
+      heading: "Engineering Innovation at Enterprise Scale",
+      subheading:
+        "For more than a decade, ApMoSys has helped enterprises accelerate transformation through intelligent automation, digital assurance, and AI-powered engineering solutions.",
+      ctaPrimary: "Meet Our Leadership",
+      ctaSecondary: "Join Our Team",
+    },
+
+    story: {
+      sectionLabel: "Our Story",
+      heading: "Built on Engineering Excellence.",
+      paragraph1:
+        "Founded with a vision to redefine software quality and enterprise automation, ApMoSys has grown into a trusted technology partner serving organizations across industries.",
+
+      paragraph2:
+        "Our expertise spans AI engineering, digital assurance, cloud transformation, observability, and intelligent automation, helping enterprises deliver innovation faster and more reliably.",
+    },
+
+    mission: {
+      heading: "Our Mission",
+      description:
+        "To empower enterprises with intelligent engineering solutions that accelerate innovation while ensuring quality, security, and resilience."
+    },
+
+    vision: {
+      heading: "Our Vision",
+      description:
+        "To become the global benchmark for enterprise automation, quality engineering, and AI-driven digital transformation."
+    },
+
+    stats: {
+      stat1Value: "15+",
+      stat1Label: "Years of Excellence",
+
+      stat2Value: "500+",
+      stat2Label: "Enterprise Projects",
+
+      stat3Value: "200+",
+      stat3Label: "Engineering Experts",
+
+      stat4Value: "40+",
+      stat4Label: "Countries Served",
+    }
+  },
 };
 
 interface ContentState {
@@ -1083,12 +1169,12 @@ interface ContentState {
   addContactFAQItem: () => void;
   deleteContactFAQItem: (id: string) => void;
   toggleNavbarLink: (index: number) => void;
-  updateNavbarLink: (index: number, updates: Partial<{label: string, href: string}>) => void;
+  updateNavbarLink: (index: number, updates: Partial<{ label: string, href: string }>) => void;
   moveNavbarLink: (index: number, direction: "up" | "down") => void;
   toggleFooterLink: (section: "companyLinks" | "coreSystemsLinks", index: number) => void;
-  updateFooterLink: (section: "companyLinks" | "coreSystemsLinks", index: number, updates: Partial<{label: string, href: string}>) => void;
+  updateFooterLink: (section: "companyLinks" | "coreSystemsLinks", index: number, updates: Partial<{ label: string, href: string }>) => void;
   moveFooterLink: (section: "companyLinks" | "coreSystemsLinks", index: number, direction: "up" | "down") => void;
-  updateMegaMenuSubLink: (megaMenuKey: string, categoryIndex: number, subLinkIndex: number, updates: Partial<{label: string, href: string}>) => void;
+  updateMegaMenuSubLink: (megaMenuKey: string, categoryIndex: number, subLinkIndex: number, updates: Partial<{ label: string, href: string }>) => void;
   moveMegaMenuSubLink: (megaMenuKey: string, categoryIndex: number, subLinkIndex: number, direction: "up" | "down") => void;
   toggleSectionVisibility: (sectionId: string) => void;
 }
@@ -1470,7 +1556,7 @@ export const useContentStore = create<ContentState>()(
             isDirty: true
           };
         }),
-      updateNavbarLink: (index: number, updates: Partial<{label: string, href: string}>) =>
+      updateNavbarLink: (index: number, updates: Partial<{ label: string, href: string }>) =>
         set((state) => {
           const newLinks = [...state.content.navbar.links];
           newLinks[index] = { ...newLinks[index], ...updates };
@@ -1500,7 +1586,7 @@ export const useContentStore = create<ContentState>()(
             isDirty: true
           };
         }),
-      updateFooterLink: (section: "companyLinks" | "coreSystemsLinks", index: number, updates: Partial<{label: string, href: string}>) =>
+      updateFooterLink: (section: "companyLinks" | "coreSystemsLinks", index: number, updates: Partial<{ label: string, href: string }>) =>
         set((state) => {
           const newLinks = [...state.content.footer[section]];
           newLinks[index] = { ...newLinks[index], ...updates };
@@ -1553,7 +1639,7 @@ export const useContentStore = create<ContentState>()(
             isDirty: true
           };
         }),
-      updateMegaMenuSubLink: (megaMenuKey: string, categoryIndex: number, subLinkIndex: number, updates: Partial<{label: string, href: string}>) =>
+      updateMegaMenuSubLink: (megaMenuKey: string, categoryIndex: number, subLinkIndex: number, updates: Partial<{ label: string, href: string }>) =>
         set((state) => {
           const megaMenuData = state.content.navbar.megaMenuData;
           if (!megaMenuData || !megaMenuData[megaMenuKey]) return state;
