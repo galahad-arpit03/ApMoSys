@@ -95,6 +95,7 @@ export interface CareerJob {
 export interface MegaMenuCategory {
   id: string;
   label: string;
+  href?: string;
   subLinks: { label: string; href: string }[];
 }
 
@@ -537,162 +538,171 @@ export const defaultContent: SiteContent = {
           {
             id: "press-releases",
             label: "Press Releases",
+            href: "/newsrooms/press-releases",
             subLinks: [
               {
                 label: "Latest Announcements",
-                href: "/newsrooms"
+                href: "/newsrooms/press-releases#latest-announcements"
               },
               {
                 label: "Company News",
-                href: "/newsrooms"
+                href: "/newsrooms/press-releases#company-news"
               },
               {
                 label: "Archived Releases",
-                href: "/newsrooms"
+                href: "/newsrooms/press-releases#archived-releases"
               }
             ]
           },
           {
             id: "events",
             label: "Events",
+            href: "/newsrooms/events",
             subLinks: [
               {
                 label: "Upcoming Events",
-                href: "/newsrooms"
+                href: "/newsrooms/events#upcoming-events"
               },
               {
                 label: "Past Webinars",
-                href: "/newsrooms"
+                href: "/newsrooms/events#past-webinars"
               },
               {
                 label: "Annual Conferences",
-                href: "/newsrooms"
+                href: "/newsrooms/events#annual-conferences"
               }
             ]
           },
           {
             id: "awards-recognition",
             label: "Awards & Recognition",
+            href: "/newsrooms/awards-recognition",
             subLinks: [
               {
                 label: "Industry Awards",
-                href: "/newsrooms"
+                href: "/newsrooms/awards-recognition#industry-awards"
               },
               {
                 label: "Certifications",
-                href: "/newsrooms"
+                href: "/newsrooms/awards-recognition#certifications"
               },
               {
                 label: "Partner Accolades",
-                href: "/newsrooms"
+                href: "/newsrooms/awards-recognition#partner-accolades"
               }
             ]
           },
           {
             id: "industry-insights",
             label: "Industry Insights",
+            href: "/newsrooms/industry-insights",
             subLinks: [
               {
                 label: "Tech Trends",
-                href: "/newsrooms"
+                href: "/newsrooms/industry-insights#tech-trends"
               },
               {
                 label: "Market Analysis",
-                href: "/newsrooms"
+                href: "/newsrooms/industry-insights#market-analysis"
               },
               {
                 label: "Expert Opinions",
-                href: "/newsrooms"
+                href: "/newsrooms/industry-insights#expert-opinions"
               }
             ]
           },
           {
             id: "media-coverage",
             label: "Media Coverage",
+            href: "/newsrooms/media-coverage",
             subLinks: [
               {
                 label: "In the News",
-                href: "/newsrooms"
+                href: "/newsrooms/media-coverage#in-the-news"
               },
               {
                 label: "Press Mentions",
-                href: "/newsrooms"
+                href: "/newsrooms/media-coverage#press-mentions"
               },
               {
                 label: "Interviews",
-                href: "/newsrooms"
+                href: "/newsrooms/media-coverage#interviews"
               }
             ]
           },
           {
             id: "podcasts-webinars",
             label: "Podcasts & Webinars",
+            href: "/newsrooms/podcasts-webinars",
             subLinks: [
               {
                 label: "Tech Talks",
-                href: "/newsrooms"
+                href: "/newsrooms/podcasts-webinars#tech-talks"
               },
               {
                 label: "Leadership Series",
-                href: "/newsrooms"
+                href: "/newsrooms/podcasts-webinars#leadership-series"
               },
               {
                 label: "Guest Speakers",
-                href: "/newsrooms"
+                href: "/newsrooms/podcasts-webinars#guest-speakers"
               }
             ]
           },
           {
             id: "customer-stories",
             label: "Customer Stories",
+            href: "/newsrooms/customer-stories",
             subLinks: [
               {
                 label: "Case Studies",
-                href: "/newsrooms"
+                href: "/newsrooms/customer-stories#case-studies"
               },
               {
                 label: "Success Stories",
-                href: "/newsrooms"
+                href: "/newsrooms/customer-stories#success-stories"
               },
               {
                 label: "Client Interviews",
-                href: "/newsrooms"
+                href: "/newsrooms/customer-stories#client-interviews"
               }
             ]
           },
           {
             id: "success-metrics",
             label: "Success Metrics",
+            href: "/newsrooms/success-metrics",
             subLinks: [
               {
                 label: "ROI Reports",
-                href: "/newsrooms"
+                href: "/newsrooms/success-metrics#roi-reports"
               },
               {
                 label: "Performance Data",
-                href: "/newsrooms"
+                href: "/newsrooms/success-metrics#performance-data"
               },
               {
                 label: "Impact Studies",
-                href: "/newsrooms"
+                href: "/newsrooms/success-metrics#impact-studies"
               }
             ]
           },
           {
             id: "transformation-journeys",
             label: "Transformation Journeys",
+            href: "/newsrooms/transformation-journeys",
             subLinks: [
               {
                 label: "Digital Transformation",
-                href: "/newsrooms"
+                href: "/newsrooms/transformation-journeys#digital-transformation"
               },
               {
                 label: "Agile Adoption",
-                href: "/newsrooms"
+                href: "/newsrooms/transformation-journeys#agile-adoption"
               },
               {
                 label: "Cloud Migration",
-                href: "/newsrooms"
+                href: "/newsrooms/transformation-journeys#cloud-migration"
               }
             ]
           }

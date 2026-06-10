@@ -248,17 +248,13 @@ export default function Navbar() {
                   <div className="lg:col-span-3 flex flex-col border-t border-[#3A3A3A]">
                     {megaMenuData[activeDropdown]?.categories?.map((category) => {
                       const isActive = activeCategory === category.id;
+                      const categoryClasses = `flex items-center justify-between cursor-pointer border-b border-[#3A3A3A] px-4 py-3 transition-colors duration-200 ${isActive
+                        ? "bg-[#333535] text-[#FFFFFF]"
+                        : "text-[#C8C8C8] hover:text-[#FFFFFF]"
+                        }`;
 
-                      return (
-                        <div
-                          key={category.id}
-                          onMouseEnter={() => setActiveCategory(category.id)}
-                          onClick={() => setActiveCategory(category.id)}
-                          className={`flex items-center justify-between cursor-pointer border-b border-[#3A3A3A] px-4 py-3 transition-colors duration-200 ${isActive
-                            ? "bg-[#333535] text-[#FFFFFF]"
-                            : "text-[#C8C8C8] hover:text-[#FFFFFF]"
-                            }`}
-                        >
+                      const categoryContent = (
+                        <>
                           <span className="text-[13px] font-medium">
                             {category.label}
                           </span>
@@ -279,6 +275,27 @@ export default function Navbar() {
                               d="M9 5l7 7-7 7"
                             />
                           </svg>
+                        </>
+                      );
+
+                      return category.href ? (
+                        <Link
+                          key={category.id}
+                          href={category.href}
+                          onMouseEnter={() => setActiveCategory(category.id)}
+                          onClick={() => setActiveDropdown(null)}
+                          className={categoryClasses}
+                        >
+                          {categoryContent}
+                        </Link>
+                      ) : (
+                        <div
+                          key={category.id}
+                          onMouseEnter={() => setActiveCategory(category.id)}
+                          onClick={() => setActiveCategory(category.id)}
+                          className={categoryClasses}
+                        >
+                          {categoryContent}
                         </div>
                       );
                     })}
