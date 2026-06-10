@@ -6,18 +6,18 @@ export default function CompanyStory() {
   const { content } = useContentStore();
 
   return (
-    <section className="py-24 border-b border-[#1F1F1F]">
+    <section className="py-16 sm:py-20 lg:py-24 border-b border-[#1F1F1F]">
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-        <div className="grid lg:grid-cols-2 gap-16">
+        <div className="grid gap-10 lg:grid-cols-2 lg:gap-16">
 
           <div>
             <span className="text-primary-red text-xs uppercase font-bold">
               {content.about.story.sectionLabel}
             </span>
 
-            <h2 className="font-heading text-5xl font-extrabold mt-4 mb-8">
+            <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-tight mt-4 mb-8">
               {content.about.story.heading}
             </h2>
 
@@ -30,7 +30,7 @@ export default function CompanyStory() {
             </p>
           </div>
 
-          <div className="space-y-6">
+          <div className="space-y-5 sm:space-y-6">
 
             {[
               "2009 - Company Founded",
@@ -41,7 +41,7 @@ export default function CompanyStory() {
             ].map((item,index)=>(
               <div
                 key={index}
-                className="border-l-2 border-primary-red pl-6 py-2"
+                className="border-l-2 border-primary-red pl-4 sm:pl-6 py-2"
               >
                 <p className="font-semibold">{item}</p>
               </div>

@@ -28,18 +28,18 @@ export default function StatsSection() {
   ];
 
   return (
-    <section className="py-24">
+    <section className="py-16 sm:py-20 lg:py-24">
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4 lg:gap-6">
 
           {items.map((item,index)=>(
             <div
               key={index}
-              className="bg-[#1F1F1F] border border-[#3A3A3A] p-8 rounded-xl text-center"
+              className="bg-[#1F1F1F] border border-[#3A3A3A] p-6 sm:p-8 rounded-xl text-center"
             >
-              <h3 className="text-primary-red text-5xl font-heading font-extrabold mb-4">
+              <h3 className="text-primary-red text-4xl sm:text-5xl font-heading font-extrabold mb-4">
                 {item.value}
               </h3>
 

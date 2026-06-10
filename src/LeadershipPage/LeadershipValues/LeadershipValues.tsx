@@ -25,19 +25,19 @@ const values = [
 
 export default function LeadershipValues() {
   return (
-    <section className="py-24">
-      <div className="max-w-7xl mx-auto px-6">
+    <section className="py-16 sm:py-20 lg:py-24">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-        <h2 className="text-4xl font-bold mb-14">
+        <h2 className="text-3xl sm:text-4xl font-bold mb-8 sm:mb-14">
           Leadership Principles
         </h2>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
 
           {values.map((value) => (
             <div
               key={value.title}
-              className="border border-[#2A2A2A] bg-[#181818] p-8 rounded-xl"
+              className="border border-[#2A2A2A] bg-[#181818] p-6 sm:p-8 rounded-xl"
             >
               <h3 className="text-xl font-semibold mb-4">
                 {value.title}

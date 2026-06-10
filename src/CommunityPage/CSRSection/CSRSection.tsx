@@ -2,27 +2,27 @@
 
 export default function CSRSection() {
   return (
-    <section className="py-24 border-b border-[#222]">
+    <section className="py-16 sm:py-20 lg:py-24 border-b border-[#222]">
 
-      <div className="max-w-7xl mx-auto px-6">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-        <div className="text-center mb-16">
+        <div className="text-center mb-10 sm:mb-16">
 
-          <span className="text-[#B40001] uppercase tracking-[3px]">
+          <span className="text-[#B40001] uppercase tracking-[0.2em] text-xs font-bold">
             Corporate Social Responsibility
           </span>
 
-          <h2 className="text-5xl font-bold mt-4">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight mt-4">
             Creating Meaningful Impact
           </h2>
 
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid gap-6 md:grid-cols-3 lg:gap-8">
 
-          <div className="bg-[#161616] border border-[#2A2A2A] rounded-2xl p-8">
+          <div className="bg-[#161616] border border-[#2A2A2A] rounded-xl p-6 sm:p-8">
 
-            <div className="text-4xl font-bold text-[#B40001]">
+            <div className="text-2xl sm:text-3xl lg:text-4xl font-bold text-[#B40001] break-words">
               Education
             </div>
 
@@ -33,9 +33,9 @@ export default function CSRSection() {
 
           </div>
 
-          <div className="bg-[#161616] border border-[#2A2A2A] rounded-2xl p-8">
+          <div className="bg-[#161616] border border-[#2A2A2A] rounded-xl p-6 sm:p-8">
 
-            <div className="text-4xl font-bold text-[#B40001]">
+            <div className="text-2xl sm:text-3xl lg:text-4xl font-bold text-[#B40001] break-words">
               Sustainability
             </div>
 
@@ -46,9 +46,9 @@ export default function CSRSection() {
 
           </div>
 
-          <div className="bg-[#161616] border border-[#2A2A2A] rounded-2xl p-8">
+          <div className="bg-[#161616] border border-[#2A2A2A] rounded-xl p-6 sm:p-8">
 
-            <div className="text-4xl font-bold text-[#B40001]">
+            <div className="text-2xl sm:text-3xl lg:text-4xl font-bold text-[#B40001] break-words">
               Inclusion
             </div>
 

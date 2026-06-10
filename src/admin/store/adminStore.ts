@@ -39,6 +39,13 @@ export interface CareerItem {
   icon: string;
 }
 
+export interface WhoWeAreItem {
+  id: string;
+  label: string;
+  description: string;
+  href: string;
+}
+
 export interface IndustryGridItem {
   id: string;
   title: string;
@@ -96,7 +103,10 @@ export interface MegaMenuItem {
   description: string;
   linkText: string;
   linkHref: string;
-  categories: MegaMenuCategory[];
+
+  categories?: MegaMenuCategory[];
+
+  menuItems?: WhoWeAreItem[];
 }
 
 export interface SiteContent {
@@ -482,99 +492,41 @@ export const defaultContent: SiteContent = {
       },
       "Who we are": {
         title: "Who we are",
-        description: "We are a team of world-class engineers and innovators working on the hardest problems in enterprise automation.",
+        description:
+          "We are a team of world-class engineers and innovators working on the hardest problems in enterprise automation.",
         linkText: "Learn about us",
         linkHref: "/who-we-are",
-        categories: [
+
+        menuItems: [
           {
             id: "about",
             label: "About Us",
-            subLinks: [
-              {
-                label: "About Us",
-                href: "/about"
-              },
-              {
-                label: "Leadership",
-                href: "/leadership"
-              },
-              {
-                label: "Our Team",
-                href: "/team"
-              },
-              {
-                label: "Community",
-                href: "/community"
-              }
-            ]
+            description:
+              "Learn about ApMoSys, our journey, mission, vision and engineering excellence.",
+            href: "/about",
           },
           {
-            id: "leader",
+            id: "leadership",
             label: "Leadership",
-            subLinks: [
-              {
-                label: "About Us",
-                href: "/about"
-              },
-              {
-                label: "Leadership",
-                href: "/leadership"
-              },
-              {
-                label: "Our Team",
-                href: "/team"
-              },
-              {
-                label: "Community",
-                href: "/community"
-              }
-            ]
+            description:
+              "Meet the leaders shaping our strategy and driving innovation across the organization.",
+            href: "/leadership",
           },
           {
             id: "team",
             label: "Our Team",
-            subLinks: [
-              {
-                label: "About Us",
-                href: "/about"
-              },
-              {
-                label: "Leadership",
-                href: "/leadership"
-              },
-              {
-                label: "Our Team",
-                href: "/team"
-              },
-              {
-                label: "Community",
-                href: "/community"
-              }
-            ]
+            description:
+              "Discover the talented engineers, architects and specialists behind our success.",
+            href: "/team",
           },
           {
             id: "community",
             label: "Community",
-            subLinks: [
-              {
-                label: "About Us",
-                href: "/about"
-              },
-              {
-                label: "Leadership",
-                href: "/leadership"
-              },
-              {
-                label: "Our Team",
-                href: "/team"
-              },
-              {
-                label: "Community",
-                href: "/community"
-              }
-            ]
-          }
-        ]
+            description:
+              "Explore our initiatives, CSR programs and community engagement efforts.",
+            href: "/community",
+          },
+        ],
       },
       Newsrooms: {
         title: "Newsrooms",
@@ -1639,50 +1591,111 @@ export const useContentStore = create<ContentState>()(
             isDirty: true
           };
         }),
-      updateMegaMenuSubLink: (megaMenuKey: string, categoryIndex: number, subLinkIndex: number, updates: Partial<{ label: string, href: string }>) =>
+      updateMegaMenuSubLink: (
+        megaMenuKey: string,
+        categoryIndex: number,
+        subLinkIndex: number,
+        updates: Partial<{ label: string; href: string }>
+      ) =>
         set((state) => {
           const megaMenuData = state.content.navbar.megaMenuData;
-          if (!megaMenuData || !megaMenuData[megaMenuKey]) return state;
+
+          if (!megaMenuData || !megaMenuData[megaMenuKey]) {
+            return state;
+          }
+
           const newMegaMenuData = { ...megaMenuData };
-          const category = { ...newMegaMenuData[megaMenuKey].categories[categoryIndex] };
+
+          const categories =
+            newMegaMenuData[megaMenuKey].categories;
+
+          if (!categories) {
+            return state;
+          }
+
+          const category = {
+            ...categories[categoryIndex],
+          };
+
           const subLinks = [...category.subLinks];
-          subLinks[subLinkIndex] = { ...subLinks[subLinkIndex], ...updates };
+
+          subLinks[subLinkIndex] = {
+            ...subLinks[subLinkIndex],
+            ...updates,
+          };
+
           category.subLinks = subLinks;
-          newMegaMenuData[megaMenuKey].categories[categoryIndex] = category;
+
+          categories[categoryIndex] = category;
+
           return {
             content: {
               ...state.content,
               navbar: {
                 ...state.content.navbar,
-                megaMenuData: newMegaMenuData
-              }
+                megaMenuData: newMegaMenuData,
+              },
             },
-            isDirty: true
+            isDirty: true,
           };
         }),
-      moveMegaMenuSubLink: (megaMenuKey: string, categoryIndex: number, subLinkIndex: number, direction: "up" | "down") =>
+
+      moveMegaMenuSubLink: (
+        megaMenuKey: string,
+        categoryIndex: number,
+        subLinkIndex: number,
+        direction: "up" | "down"
+      ) =>
         set((state) => {
           const megaMenuData = state.content.navbar.megaMenuData;
-          if (!megaMenuData || !megaMenuData[megaMenuKey]) return state;
-          const newMegaMenuData = { ...megaMenuData };
-          const category = { ...newMegaMenuData[megaMenuKey].categories[categoryIndex] };
-          const subLinks = [...category.subLinks];
-          if (direction === "up" && subLinkIndex > 0) {
-            [subLinks[subLinkIndex - 1], subLinks[subLinkIndex]] = [subLinks[subLinkIndex], subLinks[subLinkIndex - 1]];
-          } else if (direction === "down" && subLinkIndex < subLinks.length - 1) {
-            [subLinks[subLinkIndex + 1], subLinks[subLinkIndex]] = [subLinks[subLinkIndex], subLinks[subLinkIndex + 1]];
+
+          if (!megaMenuData || !megaMenuData[megaMenuKey]) {
+            return state;
           }
+
+          const newMegaMenuData = { ...megaMenuData };
+
+          const categories =
+            newMegaMenuData[megaMenuKey].categories;
+
+          if (!categories) {
+            return state;
+          }
+
+          const category = {
+            ...categories[categoryIndex],
+          };
+
+          const subLinks = [...category.subLinks];
+
+          if (direction === "up" && subLinkIndex > 0) {
+            [subLinks[subLinkIndex - 1], subLinks[subLinkIndex]] = [
+              subLinks[subLinkIndex],
+              subLinks[subLinkIndex - 1],
+            ];
+          } else if (
+            direction === "down" &&
+            subLinkIndex < subLinks.length - 1
+          ) {
+            [subLinks[subLinkIndex + 1], subLinks[subLinkIndex]] = [
+              subLinks[subLinkIndex],
+              subLinks[subLinkIndex + 1],
+            ];
+          }
+
           category.subLinks = subLinks;
-          newMegaMenuData[megaMenuKey].categories[categoryIndex] = category;
+
+          categories[categoryIndex] = category;
+
           return {
             content: {
               ...state.content,
               navbar: {
                 ...state.content.navbar,
-                megaMenuData: newMegaMenuData
-              }
+                megaMenuData: newMegaMenuData,
+              },
             },
-            isDirty: true
+            isDirty: true,
           };
         }),
       toggleSectionVisibility: (sectionId: string) =>

@@ -6,28 +6,63 @@ import { useContentStore } from "@/src/admin/store/adminStore";
 
 import { MegaMenuCategory, MegaMenuItem } from "@/src/admin/store/adminStore";
 
-const getDropdownItems = (label: string, megaMenuData?: Record<string, MegaMenuItem>): {label: string, href: string}[] | null => {
+const getDropdownItems = (
+  label: string,
+  megaMenuData?: Record<string, MegaMenuItem>
+): { label: string; href: string }[] | null => {
   if (!megaMenuData) return null;
-  if (megaMenuData[label]) {
-    return megaMenuData[label].categories.map((c: MegaMenuCategory) => ({ label: c.label, href: megaMenuData[label].linkHref }));
+
+  const menu = megaMenuData[label];
+
+  if (menu) {
+    // New Who We Are structure
+    if (
+      menu.title === "Who we are" &&
+      menu.categories &&
+      menu.categories.length > 0
+    ) {
+      return menu.categories.map((item: any) => ({
+        label: item.label,
+        href: item.href,
+      }));
+    }
+
+    // Old structure
+    if (menu.categories) {
+      return menu.categories.map((c: any) => ({
+        label: c.label,
+        href: menu.linkHref,
+      }));
+    }
   }
+
   for (const key in megaMenuData) {
-    const category = megaMenuData[key].categories.find((c: MegaMenuCategory) => c.label === label);
-    if (category && category.subLinks && category.subLinks.length > 0) {
+    const categories = megaMenuData[key]?.categories || [];
+
+    const category = categories.find(
+      (c: any) => c.label === label
+    );
+
+    if (
+      category &&
+      category.subLinks &&
+      category.subLinks.length > 0
+    ) {
       return category.subLinks;
     }
   }
+
   return null;
 };
 
-const FooterLinkItem = ({ link, expandedSections, toggleSection, megaMenuData }: { link: {label: string, href: string}, expandedSections: Record<string, boolean>, toggleSection: (label: string) => void, megaMenuData?: Record<string, MegaMenuItem> }) => {
+const FooterLinkItem = ({ link, expandedSections, toggleSection, megaMenuData }: { link: { label: string, href: string }, expandedSections: Record<string, boolean>, toggleSection: (label: string) => void, megaMenuData?: Record<string, MegaMenuItem> }) => {
   const dropdownItems = getDropdownItems(link.label, megaMenuData);
   const isExpanded = expandedSections[link.label];
 
   if (dropdownItems && dropdownItems.length > 0) {
     return (
       <li className="flex flex-col">
-        <button 
+        <button
           onClick={() => toggleSection(link.label)}
           className="flex items-center justify-between w-full transition-colors text-left group"
         >
@@ -38,7 +73,7 @@ const FooterLinkItem = ({ link, expandedSections, toggleSection, megaMenuData }:
         </button>
         <AnimatePresence initial={false}>
           {isExpanded && (
-            <motion.ul 
+            <motion.ul
               initial={{ height: 0, opacity: 0 }}
               animate={{ height: "auto", opacity: 1 }}
               exit={{ height: 0, opacity: 0 }}
@@ -47,8 +82,8 @@ const FooterLinkItem = ({ link, expandedSections, toggleSection, megaMenuData }:
             >
               {dropdownItems.map((item, idx) => (
                 <li key={idx}>
-                  <motion.a 
-                    href={item.href} 
+                  <motion.a
+                    href={item.href}
                     whileHover={{ x: 2, color: "var(--color-primary-red)" }}
                     className="inline-block hover:text-primary-red transition-colors text-[11px] py-0.5"
                   >
@@ -65,8 +100,8 @@ const FooterLinkItem = ({ link, expandedSections, toggleSection, megaMenuData }:
 
   return (
     <li>
-      <motion.a 
-        href={link.href} 
+      <motion.a
+        href={link.href}
         whileHover={{ x: 4, color: "var(--color-primary-red)" }}
         className="inline-block hover:text-primary-red transition-colors"
       >
@@ -84,7 +119,7 @@ export default function Footer() {
   };
 
   return (
-    <motion.footer 
+    <motion.footer
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-100px" }}
@@ -93,11 +128,11 @@ export default function Footer() {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
-          
+
           {/* Brand Block & Socials */}
           <div className="space-y-6">
             <div>
-              <motion.a 
+              <motion.a
                 href="/"
                 whileHover={{ scale: 1.02 }}
                 className="inline-block font-heading font-extrabold text-3xl tracking-normal text-[#FFFFFF] hover:text-[#FAFAFA] transition-colors"
@@ -108,7 +143,7 @@ export default function Footer() {
                 Global leaders in automated quality engineering, security validation, and intelligent digital systems optimization.
               </p>
             </div>
-            
+
             {/* Social Icons */}
             <div className="flex gap-4">
               <a href="#" className="w-8 h-8 rounded-full bg-[#1F1F1F] flex items-center justify-center text-[#A0A0A0] hover:bg-primary-red hover:text-[#FFFFFF] transition-colors">
@@ -137,7 +172,7 @@ export default function Footer() {
                 .filter((link) => link.visible !== false)
                 .map((link) => (
                   <FooterLinkItem key={link.label} link={link} expandedSections={expandedSections} toggleSection={toggleSection} megaMenuData={content.navbar.megaMenuData} />
-              ))}
+                ))}
             </ul>
           </div>
 
@@ -149,7 +184,7 @@ export default function Footer() {
                 .filter((link) => link.visible !== false)
                 .map((link) => (
                   <FooterLinkItem key={link.label} link={link} expandedSections={expandedSections} toggleSection={toggleSection} megaMenuData={content.navbar.megaMenuData} />
-              ))}
+                ))}
             </ul>
           </div>
 
@@ -170,9 +205,9 @@ export default function Footer() {
           <div className="max-w-md w-full">
             <h5 className="font-heading font-bold text-sm text-[#FAFAFA] mb-4">Stay updated on QA innovations.</h5>
             <div className="flex flex-col sm:flex-row gap-4">
-              <input 
-                type="email" 
-                placeholder="Work Email Address" 
+              <input
+                type="email"
+                placeholder="Work Email Address"
                 className="bg-[#121212] border border-[#3A3A3A] px-4 py-3 rounded-md text-sm flex-grow focus:outline-none focus:border-primary-red text-[#FAFAFA] transition-colors w-full"
               />
               <button className="bg-primary-red hover:bg-primary-hover text-[#FFFFFF] px-6 py-3 rounded-md text-sm font-bold transition-colors w-full sm:w-auto whitespace-nowrap">
