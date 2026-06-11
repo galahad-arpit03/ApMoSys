@@ -3,145 +3,279 @@
 import React from "react";
 import { motion } from "framer-motion";
 
-const containerVariants = {
-  hidden: {},
-  visible: { transition: { staggerChildren: 0.1, delayChildren: 0.1 } },
-};
-
-const fadeUp = {
-  hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: "easeOut" as const } },
-};
-
 const services = [
   {
     id: "01",
-    title: "Performance Engineering",
-    description: "End-to-end performance testing and bottleneck analysis for high-volume enterprise applications to ensure sub-second response times.",
-    icon: "M13 10V3L4 14h7v7l9-11h-7z" // Lightning bolt
+    title: "Quality Engineering",
+    description:
+      "Functional, automation, performance and security testing services designed to accelerate releases while maintaining software quality.",
+    highlights: [
+      "Test Automation",
+      "Performance Testing",
+      "Security Testing",
+    ],
   },
   {
     id: "02",
-    title: "Test Automation",
-    description: "Robust, framework-agnostic automation suites for web, mobile, and APIs to accelerate release cycles with zero regression.",
-    icon: "M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" // Check circle
+    title: "Application Development",
+    description:
+      "Enterprise-grade web, mobile and custom software development tailored to modern business requirements.",
+    highlights: [
+      "Web Applications",
+      "Mobile Apps",
+      "Custom Software",
+    ],
   },
   {
     id: "03",
-    title: "AIOps & Observability",
-    description: "Proactive, AI-driven anomaly detection and log analytics to predict and resolve production incidents before they impact users.",
-    icon: "M15 12a3 3 0 11-6 0 3 3 0 016 0z M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" // Eye
+    title: "DevOps & Cloud",
+    description:
+      "CI/CD implementation, cloud migration, infrastructure automation and platform engineering services.",
+    highlights: [
+      "AWS & Azure",
+      "Kubernetes",
+      "CI/CD Pipelines",
+    ],
   },
   {
     id: "04",
-    title: "Security & VAPT",
-    description: "Comprehensive Vulnerability Assessment and Penetration Testing to secure your architecture against emerging zero-day threats.",
-    icon: "M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" // Lock
+    title: "Infrastructure Monitoring",
+    description:
+      "Observability, AIOps, log analytics and proactive monitoring for mission-critical systems.",
+    highlights: [
+      "Observability",
+      "AIOps",
+      "Log Analytics",
+    ],
   },
   {
     id: "05",
-    title: "Data Engineering",
-    description: "Scalable ETL pipelines and data warehouse validation to ensure data integrity across complex analytics environments.",
-    icon: "M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4" // Database
+    title: "AI & Intelligent Automation",
+    description:
+      "Artificial Intelligence, machine learning and robotic process automation solutions that drive efficiency.",
+    highlights: [
+      "Machine Learning",
+      "RPA",
+      "Predictive Analytics",
+    ],
   },
   {
     id: "06",
-    title: "Digital Transformation",
-    description: "Strategic consulting for cloud migration, DevOps maturity, and modernizing monolithic architectures into resilient microservices.",
-    icon: "M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" // Server / Cloud
-  }
+    title: "Enterprise Platforms",
+    description:
+      "SAP, Salesforce, ERP and CRM implementation, modernization and support services.",
+    highlights: [
+      "SAP",
+      "Salesforce",
+      "ERP & CRM",
+    ],
+  },
 ];
 
 export default function Services() {
   return (
-    <section id="services" className="bg-[#000000] text-[#FAFAFA] py-24 border-t border-[#1F1F1F] overflow-hidden">
+    <section
+      id="services"
+      className="bg-[#0B0B0B] py-20 lg:py-28 border-t border-[#1F1F1F]"
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
+
         {/* Header */}
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
-          variants={containerVariants}
-          className="text-center max-w-3xl mx-auto mb-20"
-        >
-          <motion.span variants={fadeUp} className="text-primary-red text-xs font-bold tracking-widest uppercase mb-4 block">
-            Core Competencies
-          </motion.span>
-          <motion.h2 variants={fadeUp} className="font-heading text-4xl sm:text-5xl font-extrabold text-[#FFFFFF] mb-6 leading-tight">
-            Enterprise Solutions.
-          </motion.h2>
-          <motion.p variants={fadeUp} className="text-[#A0A0A0] text-lg leading-relaxed">
-            From zero-defect automation pipelines to real-time predictive monitoring, 
-            our services are engineered to scale with your business demands.
-          </motion.p>
-        </motion.div>
+        <div className="text-center max-w-4xl mx-auto mb-14 lg:mb-20">
+
+          <span className="text-primary-red uppercase tracking-[0.25em] sm:tracking-[0.3em] text-[10px] sm:text-xs font-semibold">
+            Services
+          </span>
+
+          <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold text-white mt-4 sm:mt-5">
+            End-to-End Technology
+            <br className="hidden sm:block" />
+            Services & Solutions
+          </h2>
+
+          <p className="mt-5 sm:mt-6 text-base sm:text-lg text-[#A0A0A0] leading-relaxed max-w-3xl mx-auto">
+            From software engineering and quality assurance to cloud,
+            observability and AI, ApMoSys delivers integrated technology
+            services that help enterprises innovate faster and operate smarter.
+          </p>
+
+        </div>
 
         {/* Services Grid */}
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
-        >
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+
           {services.map((service, index) => (
             <motion.div
               key={service.id}
-              variants={fadeUp}
-              whileHover={{ y: -8, backgroundColor: "#1F1F1F", borderColor: "#B40001" }}
-              transition={{ duration: 0.3 }}
-              className="group bg-[#121212] border border-[#3A3A3A] p-8 rounded-xl transition-all duration-300 relative overflow-hidden"
+              initial={{ opacity: 0, y: 25 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{
+                duration: 0.5,
+                delay: index * 0.05,
+              }}
+              whileHover={{
+                y: -8,
+              }}
+              className="
+                group
+                bg-[#141414]
+                border
+                border-[#242424]
+                rounded-3xl
+                p-6
+                lg:p-8
+                hover:border-primary-red/40
+                transition-all
+                duration-300
+              "
             >
-              {/* Top accent line */}
-              <div className="absolute top-0 left-0 w-full h-1 bg-primary-red transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-out" />
-              
+              {/* Top Section */}
               <div className="flex items-center justify-between mb-8">
-                <div className="w-12 h-12 bg-[#1F1F1F] rounded-lg flex items-center justify-center text-primary-red group-hover:bg-primary-red group-hover:text-[#FFFFFF] transition-colors duration-300">
-                  <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d={service.icon} />
-                  </svg>
-                </div>
-                <span className="text-4xl font-extrabold text-[#1F1F1F] group-hover:text-[#3A3A3A] transition-colors duration-300 font-heading">
+
+                <div
+                  className="
+                    w-14
+                    h-14
+                    rounded-xl
+                    bg-primary-red/10
+                    border
+                    border-primary-red/20
+                    flex
+                    items-center
+                    justify-center
+                    text-primary-red
+                    font-bold
+                  "
+                >
                   {service.id}
-                </span>
+                </div>
+
+                <div
+                  className="
+                    text-4xl
+                    lg:text-5xl
+                    font-bold
+                    text-[#222222]
+                    group-hover:text-[#333333]
+                    transition-colors
+                  "
+                >
+                  {service.id}
+                </div>
+
               </div>
-              
-              <h3 className="text-xl font-bold text-[#FFFFFF] mb-3 group-hover:text-[#FAFAFA]">
+
+              {/* Content */}
+              <h3 className="text-white text-xl lg:text-2xl font-semibold mb-4">
                 {service.title}
               </h3>
-              
-              <p className="text-[#7A7A7A] text-sm leading-relaxed group-hover:text-[#C8C8C8] transition-colors duration-300">
+
+              <p className="text-[#A0A0A0] text-sm sm:text-base leading-relaxed">
                 {service.description}
               </p>
-              
-              {/* Invisible link overlay for entire card */}
-              <a href="#" className="absolute inset-0 z-10">
-                <span className="sr-only">Learn more about {service.title}</span>
-              </a>
+
+              {/* Tags */}
+              <div className="flex flex-wrap gap-2 mt-6">
+
+                {service.highlights.map((item) => (
+                  <span
+                    key={item}
+                    className="
+                      px-3
+                      py-1.5
+                      rounded-full
+                      text-[11px]
+                      sm:text-xs
+                      bg-primary-red/10
+                      border
+                      border-primary-red/20
+                      text-primary-red
+                    "
+                  >
+                    {item}
+                  </span>
+                ))}
+
+              </div>
+
+              {/* CTA */}
+              <div className="mt-8 pt-6 border-t border-[#242424]">
+
+                <button
+                  className="
+                    inline-flex
+                    items-center
+                    gap-2
+                    text-white
+                    font-medium
+                    group-hover:text-primary-red
+                    transition-colors
+                  "
+                >
+                  Learn More
+
+                  <span className="transition-transform duration-300 group-hover:translate-x-1">
+                    →
+                  </span>
+                </button>
+
+              </div>
+
             </motion.div>
           ))}
-        </motion.div>
 
-        {/* Bottom CTA */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.4, duration: 0.6 }}
-          className="mt-16 text-center"
-        >
-          <a
-            href="/contact"
-            className="inline-flex items-center gap-2 text-primary-red hover:text-[#D10000] font-bold text-sm tracking-widest uppercase transition-colors"
-          >
-            Discuss Your Architecture
-            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-            </svg>
-          </a>
-        </motion.div>
-        
+        </div>
+
+        {/* Bottom Metrics */}
+        {/* <div className="mt-14 lg:mt-20">
+
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
+
+            {[
+              {
+                value: "100+",
+                label: "Enterprise Clients",
+              },
+              {
+                value: "14+",
+                label: "Years Experience",
+              },
+              {
+                value: "1000+",
+                label: "Technology Experts",
+              },
+              {
+                value: "24×7",
+                label: "Support Coverage",
+              },
+            ].map((item) => (
+              <div
+                key={item.label}
+                className="
+                  bg-[#141414]
+                  border
+                  border-[#242424]
+                  rounded-2xl
+                  p-5
+                  lg:p-6
+                  text-center
+                "
+              >
+                <div className="text-2xl sm:text-3xl lg:text-4xl font-bold text-primary-red">
+                  {item.value}
+                </div>
+
+                <div className="text-[10px] sm:text-xs uppercase tracking-wider text-[#888888] mt-2">
+                  {item.label}
+                </div>
+              </div>
+            ))}
+
+          </div>
+
+        </div> */}
+
       </div>
     </section>
   );

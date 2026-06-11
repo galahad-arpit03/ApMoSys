@@ -1,22 +1,38 @@
 import React from "react";
+
 import Hero from "./Hero/Hero";
+import ClientLogos from "./ClientLogos/ClientLogos";
 import AboutUs from "./AboutUs/AboutUs";
 import Services from "./Services/Services";
 import Solutions from "./Solutions/Solutions";
 import Products from "./Products/Products";
+import IndustriesPreview from "./IndustriesPreview/IndustriesPreview";
+import CaseStudiesPreview from "./CaseStudiesPreview/CaseStudiesPreview";
+import TechnologyStack from "./TechnologyStack/TechnologyStack";
+import ContactCTA from "./ContactCTA/ContactCTA";
 
 export default function LandingPage() {
   return (
-    <div className="relative">
-      <div className="sticky top-[64px] -z-10">
-        <Hero />
-      </div>
-      <div className="relative z-10 bg-[#121212]">
+    <div className="relative bg-[#0B0B0B]">
+      {/* Hero */}
+      <Hero />
+        <ClientLogos />
+
         <AboutUs />
+
         <Services />
+
         <Solutions />
+
         <Products />
+
+        <IndustriesPreview />
+
+        <CaseStudiesPreview />
+
+        <TechnologyStack />
+
+        <ContactCTA />
       </div>
-    </div>
   );
 }
