@@ -5,33 +5,45 @@ import { storyData } from "./StorySectionData";
 
 export default function StorySection() {
   return (
-    <section className="pt-10 pb-20 bg-gray-50">
+    <section className="py-24 bg-[#F8F9FA]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
-          <div className="lg:col-span-4">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">{storyData.heading}</h2>
-            <p className="text-gray-600 text-sm leading-relaxed mb-6">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+          
+          <div className="lg:col-span-4 lg:sticky lg:top-32">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-50 border border-red-100 text-xs font-semibold uppercase tracking-widest text-primary-red mb-6">
+              <span className="w-2 h-2 rounded-full bg-primary-red" />
+              Our Story
+            </div>
+            <h2 className="text-4xl lg:text-5xl font-black text-gray-900 tracking-tight mb-6">
+              {storyData.heading}
+            </h2>
+            <p className="text-gray-500 text-base leading-relaxed mb-8">
               {storyData.description}
             </p>
-            <div className="h-1 w-12 bg-primary-red rounded-full" />
+            <div className="h-1.5 w-16 bg-gradient-to-r from-primary-red to-red-400 rounded-full" />
           </div>
-          <div className="lg:col-span-8 grid grid-cols-1 md:grid-cols-2 gap-6">
+
+          <div className="lg:col-span-8 grid grid-cols-1 sm:grid-cols-2 gap-6 lg:gap-8">
             {storyData.cards.map((card, idx) => (
               <motion.div 
                 key={idx}
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: idx * 0.1 }}
-                className="bg-white p-8 rounded-xl border border-gray-200 shadow-sm"
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ delay: idx * 0.15, duration: 0.6 }}
+                className="group bg-white p-8 lg:p-10 rounded-2xl border border-gray-100 shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)] hover:-translate-y-1 transition-all duration-300"
               >
-                <h3 className="text-gray-900 font-bold text-lg mb-3">{card.title}</h3>
-                <p className="text-gray-600 text-sm leading-relaxed">
+                <div className="w-12 h-12 bg-red-50 rounded-xl flex items-center justify-center mb-6 text-primary-red font-bold text-xl group-hover:scale-110 group-hover:bg-primary-red group-hover:text-white transition-all duration-300">
+                  0{idx + 1}
+                </div>
+                <h3 className="text-gray-900 font-bold text-xl mb-4">{card.title}</h3>
+                <p className="text-gray-500 leading-relaxed">
                   {card.content}
                 </p>
               </motion.div>
             ))}
           </div>
+
         </div>
       </div>
     </section>

@@ -9,6 +9,14 @@ export const storyData = {
     {
       title: "Global Expansion",
       content: "As our clients' needs evolved, so did we. Expanding our footprint across continents allowed us to provide true \"follow-the-sun\" support and leverage global engineering talent."
+    },
+    {
+      title: "Enterprise Automation",
+      content: "We pioneered intelligent automation frameworks that scale securely. By integrating AI into traditional QA processes, we redefined how software is tested, monitored, and delivered."
+    },
+    {
+      title: "Future Forward",
+      content: "Today, we stand at the forefront of digital resilience. Our continuous investment in emerging technologies ensures our enterprise partners remain agile, secure, and infinitely scalable."
     }
   ]
 };
