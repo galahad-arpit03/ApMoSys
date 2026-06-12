@@ -1726,7 +1726,7 @@ export const useContentStore = create<ContentState>()(
     }),
     {
       name: "admin-content",
-      version: 4,
+      version: 5,
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       migrate: (persistedState: any, version: number) => {
         if (version <= 3) {
@@ -1740,6 +1740,16 @@ export const useContentStore = create<ContentState>()(
                 megaMenuData: defaultContent.navbar.megaMenuData,
               },
               footer: defaultContent.footer,
+            },
+          };
+        }
+        if (version <= 4) {
+          // Force update contact content to clear cached old image paths
+          return {
+            ...persistedState,
+            content: {
+              ...persistedState.content,
+              contact: defaultContent.contact,
             },
           };
         }
