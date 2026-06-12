@@ -2,7 +2,7 @@
 
 import React from "react";
 import { useContentStore } from "@/src/admin/store/adminStore";
-import Navbar from "@/src/Navbar/Navbar";
+import Navbar from "@/src/nav-bar/Navbar";
 import { ArrowUp, ArrowDown } from "lucide-react";
 
 export default function AdminNavbarPage() {

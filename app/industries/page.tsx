@@ -1,5 +1,5 @@
 import React from "react";
-import IndustriesPageContent from "@/src/IndustriesPage/IndustriesPageContent";
+import IndustriesPageContent from "@/src/what-we-do/IndustriesPageContent";
 
 export const metadata = {
   title: "Industries | ApMoSys",

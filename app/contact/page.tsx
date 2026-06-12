@@ -1,4 +1,4 @@
-import ContactPage from "@/src/ContactPage/ContactPage";
+import ContactPage from "@/src/contact-us/ContactPage";
 
 export const metadata = {
   title: "Contact Us | ApMoSys",

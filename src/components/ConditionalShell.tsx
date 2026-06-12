@@ -2,8 +2,8 @@
 
 import React from "react";
 import { usePathname } from "next/navigation";
-import Navbar from "@/src/Navbar/Navbar";
-import Footer from "@/src/Footer/Footer";
+import Navbar from "@/src/nav-bar/Navbar";
+import Footer from "@/src/footer/Footer";
 import ThemeApplicator from "@/src/admin/components/ThemeApplicator";
 
 export default function ConditionalShell({ children }: { children: React.ReactNode }) {

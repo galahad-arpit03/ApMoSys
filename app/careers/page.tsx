@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import CareersPage from "../../src/CareersPage/CareersPage";
+import CareersPage from "@/src/careers/CareersPage";
 
 export default function Page() {
   return (

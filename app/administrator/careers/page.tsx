@@ -1,7 +1,7 @@
 "use client";
 
 import AdminEditOverlay from "@/src/admin/components/AdminEditOverlay";
-import CareersPage from "@/src/CareersPage/CareersPage";
+import CareersPage from "@/src/careers/CareersPage";
 
 export default function AdminCareersPage() {
   return (

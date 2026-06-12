@@ -1,5 +1,5 @@
 import AdminEditOverlay from "@/src/admin/components/AdminEditOverlay";
-import BlogPage from "@/src/BlogPage/BlogPage";
+import BlogPage from "@/src/blogs/BlogPage";
 
 export default function AdminBlogsPageEditor() {
   return (

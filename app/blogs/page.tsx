@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import BlogPage from "../../src/BlogPage/BlogPage";
+import BlogPage from "@/src/blogs/BlogPage";
 
 export default function Page() {
   return (

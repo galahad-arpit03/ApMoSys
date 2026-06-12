@@ -2,7 +2,7 @@
 
 import React from "react";
 import { useContentStore } from "@/src/admin/store/adminStore";
-import Footer from "@/src/Footer/Footer";
+import Footer from "@/src/footer/Footer";
 import { ArrowUp, ArrowDown } from "lucide-react";
 
 export default function AdminFooterPage() {

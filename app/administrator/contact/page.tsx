@@ -1,5 +1,5 @@
 import AdminEditOverlay from "@/src/admin/components/AdminEditOverlay";
-import ContactPage from "@/src/ContactPage/ContactPage";
+import ContactPage from "@/src/contact-us/ContactPage";
 
 export default function AdminContactPage() {
   return (

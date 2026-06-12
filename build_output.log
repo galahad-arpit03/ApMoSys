@@ -1,0 +1,452 @@
+
+> apmosys@0.1.0 build
+> next build
+
+▲ Next.js 16.2.6 (Turbopack)
+
+  Creating an optimized production build ...
+
+> Build error occurred
+Error: Turbopack build failed with 17 errors:
+./src/landing/Hero/Hero.tsx:6:8
+Expected ',', got '{'
+  [90m4 |[0m [36mimport[0m { motion } [36mfrom[0m [32m"framer-motion"[0m;
+  [90m5 |[0m [36mimport[0m {
+[31m[1m>[0m [90m6 |[0m [36mimport[0m { heroData } [36mfrom[0m [32m"./HeroData"[0m;
+  [90m  |[0m        [31m[1m^[0m
+  [90m7 |[0m
+  [90m8 |[0m   [33mBrainCircuit[0m,
+  [90m9 |[0m   [33mCloud[0m,
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./src/landing/Hero/Hero.tsx
+    ./src/landing/LandingPage.tsx
+    ./app/administrator/solutions/page.tsx
+
+
+./src/who-we-are/community/CSRSection/CSRSection.tsx:3:1
+The "use client" directive must be placed before other expressions. Move it to the top of the file to resolve this issue.
+  [90m1 |[0m [36mimport[0m { csrsectionData } [36mfrom[0m [32m"./CSRSectionData"[0m;
+  [90m2 |[0m
+[31m[1m>[0m [90m3 |[0m [32m"use client"[0m;
+  [90m  |[0m [31m[1m^^^^^^^^^^^^^[0m
+  [90m4 |[0m
+  [90m5 |[0m [36mexport[0m [36mdefault[0m [36mfunction[0m [33mCSRSection[0m() {
+  [90m6 |[0m   [36mreturn[0m (
+
+Ecmascript file had an error
+
+Import traces:
+  Client Component Browser:
+    ./src/who-we-are/community/CSRSection/CSRSection.tsx [Client Component Browser]
+    ./src/who-we-are/community/CommunityPage.tsx [Client Component Browser]
+    ./src/who-we-are/community/CommunityPage.tsx [Server Component]
+    ./app/community/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/who-we-are/community/CSRSection/CSRSection.tsx [Client Component SSR]
+    ./src/who-we-are/community/CommunityPage.tsx [Client Component SSR]
+    ./src/who-we-are/community/CommunityPage.tsx [Server Component]
+    ./app/community/page.tsx [Server Component]
+
+
+./src/who-we-are/community/EventsSection/EventsSection.tsx:3:1
+The "use client" directive must be placed before other expressions. Move it to the top of the file to resolve this issue.
+  [90m1 |[0m [36mimport[0m { eventssectionData } [36mfrom[0m [32m"./EventsSectionData"[0m;
+  [90m2 |[0m
+[31m[1m>[0m [90m3 |[0m [32m"use client"[0m;
+  [90m  |[0m [31m[1m^^^^^^^^^^^^^[0m
+  [90m4 |[0m
+  [90m5 |[0m [36mconst[0m events = [
+  [90m6 |[0m   {
+
+Ecmascript file had an error
+
+Import traces:
+  Client Component Browser:
+    ./src/who-we-are/community/EventsSection/EventsSection.tsx [Client Component Browser]
+    ./src/who-we-are/community/CommunityPage.tsx [Client Component Browser]
+    ./src/who-we-are/community/CommunityPage.tsx [Server Component]
+    ./app/community/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/who-we-are/community/EventsSection/EventsSection.tsx [Client Component SSR]
+    ./src/who-we-are/community/CommunityPage.tsx [Client Component SSR]
+    ./src/who-we-are/community/CommunityPage.tsx [Server Component]
+    ./app/community/page.tsx [Server Component]
+
+
+./src/who-we-are/community/Initiatives/Initiatives.tsx:3:1
+The "use client" directive must be placed before other expressions. Move it to the top of the file to resolve this issue.
+  [90m1 |[0m [36mimport[0m { initiativesData } [36mfrom[0m [32m"./InitiativesData"[0m;
+  [90m2 |[0m
+[31m[1m>[0m [90m3 |[0m [32m"use client"[0m;
+  [90m  |[0m [31m[1m^^^^^^^^^^^^^[0m
+  [90m4 |[0m
+  [90m5 |[0m [36mconst[0m initiatives = [
+  [90m6 |[0m   {
+
+Ecmascript file had an error
+
+Import traces:
+  Client Component Browser:
+    ./src/who-we-are/community/Initiatives/Initiatives.tsx [Client Component Browser]
+    ./src/who-we-are/community/CommunityPage.tsx [Client Component Browser]
+    ./src/who-we-are/community/CommunityPage.tsx [Server Component]
+    ./app/community/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/who-we-are/community/Initiatives/Initiatives.tsx [Client Component SSR]
+    ./src/who-we-are/community/CommunityPage.tsx [Client Component SSR]
+    ./src/who-we-are/community/CommunityPage.tsx [Server Component]
+    ./app/community/page.tsx [Server Component]
+
+
+./src/who-we-are/leadership/ExecutiveTeam/ExecutiveTeam.tsx:3:1
+The "use client" directive must be placed before other expressions. Move it to the top of the file to resolve this issue.
+  [90m1 |[0m [36mimport[0m { executiveteamData } [36mfrom[0m [32m"./ExecutiveTeamData"[0m;
+  [90m2 |[0m
+[31m[1m>[0m [90m3 |[0m [32m"use client"[0m;
+  [90m  |[0m [31m[1m^^^^^^^^^^^^^[0m
+  [90m4 |[0m
+  [90m5 |[0m [36mconst[0m executives = [
+  [90m6 |[0m   {
+
+Ecmascript file had an error
+
+Import traces:
+  Client Component Browser:
+    ./src/who-we-are/leadership/ExecutiveTeam/ExecutiveTeam.tsx [Client Component Browser]
+    ./src/who-we-are/leadership/LeadershipPage.tsx [Client Component Browser]
+    ./src/who-we-are/leadership/LeadershipPage.tsx [Server Component]
+    ./app/leadership/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/who-we-are/leadership/ExecutiveTeam/ExecutiveTeam.tsx [Client Component SSR]
+    ./src/who-we-are/leadership/LeadershipPage.tsx [Client Component SSR]
+    ./src/who-we-are/leadership/LeadershipPage.tsx [Server Component]
+    ./app/leadership/page.tsx [Server Component]
+
+
+./src/who-we-are/leadership/LeadershipIntro/LeadershipIntro.tsx:3:1
+The "use client" directive must be placed before other expressions. Move it to the top of the file to resolve this issue.
+  [90m1 |[0m [36mimport[0m { leadershipintroData } [36mfrom[0m [32m"./LeadershipIntroData"[0m;
+  [90m2 |[0m
+[31m[1m>[0m [90m3 |[0m [32m"use client"[0m;
+  [90m  |[0m [31m[1m^^^^^^^^^^^^^[0m
+  [90m4 |[0m
+  [90m5 |[0m [36mexport[0m [36mdefault[0m [36mfunction[0m [33mLeadershipIntro[0m() {
+  [90m6 |[0m   [36mreturn[0m (
+
+Ecmascript file had an error
+
+Import traces:
+  Client Component Browser:
+    ./src/who-we-are/leadership/LeadershipIntro/LeadershipIntro.tsx [Client Component Browser]
+    ./src/who-we-are/leadership/LeadershipPage.tsx [Client Component Browser]
+    ./src/who-we-are/leadership/LeadershipPage.tsx [Server Component]
+    ./app/leadership/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/who-we-are/leadership/LeadershipIntro/LeadershipIntro.tsx [Client Component SSR]
+    ./src/who-we-are/leadership/LeadershipPage.tsx [Client Component SSR]
+    ./src/who-we-are/leadership/LeadershipPage.tsx [Server Component]
+    ./app/leadership/page.tsx [Server Component]
+
+
+./src/who-we-are/leadership/LeadershipValues/LeadershipValues.tsx:3:1
+The "use client" directive must be placed before other expressions. Move it to the top of the file to resolve this issue.
+  [90m1 |[0m [36mimport[0m { leadershipvaluesData } [36mfrom[0m [32m"./LeadershipValuesData"[0m;
+  [90m2 |[0m
+[31m[1m>[0m [90m3 |[0m [32m"use client"[0m;
+  [90m  |[0m [31m[1m^^^^^^^^^^^^^[0m
+  [90m4 |[0m
+  [90m5 |[0m [36mconst[0m values = [
+  [90m6 |[0m   {
+
+Ecmascript file had an error
+
+Import traces:
+  Client Component Browser:
+    ./src/who-we-are/leadership/LeadershipValues/LeadershipValues.tsx [Client Component Browser]
+    ./src/who-we-are/leadership/LeadershipPage.tsx [Client Component Browser]
+    ./src/who-we-are/leadership/LeadershipPage.tsx [Server Component]
+    ./app/leadership/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/who-we-are/leadership/LeadershipValues/LeadershipValues.tsx [Client Component SSR]
+    ./src/who-we-are/leadership/LeadershipPage.tsx [Client Component SSR]
+    ./src/who-we-are/leadership/LeadershipPage.tsx [Server Component]
+    ./app/leadership/page.tsx [Server Component]
+
+
+./src/who-we-are/leadership/LeadershipVision/LeadershipVision.tsx:3:1
+The "use client" directive must be placed before other expressions. Move it to the top of the file to resolve this issue.
+  [90m1 |[0m [36mimport[0m { leadershipvisionData } [36mfrom[0m [32m"./LeadershipVisionData"[0m;
+  [90m2 |[0m
+[31m[1m>[0m [90m3 |[0m [32m"use client"[0m;
+  [90m  |[0m [31m[1m^^^^^^^^^^^^^[0m
+  [90m4 |[0m
+  [90m5 |[0m [36mexport[0m [36mdefault[0m [36mfunction[0m [33mLeadershipVision[0m() {
+  [90m6 |[0m   [36mreturn[0m (
+
+Ecmascript file had an error
+
+Import traces:
+  Client Component Browser:
+    ./src/who-we-are/leadership/LeadershipVision/LeadershipVision.tsx [Client Component Browser]
+    ./src/who-we-are/leadership/LeadershipPage.tsx [Client Component Browser]
+    ./src/who-we-are/leadership/LeadershipPage.tsx [Server Component]
+    ./app/leadership/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/who-we-are/leadership/LeadershipVision/LeadershipVision.tsx [Client Component SSR]
+    ./src/who-we-are/leadership/LeadershipPage.tsx [Client Component SSR]
+    ./src/who-we-are/leadership/LeadershipPage.tsx [Server Component]
+    ./app/leadership/page.tsx [Server Component]
+
+
+./src/who-we-are/our-team/TeamCulture/TeamCulture.tsx:3:1
+The "use client" directive must be placed before other expressions. Move it to the top of the file to resolve this issue.
+  [90m1 |[0m [36mimport[0m { teamcultureData } [36mfrom[0m [32m"./TeamCultureData"[0m;
+  [90m2 |[0m
+[31m[1m>[0m [90m3 |[0m [32m"use client"[0m;
+  [90m  |[0m [31m[1m^^^^^^^^^^^^^[0m
+  [90m4 |[0m
+  [90m5 |[0m [36mexport[0m [36mdefault[0m [36mfunction[0m [33mTeamCulture[0m() {
+  [90m6 |[0m   [36mreturn[0m (
+
+Ecmascript file had an error
+
+Import traces:
+  Client Component Browser:
+    ./src/who-we-are/our-team/TeamCulture/TeamCulture.tsx [Client Component Browser]
+    ./src/who-we-are/our-team/TeamPage.tsx [Client Component Browser]
+    ./src/who-we-are/our-team/TeamPage.tsx [Server Component]
+    ./app/team/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/who-we-are/our-team/TeamCulture/TeamCulture.tsx [Client Component SSR]
+    ./src/who-we-are/our-team/TeamPage.tsx [Client Component SSR]
+    ./src/who-we-are/our-team/TeamPage.tsx [Server Component]
+    ./app/team/page.tsx [Server Component]
+
+
+./src/who-we-are/our-team/TeamDepartments/TeamDepartments.tsx:3:1
+The "use client" directive must be placed before other expressions. Move it to the top of the file to resolve this issue.
+  [90m1 |[0m [36mimport[0m { teamdepartmentsData } [36mfrom[0m [32m"./TeamDepartmentsData"[0m;
+  [90m2 |[0m
+[31m[1m>[0m [90m3 |[0m [32m"use client"[0m;
+  [90m  |[0m [31m[1m^^^^^^^^^^^^^[0m
+  [90m4 |[0m
+  [90m5 |[0m [36mconst[0m departments = [
+  [90m6 |[0m   {
+
+Ecmascript file had an error
+
+Import traces:
+  Client Component Browser:
+    ./src/who-we-are/our-team/TeamDepartments/TeamDepartments.tsx [Client Component Browser]
+    ./src/who-we-are/our-team/TeamPage.tsx [Client Component Browser]
+    ./src/who-we-are/our-team/TeamPage.tsx [Server Component]
+    ./app/team/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/who-we-are/our-team/TeamDepartments/TeamDepartments.tsx [Client Component SSR]
+    ./src/who-we-are/our-team/TeamPage.tsx [Client Component SSR]
+    ./src/who-we-are/our-team/TeamPage.tsx [Server Component]
+    ./app/team/page.tsx [Server Component]
+
+
+./src/who-we-are/our-team/TeamGallery/TeamGallery.tsx:3:1
+The "use client" directive must be placed before other expressions. Move it to the top of the file to resolve this issue.
+  [90m1 |[0m [36mimport[0m { teamgalleryData } [36mfrom[0m [32m"./TeamGalleryData"[0m;
+  [90m2 |[0m
+[31m[1m>[0m [90m3 |[0m [32m"use client"[0m;
+  [90m  |[0m [31m[1m^^^^^^^^^^^^^[0m
+  [90m4 |[0m
+  [90m5 |[0m [36mconst[0m gallery = [
+  [90m6 |[0m   [32m"/team/team1.jpg"[0m,
+
+Ecmascript file had an error
+
+Import traces:
+  Client Component Browser:
+    ./src/who-we-are/our-team/TeamGallery/TeamGallery.tsx [Client Component Browser]
+    ./src/who-we-are/our-team/TeamPage.tsx [Client Component Browser]
+    ./src/who-we-are/our-team/TeamPage.tsx [Server Component]
+    ./app/team/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/who-we-are/our-team/TeamGallery/TeamGallery.tsx [Client Component SSR]
+    ./src/who-we-are/our-team/TeamPage.tsx [Client Component SSR]
+    ./src/who-we-are/our-team/TeamPage.tsx [Server Component]
+    ./app/team/page.tsx [Server Component]
+
+
+./app/blogs/page.tsx:4:1
+Module not found: Can't resolve '../../src/BlogPage/BlogPage'
+  [90m2 |[0m
+  [90m3 |[0m [36mimport[0m [33mReact[0m [36mfrom[0m [32m"react"[0m;
+[31m[1m>[0m [90m4 |[0m [36mimport[0m [33mBlogPage[0m [36mfrom[0m [32m"../../src/BlogPage/BlogPage"[0m;
+  [90m  |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m5 |[0m
+  [90m6 |[0m [36mexport[0m [36mdefault[0m [36mfunction[0m [33mPage[0m() {
+  [90m7 |[0m   [36mreturn[0m (
+
+
+
+Import traces:
+  Client Component Browser:
+    ./app/blogs/page.tsx [Client Component Browser]
+    ./app/blogs/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/blogs/page.tsx [Client Component SSR]
+    ./app/blogs/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+./app/careers/page.tsx:4:1
+Module not found: Can't resolve '../../src/CareersPage/CareersPage'
+  [90m2 |[0m
+  [90m3 |[0m [36mimport[0m [33mReact[0m [36mfrom[0m [32m"react"[0m;
+[31m[1m>[0m [90m4 |[0m [36mimport[0m [33mCareersPage[0m [36mfrom[0m [32m"../../src/CareersPage/CareersPage"[0m;
+  [90m  |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m5 |[0m
+  [90m6 |[0m [36mexport[0m [36mdefault[0m [36mfunction[0m [33mPage[0m() {
+  [90m7 |[0m   [36mreturn[0m (
+
+
+
+Import traces:
+  Client Component Browser:
+    ./app/careers/page.tsx [Client Component Browser]
+    ./app/careers/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/careers/page.tsx [Client Component SSR]
+    ./app/careers/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+./app/administrator/footer/page.tsx:5:1
+Module not found: Can't resolve '@/src/footer/Footer'
+  [90m3 |[0m [36mimport[0m [33mReact[0m [36mfrom[0m [32m"react"[0m;
+  [90m4 |[0m [36mimport[0m { useContentStore } [36mfrom[0m [32m"@/src/admin/store/adminStore"[0m;
+[31m[1m>[0m [90m5 |[0m [36mimport[0m [33mFooter[0m [36mfrom[0m [32m"@/src/footer/Footer"[0m;
+  [90m  |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m6 |[0m [36mimport[0m { [33mArrowUp[0m, [33mArrowDown[0m } [36mfrom[0m [32m"lucide-react"[0m;
+  [90m7 |[0m
+  [90m8 |[0m [36mexport[0m [36mdefault[0m [36mfunction[0m [33mAdminFooterPage[0m() {
+
+Import map: aliased to relative './src/footer/Footer' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./app/administrator/footer/page.tsx [Client Component Browser]
+    ./app/administrator/footer/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/administrator/footer/page.tsx [Client Component SSR]
+    ./app/administrator/footer/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+./src/components/ConditionalShell.tsx:6:1
+Module not found: Can't resolve '@/src/footer/Footer'
+  [90m4 |[0m [36mimport[0m { usePathname } [36mfrom[0m [32m"next/navigation"[0m;
+  [90m5 |[0m [36mimport[0m [33mNavbar[0m [36mfrom[0m [32m"@/src/nav-bar/Navbar"[0m;
+[31m[1m>[0m [90m6 |[0m [36mimport[0m [33mFooter[0m [36mfrom[0m [32m"@/src/footer/Footer"[0m;
+  [90m  |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m7 |[0m [36mimport[0m [33mThemeApplicator[0m [36mfrom[0m [32m"@/src/admin/components/ThemeApplicator"[0m;
+  [90m8 |[0m
+  [90m9 |[0m [36mexport[0m [36mdefault[0m [36mfunction[0m [33mConditionalShell[0m({ children }: { children: [33mReac.[0m.[33m.[0m
+
+Import map: aliased to relative './src/footer/Footer' inside of [project]/
+
+
+Import trace:
+  Server Component:
+    ./src/components/ConditionalShell.tsx
+    ./app/layout.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+./app/administrator/navbar/page.tsx:5:1
+Module not found: Can't resolve '@/src/nav-bar/Navbar'
+  [90m3 |[0m [36mimport[0m [33mReact[0m [36mfrom[0m [32m"react"[0m;
+  [90m4 |[0m [36mimport[0m { useContentStore } [36mfrom[0m [32m"@/src/admin/store/adminStore"[0m;
+[31m[1m>[0m [90m5 |[0m [36mimport[0m [33mNavbar[0m [36mfrom[0m [32m"@/src/nav-bar/Navbar"[0m;
+  [90m  |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m6 |[0m [36mimport[0m { [33mArrowUp[0m, [33mArrowDown[0m } [36mfrom[0m [32m"lucide-react"[0m;
+  [90m7 |[0m
+  [90m8 |[0m [36mexport[0m [36mdefault[0m [36mfunction[0m [33mAdminNavbarPage[0m() {
+
+Import map: aliased to relative './src/nav-bar/Navbar' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./app/administrator/navbar/page.tsx [Client Component Browser]
+    ./app/administrator/navbar/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/administrator/navbar/page.tsx [Client Component SSR]
+    ./app/administrator/navbar/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+./src/components/ConditionalShell.tsx:5:1
+Module not found: Can't resolve '@/src/nav-bar/Navbar'
+  [90m3 |[0m [36mimport[0m [33mReact[0m [36mfrom[0m [32m"react"[0m;
+  [90m4 |[0m [36mimport[0m { usePathname } [36mfrom[0m [32m"next/navigation"[0m;
+[31m[1m>[0m [90m5 |[0m [36mimport[0m [33mNavbar[0m [36mfrom[0m [32m"@/src/nav-bar/Navbar"[0m;
+  [90m  |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m6 |[0m [36mimport[0m [33mFooter[0m [36mfrom[0m [32m"@/src/footer/Footer"[0m;
+  [90m7 |[0m [36mimport[0m [33mThemeApplicator[0m [36mfrom[0m [32m"@/src/admin/components/ThemeApplicator"[0m;
+  [90m8 |[0m
+
+Import map: aliased to relative './src/nav-bar/Navbar' inside of [project]/
+
+
+Import trace:
+  Server Component:
+    ./src/components/ConditionalShell.tsx
+    ./app/layout.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+    at <unknown> (./src/landing/Hero/Hero.tsx:6:8)
+    at <unknown> (./src/who-we-are/community/CSRSection/CSRSection.tsx:3:1)
+    at <unknown> (./src/who-we-are/community/EventsSection/EventsSection.tsx:3:1)
+    at <unknown> (./src/who-we-are/community/Initiatives/Initiatives.tsx:3:1)
+    at <unknown> (./src/who-we-are/leadership/ExecutiveTeam/ExecutiveTeam.tsx:3:1)
+    at <unknown> (./src/who-we-are/leadership/LeadershipIntro/LeadershipIntro.tsx:3:1)
+    at <unknown> (./src/who-we-are/leadership/LeadershipValues/LeadershipValues.tsx:3:1)
+    at <unknown> (./src/who-we-are/leadership/LeadershipVision/LeadershipVision.tsx:3:1)
+    at <unknown> (./src/who-we-are/our-team/TeamCulture/TeamCulture.tsx:3:1)
+    at <unknown> (./src/who-we-are/our-team/TeamDepartments/TeamDepartments.tsx:3:1)
+    at <unknown> (./src/who-we-are/our-team/TeamGallery/TeamGallery.tsx:3:1)
+    at <unknown> (./app/blogs/page.tsx:4:1)
+    at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+    at <unknown> (./app/careers/page.tsx:4:1)
+    at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+    at <unknown> (./app/administrator/footer/page.tsx:5:1)
+    at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+    at <unknown> (./src/components/ConditionalShell.tsx:6:1)
+    at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+    at <unknown> (./app/administrator/navbar/page.tsx:5:1)
+    at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+    at <unknown> (./src/components/ConditionalShell.tsx:5:1)
+    at <unknown> (https://nextjs.org/docs/messages/module-not-found)
