@@ -13,7 +13,7 @@ const iconMap: any = {
 
 export default function CoreValues() {
   return (
-    <section className="py-24 bg-[#FCF9F9] relative overflow-clip">
+    <section className="py-24 bg-[#F8F9FA] relative overflow-clip">
       {/* Decorative background circle */}
       <div className="absolute top-0 right-0 -mt-32 -mr-32 w-[600px] h-[600px] bg-red-50 rounded-full blur-3xl opacity-50 pointer-events-none" />
 
