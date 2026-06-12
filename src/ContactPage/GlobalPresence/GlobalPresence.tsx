@@ -84,11 +84,20 @@ export default function GlobalPresence() {
                       )}
 
                       <div className="relative aspect-[16/10] w-full bg-[#E0E0E0] overflow-hidden flex items-center justify-center">
-                        <div className={`absolute inset-0 flex items-center justify-center bg-gradient-to-br ${
-                          isDark ? "from-[#2A2A2A] to-[#1E1E1E]" : "from-[#F3F3F3] to-[#E0E0E0]"
-                        }`}>
-                          <span className={`${isDark ? "text-[#CCCCCC]" : "text-[#7A7A7A]"} font-semibold text-sm`}>{office.city} office branch photo</span>
-                        </div>
+                        {office.image ? (
+                          <Image
+                            src={office.image}
+                            alt={`${office.city} office branch`}
+                            fill
+                            className="object-cover transition-transform duration-700 group-hover:scale-105"
+                          />
+                        ) : (
+                          <div className={`absolute inset-0 flex items-center justify-center bg-gradient-to-br ${
+                            isDark ? "from-[#2A2A2A] to-[#1E1E1E]" : "from-[#F3F3F3] to-[#E0E0E0]"
+                          }`}>
+                            <span className={`${isDark ? "text-[#CCCCCC]" : "text-[#7A7A7A]"} font-semibold text-sm`}>{office.city} office branch photo</span>
+                          </div>
+                        )}
                       </div>
 
                       <div className="p-8 flex flex-col flex-1">

@@ -8,7 +8,7 @@ export default function WorldMapSection() {
     <section
       className="relative py-24 overflow-hidden"
       style={{
-        backgroundImage: "url('/Contact Us/world map.png')",
+        backgroundImage: "url('/world map.png')",
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}
