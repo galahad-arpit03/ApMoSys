@@ -1,12 +1,10 @@
 import AdminEditOverlay from "@/src/admin/components/AdminEditOverlay";
-import LandingPage from "@/src/landing/LandingPage";
+import AboutPage from "@/src/who-we-are/about-us/AboutPage";
 
-// About section is embedded in the landing page (/#about anchor)
-// We render the full home page and let admin edit the about section inline
 export default function AdminAboutPage() {
   return (
     <AdminEditOverlay page="About">
-      <LandingPage />
+      <AboutPage />
     </AdminEditOverlay>
   );
 }

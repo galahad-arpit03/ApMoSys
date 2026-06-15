@@ -32,6 +32,27 @@ export const useAuthStore = create<AuthState>()(
 
 // ─── Site Content ────────────────────────────────────────────────────────────
 
+
+export interface AboutStoryCard {
+  id: string;
+  title: string;
+  content: string;
+}
+
+export interface AboutCoreValue {
+  id: string;
+  title: string;
+  desc: string;
+  icon: string;
+}
+
+export interface AboutMilestone {
+  id: string;
+  year: string;
+  title: string;
+  items: string[];
+}
+
 export interface CareerItem {
   id: string;
   title: string;
@@ -267,6 +288,10 @@ export interface SiteContent {
       description: string;
     };
 
+    storyCards?: AboutStoryCard[];
+    coreValues?: AboutCoreValue[];
+    milestones?: AboutMilestone[];
+
     stats: {
       stat1Value: string;
       stat1Label: string;
@@ -280,6 +305,7 @@ export interface SiteContent {
       stat4Value: string;
       stat4Label: string;
     };
+
   }
 }
 
@@ -1091,6 +1117,35 @@ export const defaultContent: SiteContent = {
         "To become the global benchmark for enterprise automation, quality engineering, and AI-driven digital transformation."
     },
 
+
+    storyCards: [
+      { id: "s1", title: "Inception & Early Days", content: "ApMoSys was founded by Mr. Bibhu Prasad Padhi with a team of five people and a vision to make quality software faster and more resilient. Signed the 1st client, a public sector Bank, in Feb 2012." },
+      { id: "s2", title: "ISO Certification", content: "Achieved ISO 9011 certifications, formalizing our commitment to global quality standards and continuous process improvement." },
+      { id: "s3", title: "Revenue Milestone", content: "Crossed the 1 crore revenue mark, proving the viability of our specialized quality engineering approach." },
+      { id: "s4", title: "Expanding the Base", content: "Moved to a significantly larger facility and crossed the 100-employee milestone, building specialized centers of excellence." }
+    ],
+    coreValues: [
+      { id: "cv1", title: "Uncompromising Quality", desc: "We hold ourselves to the highest standards of software engineering. Quality is not a phase; it is embedded in our culture.", icon: "CheckCircle2" },
+      { id: "cv2", title: "Intelligent Innovation", desc: "We leverage AI and next-generation tools not just for the sake of technology, but to solve complex business problems efficiently.", icon: "Cpu" },
+      { id: "cv3", title: "Data Security First", desc: "Enterprise data is sacred. Our architectures are designed with zero-trust principles and comprehensive compliance frameworks.", icon: "Shield" },
+      { id: "cv4", title: "Agile Resilience", desc: "We build systems and teams that adapt to market changes rapidly, ensuring our clients stay ahead of the curve.", icon: "Zap" }
+    ],
+    milestones: [
+      { id: "ms1", year: "2012", title: "ApMoSys Founded", items: ["Founded by Mr. Bibhu Prasad Padhi with 5 employees.", "Signed 1st client, a public sector Bank in Feb 2012."] },
+      { id: "ms2", year: "2013", title: "ISO Certification", items: ["ISO 9011 certifications done."] },
+      { id: "ms3", year: "2014", title: "Revenue Milestone", items: ["1 crore revenue Generated."] },
+      { id: "ms4", year: "2015", title: "Large-base Expansion", items: ["Moved to a comparatively larger base, crossed 100 employees."] },
+      { id: "ms5", year: "2016", title: "Client Base Growth", items: ["Number of clients crossed 15."] },
+      { id: "ms6", year: "2017", title: "ISO Certification", items: ["ISO 21000 certification completed, reinforcing global quality standards in delivery."] },
+      { id: "ms7", year: "2018", title: "Revenue & Office Expansion", items: ["10 cr Revenue generated & shifted to proper corporate office at Mahape."] },
+      { id: "ms8", year: "2019", title: "Workforce Milestone", items: ["350 total employees onboarded."] },
+      { id: "ms9", year: "2020", title: "New Office Procurement", items: ["Procured our own office at Greenscape Technocity, Mahape."] },
+      { id: "ms10", year: "2021", title: "Rapid Scaling", items: ["Crossed 750 employees mark, Number of clients more than 70."] },
+      { id: "ms11", year: "2022", title: "Massive Expansion", items: ["Crossed 1000 employees and 100+ clients. Awarded Best Organization for Women Empowerment at 3rd GIWL Awards."] },
+      { id: "ms12", year: "2023", title: "Strategic Partnerships", items: ["Rising Star Awardee by Dynatrace. Axis Bank AVC Performer.", "Published multiple Springer and IEEE whitepapers."] },
+      { id: "ms13", year: "2024", title: "Strengthening Ecosystem", items: ["Endorsed Service Partner by Dynatrace. Rising Star by Automation Anywhere.", "Achieved CMMI Maturity Level 3 Certification.", "Crossed 1400 Employees, Clients more than 140."] }
+    ],
+
     stats: {
       stat1Value: "15+",
       stat1Label: "Years of Excellence",
@@ -1122,6 +1177,14 @@ interface ContentState {
   deleteIndustryGridItem: (id: string) => void;
   addIndustryComplexItem: () => void;
   deleteIndustryComplexItem: (id: string) => void;
+
+  addAboutStoryCard: () => void;
+  deleteAboutStoryCard: (id: string) => void;
+  addAboutCoreValue: () => void;
+  deleteAboutCoreValue: (id: string) => void;
+  addAboutMilestone: () => void;
+  deleteAboutMilestone: (id: string) => void;
+
   addCareerFAQItem: () => void;
   deleteCareerFAQItem: (id: string) => void;
   addCareerJob: () => void;
@@ -1343,6 +1406,40 @@ export const useContentStore = create<ContentState>()(
             isDirty: true,
           };
         }),
+
+      addAboutStoryCard: () => set((state) => {
+        const rawCards = state.content.about.storyCards;
+        const cards = Array.isArray(rawCards) ? rawCards : [];
+        const newCard = { id: Date.now().toString(), title: "New Story", content: "Story details here" };
+        return { content: { ...state.content, about: { ...state.content.about, storyCards: [...cards, newCard] } } };
+      }),
+      deleteAboutStoryCard: (id: string) => set((state) => {
+        const rawCards = state.content.about.storyCards;
+        const cards = Array.isArray(rawCards) ? rawCards : [];
+        return { content: { ...state.content, about: { ...state.content.about, storyCards: cards.filter(c => c.id !== id) } } };
+      }),
+      addAboutCoreValue: () => set((state) => {
+        const rawValues = state.content.about.coreValues;
+        const values = Array.isArray(rawValues) ? rawValues : [];
+        const newValue = { id: Date.now().toString(), title: "New Value", desc: "Description here", icon: "CheckCircle2" };
+        return { content: { ...state.content, about: { ...state.content.about, coreValues: [...values, newValue] } } };
+      }),
+      deleteAboutCoreValue: (id: string) => set((state) => {
+        const rawValues = state.content.about.coreValues;
+        const values = Array.isArray(rawValues) ? rawValues : [];
+        return { content: { ...state.content, about: { ...state.content.about, coreValues: values.filter(v => v.id !== id) } } };
+      }),
+      addAboutMilestone: () => set((state) => {
+        const rawMs = state.content.about.milestones;
+        const ms = Array.isArray(rawMs) ? rawMs : [];
+        const newMs = { id: Date.now().toString(), year: "202X", title: "New Milestone", items: ["Milestone detail"] };
+        return { content: { ...state.content, about: { ...state.content.about, milestones: [...ms, newMs] } } };
+      }),
+      deleteAboutMilestone: (id: string) => set((state) => {
+        const rawMs = state.content.about.milestones;
+        const ms = Array.isArray(rawMs) ? rawMs : [];
+        return { content: { ...state.content, about: { ...state.content.about, milestones: ms.filter(m => m.id !== id) } } };
+      }),
       addCareerFAQItem: () =>
         set((state) => {
           const currentItems = state.content.careers.faqItems || [];

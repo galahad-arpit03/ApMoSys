@@ -5,6 +5,8 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { useContentStore } from "@/src/admin/store/adminStore";
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
+import EditableText from "@/src/admin/components/EditableText";
+import EditableImage from "@/src/admin/components/EditableImage";
 
 export default function AboutHero() {
   const { content } = useContentStore();
@@ -21,18 +23,19 @@ export default function AboutHero() {
 
   return (
     <section ref={ref} className="relative pt-24 pb-16 lg:pt-32 lg:pb-24 overflow-hidden flex items-center min-h-[50vh]">
-      {/* Background Image with Parallax */}
       <motion.div
         className="absolute inset-0 z-0 origin-top"
         style={{ y: backgroundY, scale: 1 }}
       >
-        <Image
-          src="/about/about-hero2.png"
-          alt="About ApMoSys"
-          fill
-          priority
-          className="object-cover object-center"
-        />
+        <EditableImage label="Hero Background Image" className="w-full h-full">
+          <Image
+            src="/about/about-hero2.png"
+            alt="About ApMoSys"
+            fill
+            priority
+            className="object-cover object-center"
+          />
+        </EditableImage>
         {/* Dark overlay fading from left (60%) to transparent */}
         <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/60 to-black/20" />
       </motion.div>
@@ -45,17 +48,41 @@ export default function AboutHero() {
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
             <h1 className="text-4xl sm:text-5xl lg:text-7xl font-bold tracking-tight mb-6 leading-tight text-white drop-shadow-sm">
-              Engineering Excellence at <span className="text-primary-red drop-shadow-md [-webkit-text-stroke:0.3px_white]">Enterprise Scale.</span>
+              <EditableText
+                path="about.hero.heading1"
+                fallback="Engineering Excellence at"
+                as="span"
+              />{' '}
+              <EditableText
+                path="about.hero.heading2"
+                fallback="Enterprise Scale."
+                as="span"
+                className="text-primary-red drop-shadow-md [-webkit-text-stroke:0.3px_white]"
+              />
             </h1>
-            <p className="text-gray-100 text-lg sm:text-xl max-w-2xl leading-relaxed mb-10 drop-shadow">  
-              We are a trusted technology partner for global enterprises, delivering intelligent automation, digital assurance, and resilient engineering solutions that drive measurable business outcomes.
+            <p className="text-gray-100 text-lg sm:text-xl max-w-2xl leading-relaxed mb-10 drop-shadow">
+              <EditableText
+                path="about.hero.description"
+                fallback="We are a trusted technology partner for global enterprises, delivering intelligent automation, digital assurance, and resilient engineering solutions that drive measurable business outcomes."
+                as="span"
+                multiline
+              />
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <button className="bg-primary-red hover:bg-red-700 text-white px-8 py-3.5 rounded-md font-bold text-sm transition-colors duration-200 shadow-lg">
-                Discover Our Services
+                <EditableText
+                  path="about.hero.button1"
+                  fallback="Discover Our Services"
+                  as="span"
+                />
               </button>
               <button className="bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/20 text-white px-8 py-3.5 rounded-md font-bold text-sm transition-colors duration-200 flex items-center justify-center gap-2 shadow-lg">
-                Meet the Leadership <ArrowRight className="w-4 h-4" />
+                <EditableText
+                  path="about.hero.button2"
+                  fallback="Meet the Leadership"
+                  as="span"
+                />
+                <ArrowRight className="w-4 h-4" />
               </button>
             </div>
           </motion.div>
