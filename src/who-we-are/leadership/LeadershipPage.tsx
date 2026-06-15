@@ -8,7 +8,7 @@ import LeadershipVision from "./LeadershipVision/LeadershipVision";
 
 export default function LeadershipPage() {
   return (
-    <main className="bg-[#0F0F0F] text-white">
+    <main className="bg-app-bg text-app-text min-h-screen">
       <LeadershipHero />
       <LeadershipIntro />
       <ExecutiveTeam />

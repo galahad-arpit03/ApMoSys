@@ -1,91 +1,93 @@
 "use client";
 import { executiveteamData } from "./ExecutiveTeamData";
-
-
-const executives = [
-  {
-    name: "Mr. Pradip Kumar Das",
-    role: "Chairman",
-    image: "/leadership/pradip-das.jpg",
-    description:
-      "Accomplished former Executive Director at a prominent Indian Commercial Bank, leveraging 37 years of comprehensive expertise within the banking sector. Demonstrated success in Banking Operations, Investment Banking, Strategic Planning, Revenue Generation, Business Process Re-engineering, Corporate and Retail Banking, alongside a consistent commitment to operational excellence.",
-  },
-  {
-    name: "Mr. Bibhu Padhi",
-    role: "Founder & CEO",
-    image: "/leadership/bibhu-padhi.jpg",
-    description:
-      "As Founder and CEO of ApMoSys Technologies, Bibhu is responsible for driving ApMoSys's global growth strategy, helping to set organizational goals and direction, and providing insights to build lasting relationships with clients, partners and investors.",
-  },
-  {
-    name: "Mrs. Sangeeta Padhy",
-    role: "Co-Founder, Director & CFO",
-    image: "/leadership/sangeeta-padhy.jpg",
-    description:
-      "An Engineer by education, a teacher by passion and an entrepreneur by choice. Brings in 24+ years of hard core experience in shaping up careers in Technology.",
-  },
-  {
-    name: "Mrs. Pratima Nayak",
-    role: "Co-Founder, Director & CTO",
-    image: "/leadership/pratima-nayak.jpg",
-    description:
-      "BE, ITIL certified technology leader with 19+ years of experience across development, testing and delivery operations in financial services, manufacturing and investment banking domains. Previously associated with Apple, Infosys and JPMC for more than 14 years.",
-  },
-];
+import SectionThemeWrapper from "@/src/admin/components/SectionThemeWrapper";
+import Image from "next/image";
+import { motion } from "framer-motion";
 
 export default function ExecutiveTeam() {
   return (
-    <section className="py-16 sm:py-20 lg:py-24 border-b border-[#222]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <SectionThemeWrapper sectionId="leadership_executive" defaultTheme="dark">
+      {(theme) => {
+        const isDark = theme === "dark";
+        return (
+          <section className={`py-16 sm:py-20 lg:py-24 border-b transition-colors duration-300 ${isDark ? "bg-[#0F0F0F] border-[#222]" : "bg-gray-50 border-gray-200"}`}>
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-        <div className="text-center mb-10 sm:mb-16">
-          <span className="text-[#B40001] uppercase tracking-[0.2em] text-xs font-bold">
-            Executive Leadership
-          </span>
+              <div className="text-center mb-10 sm:mb-16">
+                <span className="text-[#B40001] uppercase tracking-[0.2em] text-xs font-bold">
+                  Executive Leadership
+                </span>
 
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight mt-4">
-            Meet Our Executive Team
-          </h2>
+                <h2 className={`text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight mt-4 ${isDark ? "text-white" : "text-gray-900"}`}>
+                  Meet Our Executive Team
+                </h2>
 
-          <p className="text-neutral-400 mt-6 max-w-3xl mx-auto">
-            Experienced leaders driving innovation, enterprise growth,
-            and engineering excellence across ApMoSys.
-          </p>
-        </div>
-
-        <div className="grid gap-6 lg:grid-cols-2 lg:gap-10">
-
-          {executives.map((member) => (
-            <div
-              key={member.name}
-              className="bg-[#161616] border border-[#2A2A2A] rounded-xl overflow-hidden"
-            >
-              <div className="h-56 sm:h-72 lg:h-80 bg-[#242424]">
-                {/* Replace with actual images */}
-                {/* <img src={member.image} /> */}
+                <p className={`mt-6 max-w-3xl mx-auto ${isDark ? "text-neutral-400" : "text-gray-600"}`}>
+                  Experienced leaders driving innovation, enterprise growth,
+                  and engineering excellence across ApMoSys.
+                </p>
               </div>
 
-              <div className="p-6 sm:p-8">
+              <div className="grid gap-8 lg:grid-cols-2 lg:gap-12">
+                {executiveteamData.map((member, i) => (
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: i * 0.1, duration: 0.5 }}
+                    key={member.name}
+                    className={`group rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border ${
+                      isDark 
+                        ? "bg-[#161616] border-[#2A2A2A] hover:border-[#B40001]/30" 
+                        : "bg-white border-gray-200 hover:border-[#B40001]/30"
+                    }`}
+                  >
+                    <div className="grid sm:grid-cols-5 h-full">
+                      {/* Image Section */}
+                      <div className="sm:col-span-2 relative h-64 sm:h-auto overflow-hidden">
+                        <div className="absolute inset-0 bg-[#242424]" />
+                        {/* We will render a placeholder if the image path is not found or real image */}
+                        {member.image ? (
+                          <Image 
+                            src={member.image}
+                            alt={member.name}
+                            fill
+                            className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                          />
+                        ) : (
+                          <div className="absolute inset-0 flex items-center justify-center text-gray-500 text-sm">
+                            No Image
+                          </div>
+                        )}
+                        {/* Gradient Overlay for modern look */}
+                        <div className={`absolute inset-0 bg-gradient-to-t sm:bg-gradient-to-r opacity-50 sm:opacity-20 ${isDark ? "from-[#161616] to-transparent" : "from-white to-transparent"}`} />
+                      </div>
 
-                <h3 className="text-xl sm:text-2xl font-bold">
-                  {member.name}
-                </h3>
+                      {/* Content Section */}
+                      <div className="sm:col-span-3 p-6 sm:p-8 flex flex-col justify-center">
+                        <h3 className={`text-2xl font-bold ${isDark ? "text-white" : "text-gray-900"}`}>
+                          {member.name}
+                        </h3>
 
-                <p className="text-[#B40001] mt-2 font-medium">
-                  {member.role}
-                </p>
+                        <p className="text-[#B40001] mt-2 font-semibold">
+                          {member.role}
+                        </p>
 
-                <p className="text-neutral-400 leading-7 sm:leading-8 mt-5 sm:mt-6">
-                  {member.description}
-                </p>
+                        <div className={`w-10 h-1 mt-4 rounded-full ${isDark ? "bg-[#333]" : "bg-gray-200"}`} />
 
+                        <p className={`leading-relaxed mt-4 text-sm sm:text-base ${isDark ? "text-neutral-400" : "text-gray-600"}`}>
+                          {member.description}
+                        </p>
+                      </div>
+                    </div>
+                  </motion.div>
+                ))}
               </div>
+
             </div>
-          ))}
-
-        </div>
-
-      </div>
-    </section>
+          </section>
+        );
+      }}
+    </SectionThemeWrapper>
   );
 }

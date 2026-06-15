@@ -27,7 +27,7 @@ export default function AboutHero() {
         className="absolute inset-0 z-0 origin-top"
         style={{ y: backgroundY, scale: 1 }}
       >
-        <EditableImage label="Hero Background Image" className="w-full h-full">
+        <EditableImage label="Hero Background Image" className="relative w-full h-full">
           <Image
             src="/about/about-hero2.png"
             alt="About ApMoSys"
@@ -57,7 +57,7 @@ export default function AboutHero() {
                 path="about.hero.heading2"
                 fallback="Enterprise Scale."
                 as="span"
-                className="text-primary-red drop-shadow-md [-webkit-text-stroke:0.3px_white]"
+                className="text-primary-red drop-shadow-md"
               />
             </h1>
             <p className="text-gray-100 text-lg sm:text-xl max-w-2xl leading-relaxed mb-10 drop-shadow">
