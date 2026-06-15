@@ -20,7 +20,7 @@
   --color-gray-800: #1F1F1F;
   --color-black-custom: #121212;
 
-  --font-sans: var(--font-jakarta), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-space), ui-sans-serif, system-ui, sans-serif;
   --font-heading: var(--font-outfit), ui-sans-serif, system-ui, sans-serif;
 }
 
