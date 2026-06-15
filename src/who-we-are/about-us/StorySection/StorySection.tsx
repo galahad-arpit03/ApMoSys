@@ -23,7 +23,7 @@ export default function StorySection() {
             <p className="text-gray-500 text-base leading-relaxed mb-8">
               {storyData.description}
             </p>
-            <div className="h-1.5 w-16 bg-gradient-to-r from-primary-red to-red-400 rounded-full" />
+            {/* <div className="h-1.5 w-16 bg-gradient-to-r from-primary-red to-red-400 rounded-full" /> */}
           </div>
 
           <div className="lg:col-span-8 grid grid-cols-1 sm:grid-cols-2 gap-6 lg:gap-8">

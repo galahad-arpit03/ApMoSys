@@ -33,7 +33,7 @@ export default function CoreValues() {
               <p className="text-gray-500 text-base leading-relaxed mb-8">
                 These foundational principles shape every decision we make, guiding our engineering standards and defining our unyielding commitment to client success.
               </p>
-              <div className="hidden lg:block w-full h-[1px] bg-gradient-to-r from-gray-200 to-transparent" />
+            {/* <div className="h-1.5 w-16 bg-gradient-to-r from-primary-red to-red-400 rounded-full" /> */}
             </div>
           </div>
 
