@@ -9,7 +9,7 @@ export default function LeadershipIntro() {
         const isDark = theme === "dark";
         return (
           <section className={`py-16 sm:py-20 lg:py-24 border-b transition-colors duration-300 ${isDark ? "bg-[#0F0F0F] border-[#222]" : "bg-white border-gray-200"}`}>
-            <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-left">
 
               <span className="text-[#B40001] uppercase tracking-[0.2em] text-xs sm:text-sm font-bold">
                 Leadership Excellence
@@ -19,21 +19,23 @@ export default function LeadershipIntro() {
                 Driving Growth Through Vision, Experience & Innovation
               </h2>
 
-              <p className={`mt-6 sm:mt-8 text-base sm:text-lg leading-7 sm:leading-8 ${isDark ? "text-neutral-400" : "text-gray-600"}`}>
-                At ApMoSys, leadership is built on a strong foundation of
-                industry expertise, technological excellence, and a relentless
-                commitment to customer success. Our executive team brings
-                decades of experience across banking, enterprise technology,
-                quality engineering, digital transformation, and business
-                leadership.
-              </p>
+              <div className="grid md:grid-cols-2 gap-8 lg:gap-12 mt-8 sm:mt-10">
+                <p className={`text-base sm:text-lg leading-7 sm:leading-8 ${isDark ? "text-neutral-400" : "text-gray-600"}`}>
+                  At ApMoSys, leadership is built on a strong foundation of
+                  industry expertise, technological excellence, and a relentless
+                  commitment to customer success. Our executive team brings
+                  decades of experience across banking, enterprise technology,
+                  quality engineering, digital transformation, and business
+                  leadership.
+                </p>
 
-              <p className={`mt-5 sm:mt-6 text-base sm:text-lg leading-7 sm:leading-8 ${isDark ? "text-neutral-400" : "text-gray-600"}`}>
-                Together, they guide the organization in delivering innovative
-                solutions, fostering a culture of continuous learning, and
-                empowering enterprises to accelerate their digital
-                transformation journeys with confidence.
-              </p>
+                <p className={`text-base sm:text-lg leading-7 sm:leading-8 ${isDark ? "text-neutral-400" : "text-gray-600"}`}>
+                  Together, they guide the organization in delivering innovative
+                  solutions, fostering a culture of continuous learning, and
+                  empowering enterprises to accelerate their digital
+                  transformation journeys with confidence.
+                </p>
+              </div>
 
             </div>
           </section>
