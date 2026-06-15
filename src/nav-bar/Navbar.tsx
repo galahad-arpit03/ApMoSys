@@ -8,6 +8,7 @@ import Link from "next/link";
 
 
 import { usePathname } from "next/navigation";
+import { useScroll, useMotionValueEvent } from "framer-motion";
 
 // Types imported from adminStore
 
@@ -21,6 +22,75 @@ export default function Navbar() {
 
   const { content } = useContentStore();
   const megaMenuData = content.navbar.megaMenuData || {};
+
+  const activeDropdownRef = React.useRef(activeDropdown);
+  React.useEffect(() => {
+    activeDropdownRef.current = activeDropdown;
+    
+    // Prevent background scrolling when dropdown is open
+    if (activeDropdown !== null) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+    
+    return () => {
+      document.body.style.overflow = "unset";
+    };
+  }, [activeDropdown]);
+
+  // Scroll visibility logic
+  const { scrollY } = useScroll();
+  const [navVisible, setNavVisible] = React.useState(true);
+  const [lastScrollY, setLastScrollY] = React.useState(0);
+  const timeoutRef = React.useRef<NodeJS.Timeout | null>(null);
+
+  React.useEffect(() => {
+    if (!activeDropdown && scrollY.get() > 100) {
+      if (timeoutRef.current) clearTimeout(timeoutRef.current);
+      timeoutRef.current = setTimeout(() => {
+        setNavVisible(false);
+      }, 2000);
+    } else if (activeDropdown) {
+      setNavVisible(true);
+      if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    }
+  }, [activeDropdown, scrollY]);
+
+  useMotionValueEvent(scrollY, "change", (latest) => {
+    if (activeDropdownRef.current) {
+      setLastScrollY(latest);
+      return; // Do not hide if dropdown is open
+    }
+
+    if (latest <= 100) {
+      // Always show at top
+      setNavVisible(true);
+      if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    } else {
+      if (latest > lastScrollY && latest > 100) {
+        // Scrolling down -> Hide
+        setNavVisible(false);
+        if (timeoutRef.current) clearTimeout(timeoutRef.current);
+      } else if (latest < lastScrollY) {
+        // Scrolling up -> Show for 2 seconds
+        setNavVisible(true);
+        if (timeoutRef.current) clearTimeout(timeoutRef.current);
+        timeoutRef.current = setTimeout(() => {
+          if (scrollY.get() > 100 && !activeDropdownRef.current) {
+            setNavVisible(false);
+          }
+        }, 2000);
+      }
+    }
+    setLastScrollY(latest);
+  });
+
+  React.useEffect(() => {
+    return () => {
+      if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    };
+  }, []);
 
   React.useEffect(() => {
     if (
@@ -45,7 +115,7 @@ export default function Navbar() {
   });
 
   const isExpanded = activeDropdown !== null;
-  const navBgColor = isExpanded ? "bg-[#1E2222]" : "bg-[#000000]";
+  const navBgColor = isExpanded ? "bg-[#1E2222]/90 backdrop-blur-3xl backdrop-saturate-200" : "bg-black/50 backdrop-blur-3xl backdrop-saturate-200 border-b border-white/10";
 
   // Close dropdown on click outside
   React.useEffect(() => {
@@ -62,7 +132,7 @@ export default function Navbar() {
   return (
     <nav
       id="navbar-container"
-      className={`${navBgColor} ${isExpanded ? 'border-transparent' : 'border-[#3A3A3A]'} sticky top-0 z-50 transition-colors duration-300`}
+      className={`${navBgColor} ${isExpanded ? 'border-transparent' : 'border-[#3A3A3A]'} sticky top-0 z-50 transition-all duration-500 ease-in-out ${navVisible ? "translate-y-0" : "-translate-y-full"}`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
@@ -117,7 +187,7 @@ export default function Navbar() {
                         setActiveDropdown(null);
                       }
                     }}
-                    className="group flex items-center gap-1 px-2 py-2 text-sm font-medium text-[#FFFFFF] transition-colors duration-200 shrink-0"
+                    className={`group flex items-center gap-1 px-2 py-2 text-sm font-medium transition-colors duration-200 shrink-0 ${isActive || activeDropdown === item.label ? 'text-[#B40001]' : 'text-white hover:text-[#FAFAFA]'}`}
                   >
                     <span className="whitespace-nowrap relative pb-1">
                       {item.label}
@@ -150,7 +220,7 @@ export default function Navbar() {
           <div className="hidden lg:flex items-center justify-end lg:flex-1 z-50 space-x-6">
             <Link
               href="/contact"
-              className={`text-sm font-medium transition-colors ${pathname === "/contact" ? "text-[#B40001]" : "text-[#FFFFFF] hover:text-[#FAFAFA]"}`}
+              className={`px-5 py-2 text-sm font-medium rounded-md transition-all duration-300 overflow-hidden backdrop-blur-xl bg-white/10 border border-white/20 hover:bg-white/20 hover:border-white/40 ${pathname === "/contact" ? "text-white border-white/50 bg-white/20" : "text-gray-100"}`}
             >
               Contact Us
             </Link>
