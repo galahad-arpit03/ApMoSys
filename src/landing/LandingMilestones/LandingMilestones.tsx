@@ -15,7 +15,7 @@ export default function LandingMilestones() {
   const lineHeight = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
 
   return (
-    <section className="py-24 bg-[#0B0B0B] border-b border-[#1F1F1F]">
+    <section className="py-24 bg-[#0A1128] border-b border-[#1A264A]">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         
         <div className="text-center mb-20">
@@ -29,7 +29,7 @@ export default function LandingMilestones() {
 
         <div className="relative" ref={containerRef}>
           {/* Central Line Background */}
-          <div className="absolute left-[28px] sm:left-1/2 top-0 bottom-0 w-1 bg-[#1F1F1F] transform sm:-translate-x-1/2 rounded-full" />
+          <div className="absolute left-[28px] sm:left-1/2 top-0 bottom-0 w-1 bg-[#1A264A] transform sm:-translate-x-1/2 rounded-full" />
           
           {/* Animated Draw Line */}
           <motion.div 
@@ -44,7 +44,7 @@ export default function LandingMilestones() {
                 <div key={idx} className="relative flex flex-col sm:flex-row items-start sm:items-center w-full">
                   
                   {/* Timeline Dot */}
-                  <div className="absolute left-[28px] sm:left-1/2 w-4 h-4 bg-[#B40001] rounded-full transform -translate-x-1/2 z-10 shadow-[0_0_15px_rgba(180,0,1,0.5)] border-2 border-[#121212]" />
+                  <div className="absolute left-[28px] sm:left-1/2 w-4 h-4 bg-[#B40001] rounded-full transform -translate-x-1/2 z-10 shadow-[0_0_15px_rgba(180,0,1,0.5)] border-2 border-[#121B38]" />
 
                   {/* Desktop Layout */}
                   <div className={`hidden sm:flex w-full ${isEven ? "justify-start" : "justify-end"}`}>
@@ -53,7 +53,7 @@ export default function LandingMilestones() {
                       whileInView={{ opacity: 1, x: 0 }}
                       viewport={{ once: true, margin: "-100px" }}
                       transition={{ duration: 0.5, delay: 0.1 }}
-                      className={`w-5/12 bg-[#121212] border border-[#1F1F1F] p-6 rounded-md hover:border-[#333333] transition-colors ${
+                      className={`w-5/12 bg-[#121B38] border border-[#1A264A] p-6 rounded-md hover:border-[#243461] transition-colors ${
                         isEven ? "mr-auto text-right" : "ml-auto text-left"
                       }`}
                     >
@@ -76,7 +76,7 @@ export default function LandingMilestones() {
                       whileInView={{ opacity: 1, x: 0 }}
                       viewport={{ once: true }}
                       transition={{ duration: 0.5 }}
-                      className="w-full bg-[#121212] border border-[#1F1F1F] p-6 rounded-md"
+                      className="w-full bg-[#121B38] border border-[#1A264A] p-6 rounded-md"
                     >
                       <span className="text-[#B40001] font-black text-2xl tracking-tighter block mb-2">
                         {milestone.year}

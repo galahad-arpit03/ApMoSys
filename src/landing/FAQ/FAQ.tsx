@@ -27,7 +27,7 @@ export default function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
-    <section className="py-24 bg-[#0B0B0B] border-y border-[#1F1F1F]">
+    <section className="py-24 bg-[#0A1128] border-y border-[#1A264A]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
           
@@ -39,7 +39,7 @@ export default function FAQ() {
             <p className="text-gray-400 mb-8 leading-relaxed">
               Everything you need to know about partnering with ApMoSys, our implementation process, and enterprise pricing.
             </p>
-            <div className="p-6 bg-[#121212] border border-[#1F1F1F] rounded-md">
+            <div className="p-6 bg-[#121B38] border border-[#1A264A] rounded-md">
               <h4 className="text-white font-semibold mb-2">Still have questions?</h4>
               <p className="text-sm text-gray-500 mb-4">Our enterprise support team is available 24/7 to help you evaluate ApMoSys.</p>
               <a href="/contact" className="inline-flex items-center text-[#B40001] text-sm font-bold hover:text-red-600 transition-colors">
@@ -55,7 +55,7 @@ export default function FAQ() {
               return (
                 <div 
                   key={idx} 
-                  className={`bg-[#121212] border rounded-md transition-all duration-300 ${isOpen ? "border-[#B40001]/50 shadow-[0_0_15px_rgba(180,0,1,0.05)]" : "border-[#1F1F1F] hover:border-[#333333]"}`}
+                  className={`bg-[#121B38] border rounded-md transition-all duration-300 ${isOpen ? "border-[#B40001]/50 shadow-[0_0_15px_rgba(180,0,1,0.05)]" : "border-[#1A264A] hover:border-[#243461]"}`}
                 >
                   <button
                     className="w-full text-left p-6 flex items-start justify-between focus:outline-none"
@@ -64,7 +64,7 @@ export default function FAQ() {
                     <span className={`font-semibold text-lg pr-8 transition-colors ${isOpen ? "text-white" : "text-gray-300"}`}>
                       {faq.question}
                     </span>
-                    <div className={`flex-shrink-0 w-6 h-6 rounded-sm flex items-center justify-center border transition-all duration-300 mt-0.5 ${isOpen ? "bg-[#B40001]/10 border-[#B40001]/50 text-[#B40001]" : "border-[#333333] text-gray-500"}`}>
+                    <div className={`flex-shrink-0 w-6 h-6 rounded-sm flex items-center justify-center border transition-all duration-300 mt-0.5 ${isOpen ? "bg-[#B40001]/10 border-[#B40001]/50 text-[#B40001]" : "border-[#243461] text-gray-500"}`}>
                       <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`} />
                     </div>
                   </button>
@@ -76,7 +76,7 @@ export default function FAQ() {
                         exit={{ height: 0, opacity: 0 }}
                         className="overflow-hidden"
                       >
-                        <div className="px-6 pb-6 text-gray-400 leading-relaxed border-t border-[#1F1F1F] mt-2 pt-4">
+                        <div className="px-6 pb-6 text-gray-400 leading-relaxed border-t border-[#1A264A] mt-2 pt-4">
                           {faq.answer}
                         </div>
                       </motion.div>

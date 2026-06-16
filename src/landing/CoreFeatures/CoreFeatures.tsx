@@ -41,7 +41,7 @@ export default function CoreFeatures() {
         
         <div className="mb-16 text-left max-w-2xl">
           <h2 className="text-4xl font-black text-gray-900 tracking-tight mb-4">
-            Engineered for <span className="text-[#B40001]">Performance.</span>
+            Engineered for <span className="text-blue-600">Performance.</span>
           </h2>
           <p className="text-gray-600 text-lg">
             Explore the capabilities that make ApMoSys the preferred platform for enterprise digital transformation.
@@ -61,13 +61,13 @@ export default function CoreFeatures() {
                   className={`
                     w-full text-left p-6 transition-all duration-300 border rounded-md
                     ${isActive 
-                      ? "bg-white border-[#B40001] shadow-sm" 
+                      ? "bg-white border-blue-600 shadow-sm" 
                       : "bg-transparent border-transparent hover:bg-gray-100"
                     }
                   `}
                 >
                   <div className="flex items-start gap-4">
-                    <div className={`mt-1 ${isActive ? "text-[#B40001]" : "text-gray-400"}`}>
+                    <div className={`mt-1 ${isActive ? "text-blue-600" : "text-gray-400"}`}>
                       {feature.icon}
                     </div>
                     <div>
@@ -95,7 +95,7 @@ export default function CoreFeatures() {
                   transition={{ duration: 0.3 }}
                   className="text-left w-full max-w-md"
                 >
-                  <div className="w-16 h-16 bg-red-50 text-[#B40001] rounded-md flex items-center justify-center mb-8 border border-red-100">
+                  <div className="w-16 h-16 bg-red-50 text-blue-600 rounded-md flex items-center justify-center mb-8 border border-red-100">
                     {activeData.icon}
                   </div>
                   <h4 className="text-2xl font-bold text-gray-900 mb-4">{activeData.title}</h4>

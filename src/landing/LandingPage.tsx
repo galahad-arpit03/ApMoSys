@@ -14,7 +14,7 @@ import ContactCTA from "./ContactCTA/ContactCTA";
 
 export default function LandingPage() {
   return (
-    <div className="relative bg-[#0B0B0B]">
+    <div className="relative bg-[#0A1128]">
       <Hero />
       <ThinMarquee />
       <ClientLogos />

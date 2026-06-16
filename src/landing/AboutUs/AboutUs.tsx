@@ -42,7 +42,7 @@ export default function AboutUs() {
   return (
     <section
       id="about"
-      className="bg-[#111111] py-20 lg:py-28 border-t border-[#1F1F1F]"
+      className="bg-[#121B38] py-20 lg:py-28 border-t border-[#1A264A]"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
@@ -55,7 +55,7 @@ export default function AboutUs() {
             viewport={{ once: true, margin: "-100px" }}
             variants={fadeUp}
           >
-            <span className="text-primary-red uppercase tracking-[0.25em] sm:tracking-[0.3em] text-[10px] sm:text-xs font-semibold">
+            <span className="text-blue-600 uppercase tracking-[0.25em] sm:tracking-[0.3em] text-[10px] sm:text-xs font-semibold">
               About ApMoSys
             </span>
 
@@ -88,7 +88,7 @@ export default function AboutUs() {
                 gap-2
                 mt-8
                 sm:mt-10
-                text-primary-red
+                text-blue-600
                 font-semibold
                 group
               "
@@ -118,16 +118,16 @@ export default function AboutUs() {
                   duration: 0.3,
                 }}
                 className="
-                  bg-[#171717]
+                  bg-[#1A264A]
                   border
-                  border-[#2A2A2A]
+                  border-[#243461]
                   rounded-2xl
                   p-5
                   sm:p-6
                   lg:p-8
                 "
               >
-                <div className="text-3xl sm:text-4xl lg:text-5xl font-bold text-primary-red">
+                <div className="text-3xl sm:text-4xl lg:text-5xl font-bold text-blue-600">
                   {item.stat}
                 </div>
 

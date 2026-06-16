@@ -7,7 +7,7 @@ import { ArrowRight } from "lucide-react";
 
 export default function StatsStrip() {
   return (
-    <section className="relative bg-[#0B0B0B] py-24 border-b border-[#1A1A1A] overflow-hidden">
+    <section className="relative bg-[#0A1128] py-24 border-b border-[#1A264A] overflow-hidden">
       {/* Background Effect */}
       <div className="absolute top-1/2 right-0 w-1/2 h-full bg-[#B40001]/5 rounded-l-full blur-[100px] pointer-events-none -translate-y-1/2" />
 
@@ -37,7 +37,7 @@ export default function StatsStrip() {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: idx * 0.1, ease: "easeOut" }}
-                className="flex flex-col flex-1 p-10 bg-[#121212] border border-[#1F1F1F] rounded-md hover:border-[#333333] transition-all duration-300 relative group overflow-hidden"
+                className="flex flex-col flex-1 p-10 bg-[#121B38] border border-[#1A264A] rounded-md hover:border-[#243461] transition-all duration-300 relative group overflow-hidden"
               >
                 {/* Subtle hover glow */}
                 <div className="absolute inset-0 bg-gradient-to-br from-[#B40001]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />

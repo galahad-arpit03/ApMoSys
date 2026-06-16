@@ -58,14 +58,14 @@ const industries = [
 export default function IndustriesPreview() {
   return (
     <section
-      className="bg-[#111111] py-20 lg:py-28 border-t border-[#1F1F1F]"
+      className="bg-[#121B38] py-20 lg:py-28 border-t border-[#1A264A]"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Header */}
         <div className="max-w-4xl mx-auto text-center mb-14 lg:mb-20">
 
-          <span className="text-primary-red uppercase tracking-[0.25em] sm:tracking-[0.3em] text-[10px] sm:text-xs font-semibold">
+          <span className="text-blue-600 uppercase tracking-[0.25em] sm:tracking-[0.3em] text-[10px] sm:text-xs font-semibold">
             Industries We Serve
           </span>
 
@@ -101,13 +101,13 @@ export default function IndustriesPreview() {
               }}
               className="
                 group
-                bg-[#171717]
+                bg-[#1A264A]
                 border
-                border-[#242424]
+                border-[#243461]
                 rounded-2xl
                 p-6
                 lg:p-8
-                hover:border-primary-red/40
+                hover:border-blue-600/40
                 transition-all
                 duration-300
               "
@@ -119,9 +119,9 @@ export default function IndustriesPreview() {
                   w-14
                   h-14
                   rounded-xl
-                  bg-primary-red/10
+                  bg-blue-600/10
                   border
-                  border-primary-red/20
+                  border-blue-600/20
                   flex
                   items-center
                   justify-center
@@ -172,7 +172,7 @@ export default function IndustriesPreview() {
               inline-flex
               items-center
               gap-2
-              text-primary-red
+              text-blue-600
               font-semibold
               hover:gap-3
               transition-all

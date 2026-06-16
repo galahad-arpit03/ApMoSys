@@ -23,7 +23,7 @@ const marqueeItems = [...testimonials, ...testimonials, ...testimonials, ...test
 
 export default function Testimonials() {
   return (
-    <section className="py-24 bg-[#0B0B0B] border-b border-[#1A1A1A] overflow-hidden relative">
+    <section className="py-24 bg-[#0A1128] border-b border-[#1A264A] overflow-hidden relative">
       
       {/* Header Area */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16 relative z-10">
@@ -41,8 +41,8 @@ export default function Testimonials() {
       {/* Auto moving scroll marquee */}
       <div className="relative flex overflow-x-hidden group">
         {/* Shadow Fades for edges */}
-        <div className="absolute top-0 left-0 w-24 md:w-64 h-full bg-gradient-to-r from-[#0B0B0B] to-transparent z-10 pointer-events-none" />
-        <div className="absolute top-0 right-0 w-24 md:w-64 h-full bg-gradient-to-l from-[#0B0B0B] to-transparent z-10 pointer-events-none" />
+        <div className="absolute top-0 left-0 w-24 md:w-64 h-full bg-gradient-to-r from-[#0A1128] to-transparent z-10 pointer-events-none" />
+        <div className="absolute top-0 right-0 w-24 md:w-64 h-full bg-gradient-to-l from-[#0A1128] to-transparent z-10 pointer-events-none" />
         
         <div className="flex space-x-8 items-stretch w-max animate-marquee hover:[animation-play-state:paused] px-4 pb-12">
           
@@ -50,16 +50,16 @@ export default function Testimonials() {
           {marqueeItems.map((test, idx) => (
             <div
               key={`set1-${idx}`}
-              className="w-[350px] sm:w-[450px] md:w-[500px] flex-shrink-0 relative p-8 md:p-10 bg-[#121212] border border-[#1F1F1F] rounded-md hover:border-[#333333] transition-all duration-300 flex flex-col group/card"
+              className="w-[350px] sm:w-[450px] md:w-[500px] flex-shrink-0 relative p-8 md:p-10 bg-[#121B38] border border-[#1A264A] rounded-md hover:border-[#243461] transition-all duration-300 flex flex-col group/card"
             >
-              <Quote className="absolute top-8 right-8 w-8 h-8 md:w-12 md:h-12 text-[#1F1F1F] group-hover/card:text-[#B40001]/20 transition-colors" />
+              <Quote className="absolute top-8 right-8 w-8 h-8 md:w-12 md:h-12 text-[#1A264A] group-hover/card:text-[#B40001]/20 transition-colors" />
               
               <p className="text-gray-300 text-sm md:text-base leading-relaxed mb-8 relative z-10 italic flex-grow">
                 "{test.quote}"
               </p>
               
               <div className="mt-auto flex items-center gap-4 relative z-10">
-                <div className="w-12 h-12 rounded-full bg-[#1A1A1A] flex items-center justify-center border border-[#2A2A2A] flex-shrink-0">
+                <div className="w-12 h-12 rounded-full bg-[#1A264A] flex items-center justify-center border border-[#243461] flex-shrink-0">
                   <span className="text-[#B40001] font-bold text-lg">
                     {test.name.charAt(0)}
                   </span>
@@ -85,16 +85,16 @@ export default function Testimonials() {
           {marqueeItems.map((test, idx) => (
             <div
               key={`set2-${idx}`}
-              className="w-[350px] sm:w-[450px] md:w-[500px] flex-shrink-0 relative p-8 md:p-10 bg-[#121212] border border-[#1F1F1F] rounded-md hover:border-[#333333] transition-all duration-300 flex flex-col group/card"
+              className="w-[350px] sm:w-[450px] md:w-[500px] flex-shrink-0 relative p-8 md:p-10 bg-[#121B38] border border-[#1A264A] rounded-md hover:border-[#243461] transition-all duration-300 flex flex-col group/card"
             >
-              <Quote className="absolute top-8 right-8 w-8 h-8 md:w-12 md:h-12 text-[#1F1F1F] group-hover/card:text-[#B40001]/20 transition-colors" />
+              <Quote className="absolute top-8 right-8 w-8 h-8 md:w-12 md:h-12 text-[#1A264A] group-hover/card:text-[#B40001]/20 transition-colors" />
               
               <p className="text-gray-300 text-sm md:text-base leading-relaxed mb-8 relative z-10 italic flex-grow">
                 "{test.quote}"
               </p>
               
               <div className="mt-auto flex items-center gap-4 relative z-10">
-                <div className="w-12 h-12 rounded-full bg-[#1A1A1A] flex items-center justify-center border border-[#2A2A2A] flex-shrink-0">
+                <div className="w-12 h-12 rounded-full bg-[#1A264A] flex items-center justify-center border border-[#243461] flex-shrink-0">
                   <span className="text-[#B40001] font-bold text-lg">
                     {test.name.charAt(0)}
                   </span>

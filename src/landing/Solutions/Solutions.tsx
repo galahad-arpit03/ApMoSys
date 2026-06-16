@@ -48,14 +48,14 @@ export default function Solutions() {
   return (
     <section
       id="why-apmosys"
-      className="bg-[#111111] py-20 lg:py-28 border-t border-[#1F1F1F]"
+      className="bg-[#121B38] py-20 lg:py-28 border-t border-[#1A264A]"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Header */}
         <div className="text-center max-w-4xl mx-auto mb-14 lg:mb-20">
 
-          <span className="text-primary-red uppercase tracking-[0.25em] sm:tracking-[0.3em] text-[10px] sm:text-xs font-semibold">
+          <span className="text-blue-600 uppercase tracking-[0.25em] sm:tracking-[0.3em] text-[10px] sm:text-xs font-semibold">
             Why ApMoSys
           </span>
 
@@ -91,13 +91,13 @@ export default function Solutions() {
               }}
               className="
                 group
-                bg-[#171717]
+                bg-[#1A264A]
                 border
-                border-[#252525]
+                border-[#243461]
                 rounded-3xl
                 p-6
                 lg:p-8
-                hover:border-primary-red/40
+                hover:border-blue-600/40
                 transition-all
                 duration-300
               "
@@ -111,13 +111,13 @@ export default function Solutions() {
                     w-14
                     h-14
                     rounded-xl
-                    bg-primary-red/10
+                    bg-blue-600/10
                     border
-                    border-primary-red/20
+                    border-blue-600/20
                     flex
                     items-center
                     justify-center
-                    text-primary-red
+                    text-blue-600
                     font-bold
                   "
                 >
@@ -129,8 +129,8 @@ export default function Solutions() {
                     text-4xl
                     lg:text-5xl
                     font-bold
-                    text-[#222222]
-                    group-hover:text-[#333333]
+                    text-[#243461]
+                    group-hover:text-[#243461]
                     transition-colors
                   "
                 >
@@ -149,7 +149,7 @@ export default function Solutions() {
               </p>
 
               {/* Bottom Line */}
-              <div className="mt-8 pt-6 border-t border-[#242424]">
+              <div className="mt-8 pt-6 border-t border-[#243461]">
 
                 <div className="flex items-center justify-between">
 
@@ -159,7 +159,7 @@ export default function Solutions() {
 
                   <span
                     className="
-                      text-primary-red
+                      text-blue-600
                       group-hover:translate-x-1
                       transition-transform
                     "
@@ -202,16 +202,16 @@ export default function Solutions() {
               <div
                 key={item.label}
                 className="
-                  bg-[#171717]
+                  bg-[#1A264A]
                   border
-                  border-[#252525]
+                  border-[#243461]
                   rounded-2xl
                   p-5
                   lg:p-6
                   text-center
                 "
               >
-                <div className="text-2xl sm:text-3xl lg:text-4xl font-bold text-primary-red">
+                <div className="text-2xl sm:text-3xl lg:text-4xl font-bold text-blue-600">
                   {item.value}
                 </div>
 
@@ -235,7 +235,7 @@ export default function Solutions() {
               inline-flex
               items-center
               gap-2
-              text-primary-red
+              text-blue-600
               font-semibold
               hover:gap-3
               transition-all

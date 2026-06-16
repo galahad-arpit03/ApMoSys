@@ -13,7 +13,7 @@ export default function Hero() {
   const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
 
   return (
-    <section ref={ref} className="relative w-full h-screen overflow-hidden bg-black">
+    <section ref={ref} className="relative w-full h-screen overflow-hidden bg-[#0A1128]">
       {/* Video Background with Parallax */}
       <motion.div
         className="absolute inset-0 z-0 origin-top"
@@ -31,7 +31,7 @@ export default function Hero() {
         </video>
         
         {/* Optional dark overlay to ensure navbar/content visibility if needed */}
-        <div className="absolute inset-0 bg-black/20" />
+        <div className="absolute inset-0 bg-[#0A1128]/20" />
       </motion.div>
 
       {/* Content Container (Empty as requested, but ready if needed) */}

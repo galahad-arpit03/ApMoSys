@@ -36,7 +36,7 @@ export default function Integrations() {
                 key={idx} 
                 className="flex flex-col items-start gap-4 p-6 bg-gray-50 border border-gray-100 rounded-md hover:border-gray-300 transition-all duration-300"
               >
-                <div className="text-[#B40001]">
+                <div className="text-blue-600">
                   {item.icon}
                 </div>
                 <span className="text-sm font-bold text-gray-900 tracking-wider">{item.name}</span>

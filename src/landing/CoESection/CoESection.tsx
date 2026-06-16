@@ -14,7 +14,7 @@ export default function CoESection() {
         {/* Header */}
         <div className="flex flex-col items-start text-left max-w-3xl mb-12">
           <h2 className="text-3xl md:text-5xl font-black text-gray-900 mb-4 tracking-tight leading-tight">
-            Centers of <span className="text-[#B40001]">Excellence.</span>
+            Centers of <span className="text-blue-600">Excellence.</span>
           </h2>
           <p className="text-gray-600 text-lg leading-relaxed">
             We operate dedicated innovation labs to establish best practices, develop specialized tools, and drive thought leadership across critical domains.
@@ -40,7 +40,7 @@ export default function CoESection() {
                     <div className="absolute inset-0 flex w-[100vw] md:w-[calc(100vw-400px)] lg:w-[800px] max-w-full h-full bg-white animate-in fade-in duration-500">
                       {/* Left Spine (Maintained in Active State) */}
                       <div className="hidden md:flex flex-col items-center w-20 h-full py-8 border-r border-gray-100 flex-shrink-0 bg-gray-50/50">
-                        <div className="text-[#B40001] font-black text-xl mb-auto tracking-wider">
+                        <div className="text-blue-600 font-black text-xl mb-auto tracking-wider">
                           {item.shortName}
                         </div>
                         <span 
@@ -55,7 +55,7 @@ export default function CoESection() {
                       <div className="flex flex-col flex-grow p-6 md:p-8 w-full">
                         {/* Heading */}
                         <div className="flex items-center gap-4 mb-2">
-                          <div className="w-8 h-6 bg-[#B40001]/10 rounded-sm flex items-center justify-center text-[#B40001] font-black text-xs md:hidden">
+                          <div className="w-8 h-6 bg-blue-600/10 rounded-sm flex items-center justify-center text-blue-600 font-black text-xs md:hidden">
                             {item.shortName}
                           </div>
                           <h3 className="text-2xl md:text-3xl font-black text-gray-900 leading-tight">
@@ -81,7 +81,7 @@ export default function CoESection() {
                         </p>
                         
                         {/* Read More Link */}
-                        <div className="mt-auto flex items-center text-gray-900 font-bold text-sm tracking-widest uppercase hover:text-[#B40001] transition-colors cursor-pointer group/link w-max">
+                        <div className="mt-auto flex items-center text-gray-900 font-bold text-sm tracking-widest uppercase hover:text-blue-600 transition-colors cursor-pointer group/link w-max">
                           READ MORE 
                           <ArrowRight className="w-4 h-4 ml-2 transform group-hover/link:translate-x-1 transition-transform" />
                         </div>
@@ -90,20 +90,20 @@ export default function CoESection() {
                   ) : (
                     <div className="absolute inset-0 flex items-center justify-center bg-gray-50 hover:bg-gray-100 group">
                       {/* Mobile View: Horizontal Text */}
-                      <span className="md:hidden text-gray-800 font-black text-sm tracking-widest uppercase group-hover:text-[#B40001] transition-colors">
+                      <span className="md:hidden text-gray-800 font-black text-sm tracking-widest uppercase group-hover:text-blue-600 transition-colors">
                         {item.title}
                       </span>
 
                       {/* Desktop View: Vertical Text & Short Name */}
                       <div className="hidden md:flex flex-col items-center w-full h-full py-8">
                         {/* Top Short Name (Replacing the Flag) */}
-                        <div className="text-[#B40001] font-black text-xl mb-auto tracking-wider">
+                        <div className="text-blue-600 font-black text-xl mb-auto tracking-wider">
                           {item.shortName}
                         </div>
                         
                         {/* Bottom Vertical Full Text */}
                         <span 
-                          className="text-gray-800 font-medium text-lg tracking-wider uppercase whitespace-nowrap mt-auto rotate-180 group-hover:text-[#B40001] transition-colors"
+                          className="text-gray-800 font-medium text-lg tracking-wider uppercase whitespace-nowrap mt-auto rotate-180 group-hover:text-blue-600 transition-colors"
                           style={{ writingMode: "vertical-rl" }}
                         >
                           {item.title}

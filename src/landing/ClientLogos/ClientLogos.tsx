@@ -36,9 +36,9 @@ export default function ClientLogos() {
               viewport={{ once: true }}
               className="text-4xl md:text-5xl font-black text-gray-900 mb-6 tracking-tight leading-tight"
             >
-              Our Trusted <br/> <span className="text-[#B40001]">Enterprise Clients</span>
+              Our Trusted <br/> <span className="text-blue-600">Enterprise Clients</span>
             </motion.h2>
-            <div className="w-12 h-1 bg-[#B40001] mb-6 rounded-md" />
+            <div className="w-12 h-1 bg-blue-600 mb-6 rounded-md" />
             <motion.p 
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -62,9 +62,9 @@ export default function ClientLogos() {
                   whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.4, delay: idx * 0.05 }}
-                  className="flex flex-col p-6 bg-gray-50 border border-gray-100 rounded-md hover:border-[#B40001]/30 hover:shadow-lg transition-all duration-300"
+                  className="flex flex-col p-6 bg-gray-50 border border-gray-100 rounded-md hover:border-blue-600/30 hover:shadow-lg transition-all duration-300"
                 >
-                  <span className="text-[#B40001] font-black text-4xl tracking-tighter mb-2 font-mono">
+                  <span className="text-blue-600 font-black text-4xl tracking-tighter mb-2 font-mono">
                     {stat.count}
                   </span>
                   <span className="text-xs text-gray-500 font-bold uppercase tracking-widest leading-snug">

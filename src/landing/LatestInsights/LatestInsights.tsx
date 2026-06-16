@@ -33,7 +33,7 @@ const latestInsightsData = [
 
 export default function LatestInsights() {
   return (
-    <section className="py-24 bg-[#0B0B0B] border-b border-[#1A1A1A]">
+    <section className="py-24 bg-[#0A1128] border-b border-[#1A264A]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
           
@@ -61,16 +61,16 @@ export default function LatestInsights() {
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: idx * 0.1 }}
-                  className="flex flex-col sm:flex-row gap-6 p-6 bg-[#121212] border border-[#1F1F1F] rounded-md hover:border-[#333333] transition-all duration-300 group cursor-pointer"
+                  className="flex flex-col sm:flex-row gap-6 p-6 bg-[#121B38] border border-[#1A264A] rounded-md hover:border-[#243461] transition-all duration-300 group cursor-pointer"
                 >
-                  <div className="w-full sm:w-48 h-48 sm:h-auto rounded-md overflow-hidden flex-shrink-0 relative bg-[#1A1A1A]">
+                  <div className="w-full sm:w-48 h-48 sm:h-auto rounded-md overflow-hidden flex-shrink-0 relative bg-[#1A264A]">
                     <div className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105" style={{ backgroundImage: `url(${post.image})` }} />
-                    <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-300" />
+                    <div className="absolute inset-0 bg-[#0A1128]/20 group-hover:bg-transparent transition-colors duration-300" />
                   </div>
                   
                   <div className="flex flex-col justify-center flex-grow py-2">
                     <div className="flex items-center gap-3 mb-3">
-                      <span className="px-3 py-1 bg-[#1A1A1A] text-[#B40001] text-xs font-bold uppercase tracking-wider rounded-md border border-[#2A2A2A]">
+                      <span className="px-3 py-1 bg-[#1A264A] text-[#B40001] text-xs font-bold uppercase tracking-wider rounded-md border border-[#243461]">
                         {post.category}
                       </span>
                       <span className="text-gray-500 text-sm">{post.date}</span>

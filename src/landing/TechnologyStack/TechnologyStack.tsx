@@ -84,7 +84,7 @@ const stats = [
 
 export default function TechnologyStack() {
   return (
-    <section className="bg-[#111111] py-20 lg:py-28 border-t border-[#1F1F1F]">
+    <section className="bg-[#121B38] py-20 lg:py-28 border-t border-[#1A264A]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Header */}
@@ -126,9 +126,9 @@ export default function TechnologyStack() {
               }}
               className="
                 group
-                bg-[#171717]
+                bg-[#1A264A]
                 border
-                border-[#242424]
+                border-[#243461]
                 rounded-3xl
                 p-6
                 lg:p-8
@@ -179,7 +179,7 @@ export default function TechnologyStack() {
                       rounded-full
                       text-[11px]
                       sm:text-xs
-                      bg-[#1F1F1F]
+                      bg-[#1A264A]
                       border
                       border-[#303030]
                       text-[#C0C0C0]
@@ -205,9 +205,9 @@ export default function TechnologyStack() {
               <div
                 key={item.label}
                 className="
-                  bg-[#171717]
+                  bg-[#1A264A]
                   border
-                  border-[#242424]
+                  border-[#243461]
                   rounded-2xl
                   p-5
                   lg:p-6

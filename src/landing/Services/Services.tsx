@@ -78,7 +78,7 @@ export default function Services() {
   return (
     <section
       id="services"
-      className="bg-[#0B0B0B] py-20 lg:py-28 border-t border-[#1F1F1F]"
+      className="bg-[#0A1128] py-20 lg:py-28 border-t border-[#1A264A]"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
@@ -121,9 +121,9 @@ export default function Services() {
               }}
               className="
                 group
-                bg-[#141414]
+                bg-[#121B38]
                 border
-                border-[#242424]
+                border-[#243461]
                 rounded-3xl
                 p-6
                 lg:p-8
@@ -158,8 +158,8 @@ export default function Services() {
                     text-4xl
                     lg:text-5xl
                     font-bold
-                    text-[#222222]
-                    group-hover:text-[#333333]
+                    text-[#243461]
+                    group-hover:text-[#243461]
                     transition-colors
                   "
                 >
@@ -202,7 +202,7 @@ export default function Services() {
               </div>
 
               {/* CTA */}
-              <div className="mt-8 pt-6 border-t border-[#242424]">
+              <div className="mt-8 pt-6 border-t border-[#243461]">
 
                 <button
                   className="
@@ -255,9 +255,9 @@ export default function Services() {
               <div
                 key={item.label}
                 className="
-                  bg-[#141414]
+                  bg-[#121B38]
                   border
-                  border-[#242424]
+                  border-[#243461]
                   rounded-2xl
                   p-5
                   lg:p-6

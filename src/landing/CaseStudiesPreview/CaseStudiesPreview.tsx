@@ -31,7 +31,7 @@ const studies = [
 export default function CaseStudiesPreview() {
   return (
     <section
-      className="bg-[#0B0B0B] py-20 lg:py-28 border-t border-[#1F1F1F]"
+      className="bg-[#0A1128] py-20 lg:py-28 border-t border-[#1A264A]"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
@@ -68,9 +68,9 @@ export default function CaseStudiesPreview() {
               }}
               className="
                 group
-                bg-[#141414]
+                bg-[#121B38]
                 border
-                border-[#242424]
+                border-[#243461]
                 rounded-3xl
                 overflow-hidden
                 hover:border-primary-red/40
@@ -82,9 +82,9 @@ export default function CaseStudiesPreview() {
                   h-44
                   sm:h-52
                   lg:h-56
-                  bg-[#1D1D1D]
+                  bg-[#1A264A]
                   border-b
-                  border-[#242424]
+                  border-[#243461]
                   flex
                   items-center
                   justify-center

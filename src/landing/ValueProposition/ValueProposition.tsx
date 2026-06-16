@@ -46,24 +46,24 @@ export default function ValueProposition() {
               transition={{ duration: 0.6 }}
             >
               <h2 className="text-3xl md:text-5xl font-black text-gray-900 mb-6 tracking-tight">
-                Why <span className="text-[#B40001]">ApMoSys?</span>
+                Why <span className="text-blue-600">ApMoSys?</span>
               </h2>
-              <div className="w-12 h-1 bg-[#B40001] mb-6 rounded-md" />
+              <div className="w-12 h-1 bg-blue-600 mb-6 rounded-md" />
               <p className="text-gray-600 text-lg leading-relaxed mb-8">
                 When your mission relies on being ready for anything, you can rely on us. ApMoSys takes utmost care for evolving needs of clients with a proactive approach.
               </p>
               
               <div className="flex flex-col gap-4 bg-gray-50 p-6 border border-gray-100 rounded-md">
                 <div className="flex items-center gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-[#B40001]" />
+                  <CheckCircle2 className="w-5 h-5 text-blue-600" />
                   <span className="text-gray-900 font-bold">Domain Mastery</span>
                 </div>
                 <div className="flex items-center gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-[#B40001]" />
+                  <CheckCircle2 className="w-5 h-5 text-blue-600" />
                   <span className="text-gray-900 font-bold">Sustained Support</span>
                 </div>
                 <div className="flex items-center gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-[#B40001]" />
+                  <CheckCircle2 className="w-5 h-5 text-blue-600" />
                   <span className="text-gray-900 font-bold">Global Delivery</span>
                 </div>
               </div>
@@ -80,9 +80,9 @@ export default function ValueProposition() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: idx * 0.1 }}
-                  className="bg-white border border-gray-200 p-8 rounded-md hover:border-[#B40001]/30 hover:shadow-lg transition-all duration-300 group"
+                  className="bg-white border border-gray-200 p-8 rounded-md hover:border-blue-600/30 hover:shadow-lg transition-all duration-300 group"
                 >
-                  <h3 className="text-gray-900 font-black text-xl mb-3 group-hover:text-[#B40001] transition-colors">
+                  <h3 className="text-gray-900 font-black text-xl mb-3 group-hover:text-blue-600 transition-colors">
                     {val.title}
                   </h3>
                   <p className="text-gray-600 text-sm leading-relaxed">
