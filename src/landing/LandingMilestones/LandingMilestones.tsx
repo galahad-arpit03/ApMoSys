@@ -1,111 +1,101 @@
 "use client";
-import { landingmilestonesData } from "./LandingMilestonesData";
 
-import React from "react";
-import Link from "next/link";
-import { ArrowRight } from "lucide-react";
-
+import React, { useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { landingMilestonesData } from "./LandingMilestonesData";
 
 export default function LandingMilestones() {
-  const milestones = [
-    {
-      yearLabel: "24",
-      logId: "ECOSYSTEM_SCALE_V3",
-      title: "Strengthening Ecosystem",
-      desc: "Endorsed Service Partner by Dynatrace. Rising Star by Automation Anywhere. Achieved CMMI Maturity Level 3 Certification.",
-      bg: "bg-white",
-    },
-    {
-      yearLabel: "23",
-      logId: "PARTNERSHIPS_V2",
-      title: "Strategic Partnerships",
-      desc: "Rising Star Awardee by Dynatrace. Axis Bank AVC Performer. Published multiple Springer and IEEE whitepapers.",
-      bg: "bg-[#FAFAFA]",
-    },
-    {
-      yearLabel: "22",
-      logId: "AWARDS_RECOGNITION_V1",
-      title: "Awards & Recognition",
-      desc: "Crossed 1000 employees mark and 100+ clients. Awarded Best Organization for Women Empowerment at 3rd GIWL Awards 2022.",
-      bg: "bg-white",
-    },
-  ];
+  const containerRef = useRef<HTMLDivElement>(null);
+  
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start center", "end center"]
+  });
+
+  const lineHeight = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
 
   return (
-    <section className="py-12 bg-white border-t border-gray-100">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-8">
-          
-          {/* Left Column */}
-          <div className="lg:col-span-5 relative flex items-center">
-            <div>
-              <h2 className="text-4xl md:text-5xl font-black text-gray-900 leading-[1.1] mb-4 tracking-tight">
-                A Legacy of <br />
-                <span className="text-[#B40001]">Technical</span><br />
-                Excellence.
-              </h2>
-              <p className="text-gray-600 text-base font-medium max-w-sm mb-8">
-                Systematic growth and certification milestones since our inception in 2012.
-              </p>
-              
-              <Link href="/about" className="inline-flex items-center justify-center gap-2 bg-[#B40001] hover:bg-red-800 text-white px-6 py-3 rounded-md font-bold text-sm transition-colors shadow-sm w-fit">
-                View full journey <ArrowRight className="w-4 h-4" />
-              </Link>
-            </div>
-          </div>
-
-          {/* Right Column (Timeline) */}
-          <div className="lg:col-span-7 relative">
-            {/* The vertical timeline line */}
-            <div className="absolute left-[32px] sm:left-[48px] top-0 bottom-0 w-[1px] bg-red-200" />
-
-            <div className="flex flex-col border border-gray-100/50 rounded-lg overflow-hidden">
-              {milestones.map((ms, idx) => {
-                // Diagonal staggering offset: 0px, 32px, 64px...
-                const offset = idx * 32;
-
-                return (
-                  <div key={idx} className={`relative flex w-full ${ms.bg} py-5 pr-6 sm:pr-12`}>
-                    
-                    {/* The red node with year */}
-                    <div 
-                      className="absolute top-5 w-8 h-8 rounded-sm bg-[#B40001] flex items-center justify-center text-white font-bold text-[13px] shadow-sm z-10 transition-all duration-300"
-                      // Default for mobile, overwrite for sm: using a tailwind arbitrary value wasn't as clean as just a custom style block
-                      style={{ 
-                        left: `calc(max(32px, 48px) + ${offset}px)`, // Approximation for simplicity
-                        transform: "translateX(-50%)" 
-                      }}
-                    >
-                      {ms.yearLabel}
-                    </div>
-
-                    {/* Content Box */}
-                    <div 
-                      className="w-full flex items-stretch transition-all duration-300"
-                      style={{ 
-                        marginLeft: `calc(80px + ${offset}px)` // Shifts the red bar and text
-                      }}
-                    >
-                      {/* The thick red left border accent */}
-                      <div className="w-[3px] bg-[#B40001] shrink-0 mr-6 sm:mr-8" />
-                      
-                      <div className="py-1">
-                        <div className="text-[#B40001] text-[11px] font-bold tracking-[0.25em] uppercase mb-3">
-                          {ms.logId}
-                        </div>
-                        <h3 className="text-2xl font-bold text-gray-900 mb-3 tracking-tight">{ms.title}</h3>
-                        <p className="text-gray-600 text-base leading-relaxed max-w-xl">
-                          {ms.desc}
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-
+    <section className="py-24 bg-[#0B0B0B] border-b border-[#1F1F1F]">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div className="text-center mb-20">
+          <h2 className="text-3xl md:text-5xl font-black text-white mb-6 tracking-tight">
+            A Legacy of <span className="text-[#B40001]">Excellence.</span>
+          </h2>
+          <p className="text-lg text-gray-400">
+            From our founding in 2012 to becoming a global enterprise partner, our journey is defined by continuous innovation.
+          </p>
         </div>
+
+        <div className="relative" ref={containerRef}>
+          {/* Central Line Background */}
+          <div className="absolute left-[28px] sm:left-1/2 top-0 bottom-0 w-1 bg-[#1F1F1F] transform sm:-translate-x-1/2 rounded-full" />
+          
+          {/* Animated Draw Line */}
+          <motion.div 
+            className="absolute left-[28px] sm:left-1/2 top-0 w-1 bg-[#B40001] transform sm:-translate-x-1/2 rounded-full"
+            style={{ height: lineHeight }}
+          />
+
+          <div className="space-y-12">
+            {landingMilestonesData.map((milestone, idx) => {
+              const isEven = idx % 2 === 0;
+              return (
+                <div key={idx} className="relative flex flex-col sm:flex-row items-start sm:items-center w-full">
+                  
+                  {/* Timeline Dot */}
+                  <div className="absolute left-[28px] sm:left-1/2 w-4 h-4 bg-[#B40001] rounded-full transform -translate-x-1/2 z-10 shadow-[0_0_15px_rgba(180,0,1,0.5)] border-2 border-[#121212]" />
+
+                  {/* Desktop Layout */}
+                  <div className={`hidden sm:flex w-full ${isEven ? "justify-start" : "justify-end"}`}>
+                    <motion.div
+                      initial={{ opacity: 0, x: isEven ? -20 : 20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true, margin: "-100px" }}
+                      transition={{ duration: 0.5, delay: 0.1 }}
+                      className={`w-5/12 bg-[#121212] border border-[#1F1F1F] p-6 rounded-md hover:border-[#333333] transition-colors ${
+                        isEven ? "mr-auto text-right" : "ml-auto text-left"
+                      }`}
+                    >
+                      <span className="text-[#B40001] font-black text-2xl tracking-tighter block mb-2">
+                        {milestone.year}
+                      </span>
+                      <h4 className="text-white font-bold text-lg mb-2">
+                        {milestone.title}
+                      </h4>
+                      <p className="text-gray-400 text-sm leading-relaxed">
+                        {milestone.description}
+                      </p>
+                    </motion.div>
+                  </div>
+
+                  {/* Mobile Layout */}
+                  <div className="flex sm:hidden w-full pl-16">
+                    <motion.div
+                      initial={{ opacity: 0, x: 20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.5 }}
+                      className="w-full bg-[#121212] border border-[#1F1F1F] p-6 rounded-md"
+                    >
+                      <span className="text-[#B40001] font-black text-2xl tracking-tighter block mb-2">
+                        {milestone.year}
+                      </span>
+                      <h4 className="text-white font-bold text-lg mb-2">
+                        {milestone.title}
+                      </h4>
+                      <p className="text-gray-400 text-sm leading-relaxed">
+                        {milestone.description}
+                      </p>
+                    </motion.div>
+                  </div>
+
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
       </div>
     </section>
   );

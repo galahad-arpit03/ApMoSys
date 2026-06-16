@@ -1,222 +1,88 @@
 "use client";
-import { contactctaData } from "./ContactCTAData";
 
+import React from "react";
 import { motion } from "framer-motion";
+import { Mail, Phone, MapPin, ArrowRight } from "lucide-react";
 
+const locations = [
+  "Navi Mumbai, India",
+  "Chennai, India",
+  "Bhubaneswar, India",
+  "Ras Al Khaimah, UAE",
+  "Mississauga, Canada"
+];
 
 export default function ContactCTA() {
   return (
-    <section className="relative overflow-hidden bg-[#ffffff] py-12 lg:py-16 ">
-
-      {/* Background Glow */}
-        {/* Grid Pattern */}
-      {/* <div
-        className="
-          absolute
-          inset-0
-          opacity-[0.03]
-          pointer-events-none
-        "
-        style={{
-          backgroundImage:
-            "linear-gradient(to right, white 1px, transparent 1px), linear-gradient(to bottom, white 1px, transparent 1px)",
-          backgroundSize: "40px 40px",
-        }}
-      /> */}
-
-      <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-
-        <motion.div
-          initial={{ opacity: 0, y: 25 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
-          className="
-            bg-[#000000]  
-            backdrop-blur-md
-            border
-            border-[#242424]
-            rounded-3xl
-            p-6
-            sm:p-8
-            lg:p-10
-            text-center
-          "
-        >
-
-          {/* Label */}
-          <span className="text-primary-red uppercase tracking-[0.25em] sm:tracking-[0.35em] text-[10px] sm:text-xs font-semibold">
-            Let's Talk
-          </span>
-
-          {/* Heading */}
-          <h2
-            className="
-              font-heading
-              text-2xl
-              sm:text-3xl
-              md:text-4xl
-              lg:text-4xl
-              text-white
-              font-bold
-              mt-4
-              leading-tight
-            "
-          >
-            Ready To Transform
-            <br className="hidden sm:block" />
-            Your Digital Operations?
-          </h2>
-
-          {/* Description */}
-          <p
-            className="
-              mt-4
-              sm:mt-5
-              text-sm
-              sm:text-base
-              text-[#A0A0A0]
-              max-w-2xl
-              mx-auto
-              leading-relaxed
-            "
-          >
-            Partner with ApMoSys to accelerate innovation,
-            modernize technology ecosystems, improve software quality,
-            strengthen observability, and drive measurable business outcomes.
-          </p>
-
-          {/* CTA Buttons */}
-          <div
-            className="
-              flex
-              flex-col
-              sm:flex-row
-              justify-center
-              items-center
-              gap-4
-              sm:gap-5
-              mt-10
-              sm:mt-12
-            "
-          >
-
-            <motion.a
-              whileHover={{
-                scale: 1.03,
-              }}
-              whileTap={{
-                scale: 0.98,
-              }}
-              href="/contact"
-              className="
-                w-full
-                sm:w-auto
-                min-w-[180px]
-
-                bg-primary-red
-                hover:bg-primary-hover
-
-                text-white
-                px-6
-                py-3
-                rounded-lg
-                text-sm
-                font-semibold
-
-                transition-all
-                duration-300
-              "
-            >
-              Schedule Consultation
-            </motion.a>
-
-            <motion.a
-              whileHover={{
-                scale: 1.03,
-              }}
-              whileTap={{
-                scale: 0.98,
-              }}
-              href="/services"
-              className="
-                w-full
-                sm:w-auto
-                min-w-[180px]
-
-                border
-                border-[#333333]
-                hover:border-primary-red
-
-                text-white
-                px-6
-                py-3
-                rounded-lg
-                text-sm
-                font-semibold
-
-                transition-all
-                duration-300
-              "
-            >
-              Explore Services
-            </motion.a>
-
+    <section className="py-24 bg-[#0B0B0B]">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div className="bg-[#B40001] rounded-md p-8 md:p-16 relative overflow-hidden flex flex-col lg:flex-row items-center justify-between gap-12 shadow-[0_10px_40px_rgba(180,0,1,0.2)]">
+          {/* Background pattern */}
+          <div className="absolute inset-0 opacity-10 pointer-events-none" 
+               style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)', backgroundSize: '24px 24px' }} />
+          
+          <div className="relative z-10 w-full lg:w-1/2">
+            <h2 className="text-3xl md:text-5xl font-black text-white mb-6 tracking-tight leading-tight">
+              Ready to engineer your digital future?
+            </h2>
+            <p className="text-red-100 text-lg leading-relaxed mb-8 max-w-lg">
+              Connect with our experts to discuss your challenges, explore our products, or see a live demo of our capabilities.
+            </p>
+            
+            <div className="flex flex-col sm:flex-row gap-4">
+              <button className="bg-white text-[#B40001] px-8 py-4 rounded-md font-bold hover:bg-gray-50 transition-colors shadow-lg flex items-center justify-center gap-2">
+                Contact Sales <ArrowRight className="w-4 h-4" />
+              </button>
+              <button className="bg-transparent border border-white/30 text-white px-8 py-4 rounded-md font-bold hover:bg-white/10 transition-colors flex items-center justify-center">
+                Join Our Team
+              </button>
+            </div>
           </div>
 
-          {/* Bottom Metrics */}
-          {/* <div
-            className="
-              mt-12
-              lg:mt-16
-              pt-8
-              border-t
-              border-[#242424]
-
-              grid
-              grid-cols-2
-              lg:grid-cols-4
-              gap-6
-            "
-          >
-
-            {[
-              {
-                value: "14+",
-                label: "Years Experience",
-              },
-              {
-                value: "100+",
-                label: "Clients Served",
-              },
-              {
-                value: "1000+",
-                label: "Professionals",
-              },
-              {
-                value: "10+",
-                label: "Countries",
-              },
-            ].map((item) => (
-              <div key={item.label}>
-
-                <div className="text-2xl sm:text-3xl font-bold text-primary-red">
-                  {item.value}
+          <div className="relative z-10 w-full lg:w-1/2 bg-black/20 backdrop-blur-sm border border-white/10 p-8 rounded-md">
+            <h3 className="text-white font-bold text-xl mb-6">Global Presence</h3>
+            
+            <div className="flex flex-col gap-6">
+              <div className="flex items-start gap-4">
+                <MapPin className="w-5 h-5 text-red-200 shrink-0 mt-0.5" />
+                <div>
+                  <div className="flex flex-wrap gap-x-4 gap-y-2">
+                    {locations.map((loc, idx) => (
+                      <span key={idx} className="text-red-100 text-sm flex items-center gap-2">
+                        {idx > 0 && <span className="w-1 h-1 rounded-full bg-red-400/50 hidden sm:block" />}
+                        {loc}
+                      </span>
+                    ))}
+                  </div>
                 </div>
-
-                <div className="text-[11px] sm:text-xs uppercase tracking-wider text-[#777777] mt-2">
-                  {item.label}
-                </div>
-
               </div>
-            ))}
+              
+              <div className="h-px w-full bg-white/10" />
+              
+              <div className="flex flex-col sm:flex-row gap-8">
+                <div className="flex items-center gap-3">
+                  <Mail className="w-5 h-5 text-red-200" />
+                  <div className="flex flex-col">
+                    <span className="text-white font-bold text-sm">Business Inquiry</span>
+                    <a href="mailto:sales@apmosys.com" className="text-red-100 text-sm hover:text-white transition-colors">sales@apmosys.com</a>
+                  </div>
+                </div>
+                
+                <div className="flex items-center gap-3">
+                  <Phone className="w-5 h-5 text-red-200" />
+                  <div className="flex flex-col">
+                    <span className="text-white font-bold text-sm">Call Us</span>
+                    <a href="tel:+912241222250" className="text-red-100 text-sm hover:text-white transition-colors">+91 22 4122 2250</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
 
-          </div> */}
-
-        </motion.div>
+        </div>
 
       </div>
-
     </section>
   );
 }

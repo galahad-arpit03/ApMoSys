@@ -1,6 +1,6 @@
 "use client";
-import React from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import React, { useRef } from "react";
+import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
 import { usePathname } from "next/navigation";
 import { useContentStore } from "@/src/admin/store/adminStore";
 import EditableText from "@/src/admin/components/EditableText";
@@ -14,6 +14,14 @@ export default function MilestonesTimeline() {
   const { content, addAboutMilestone, deleteAboutMilestone } = useContentStore();
   const rawMilestones = content?.about?.milestones;
   const milestones = Array.isArray(rawMilestones) ? rawMilestones : milestonesData;
+  const containerRef = useRef<HTMLDivElement>(null);
+  
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start center", "end center"]
+  });
+
+  const lineHeight = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
 
   return (
     <SectionThemeWrapper sectionId="about_milestones" defaultTheme="light">
@@ -50,11 +58,16 @@ export default function MilestonesTimeline() {
                   </div>
                 </div>
 
-                {/* RHS - Timeline */}
                 <div className="lg:col-span-8">
-                  <div className="relative">
-                    {/* Vertical tracking line */}
+                  <div className="relative" ref={containerRef}>
+                    {/* Vertical tracking line (background) */}
                     <div className="absolute left-[20px] sm:left-1/2 top-0 bottom-0 w-[2px] bg-red-200/60 sm:-translate-x-1/2" />
+                    
+                    {/* Animated Draw Line */}
+                    <motion.div 
+                      className="absolute left-[20px] sm:left-1/2 top-0 w-[2px] bg-[#B40001] transform sm:-translate-x-1/2 z-[5]"
+                      style={{ height: lineHeight }}
+                    />
 
                     <div className="space-y-12 sm:space-y-16">
                       <AnimatePresence mode="popLayout">
