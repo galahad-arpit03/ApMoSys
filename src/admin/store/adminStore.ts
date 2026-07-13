@@ -342,6 +342,58 @@ export interface SiteContent {
       steps: ProcessStep[];
     };
   };
+  products: {
+    hero: {
+      badge: string;
+      heading: string;
+      subheading: string;
+      ctaPrimary: string;
+      ctaSecondary: string;
+      visualLabel: string;
+    };
+    overview: {
+      sectionLabel: string;
+      heading: string;
+      description: string;
+      items: ProductOverviewItem[];
+    };
+    benefits: {
+      sectionLabel: string;
+      heading: string;
+      description: string;
+      items: ProductBenefitItem[];
+    };
+    categories: {
+      sectionLabel: string;
+      heading: string;
+      description: string;
+      items: ProductCategoryItem[];
+    };
+  };
+}
+
+
+export interface ProductOverviewItem {
+  id: string;
+  title: string;
+  description: string;
+  icon: string;
+  linkText: string;
+}
+
+export interface ProductBenefitItem {
+  id: string;
+  title: string;
+  description: string;
+  icon: string;
+}
+
+export interface ProductCategoryItem {
+  id: string;
+  title: string;
+  description: string;
+  icon: string;
+  products: string[];
 }
 
 interface ServiceOverviewItem {
@@ -460,6 +512,7 @@ export const defaultContent: SiteContent = {
           {
             id: "products",
             label: "Products and Platform",
+            href: "/products",
             subLinks: [
               {
                 label: "CliqTest",
@@ -1437,6 +1490,195 @@ export const defaultContent: SiteContent = {
       ],
     },
   },
+  products: {
+  hero: {
+    badge: "Products & Platform",
+    heading: "Enterprise Platforms Engineered for Scale",
+    subheading:
+      "Purpose-built products and platforms that integrate seamlessly into your existing toolchain — accelerating quality, observability, and intelligent automation at enterprise scale.",
+    ctaPrimary: "Explore Products",
+    ctaSecondary: "See Platform Demos",
+    visualLabel: "Product Ecosystem",
+  },
+  overview: {
+    sectionLabel: "Our Product Suite",
+    heading: "Purpose-Built Platforms for Enterprise Excellence",
+    description:
+      "From AI-powered testing and observability to security validation and device labs — our products are designed to solve real-world enterprise challenges.",
+    items: [
+      {
+        id: "1",
+        title: "CliqTest",
+        description:
+          "Intelligent test automation platform that accelerates quality engineering with AI-driven test generation, execution, and maintenance.",
+        icon: "cliqtest",
+        linkText: "Explore CliqTest",
+      },
+      {
+        id: "2",
+        title: "Netraa",
+        description:
+          "AI-powered visual testing and monitoring platform that detects UI anomalies and ensures pixel-perfect user experiences across devices.",
+        icon: "netraa",
+        linkText: "Explore Netraa",
+      },
+      {
+        id: "3",
+        title: "Jupiter",
+        description:
+          "Enterprise-grade performance engineering platform for load testing, stress testing, and scalability validation at massive scale.",
+        icon: "jupiter",
+        linkText: "Explore Jupiter",
+      },
+      {
+        id: "4",
+        title: "ShieldVue",
+        description:
+          "Comprehensive security validation platform that automates vulnerability scanning, penetration testing, and compliance verification.",
+        icon: "shieldvue",
+        linkText: "Explore ShieldVue",
+      },
+      {
+        id: "5",
+        title: "Swikrti",
+        description:
+          "Intelligent document processing and workflow automation platform that streamlines complex business operations with AI and RPA.",
+        icon: "swikrti",
+        linkText: "Explore Swikrti",
+      },
+      {
+        id: "6",
+        title: "FinXplore",
+        description:
+          "Advanced financial analytics and reporting platform that provides real-time insights, predictive modeling, and regulatory compliance.",
+        icon: "finxplore",
+        linkText: "Explore FinXplore",
+      },
+      {
+        id: "7",
+        title: "Saransh",
+        description:
+          "Unified observability and AIOps platform that delivers end-to-end monitoring, incident intelligence, and root-cause analysis.",
+        icon: "saransh",
+        linkText: "Explore Saransh",
+      },
+      {
+        id: "8",
+        title: "Protean Device Lab",
+        description:
+          "Cloud-based device testing lab that provides on-demand access to thousands of real devices for cross-platform testing and validation.",
+        icon: "protean",
+        linkText: "Explore Protean",
+      },
+    ],
+  },
+  benefits: {
+    sectionLabel: "Why Our Products",
+    heading: "Built for Enterprise Excellence",
+    description:
+      "Every product in the ApMoSys suite is engineered to solve complex enterprise challenges — delivering security, scalability, and intelligent automation at every level.",
+    items: [
+      {
+        id: "1",
+        title: "Enterprise-Grade Security",
+        description:
+          "All our products are built with zero-trust principles, SOC 2 compliance, and enterprise-grade encryption to protect your sensitive data.",
+        icon: "🛡️",
+      },
+      {
+        id: "2",
+        title: "Seamless Integration",
+        description:
+          "Designed to integrate seamlessly with your existing CI/CD pipelines, cloud platforms, and enterprise tools without disrupting workflows.",
+        icon: "🔗",
+      },
+      {
+        id: "3",
+        title: "AI-Powered Intelligence",
+        description:
+          "Leverage machine learning and AI across all products for predictive analytics, anomaly detection, and intelligent automation.",
+        icon: "🤖",
+      },
+      {
+        id: "4",
+        title: "Scalable Architecture",
+        description:
+          "Cloud-native architectures that scale effortlessly from startup to enterprise — handling millions of requests without performance degradation.",
+        icon: "📈",
+      },
+      {
+        id: "5",
+        title: "Real-Time Insights",
+        description:
+          "Gain instant visibility into system performance, security posture, and quality metrics with real-time dashboards and alerts.",
+        icon: "📊",
+      },
+      {
+        id: "6",
+        title: "Global Support",
+        description:
+          "24/7 enterprise support with dedicated engineering teams across multiple time zones to ensure your systems are always running.",
+        icon: "🌍",
+      },
+    ],
+  },
+  categories: {
+    sectionLabel: "Product Categories",
+    heading: "Organized by Capability",
+    description:
+      "Explore our products grouped by capability — from AI and automation to security, observability, and analytics.",
+    items: [
+      {
+        id: "1",
+        title: "AI & Automation",
+        description:
+          "AI-driven platforms that automate testing, document processing, and workflow orchestration to reduce manual effort and accelerate delivery.",
+        icon: "🤖",
+        products: ["CliqTest", "Swikrti", "FinXplore"],
+      },
+      {
+        id: "2",
+        title: "Quality Engineering",
+        description:
+          "Comprehensive testing platforms for functional, visual, performance, and security testing across web, mobile, and API layers.",
+        icon: "✅",
+        products: ["CliqTest", "Protean Device Lab", "Jupiter"],
+      },
+      {
+        id: "3",
+        title: "Observability & Monitoring",
+        description:
+          "Real-time monitoring, anomaly detection, and AIOps platforms that provide end-to-end visibility into your entire infrastructure.",
+        icon: "📊",
+        products: ["Saransh", "Netraa"],
+      },
+      {
+        id: "4",
+        title: "Security & Compliance",
+        description:
+          "Security validation platforms that automate vulnerability scanning, penetration testing, and compliance verification.",
+        icon: "🛡️",
+        products: ["ShieldVue"],
+      },
+      {
+        id: "5",
+        title: "Analytics & Intelligence",
+        description:
+          "Advanced analytics platforms that deliver real-time insights, predictive modeling, and intelligent decision-making capabilities.",
+        icon: "📈",
+        products: ["FinXplore", "Saransh"],
+      },
+      {
+        id: "6",
+        title: "Device & Infrastructure",
+        description:
+          "Cloud-based device labs and infrastructure platforms that provide on-demand access to real devices and testing environments.",
+        icon: "📱",
+        products: ["Protean Device Lab"],
+      },
+    ],
+  },
+},
 };
 
 interface ContentState {
@@ -1489,6 +1731,12 @@ interface ContentState {
   
   addProcessStep: () => void;
   deleteProcessStep: (id: string) => void;
+  addProductOverviewItem: () => void;
+  deleteProductOverviewItem: (id: string) => void;
+  addProductBenefitItem: () => void;
+  deleteProductBenefitItem: (id: string) => void;
+  addProductCategoryItem: () => void;
+  deleteProductCategoryItem: (id: string) => void;
 
   toggleSectionVisibility: (sectionId: string) => void;
 }
@@ -2281,6 +2529,145 @@ export const useContentStore = create<ContentState>()(
             isDirty: true,
           };
         }),
+        addProductOverviewItem: () =>
+  set((state) => {
+    const currentItems = state.content.products?.overview?.items || [];
+    const newItems = [
+      ...currentItems,
+      {
+        id: Date.now().toString(),
+        title: "New Product",
+        description: "Describe this product...",
+        icon: "cliqtest",
+        linkText: "Learn More",
+      },
+    ];
+    return {
+      content: {
+        ...state.content,
+        products: {
+          ...state.content.products,
+          overview: {
+            ...state.content.products.overview,
+            items: newItems,
+          },
+        },
+      },
+      isDirty: true,
+    };
+  }),
+
+deleteProductOverviewItem: (id: string) =>
+  set((state) => {
+    const currentItems = state.content.products?.overview?.items || [];
+    const newItems = currentItems.filter((item) => item.id !== id);
+    return {
+      content: {
+        ...state.content,
+        products: {
+          ...state.content.products,
+          overview: {
+            ...state.content.products.overview,
+            items: newItems,
+          },
+        },
+      },
+      isDirty: true,
+    };
+  }),
+
+addProductBenefitItem: () =>
+  set((state) => {
+    const currentItems = state.content.products?.benefits?.items || [];
+    const newItems = [
+      ...currentItems,
+      {
+        id: Date.now().toString(),
+        title: "New Benefit",
+        description: "Describe this benefit...",
+        icon: "🚀",
+      },
+    ];
+    return {
+      content: {
+        ...state.content,
+        products: {
+          ...state.content.products,
+          benefits: {
+            ...state.content.products.benefits,
+            items: newItems,
+          },
+        },
+      },
+      isDirty: true,
+    };
+  }),
+
+deleteProductBenefitItem: (id: string) =>
+  set((state) => {
+    const currentItems = state.content.products?.benefits?.items || [];
+    const newItems = currentItems.filter((item) => item.id !== id);
+    return {
+      content: {
+        ...state.content,
+        products: {
+          ...state.content.products,
+          benefits: {
+            ...state.content.products.benefits,
+            items: newItems,
+          },
+        },
+      },
+      isDirty: true,
+    };
+  }),
+
+addProductCategoryItem: () =>
+  set((state) => {
+    const currentItems = state.content.products?.categories?.items || [];
+    const newItems = [
+      ...currentItems,
+      {
+        id: Date.now().toString(),
+        title: "New Category",
+        description: "Describe this product category...",
+        icon: "📦",
+        products: ["Product 1", "Product 2"],
+      },
+    ];
+    return {
+      content: {
+        ...state.content,
+        products: {
+          ...state.content.products,
+          categories: {
+            ...state.content.products.categories,
+            items: newItems,
+          },
+        },
+      },
+      isDirty: true,
+    };
+  }),
+
+deleteProductCategoryItem: (id: string) =>
+  set((state) => {
+    const currentItems = state.content.products?.categories?.items || [];
+    const newItems = currentItems.filter((item) => item.id !== id);
+    return {
+      content: {
+        ...state.content,
+        products: {
+          ...state.content.products,
+          categories: {
+            ...state.content.products.categories,
+            items: newItems,
+          },
+        },
+      },
+      isDirty: true,
+    };
+  }),
       toggleSectionVisibility: (sectionId: string) =>
         set((state) => {
           const currentVisibilities = state.content.sectionVisibilities || {};

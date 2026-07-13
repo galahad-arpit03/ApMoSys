@@ -1,10 +1,14 @@
+"use client";
+
 import AdminEditOverlay from "@/src/admin/components/AdminEditOverlay";
-import LandingPage from "@/src/landing/LandingPage";
+import ProductsPageContent from "@/src/what-we-do/ProductsPageContent";
 
 export default function AdminProductsPage() {
   return (
     <AdminEditOverlay page="Products">
-      <LandingPage />
+      <div className="bg-[#121212]">
+        <ProductsPageContent />
+      </div>
     </AdminEditOverlay>
   );
 }
