@@ -29,15 +29,15 @@ export default function AboutHero() {
       >
         <EditableImage label="Hero Background Image" className="relative w-full h-full">
           <Image
-            src="/about/about-hero2.png"
+            src="/about/about-hero3.png"
             alt="About ApMoSys"
             fill
             priority
-            className="object-cover object-center"
+            className="object-cover object-[center_85%]"
           />
         </EditableImage>
         {/* Dark overlay fading from left (60%) to transparent */}
-        <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/60 to-black/20" />
+        {/* <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/60 to-black/20" /> */}
       </motion.div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
@@ -47,7 +47,7 @@ export default function AboutHero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
-            <h1 className="text-4xl sm:text-5xl lg:text-7xl font-medium tracking-tight mb-6 leading-tight text-white drop-shadow-sm">
+            <h1 className="text-4xl sm:text-5xl lg:text-7xl font-medium tracking-tight mb-6 leading-tight text-slate-900 drop-shadow-sm">
               <EditableText
                 path="about.hero.heading1"
                 fallback="Engineering Excellence at"
@@ -60,7 +60,7 @@ export default function AboutHero() {
                 className="text-primary-red drop-shadow-md"
               />
             </h1>
-            <p className="text-gray-100 text-lg sm:text-xl max-w-2xl leading-relaxed mb-10 drop-shadow">
+            <p className="text-slate-900 text-lg sm:text-xl max-w-2xl leading-relaxed mb-10 drop-shadow">
               <EditableText
                 path="about.hero.description"
                 fallback="We are a trusted technology partner for global enterprises, delivering intelligent automation, digital assurance, and resilient engineering solutions that drive measurable business outcomes."
@@ -76,7 +76,7 @@ export default function AboutHero() {
                   as="span"
                 />
               </button>
-              <button className="bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/20 text-white px-8 py-3.5 rounded-md font-bold text-sm transition-colors duration-200 flex items-center justify-center gap-2 shadow-lg">
+              <button className="bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/20 text-slate-800 px-8 py-3.5 rounded-md font-bold text-sm transition-colors duration-200 flex items-center justify-center gap-2 shadow-lg">
                 <EditableText
                   path="about.hero.button2"
                   fallback="Meet the Leadership"
