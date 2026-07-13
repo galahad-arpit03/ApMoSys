@@ -1,6 +1,6 @@
 "use client";
-import React, { useRef } from "react";
-import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
+import React from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { usePathname } from "next/navigation";
 import { useContentStore } from "@/src/admin/store/adminStore";
 import EditableText from "@/src/admin/components/EditableText";
@@ -14,14 +14,6 @@ export default function MilestonesTimeline() {
   const { content, addAboutMilestone, deleteAboutMilestone } = useContentStore();
   const rawMilestones = content?.about?.milestones;
   const milestones = Array.isArray(rawMilestones) ? rawMilestones : milestonesData;
-  const containerRef = useRef<HTMLDivElement>(null);
-  
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start center", "end center"]
-  });
-
-  const lineHeight = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
 
   return (
     <SectionThemeWrapper sectionId="about_milestones" defaultTheme="light">
@@ -58,105 +50,68 @@ export default function MilestonesTimeline() {
                   </div>
                 </div>
 
-                <div className="lg:col-span-8">
-                  <div className="relative" ref={containerRef}>
-                    {/* Vertical tracking line (background) */}
-                    <div className="absolute left-[20px] sm:left-1/2 top-0 bottom-0 w-[2px] bg-red-200/60 sm:-translate-x-1/2" />
-                    
-                    {/* Animated Draw Line */}
-                    <motion.div 
-                      className="absolute left-[20px] sm:left-1/2 top-0 w-[2px] bg-[#B40001] transform sm:-translate-x-1/2 z-[5]"
-                      style={{ height: lineHeight }}
-                    />
+                <div className="lg:col-span-8 overflow-hidden">
+                  <div className="flex overflow-x-auto snap-x snap-mandatory hide-scrollbar gap-0 pb-8 pt-4">
+                    {milestones.map((ms, originalIdx) => ({ ms, originalIdx })).reverse().map(({ ms, originalIdx: idx }, mappedIdx) => {
+                      const isActive = mappedIdx === 0;
+                      return (
+                        <div key={ms.id} className="min-w-[320px] shrink-0 snap-start flex flex-col relative group border-l-0">
+                          {/* Year & Subtitle */}
+                          <div className="mb-6 px-4">
+                            <div className={`text-5xl tracking-tight mb-2 transition-colors ${isActive ? (isDark ? "text-white font-medium" : "text-black font-medium") : "text-gray-400 font-light group-hover:text-gray-500"}`}>
+                              <EditableText path={`about.milestones.${idx}.year`} fallback={ms.year} as="span" />
+                            </div>
+                            <div className={`text-sm font-semibold tracking-wide uppercase transition-colors ${isActive ? (isDark ? "text-gray-300" : "text-gray-800") : "text-gray-400 group-hover:text-gray-500"}`}>
+                              <EditableText path={`about.milestones.${idx}.title`} fallback={ms.title} as="span" />
+                            </div>
+                          </div>
 
-                    <div className="space-y-12 sm:space-y-16">
-                      <AnimatePresence mode="popLayout">
-                        {milestones.map((ms, idx) => {
-                          const isEven = idx % 2 === 0;
-                          return (
-                            <motion.div
-                              key={ms.id}
-                              layout
-                              initial={{ opacity: 0, y: 30 }}
-                              animate={{ opacity: 1, y: 0 }}
-                              exit={{ opacity: 0, scale: 0.9 }}
-                              transition={{ duration: 0.4 }}
-                              className="relative flex flex-col sm:flex-row items-center w-full group"
-                            >
-                              <div className="absolute left-[10px] sm:left-1/2 w-[22px] h-[22px] rounded-md bg-[#B40001] shadow-[0_2px_8px_rgba(180,0,1,0.4)] flex items-center justify-center sm:-translate-x-1/2 z-10 transition-transform duration-300 group-hover:scale-110" />
+                          {/* Scale Line with Ticks */}
+                          <div className={`flex border-t relative h-16 w-full ${isDark ? "border-gray-800" : "border-gray-200"}`}>
+                            {/* Main vertical tick for the year */}
+                            <div className={`absolute left-0 top-0 h-full w-[2px] ${isActive ? "bg-primary-red" : (isDark ? "bg-gray-700" : "bg-gray-300")}`}></div>
+                            
+                            {/* Small tick marks */}
+                            <div className="w-full flex justify-between px-1 pt-0">
+                              {Array.from({length: 12}).map((_, i) => (
+                                <div key={i} className={`w-[1px] h-8 mt-0 ${isActive ? (isDark ? "bg-gray-600" : "bg-gray-400") : (isDark ? "bg-gray-800" : "bg-gray-200")}`}></div>
+                              ))}
+                            </div>
+                          </div>
 
-                              <div className={`w-full sm:w-1/2 pl-16 sm:pl-0 sm:pr-12 flex ${isEven ? 'justify-end' : 'justify-start'} items-center`}>
-                                {isEven ? (
-                                  <div className={`hidden sm:block text-5xl md:text-6xl lg:text-7xl font-black tracking-tighter select-none ${isDark ? "text-[#2A2A2A]" : "text-gray-200"}`}>
-                                    <EditableText path={`about.milestones.${idx}.year`} fallback={ms.year} as="span" />
-                                  </div>
-                                ) : (
-                                  <div className="bg-[#B40001] p-6 md:p-8 rounded-xl shadow-sm hover:shadow-lg transition-shadow w-full relative">
-                                    {isEditRoute && (
-                                      <button onClick={() => deleteAboutMilestone(ms.id)} className="absolute right-4 top-4 text-white/50 hover:text-white" title="Delete Milestone">×</button>
-                                    )}
-                                    <div className="sm:hidden text-4xl font-black text-white/40 mb-4 select-none">
-                                      <EditableText path={`about.milestones.${idx}.year`} fallback={ms.year} as="span" />
-                                    </div>
-                                    <h3 className="text-white font-bold text-lg mb-3">
-                                      <EditableText path={`about.milestones.${idx}.title`} fallback={ms.title} as="span" />
-                                    </h3>
-                                    <ul className="space-y-2 text-white/90 text-sm leading-relaxed">
-                                      {ms.items.map((item, i) => (
-                                        <li key={i} className="flex gap-2 items-start">
-                                          <span className="text-white/60 mt-1 shrink-0">•</span>
-                                          <span><EditableText path={`about.milestones.${idx}.items.${i}`} fallback={item} as="span" multiline /></span>
-                                        </li>
-                                      ))}
-                                    </ul>
-                                  </div>
-                                )}
-                              </div>
+                          {/* Content & Image */}
+                          <div className="px-4 mt-6 pr-8">
+                            <div className={`text-sm mb-6 leading-relaxed flex flex-col gap-2 ${isDark ? "text-gray-400" : "text-gray-600"}`}>
+                              {ms.items.map((item, i) => (
+                                <p key={i}>
+                                  <EditableText path={`about.milestones.${idx}.items.${i}`} fallback={item} as="span" multiline />
+                                </p>
+                              ))}
+                            </div>
+                            <div className="w-full h-48 bg-gray-100 rounded-lg overflow-hidden relative shadow-sm">
+                               <img src={`https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=400&h=300&seed=${ms.year}`} alt={ms.title} className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" />
+                            </div>
+                          </div>
 
-                              <div className={`w-full sm:w-1/2 pl-16 sm:pl-12 flex ${isEven ? 'justify-start' : 'justify-start'} items-center mt-6 sm:mt-0`}>
-                                {isEven ? (
-                                  <div className="bg-[#B40001] p-6 md:p-8 rounded-xl shadow-sm hover:shadow-lg transition-shadow w-full relative">
-                                    {isEditRoute && (
-                                      <button onClick={() => deleteAboutMilestone(ms.id)} className="absolute right-4 top-4 text-white/50 hover:text-white" title="Delete Milestone">×</button>
-                                    )}
-                                    <div className="sm:hidden text-4xl font-black text-white/40 mb-4 select-none">
-                                      <EditableText path={`about.milestones.${idx}.year`} fallback={ms.year} as="span" />
-                                    </div>
-                                    <h3 className="text-white font-bold text-lg mb-3">
-                                      <EditableText path={`about.milestones.${idx}.title`} fallback={ms.title} as="span" />
-                                    </h3>
-                                    <ul className="space-y-2 text-white/90 text-sm leading-relaxed">
-                                      {ms.items.map((item, i) => (
-                                        <li key={i} className="flex gap-2 items-start">
-                                          <span className="text-white/60 mt-1 shrink-0">•</span>
-                                          <span><EditableText path={`about.milestones.${idx}.items.${i}`} fallback={item} as="span" multiline /></span>
-                                        </li>
-                                      ))}
-                                    </ul>
-                                  </div>
-                                ) : (
-                                  <div className={`hidden sm:block text-5xl md:text-6xl lg:text-7xl font-black tracking-tighter select-none ${isDark ? "text-[#2A2A2A]" : "text-gray-200"}`}>
-                                    <EditableText path={`about.milestones.${idx}.year`} fallback={ms.year} as="span" />
-                                  </div>
-                                )}
-                              </div>
-                            </motion.div>
-                          );
-                        })}
-                      </AnimatePresence>
+                          {isEditRoute && (
+                            <button onClick={() => deleteAboutMilestone(ms.id)} className="absolute right-4 top-0 text-red-500 hover:text-red-700 text-xl font-bold" title="Delete Milestone">×</button>
+                          )}
+                        </div>
+                      );
+                    })}
 
-                      {isEditRoute && (
-                        <motion.button
-                          layout
+                    {isEditRoute && (
+                      <div className="min-w-[320px] shrink-0 flex items-center justify-center p-8">
+                        <button
                           onClick={addAboutMilestone}
-                          className={`w-full flex items-center justify-center gap-2 border-2 border-dashed py-6 rounded-xl text-lg font-bold transition-all cursor-pointer mt-8 ${
+                          className={`w-full h-full min-h-[300px] flex flex-col items-center justify-center gap-4 border-2 border-dashed rounded-xl text-lg font-bold transition-all cursor-pointer ${
                             isDark ? "border-[#2A2A2A] hover:border-primary-red/50 text-[#FAFAFA] hover:text-primary-red" : "border-[#E8E8E8] hover:border-primary-red/50 text-[#121212] hover:text-primary-red"
                           }`}
                         >
-                          <span className="text-3xl">+</span> Add Milestone
-                        </motion.button>
-                      )}
-                    </div>
+                          <span className="text-4xl">+</span> Add Milestone
+                        </button>
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>

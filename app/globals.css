@@ -20,8 +20,10 @@
   --color-gray-800: #1F1F1F;
   --color-black-custom: #121212;
 
-  --font-sans: var(--font-space), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-outfit), ui-sans-serif, system-ui, sans-serif;
   --font-heading: var(--font-outfit), ui-sans-serif, system-ui, sans-serif;
+  --font-manrope: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
+  --font-inter: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
 
   --animate-marquee: marquee 30s linear infinite;
 
@@ -40,6 +42,10 @@ body {
   background-color: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans);
+}
+
+p {
+  font-family: var(--font-manrope);
 }
 
 /* ── Admin Edit Mode ─────────────────────────────────────────────── */

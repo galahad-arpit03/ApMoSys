@@ -47,7 +47,7 @@ export default function AboutHero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
-            <h1 className="text-4xl sm:text-5xl lg:text-7xl font-bold tracking-tight mb-6 leading-tight text-white drop-shadow-sm">
+            <h1 className="text-4xl sm:text-5xl lg:text-7xl font-medium tracking-tight mb-6 leading-tight text-white drop-shadow-sm">
               <EditableText
                 path="about.hero.heading1"
                 fallback="Engineering Excellence at"
