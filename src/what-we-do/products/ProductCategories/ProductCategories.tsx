@@ -5,60 +5,19 @@ import Container from "@/src/components/Container";
 import { motion, AnimatePresence } from "framer-motion";
 import EditableText from "@/src/admin/components/EditableText";
 import SectionThemeWrapper from "@/src/admin/components/SectionThemeWrapper";
-
-const categories = [
-  {
-    id: "1",
-    title: "AI & Automation",
-    description:
-      "AI-driven platforms that automate testing, document processing, and workflow orchestration to reduce manual effort and accelerate delivery.",
-    icon: "🤖",
-    products: ["CliqTest", "Swikrti", "FinXplore"],
-  },
-  {
-    id: "2",
-    title: "Quality Engineering",
-    description:
-      "Comprehensive testing platforms for functional, visual, performance, and security testing across web, mobile, and API layers.",
-    icon: "✅",
-    products: ["CliqTest", "Protean Device Lab", "Jupiter"],
-  },
-  {
-    id: "3",
-    title: "Observability & Monitoring",
-    description:
-      "Real-time monitoring, anomaly detection, and AIOps platforms that provide end-to-end visibility into your entire infrastructure.",
-    icon: "📊",
-    products: ["Saransh", "Netraa"],
-  },
-  {
-    id: "4",
-    title: "Security & Compliance",
-    description:
-      "Security validation platforms that automate vulnerability scanning, penetration testing, and compliance verification.",
-    icon: "🛡️",
-    products: ["ShieldVue"],
-  },
-  {
-    id: "5",
-    title: "Analytics & Intelligence",
-    description:
-      "Advanced analytics platforms that deliver real-time insights, predictive modeling, and intelligent decision-making capabilities.",
-    icon: "📈",
-    products: ["FinXplore", "Saransh"],
-  },
-  {
-    id: "6",
-    title: "Device & Infrastructure",
-    description:
-      "Cloud-based device labs and infrastructure platforms that provide on-demand access to real devices and testing environments.",
-    icon: "📱",
-    products: ["Protean Device Lab"],
-  },
-];
+import { useContentStore } from "@/src/admin/store/adminStore";
+import { productIconMap, defaultProductIcon } from "../icons";
+import { ArrowRight } from "lucide-react";
 
 export default function ProductCategories() {
-  const [activeCategory, setActiveCategory] = useState<string | null>(categories[0].id);
+  const { content } = useContentStore();
+  const categoryItems = content.products?.categories?.items || [];
+  const [activeCategory, setActiveCategory] = useState<string | null>(
+    categoryItems.length > 0 ? categoryItems[0].id : null
+  );
+
+  // Find the active category object
+  const activeCategoryData = categoryItems.find((c) => c.id === activeCategory);
 
   return (
     <SectionThemeWrapper sectionId="products_categories" defaultTheme="dark">
@@ -81,13 +40,6 @@ export default function ProductCategories() {
                 transition={{ duration: 0.65, ease: "easeOut" }}
                 className="text-center max-w-3xl mx-auto mb-16"
               >
-                <span className="text-primary-red text-xs font-bold uppercase tracking-widest block mb-4">
-                  <EditableText
-                    path="products.categories.sectionLabel"
-                    fallback="Product Categories"
-                    as="span"
-                  />
-                </span>
                 <h2
                   className={`font-heading text-3xl sm:text-4xl font-extrabold mb-4 ${
                     isDark ? "text-[#FFFFFF]" : "text-[#121212]"
@@ -117,8 +69,10 @@ export default function ProductCategories() {
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                 {/* Left: Category buttons */}
                 <div className="flex flex-col gap-3">
-                  {categories.map((category) => {
+                  {categoryItems.map((category) => {
                     const isActive = activeCategory === category.id;
+                    const IconComponent =
+                      productIconMap[category.icon] || defaultProductIcon;
                     return (
                       <button
                         key={category.id}
@@ -135,7 +89,9 @@ export default function ProductCategories() {
                             : "border-[#E8E8E8] bg-[#FAFAFA] hover:bg-[#FFFFFF]"
                         }`}
                       >
-                        <div className="text-2xl flex-shrink-0">{category.icon}</div>
+                        <div className="flex-shrink-0 text-primary-red">
+                          <IconComponent className="w-6 h-6" />
+                        </div>
                         <div className="flex-1">
                           <h3
                             className={`font-heading font-bold text-base ${
@@ -153,7 +109,7 @@ export default function ProductCategories() {
                             />
                           </h3>
                           <p
-                            className={`text-sm leading-relaxed ${
+                            className={`text-sm leading-relaxed line-clamp-2 ${
                               isDark ? "text-[#A0A0A0]" : "text-[#5A5A5A]"
                             }`}
                           >
@@ -185,56 +141,104 @@ export default function ProductCategories() {
                   })}
                 </div>
 
-                {/* Right: Products in category */}
+                {/* Right: Products in category – now filled with rich content */}
                 <div className="relative">
                   <div
-                    className={`rounded-xl border p-6 min-h-[200px] transition-all duration-300 ${
+                    className={`rounded-xl border p-6 h-full flex flex-col transition-all duration-300 ${
                       isDark
                         ? "bg-[#1A1A1A] border-[#2A2A2A]"
                         : "bg-[#FFFFFF] border-[#E8E8E8]"
                     }`}
                   >
                     <AnimatePresence mode="wait">
-                      {activeCategory ? (
+                      {activeCategoryData ? (
                         <motion.div
-                          key={activeCategory}
+                          key={activeCategoryData.id}
                           initial={{ opacity: 0, y: 10 }}
                           animate={{ opacity: 1, y: 0 }}
                           exit={{ opacity: 0, y: -10 }}
                           transition={{ duration: 0.3 }}
+                          className="flex flex-col h-full"
                         >
-                          <h4
-                            className={`font-heading font-bold text-sm uppercase tracking-widest mb-4 ${
-                              isDark ? "text-[#7A7A7A]" : "text-[#5A5A5A]"
+                          {/* Icon & Title */}
+                          <div className="flex items-center gap-4 mb-4">
+                            <div className="text-primary-red">
+                              {(() => {
+                                const Icon = productIconMap[activeCategoryData.icon] || defaultProductIcon;
+                                return <Icon className="w-10 h-10" />;
+                              })()}
+                            </div>
+                            <h4
+                              className={`font-heading text-2xl font-bold ${
+                                isDark ? "text-[#FFFFFF]" : "text-[#121212]"
+                              }`}
+                            >
+                              <EditableText
+                                path={`products.categories.items.${Number(activeCategoryData.id) - 1}.title`}
+                                fallback={activeCategoryData.title}
+                                as="span"
+                              />
+                            </h4>
+                          </div>
+
+                          {/* Category Description */}
+                          <p
+                            className={`text-sm leading-relaxed mb-6 ${
+                              isDark ? "text-[#A0A0A0]" : "text-[#5A5A5A]"
                             }`}
                           >
-                            Products in this category
-                          </h4>
-                          <div className="flex flex-wrap gap-3">
-                            {categories
-                              .find((c) => c.id === activeCategory)
-                              ?.products.map((product) => (
-                                <span
+                            <EditableText
+                              path={`products.categories.items.${Number(activeCategoryData.id) - 1}.description`}
+                              fallback={activeCategoryData.description}
+                              as="span"
+                              multiline
+                            />
+                          </p>
+
+                          {/* Products List */}
+                          <div className="flex-1">
+                            <h5
+                              className={`text-xs font-bold uppercase tracking-widest mb-3 ${
+                                isDark ? "text-[#7A7A7A]" : "text-[#5A5A5A]"
+                              }`}
+                            >
+                              Products in this category
+                            </h5>
+                            <ul className="space-y-2">
+                              {activeCategoryData.products.map((product) => (
+                                <li
                                   key={product}
-                                  className={`px-4 py-2 rounded-full text-sm font-medium border ${
-                                    isDark
-                                      ? "bg-[#0D0D0D] border-[#3A3A3A] text-[#FAFAFA]"
-                                      : "bg-[#FAFAFA] border-[#E8E8E8] text-[#121212]"
+                                  className={`flex items-center gap-3 text-sm ${
+                                    isDark ? "text-[#C8C8C8]" : "text-[#5A5A5A]"
                                   }`}
                                 >
-                                  {product}
-                                </span>
+                                  <span className="text-primary-red">◆</span>
+                                  <span>{product}</span>
+                                </li>
                               ))}
+                            </ul>
                           </div>
-                          <p className={`text-xs mt-4 ${isDark ? "text-[#5A5A5A]" : "text-[#7A7A7A]"}`}>
-                            Click a category to explore its products
-                          </p>
+
+                          {/* CTA Button */}
+                          <div className="mt-6 pt-4 border-t border-[#2A2A2A]">
+                            <a
+                              href="/products"
+                              className={`inline-flex items-center gap-2 text-sm font-bold transition-colors group ${
+                                isDark
+                                  ? "text-[#FFFFFF] hover:text-primary-red"
+                                  : "text-[#121212] hover:text-primary-red"
+                              }`}
+                            >
+                              Explore all products
+                              <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" />
+                            </a>
+                          </div>
                         </motion.div>
                       ) : (
                         <motion.div
                           initial={{ opacity: 0 }}
                           animate={{ opacity: 1 }}
-                          className="flex items-center justify-center h-full min-h-[150px]"
+                          className="flex flex-col items-center justify-center h-full min-h-[200px] text-center"
                         >
                           <p className={`text-sm ${isDark ? "text-[#5A5A5A]" : "text-[#7A7A7A]"}`}>
                             Select a category to view products

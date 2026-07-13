@@ -1366,35 +1366,31 @@ export const defaultContent: SiteContent = {
       description:
         "Our approach combines deep industry expertise, technical excellence, and a relentless focus on quality to deliver measurable business outcomes. We partner with you at every stage of your transformation journey.",
       items: [
-        {
-          id: "1",
-          title: "Consultative Discovery",
-          description:
-            "We start by understanding your unique business challenges, technical landscape, and strategic goals to craft a tailored engineering roadmap.",
-          icon: "🔍",
-        },
-        {
-          id: "2",
-          title: "Architectural Excellence",
-          description:
-            "Our solutions are built on robust, scalable architectures with industry best practices, ensuring long-term maintainability and performance.",
-          icon: "🏗️",
-        },
-        {
-          id: "3",
-          title: "Agile Delivery",
-          description:
-            "We adopt agile methodologies with continuous feedback loops, enabling rapid iterations, early value delivery, and adaptive planning.",
-          icon: "🔄",
-        },
-        {
-          id: "4",
-          title: "Quality-First Engineering",
-          description:
-            "Quality is embedded at every stage — from design to deployment — with automated testing, security validation, and performance benchmarks.",
-          icon: "✅",
-        },
-      ],
+    {
+      id: "1",
+      title: "Consultative Discovery",
+      description: "We start by understanding your unique business challenges...",
+      icon: "discovery",  
+    },
+    {
+      id: "2",
+      title: "Architectural Excellence",
+      description: "Our solutions are built on robust, scalable architectures...",
+      icon: "architecture", 
+    },
+    {
+      id: "3",
+      title: "Agile Delivery",
+      description: "We adopt agile methodologies with continuous feedback loops...",
+      icon: "agile",     
+    },
+    {
+      id: "4",
+      title: "Quality-First Engineering",
+      description: "Quality is embedded at every stage...",
+      icon: "quality",   
+    },
+  ],
     },
     benefits: {
       sectionLabel: "Why Choose ApMoSys",
@@ -1402,49 +1398,43 @@ export const defaultContent: SiteContent = {
       description:
         "Our engineering services are designed to deliver tangible value across your entire software delivery lifecycle — from development to production.",
       items: [
-        {
-          id: "1",
-          title: "Accelerated Time-to-Market",
-          description:
-            "Streamlined engineering processes and automation reduce release cycles by up to 50%, enabling faster innovation and competitive advantage.",
-          icon: "⚡",
-        },
-        {
-          id: "2",
-          title: "Zero-Defect Quality",
-          description:
-            "Comprehensive testing and quality assurance practices eliminate production defects, ensuring reliable, high-performing software.",
-          icon: "🎯",
-        },
-        {
-          id: "3",
-          title: "Cost Optimization",
-          description:
-            "Intelligent automation and efficient resource utilization reduce operational costs while maximizing engineering productivity.",
-          icon: "💰",
-        },
-        {
-          id: "4",
-          title: "Security & Compliance",
-          description:
-            "Built-in security validation and compliance frameworks protect your data and ensure adherence to industry regulations.",
-          icon: "🛡️",
-        },
-        {
-          id: "5",
-          title: "Scalable Architecture",
-          description:
-            "Modern, cloud-native architectures that scale seamlessly with your business growth without performance degradation.",
-          icon: "📈",
-        },
-        {
-          id: "6",
-          title: "Continuous Innovation",
-          description:
-            "AI-driven insights and continuous improvement practices keep your systems ahead of the curve, ready for future challenges.",
-          icon: "🚀",
-        },
-      ],
+       {
+      id: "1",
+      title: "Accelerated Time-to-Market",
+      description: "Streamlined engineering processes...",
+      icon: "speed",        // ← instead of "⚡"
+    },
+    {
+      id: "2",
+      title: "Zero-Defect Quality",
+      description: "Comprehensive testing and quality assurance...",
+      icon: "quality",      // ← instead of "🎯"
+    },
+    {
+      id: "3",
+      title: "Cost Optimization",
+      description: "Intelligent automation and efficient resource utilization...",
+      icon: "cost",         // ← instead of "💰"
+    },
+    {
+      id: "4",
+      title: "Security & Compliance",
+      description: "Built-in security validation...",
+      icon: "security",     // ← instead of "🛡️"
+    },
+    {
+      id: "5",
+      title: "Scalable Architecture",
+      description: "Modern, cloud-native architectures...",
+      icon: "scale",        // ← instead of "📈"
+    },
+    {
+      id: "6",
+      title: "Continuous Innovation",
+      description: "AI-driven insights and continuous improvement...",
+      icon: "innovation",   // ← instead of "🚀"
+    },
+  ],
     },
     process: {
       sectionLabel: "Our Process",
@@ -1579,48 +1569,42 @@ export const defaultContent: SiteContent = {
       "Every product in the ApMoSys suite is engineered to solve complex enterprise challenges — delivering security, scalability, and intelligent automation at every level.",
     items: [
       {
-        id: "1",
-        title: "Enterprise-Grade Security",
-        description:
-          "All our products are built with zero-trust principles, SOC 2 compliance, and enterprise-grade encryption to protect your sensitive data.",
-        icon: "🛡️",
-      },
-      {
-        id: "2",
-        title: "Seamless Integration",
-        description:
-          "Designed to integrate seamlessly with your existing CI/CD pipelines, cloud platforms, and enterprise tools without disrupting workflows.",
-        icon: "🔗",
-      },
-      {
-        id: "3",
-        title: "AI-Powered Intelligence",
-        description:
-          "Leverage machine learning and AI across all products for predictive analytics, anomaly detection, and intelligent automation.",
-        icon: "🤖",
-      },
-      {
-        id: "4",
-        title: "Scalable Architecture",
-        description:
-          "Cloud-native architectures that scale effortlessly from startup to enterprise — handling millions of requests without performance degradation.",
-        icon: "📈",
-      },
-      {
-        id: "5",
-        title: "Real-Time Insights",
-        description:
-          "Gain instant visibility into system performance, security posture, and quality metrics with real-time dashboards and alerts.",
-        icon: "📊",
-      },
-      {
-        id: "6",
-        title: "Global Support",
-        description:
-          "24/7 enterprise support with dedicated engineering teams across multiple time zones to ensure your systems are always running.",
-        icon: "🌍",
-      },
-    ],
+      id: "1",
+      title: "Enterprise-Grade Security",
+      description: "All our products are built with zero-trust principles...",
+      icon: "security",
+    },
+    {
+      id: "2",
+      title: "Seamless Integration",
+      description: "Designed to integrate seamlessly with your existing CI/CD pipelines...",
+      icon: "integration",
+    },
+    {
+      id: "3",
+      title: "AI-Powered Intelligence",
+      description: "Leverage machine learning and AI across all products...",
+      icon: "ai",
+    },
+    {
+      id: "4",
+      title: "Scalable Architecture",
+      description: "Cloud-native architectures that scale effortlessly...",
+      icon: "scale",
+    },
+    {
+      id: "5",
+      title: "Real-Time Insights",
+      description: "Gain instant visibility into system performance...",
+      icon: "insights",
+    },
+    {
+      id: "6",
+      title: "Global Support",
+      description: "24/7 enterprise support with dedicated engineering teams...",
+      icon: "support",
+    },
+  ],
   },
   categories: {
     sectionLabel: "Product Categories",
@@ -1628,55 +1612,49 @@ export const defaultContent: SiteContent = {
     description:
       "Explore our products grouped by capability — from AI and automation to security, observability, and analytics.",
     items: [
-      {
-        id: "1",
-        title: "AI & Automation",
-        description:
-          "AI-driven platforms that automate testing, document processing, and workflow orchestration to reduce manual effort and accelerate delivery.",
-        icon: "🤖",
-        products: ["CliqTest", "Swikrti", "FinXplore"],
-      },
-      {
-        id: "2",
-        title: "Quality Engineering",
-        description:
-          "Comprehensive testing platforms for functional, visual, performance, and security testing across web, mobile, and API layers.",
-        icon: "✅",
-        products: ["CliqTest", "Protean Device Lab", "Jupiter"],
-      },
-      {
-        id: "3",
-        title: "Observability & Monitoring",
-        description:
-          "Real-time monitoring, anomaly detection, and AIOps platforms that provide end-to-end visibility into your entire infrastructure.",
-        icon: "📊",
-        products: ["Saransh", "Netraa"],
-      },
-      {
-        id: "4",
-        title: "Security & Compliance",
-        description:
-          "Security validation platforms that automate vulnerability scanning, penetration testing, and compliance verification.",
-        icon: "🛡️",
-        products: ["ShieldVue"],
-      },
-      {
-        id: "5",
-        title: "Analytics & Intelligence",
-        description:
-          "Advanced analytics platforms that deliver real-time insights, predictive modeling, and intelligent decision-making capabilities.",
-        icon: "📈",
-        products: ["FinXplore", "Saransh"],
-      },
-      {
-        id: "6",
-        title: "Device & Infrastructure",
-        description:
-          "Cloud-based device labs and infrastructure platforms that provide on-demand access to real devices and testing environments.",
-        icon: "📱",
-        products: ["Protean Device Lab"],
-      },
-    ],
+    {
+      id: "1",
+      title: "AI & Automation",
+      description: "AI-driven platforms that automate testing...",
+      icon: "ai",
+      products: ["CliqTest", "Swikrti", "FinXplore"],
+    },
+    {
+      id: "2",
+      title: "Quality Engineering",
+      description: "Comprehensive testing platforms for functional, visual...",
+      icon: "scale",
+      products: ["CliqTest", "Protean Device Lab", "Jupiter"],
+    },
+    {
+      id: "3",
+      title: "Observability & Monitoring",
+      description: "Real-time monitoring, anomaly detection...",
+      icon: "insights",
+      products: ["Saransh", "Netraa"],
+    },
+    {
+      id: "4",
+      title: "Security & Compliance",
+      description: "Security validation platforms that automate vulnerability scanning...",
+      icon: "security",
+      products: ["ShieldVue"],
+    },
+    {
+      id: "5",
+      title: "Analytics & Intelligence",
+      description: "Advanced analytics platforms that deliver real-time insights...",
+      icon: "ai",
+      products: ["FinXplore", "Saransh"],
+    },
+    {
+      id: "6",
+      title: "Device & Infrastructure",
+      description: "Cloud-based device labs and infrastructure platforms...",
+      icon: "support",
+      products: ["Protean Device Lab"],
+    },
+  ],
   },
 },
 };
@@ -2686,49 +2664,227 @@ deleteProductCategoryItem: (id: string) =>
     }),
     {
       name: "admin-content",
-      version: 6,
+      version: 10,
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      migrate: (persistedState: any, version: number) => {
-        if (version <= 3) {
-          // Force update navbar (with megaMenuData) and footer links on migration
-          return {
-            ...persistedState,
-            content: {
-              ...persistedState.content,
-              navbar: {
-                ...persistedState.content.navbar,
-                megaMenuData: defaultContent.navbar.megaMenuData,
-              },
-              footer: defaultContent.footer,
-            },
-          };
-        }
-        if (version <= 4) {
-          // Force update contact content to clear cached old image paths
-          return {
-            ...persistedState,
-            content: {
-              ...persistedState.content,
-              contact: defaultContent.contact,
-            },
-          };
-        }
-        if (version <= 5) {
-      const content = persistedState.content;
-      if (content?.navbar?.megaMenuData?.["What we do"]?.categories) {
-        const categories = content.navbar.megaMenuData["What we do"].categories;
-        const servicesCat = categories.find((c: any) => c.id === "services");
-        if (servicesCat && !servicesCat.href) {
-          servicesCat.href = "/services";
-        }
-      }
-      return {
-        ...persistedState,
-        content,
-      };
-    }
-        return persistedState;
+migrate: (persistedState: any, version: number) => {
+  // Migration for version <= 3
+  if (version <= 3) {
+    return {
+      ...persistedState,
+      content: {
+        ...persistedState.content,
+        navbar: {
+          ...persistedState.content.navbar,
+          megaMenuData: defaultContent.navbar.megaMenuData,
+        },
+        footer: defaultContent.footer,
       },
+    };
+  }
+
+  // Migration for version <= 4
+  if (version <= 4) {
+    return {
+      ...persistedState,
+      content: {
+        ...persistedState.content,
+        contact: defaultContent.contact,
+      },
+    };
+  }
+
+  // Migration for version <= 5 (add href to Services and Products)
+  if (version <= 5) {
+    const content = persistedState.content;
+    if (content?.navbar?.megaMenuData?.["What we do"]?.categories) {
+      const categories = content.navbar.megaMenuData["What we do"].categories;
+      
+      // Add href to Services
+      const servicesCat = categories.find((c: any) => c.id === "services");
+      if (servicesCat && !servicesCat.href) {
+        servicesCat.href = "/services";
+      }
+      
+      // Add href to Products (if not already)
+      const productsCat = categories.find((c: any) => c.id === "products");
+      if (productsCat && !productsCat.href) {
+        productsCat.href = "/products";
+      }
+    }
+    return {
+      ...persistedState,
+      content,
+    };
+  }
+
+  // Migration for version <= 6 (convert emoji icons to Lucide keys)
+  if (version <= 6) {
+    const content = persistedState.content; // ← define content here
+
+    // 1. Convert approach items
+    const approachItems = content?.services?.approach?.items;
+    if (Array.isArray(approachItems)) {
+      const emojiToKey: Record<string, string> = {
+        "🔍": "discovery",
+        "🏗️": "architecture",
+        "🔄": "agile",
+        "✅": "quality",
+      };
+      approachItems.forEach((item: any) => {
+        if (item.icon && emojiToKey[item.icon]) {
+          item.icon = emojiToKey[item.icon];
+        }
+      });
+    }
+
+    // 2. Convert benefits items
+    const benefitItems = content?.services?.benefits?.items;
+    if (Array.isArray(benefitItems)) {
+      const emojiToKey: Record<string, string> = {
+        "⚡": "speed",
+        "🎯": "quality",
+        "💰": "cost",
+        "🛡️": "security",
+        "📈": "scale",
+        "🚀": "innovation",
+      };
+      benefitItems.forEach((item: any) => {
+        if (item.icon && emojiToKey[item.icon]) {
+          item.icon = emojiToKey[item.icon];
+        }
+      });
+    }
+
+    return {
+      ...persistedState,
+      content,
+    };
+  }
+  if (version <= 7) {
+  const content = persistedState.content;
+  
+  // 1. Convert approach items
+  const approachItems = content?.services?.approach?.items;
+  if (Array.isArray(approachItems)) {
+    const emojiToKey: Record<string, string> = {
+      "🔍": "discovery",
+      "🏗️": "architecture",
+      "🔄": "agile",
+      "✅": "quality",
+    };
+    approachItems.forEach((item: any) => {
+      if (item.icon && emojiToKey[item.icon]) {
+        item.icon = emojiToKey[item.icon];
+      }
+    });
+  }
+
+  // 2. Convert benefits items
+  const benefitItems = content?.services?.benefits?.items;
+  if (Array.isArray(benefitItems)) {
+    const emojiToKey: Record<string, string> = {
+      "⚡": "speed",
+      "🎯": "quality",
+      "💰": "cost",
+      "🛡️": "security",
+      "📈": "scale",
+      "🚀": "innovation",
+    };
+    benefitItems.forEach((item: any) => {
+      if (item.icon && emojiToKey[item.icon]) {
+        item.icon = emojiToKey[item.icon];
+      }
+    });
+  }
+
+  // 3. Ensure Services and Products have href (if not already)
+  if (content?.navbar?.megaMenuData?.["What we do"]?.categories) {
+    const categories = content.navbar.megaMenuData["What we do"].categories;
+    const servicesCat = categories.find((c: any) => c.id === "services");
+    if (servicesCat && !servicesCat.href) {
+      servicesCat.href = "/services";
+    }
+    const productsCat = categories.find((c: any) => c.id === "products");
+    if (productsCat && !productsCat.href) {
+      productsCat.href = "/products";
+    }
+  }
+
+  return {
+    ...persistedState,
+    content,
+  };
+}
+if (version <= 8) {
+  const content = persistedState.content;
+  
+  // Convert product benefits items
+  const productBenefitItems = content?.products?.benefits?.items;
+  if (Array.isArray(productBenefitItems)) {
+    const emojiToKey: Record<string, string> = {
+      "🛡️": "security",
+      "🔗": "integration",
+      "🤖": "ai",
+      "📈": "scale",
+      "📊": "insights",
+      "🌍": "support",
+    };
+    productBenefitItems.forEach((item: any) => {
+      if (item.icon && emojiToKey[item.icon]) {
+        item.icon = emojiToKey[item.icon];
+      }
+    });
+  }
+  
+  // Convert product categories items
+  const productCategoryItems = content?.products?.categories?.items;
+  if (Array.isArray(productCategoryItems)) {
+    const emojiToKey: Record<string, string> = {
+      "🤖": "ai",
+      "✅": "scale",
+      "📊": "insights",
+      "🛡️": "security",
+      "📈": "ai",
+      "📱": "support",
+    };
+    productCategoryItems.forEach((item: any) => {
+      if (item.icon && emojiToKey[item.icon]) {
+        item.icon = emojiToKey[item.icon];
+      }
+    });
+  }
+  
+  return {
+    ...persistedState,
+    content,
+  };
+}
+// ─── version <= 9: ensure product benefits and categories exist ───
+if (version <= 9) {
+  const content = persistedState.content;
+
+  // Ensure products.benefits.items exists and is not empty
+  if (!content.products) content.products = {};
+  if (!content.products.benefits) content.products.benefits = {};
+  if (!Array.isArray(content.products.benefits.items) || content.products.benefits.items.length === 0) {
+    content.products.benefits.items = defaultContent.products.benefits.items;
+  }
+
+  // Ensure products.categories.items exists and is not empty
+  if (!content.products.categories) content.products.categories = {};
+  if (!Array.isArray(content.products.categories.items) || content.products.categories.items.length === 0) {
+    content.products.categories.items = defaultContent.products.categories.items;
+  }
+
+  return {
+    ...persistedState,
+    content,
+  };
+}
+
+  // No migration needed for current version
+  return persistedState;
+}
     },
   ),
 );

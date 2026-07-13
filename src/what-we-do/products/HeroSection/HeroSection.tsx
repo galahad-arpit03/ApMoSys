@@ -49,12 +49,12 @@ export default function HeroSection() {
                     variants={fadeUp}
                     className="text-primary-red text-xs font-bold tracking-widest uppercase mb-4 block"
                   >
-                    <EditableText
+                    {/* <EditableText
                       path="products.hero.badge"
                       fallback="Products & Platform"
                       as="span"
                       className="text-primary-red text-xs font-bold tracking-widest uppercase"
-                    />
+                    /> */}
                   </motion.span>
 
                   <motion.h1 variants={fadeUp} className="mb-6 leading-none">

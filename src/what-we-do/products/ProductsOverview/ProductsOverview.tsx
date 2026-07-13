@@ -159,13 +159,13 @@ export default function ProductsOverview() {
                 transition={{ duration: 0.65, ease: "easeOut" }}
                 className="text-center max-w-3xl mx-auto mb-16"
               >
-                <span className="text-primary-red text-xs font-bold uppercase tracking-widest block mb-4">
+                {/* <span className="text-primary-red text-xs font-bold uppercase tracking-widest block mb-4">
                   <EditableText
                     path="products.overview.sectionLabel"
                     fallback="Our Product Suite"
                     as="span"
                   />
-                </span>
+                </span> */}
                 <h2
                   className={`font-heading text-3xl sm:text-4xl font-extrabold mb-4 ${
                     isDark ? "text-[#FFFFFF]" : "text-[#121212]"
