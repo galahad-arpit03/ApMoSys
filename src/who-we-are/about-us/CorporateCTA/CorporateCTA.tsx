@@ -11,7 +11,7 @@ export default function CorporateCTA() {
       {(theme) => {
         const isDark = theme === "dark";
         return (
-          <section className={`py-20 transition-colors duration-300 ${isDark ? "bg-[#121212]" : "bg-white"}`}>
+          <section className={`py-20 transition-colors duration-300 ${isDark ? "bg-[#000000]" : "bg-white"}`}>
             <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className={`rounded-2xl p-12 md:p-16 text-center relative overflow-hidden border transition-colors backdrop-blur-xl ${
                 isDark 

@@ -73,8 +73,8 @@ export default function StorySection() {
                           {/* Timeline Node */}
                           <div className={`shrink-0 w-16 h-16 sm:w-20 sm:h-20 rounded-full flex items-center justify-center font-black text-2xl sm:text-3xl relative z-10 transition-all duration-500 shadow-sm ${
                             isDark 
-                              ? "bg-[#121212] border-4 border-[#1A1A1A] text-gray-500 group-hover:border-[#B40001]/40 group-hover:text-white group-hover:shadow-[0_0_30px_rgba(180,0,1,0.2)]" 
-                              : "bg-white border-4 border-gray-50 text-gray-400 group-hover:border-[#B40001]/20 group-hover:text-[#B40001] group-hover:bg-red-50/30 group-hover:shadow-lg"
+                              ? "bg-[#121212] border-4 border-[#1A1A1A] text-gray-500 group-hover:border-gray-600 group-hover:text-white group-hover:shadow-[0_0_30px_rgba(255,255,255,0.05)]" 
+                              : "bg-white border-4 border-gray-50 text-gray-400 group-hover:border-gray-200 group-hover:text-gray-900 group-hover:shadow-lg"
                           }`}>
                             0{idx + 1}
                           </div>
@@ -83,7 +83,7 @@ export default function StorySection() {
                           <div className={`ml-8 sm:ml-12 flex-1 p-8 sm:p-10 rounded-3xl border transition-all duration-500 hover:-translate-y-1 ${
                             isDark 
                               ? "bg-[#1A1A1A] border-[#2A2A2A] hover:bg-[#222]" 
-                              : "bg-white/80 backdrop-blur-md border-gray-200/60 shadow-[0_4px_20px_rgb(0,0,0,0.03)] hover:shadow-[0_8px_30px_rgb(180,0,1,0.08)] hover:bg-white"
+                              : "bg-white/80 backdrop-blur-md border-gray-200/60 shadow-[0_4px_20px_rgb(0,0,0,0.03)] hover:shadow-[0_8px_30px_rgb(0,0,0,0.06)] hover:bg-white"
                           }`}>
                             {isEditRoute && (
                               <button
@@ -95,7 +95,7 @@ export default function StorySection() {
                               </button>
                             )}
                             
-                            <h3 className={`font-bold text-2xl mb-4 transition-colors duration-300 group-hover:text-[#B40001] ${isDark ? "text-white" : "text-gray-900"}`}>
+                            <h3 className={`font-bold text-2xl mb-4 transition-colors duration-300 ${isDark ? "text-white" : "text-gray-900"}`}>
                               <EditableText
                                 path={`about.storyCards.${idx}.title`}
                                 fallback={card.title}

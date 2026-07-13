@@ -126,7 +126,7 @@ export default function Footer() {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-100px" }}
       transition={{ duration: 0.8, ease: "easeOut" }}
-      className="bg-[#000000] border-t border-[#3A3A3A] py-16 mt-auto text-sm text-white"
+      className="bg-[#000000] border-t border-olive-900 py-16 mt-auto text-sm text-white"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">

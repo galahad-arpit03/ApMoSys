@@ -74,13 +74,13 @@ export default function CoreValues() {
                           animate={{ opacity: 1, y: 0 }}
                           exit={{ opacity: 0, scale: 0.9 }}
                           transition={{ delay: i * 0.1, duration: 0.5 }}
-                          className={`group relative p-[1px] rounded-md overflow-hidden shadow-sm hover:shadow-xl hover:shadow-red-900/5 transition-all duration-500 ${
+                          className={`group relative p-[1px] rounded-md overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 ${
                             isDark 
-                              ? "bg-gradient-to-b from-[#2A2A2A] to-[#1A1A1A] hover:from-red-900/30 hover:to-red-900/10" 
-                              : "bg-gradient-to-b from-gray-200/50 to-gray-100/50 hover:from-red-300/80 hover:to-red-100"
+                              ? "bg-gradient-to-b from-[#2A2A2A] to-[#1A1A1A] hover:from-gray-700 hover:to-gray-800" 
+                              : "bg-gradient-to-b from-gray-200/50 to-gray-100/50 hover:from-gray-300 hover:to-gray-200"
                           }`}
                         >
-                          <div className="absolute inset-0 bg-gradient-to-br from-[#B40001]/0 via-[#B40001]/0 to-[#B40001]/0 group-hover:from-[#B40001]/5 group-hover:to-[#B40001]/10 transition-all duration-500" />
+                          <div className="absolute inset-0 bg-gradient-to-br from-white/0 via-white/0 to-white/0 group-hover:from-white/5 group-hover:to-white/10 transition-all duration-500" />
                           
                           {isEditRoute && (
                             <button
@@ -95,14 +95,14 @@ export default function CoreValues() {
                           <div className={`relative h-full backdrop-blur-xl p-6 sm:p-8 rounded-md flex flex-col items-start gap-6 transition-colors duration-500 ${
                             isDark ? "bg-[#1A1A1A]/90 group-hover:bg-[#1A1A1A]" : "bg-white/80 group-hover:bg-white/90"
                           }`}>
-                            <div className={`flex items-center justify-center w-14 h-14 rounded-2xl shadow-sm group-hover:text-[#B40001] group-hover:scale-110 group-hover:border-red-200 transition-all duration-500 ${
-                              isDark ? "bg-[#2A2A2A] border-[#3A3A3A] text-gray-400 group-hover:bg-red-950/30" : "bg-gray-50 border-gray-100 text-gray-400 group-hover:bg-red-50"
+                            <div className={`flex items-center justify-center w-14 h-14 rounded-2xl shadow-sm group-hover:scale-110 group-hover:border-gray-300 transition-all duration-500 ${
+                              isDark ? "bg-[#2A2A2A] border-[#3A3A3A] text-gray-400 group-hover:bg-gray-800 group-hover:text-white" : "bg-gray-50 border-gray-100 text-gray-400 group-hover:bg-gray-100 group-hover:text-gray-900"
                             }`}>
                               {iconMap[value.icon] || <CheckCircle2 className="w-6 h-6" />}
                             </div>
                             
                             <div>
-                              <h3 className={`text-xl font-bold mb-3 group-hover:text-[#B40001] transition-colors duration-300 ${isDark ? "text-white" : "text-gray-900"}`}>
+                              <h3 className={`text-xl font-bold mb-3 transition-colors duration-300 ${isDark ? "text-white" : "text-gray-900"}`}>
                                 <EditableText
                                   path={`about.coreValues.${i}.title`}
                                   fallback={value.title}
