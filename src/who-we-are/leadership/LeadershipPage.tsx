@@ -5,6 +5,7 @@ import LeadershipIntro from "./LeadershipIntro/LeadershipIntro";
 import ExecutiveTeam from "./ExecutiveTeam/ExecutiveTeam";
 import LeadershipValues from "./LeadershipValues/LeadershipValues";
 import LeadershipVision from "./LeadershipVision/LeadershipVision";
+import CorporateCTA from "@/src/who-we-are/about-us/CorporateCTA/CorporateCTA";
 
 export default function LeadershipPage() {
   return (
@@ -14,6 +15,7 @@ export default function LeadershipPage() {
       <ExecutiveTeam />
       <LeadershipValues />
       <LeadershipVision />
+      <CorporateCTA />
     </main>
   );
 }

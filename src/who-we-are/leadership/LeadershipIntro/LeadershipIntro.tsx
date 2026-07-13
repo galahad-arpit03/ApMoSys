@@ -8,15 +8,16 @@ export default function LeadershipIntro() {
       {(theme) => {
         const isDark = theme === "dark";
         return (
-          <section className={`py-16 sm:py-20 lg:py-24 border-b transition-colors duration-300 ${isDark ? "bg-[#0F0F0F] border-[#222]" : "bg-white border-gray-200"}`}>
+          <section className={`pt-8 pb-10 sm:pt-10 sm:pb-14 lg:pt-12 lg:pb-16 border-b transition-colors duration-300 ${isDark ? "bg-[#0F0F0F] border-[#222]" : "bg-white border-gray-200"}`}>
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-left">
 
-              <span className="text-[#B40001] uppercase tracking-[0.2em] text-xs sm:text-sm font-bold">
+              {/* <span className="text-[#B40001] uppercase tracking-[0.2em] text-xs sm:text-sm font-bold">
                 Leadership Excellence
-              </span>
+              </span> */}
 
-              <h2 className={`text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mt-6 ${isDark ? "text-white" : "text-gray-900"}`}>
-                Driving Growth Through Vision, Experience & Innovation
+              <h2 className={`text-3xl sm:text-4xl md:text-5xl font-medium leading-tight ${isDark ? "text-white" : "text-gray-900"}`}>
+                Driving Growth Through Vision,
+                <br/> <span className="text-[#B40001]">Experience & Innovation</span>
               </h2>
 
               <div className="grid md:grid-cols-2 gap-8 lg:gap-12 mt-8 sm:mt-10">

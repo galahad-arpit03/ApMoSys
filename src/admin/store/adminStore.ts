@@ -4,6 +4,7 @@
 
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
+import { executiveteamData } from "@/src/who-we-are/leadership/ExecutiveTeam/ExecutiveTeamData";
 
 // ─── Auth ───────────────────────────────────────────────────────────────────
 
@@ -113,6 +114,14 @@ export interface CareerJob {
   link: string;
 }
 
+export interface LeadershipExecutive {
+  id: string;
+  name: string;
+  role: string;
+  description: string;
+  image: string;
+}
+
 export interface MegaMenuCategory {
   id: string;
   label: string;
@@ -138,6 +147,9 @@ export interface SiteContent {
     ctaHref: string;
     links: { label: string; href: string; visible?: boolean }[];
     megaMenuData?: Record<string, MegaMenuItem>;
+  };
+  leadership: {
+    executiveTeam: LeadershipExecutive[];
   };
   footer: {
     tagline: string;
@@ -1311,6 +1323,7 @@ export const defaultContent: SiteContent = {
       stat4Label: "Countries Served",
     }
   },
+
   services: {
     hero: {
       badge: "Our Services",
@@ -1689,114 +1702,10 @@ export const defaultContent: SiteContent = {
     },
   ],
   },
-},
-coe: {
-  hero: {
-    badge: "Centers of Excellence",
-    heading: "Driving Innovation Through Centers of Excellence",
-    subheading:
-      "Dedicated innovation labs that establish best practices, develop specialized tools, and drive thought leadership across critical domains — from AI and automation to banking and insurance.",
-    ctaPrimary: "Explore CoEs",
-    ctaSecondary: "View Research",
-    visualLabel: "Innovation Ecosystem",
   },
-  overview: {
-    sectionLabel: "Our Centers of Excellence",
-    heading: "Specialized Innovation Labs",
-    description:
-      "Our Centers of Excellence are dedicated innovation hubs that establish best practices, develop specialized tools, and drive thought leadership across critical domains.",
-    items: [
-      {
-        id: "1",
-        title: "Functional Center of Excellence",
-        shortName: "FCoE",
-        description:
-          "Certified testing engineers and quality consultants possessing specialized skillsets, domain experience, and tools expertise to add value in pursuit of excellence.",
-        icon: "functional",
-        image: "https://images.unsplash.com/photo-1517048676732-d65bc937f952?q=80&w=400&auto=format&fit=crop",
-        details: [
-          "Expertise in test strategy and planning",
-          "Automation framework development",
-          "Continuous testing integration",
-          "Quality metrics and dashboards",
-        ],
-      },
-      // ... add all 6 CoEs with full details
-    ],
+  leadership: {
+    executiveTeam: executiveteamData.map((m, i) => ({ id: `exec-${i}`, ...m })),
   },
-  accordion: {
-    heading: "Explore Our Centers of Excellence in Depth",
-    description: "Click on each CoE to discover its focus areas, capabilities, and how it drives innovation across our organization.",
-  },
-  labs: {
-    sectionLabel: "Innovation Labs",
-    heading: "Where Ideas Become Reality",
-    description:
-      "Our Innovation Labs are dedicated spaces where engineers, researchers, and domain experts collaborate to build the future of enterprise technology.",
-    items: [
-      {
-        id: "1",
-        title: "AI Research Lab",
-        description:
-          "Exploring cutting-edge AI technologies including generative AI, computer vision, and natural language processing for enterprise applications.",
-        icon: "🧠",
-      },
-      {
-        id: "2",
-        title: "Automation Innovation Hub",
-        description:
-          "Developing next-generation automation frameworks that combine RPA, AI, and intelligent decision-making for complex business processes.",
-        icon: "⚙️",
-      },
-      {
-        id: "3",
-        title: "Security & Compliance Lab",
-        description:
-          "Researching advanced security validation techniques, zero-trust architectures, and compliance automation for regulated industries.",
-        icon: "🔒",
-      },
-      {
-        id: "4",
-        title: "Cloud & DevOps Lab",
-        description:
-          "Innovating in cloud-native architectures, Kubernetes orchestration, and GitOps-driven continuous delivery pipelines.",
-        icon: "☁️",
-      },
-    ],
-  },
-  papers: {
-    sectionLabel: "Research & Publications",
-    heading: "Advancing the Frontiers of Technology",
-    description:
-      "Our research papers and technical publications represent our commitment to advancing knowledge in AI, automation, security, and quality engineering.",
-    items: [
-      {
-        id: "1",
-        title: "AI-Driven Test Automation: A Paradigm Shift in Quality Engineering",
-        authors: "ApMoSys Research Team",
-        publication: "Springer Nature, 2023",
-        link: "#",
-        tag: "AI & Automation",
-      },
-      {
-        id: "2",
-        title: "Performance Engineering for Microservices Architectures",
-        authors: "ApMoSys Research Team",
-        publication: "IEEE Xplore, 2023",
-        link: "#",
-        tag: "Performance",
-      },
-      {
-        id: "3",
-        title: "Zero-Trust Security Validation in CI/CD Pipelines",
-        authors: "ApMoSys Research Team",
-        publication: "Elsevier, 2024",
-        link: "#",
-        tag: "Security",
-      },
-    ],
-  },
-},
 };
 
 interface ContentState {
@@ -1830,6 +1739,10 @@ interface ContentState {
   deleteContactOffice: (id: string) => void;
   addContactFAQItem: () => void;
   deleteContactFAQItem: (id: string) => void;
+  
+  addLeadershipExecutive: () => void;
+  deleteLeadershipExecutive: (id: string) => void;
+
   toggleNavbarLink: (index: number) => void;
   updateNavbarLink: (index: number, updates: Partial<{ label: string, href: string }>) => void;
   moveNavbarLink: (index: number, direction: "up" | "down") => void;
@@ -2250,6 +2163,45 @@ export const useContentStore = create<ContentState>()(
               contact: {
                 ...state.content.contact,
                 faqItems: newItems,
+              },
+            },
+            isDirty: true,
+          };
+        }),
+      addLeadershipExecutive: () =>
+        set((state) => {
+          const currentItems = state.content.leadership?.executiveTeam || [];
+          const newItems = [
+            ...currentItems,
+            {
+              id: Date.now().toString(),
+              name: "New Executive",
+              role: "NEW ROLE",
+              description: "Add a description here.",
+              image: "",
+            },
+          ];
+          return {
+            content: {
+              ...state.content,
+              leadership: {
+                ...state.content.leadership,
+                executiveTeam: newItems,
+              },
+            },
+            isDirty: true,
+          };
+        }),
+      deleteLeadershipExecutive: (id: string) =>
+        set((state) => {
+          const currentItems = state.content.leadership?.executiveTeam || [];
+          const newItems = currentItems.filter((item) => item.id !== id);
+          return {
+            content: {
+              ...state.content,
+              leadership: {
+                ...state.content.leadership,
+                executiveTeam: newItems,
               },
             },
             isDirty: true,
