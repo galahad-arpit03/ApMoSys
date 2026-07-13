@@ -20,12 +20,18 @@ export default function StorySection() {
       {(theme) => {
         const isDark = theme === "dark";
         return (
-          <section className={`py-24 transition-colors duration-300 ${isDark ? "bg-[#121212] text-[#FAFAFA]" : "bg-[#F8F9FA] text-[#121212]"}`}>
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <section className={`py-24 relative transition-colors duration-300 ${isDark ? "bg-[#0D0D0D] text-[#FAFAFA]" : "bg-gradient-to-b from-[#F0F4F8] to-white text-[#121212]"}`}>
+            {/* Subtle Background Glows wrapped to prevent overflow without breaking sticky */}
+            <div className="absolute inset-0 overflow-hidden pointer-events-none">
+              <div className={`absolute top-0 right-0 w-[800px] h-[800px] rounded-full blur-[120px] pointer-events-none -translate-y-1/2 translate-x-1/3 ${isDark ? "bg-red-900/10" : "bg-red-100/40"}`} />
+              <div className={`absolute bottom-0 left-0 w-[600px] h-[600px] rounded-full blur-[100px] pointer-events-none translate-y-1/3 -translate-x-1/3 ${isDark ? "bg-blue-900/10" : "bg-blue-50/50"}`} />
+            </div>
+            
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
                 
                 <div className="lg:col-span-4 lg:sticky lg:top-32">
-                  <h2 className={`text-4xl lg:text-5xl font-black tracking-tight mb-6 ${isDark ? "text-white" : "text-gray-900"}`}>
+                  <h2 className={`text-4xl lg:text-5xl font-medium tracking-tight mb-6 ${isDark ? "text-white" : "text-gray-900"}`}>
                     <EditableText
                       path="about.story.heading1"
                       fallback="Our"
@@ -33,12 +39,12 @@ export default function StorySection() {
                     />{' '}
                     <EditableText
                       path="about.story.heading2"
-                      fallback="Story"
+                      fallback="Journey"
                       as="span"
-                      className="text-transparent bg-clip-text bg-gradient-to-r from-primary-red to-red-500"
+                      className="text-transparent bg-clip-text bg-gradient-to-r from-[#B40001] to-red-600"
                     />
                   </h2>
-                  <p className={`text-base leading-relaxed mb-8 ${isDark ? "text-gray-400" : "text-gray-500"}`}>
+                  <p className={`text-lg font-medium leading-relaxed mb-8 ${isDark ? "text-gray-400" : "text-gray-600"}`}>
                     <EditableText
                       path="about.story.description"
                       fallback="A legacy built on..."
@@ -48,65 +54,83 @@ export default function StorySection() {
                   </p>
                 </div>
 
-                <div className="lg:col-span-8 grid grid-cols-1 sm:grid-cols-2 gap-6 lg:gap-8">
-                  <AnimatePresence mode="popLayout">
-                    {cards.map((card, idx) => (
-                      <motion.div 
-                        key={card.id}
-                        layout
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, scale: 0.9 }}
-                        transition={{ delay: idx * 0.1, duration: 0.4 }}
-                        className={`group relative p-8 lg:p-10 rounded-2xl border shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 ${
-                          isDark ? "bg-[#1A1A1A] border-[#2A2A2A]" : "bg-white border-gray-100"
-                        }`}
-                      >
-                        {isEditRoute && (
-                          <button
-                            onClick={() => deleteAboutStoryCard(card.id)}
-                            className="absolute right-4 top-4 w-8 h-8 flex items-center justify-center rounded-full bg-red-100 text-red-600 opacity-0 group-hover:opacity-100 transition-opacity hover:bg-red-200"
-                            title="Delete Card"
-                          >
-                            ×
-                          </button>
-                        )}
-                        <div className={`w-12 h-12 rounded-xl flex items-center justify-center mb-6 font-bold text-xl transition-all duration-300 ${
-                          isDark ? "bg-[#2A2A2A] text-gray-400 group-hover:bg-[#3A3A3A] group-hover:text-white" : "bg-gray-50 text-gray-400 group-hover:bg-gray-200 group-hover:text-black"
-                        }`}>
-                          0{idx + 1}
-                        </div>
-                        <h3 className={`font-bold text-xl mb-4 ${isDark ? "text-white" : "text-gray-900"}`}>
-                          <EditableText
-                            path={`about.storyCards.${idx}.title`}
-                            fallback={card.title}
-                            as="span"
-                          />
-                        </h3>
-                        <p className={`leading-relaxed ${isDark ? "text-gray-400" : "text-gray-500"}`}>
-                          <EditableText
-                            path={`about.storyCards.${idx}.content`}
-                            fallback={card.content}
-                            as="span"
-                            multiline
-                          />
-                        </p>
-                      </motion.div>
-                    ))}
-                  </AnimatePresence>
+                <div className="lg:col-span-8 relative">
+                  {/* Vertical Timeline Line */}
+                  <div className={`absolute left-8 sm:left-10 top-10 bottom-10 w-px ${isDark ? "bg-gradient-to-b from-[#B40001]/50 via-[#2A2A2A] to-[#2A2A2A]" : "bg-gradient-to-b from-[#B40001]/40 via-gray-300 to-gray-200"}`}></div>
                   
-                  {isEditRoute && (
-                    <motion.button
-                      layout
-                      onClick={addAboutStoryCard}
-                      className={`flex flex-col items-center justify-center p-8 lg:p-10 rounded-2xl border-2 border-dashed transition-colors ${
-                        isDark ? "border-[#2A2A2A] hover:border-primary-red/50 text-gray-500 hover:text-primary-red" : "border-gray-200 hover:border-primary-red/50 text-gray-400 hover:text-primary-red"
-                      }`}
-                    >
-                      <span className="text-3xl mb-2">+</span>
-                      <span className="font-semibold">Add Story Card</span>
-                    </motion.button>
-                  )}
+                  <div className="flex flex-col gap-12 sm:gap-16">
+                    <AnimatePresence mode="popLayout">
+                      {cards.map((card, idx) => (
+                        <motion.div 
+                          key={card.id}
+                          layout
+                          initial={{ opacity: 0, x: 20 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          exit={{ opacity: 0, scale: 0.9 }}
+                          transition={{ delay: idx * 0.1, duration: 0.5 }}
+                          className="relative flex items-start group"
+                        >
+                          {/* Timeline Node */}
+                          <div className={`shrink-0 w-16 h-16 sm:w-20 sm:h-20 rounded-full flex items-center justify-center font-black text-2xl sm:text-3xl relative z-10 transition-all duration-500 shadow-sm ${
+                            isDark 
+                              ? "bg-[#121212] border-4 border-[#1A1A1A] text-gray-500 group-hover:border-[#B40001]/40 group-hover:text-white group-hover:shadow-[0_0_30px_rgba(180,0,1,0.2)]" 
+                              : "bg-white border-4 border-gray-50 text-gray-400 group-hover:border-[#B40001]/20 group-hover:text-[#B40001] group-hover:bg-red-50/30 group-hover:shadow-lg"
+                          }`}>
+                            0{idx + 1}
+                          </div>
+                          
+                          {/* Card Content */}
+                          <div className={`ml-8 sm:ml-12 flex-1 p-8 sm:p-10 rounded-3xl border transition-all duration-500 hover:-translate-y-1 ${
+                            isDark 
+                              ? "bg-[#1A1A1A] border-[#2A2A2A] hover:bg-[#222]" 
+                              : "bg-white/80 backdrop-blur-md border-gray-200/60 shadow-[0_4px_20px_rgb(0,0,0,0.03)] hover:shadow-[0_8px_30px_rgb(180,0,1,0.08)] hover:bg-white"
+                          }`}>
+                            {isEditRoute && (
+                              <button
+                                onClick={() => deleteAboutStoryCard(card.id)}
+                                className="absolute right-4 top-4 w-8 h-8 flex items-center justify-center rounded-full bg-red-100 text-red-600 opacity-0 group-hover:opacity-100 transition-opacity hover:bg-red-200"
+                                title="Delete Card"
+                              >
+                                ×
+                              </button>
+                            )}
+                            
+                            <h3 className={`font-bold text-2xl mb-4 transition-colors duration-300 group-hover:text-[#B40001] ${isDark ? "text-white" : "text-gray-900"}`}>
+                              <EditableText
+                                path={`about.storyCards.${idx}.title`}
+                                fallback={card.title}
+                                as="span"
+                              />
+                            </h3>
+                            <p className={`text-base leading-relaxed font-medium ${isDark ? "text-gray-400" : "text-gray-600"}`}>
+                              <EditableText
+                                path={`about.storyCards.${idx}.content`}
+                                fallback={card.content}
+                                as="span"
+                                multiline
+                              />
+                            </p>
+                          </div>
+                        </motion.div>
+                      ))}
+                    </AnimatePresence>
+                    
+                    {isEditRoute && (
+                      <motion.div layout className="relative flex items-start">
+                        <div className={`shrink-0 w-16 h-16 sm:w-20 sm:h-20 rounded-full flex items-center justify-center font-black text-2xl sm:text-3xl relative z-10 border-4 border-dashed ${isDark ? "border-[#2A2A2A] text-gray-600" : "border-gray-200 text-gray-300"}`}>
+                          +
+                        </div>
+                        <button
+                          onClick={addAboutStoryCard}
+                          className={`ml-8 sm:ml-12 flex-1 flex flex-col items-center justify-center p-8 sm:p-10 rounded-3xl border-2 border-dashed transition-colors ${
+                            isDark ? "border-[#2A2A2A] hover:border-primary-red/50 text-gray-500 hover:text-primary-red bg-[#1A1A1A]/50" : "border-gray-200 hover:border-primary-red/50 text-gray-400 hover:text-primary-red bg-white/50"
+                          }`}
+                        >
+                          <span className="font-semibold text-lg">Add Story Card</span>
+                        </button>
+                      </motion.div>
+                    )}
+                  </div>
                 </div>
               </div>
             </div>

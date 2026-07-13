@@ -36,9 +36,9 @@ export default function CoreValues() {
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-start">
                 
                 {/* LHS - Sticky Header */}
-                <div className="lg:col-span-4 lg:sticky lg:top-28">
+                <div className="lg:col-span-4">
                   <div className="text-left relative">
-                    <h2 className={`text-4xl md:text-5xl font-black tracking-tight mb-6 ${isDark ? "text-white" : "text-gray-900"}`}>
+                    <h2 className={`text-4xl md:text-5xl font-medium tracking-tight mb-6 ${isDark ? "text-white" : "text-gray-900"}`}>
                       <EditableText
                         path="about.coreValues.heading1"
                         fallback="Core"

@@ -11,15 +11,10 @@ export default function StatsSection() {
       {(theme) => {
         const isDark = theme === "dark";
         return (
-          <section className={`py-12 border-y transition-colors duration-300 ${isDark ? "bg-black border-[#222]" : "bg-white border-gray-200"}`}>
+          <section className={`py-6 border-y transition-colors duration-300 ${isDark ? "bg-black border-[#222]" : "bg-white border-gray-200"}`}>
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-              <div className={`grid grid-cols-2 md:grid-cols-4 divide-x-0 md:divide-x gap-y-8 md:gap-y-0 ${isDark ? "divide-[#333]" : "divide-gray-200"}`}>
+              <div className={`grid grid-cols-2 md:grid-cols-4 divide-x-0 md:divide-x gap-y-6 md:gap-y-0 ${isDark ? "divide-[#333]" : "divide-gray-200"}`}>
                 {statsData.map((stat, i) => {
-                  // Fallbacks from original data logic, splitting plus signs for styling
-                  const valParts = stat.value.split('+');
-                  const valNum = valParts[0];
-                  const hasPlus = stat.value.includes('+');
-
                   return (
                     <motion.div
                       key={i}
@@ -29,14 +24,14 @@ export default function StatsSection() {
                       transition={{ delay: i * 0.1, duration: 0.5 }}
                       className="text-center px-4 flex flex-col items-center justify-center"
                     >
-                      <div className={`text-4xl md:text-5xl font-black tracking-tight mb-2 flex items-center gap-1 ${isDark ? "text-white" : "text-gray-900"}`}>
+                      <div className={`text-3xl md:text-4xl font-sans font-light tracking-tight mb-1 flex items-center gap-1 ${isDark ? "text-white" : "text-gray-900"}`}>
                         <EditableText
                           path={`about.stats.stat${i + 1}Value`}
                           fallback={stat.value}
                           as="span"
                         />
                       </div>
-                      <div className={`text-xs uppercase tracking-[0.2em] font-bold ${isDark ? "text-white/60" : "text-gray-500"}`}>
+                      <div className={`text-xs uppercase tracking-wider font-manrope font-semibold ${isDark ? "text-white/60" : "text-gray-500"}`}>
                         <EditableText
                           path={`about.stats.stat${i + 1}Label`}
                           fallback={stat.label}
