@@ -6,10 +6,10 @@ import ProductsOverview from "./products/ProductsOverview/ProductsOverview";
 import ProductBenefits from "./products/ProductBenefits/ProductBenefits";
 import ProductCategories from "./products/ProductCategories/ProductCategories";
 // Shared components
-import ImpactSection from "./ImpactSection/ImpactSection";
-import ComplianceSection from "./ComplianceSection/ComplianceSection";
-import TestimonialSection from "./TestimonialSection/TestimonialSection";
-import CTASection from "./CTASection/CTASection";
+import ImpactSection from "./industries/ImpactSection/ImpactSection";
+import ComplianceSection from "./industries/ComplianceSection/ComplianceSection";
+import TestimonialSection from "./industries/TestimonialSection/TestimonialSection";
+import CTASection from "./industries/CTASection/CTASection";
 
 export default function ProductsPageContent() {
   return (

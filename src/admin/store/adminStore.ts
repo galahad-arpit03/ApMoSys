@@ -414,6 +414,40 @@ export interface SiteContent {
     items: CoEPaperItem[];
   };
 }
+alliance: {
+  hero: {
+    badge: string;
+    heading: string;
+    subheading: string;
+    ctaPrimary: string;
+    ctaSecondary: string;
+    visualLabel: string;
+  };
+  overview: {
+    sectionLabel: string;
+    heading: string;
+    description: string;
+    items: AllianceItem[];
+  };
+  benefits: {
+    sectionLabel: string;
+    heading: string;
+    description: string;
+    items: AllianceBenefitItem[];
+  };
+  partners: {
+    sectionLabel: string;
+    heading: string;
+    description: string;
+    items: AlliancePartnerItem[];
+  };
+  featured: {
+    sectionLabel: string;
+    heading: string;
+    description: string;
+    items: AllianceFeaturedItem[];
+  };
+}
 }
 
 
@@ -623,6 +657,7 @@ export const defaultContent: SiteContent = {
           {
             id: "alliance",
             label: "Alliance",
+            href: "/alliance",
             subLinks: []
           },
           {
@@ -1707,7 +1742,187 @@ export const defaultContent: SiteContent = {
   leadership: {
     executiveTeam: executiveteamData.map((m, i) => ({ id: `exec-${i}`, ...m })),
   },
-};
+  alliance: {
+  hero: {
+    badge: "Strategic Alliances",
+    heading: "Powering Innovation Through Strategic Partnerships",
+    subheading:
+      "We collaborate with the world's leading technology providers to deliver integrated solutions that accelerate enterprise transformation and drive measurable business outcomes.",
+    ctaPrimary: "View Our Partners",
+    ctaSecondary: "Become a Partner",
+    visualLabel: "Ecosystem of Trust",
+  },
+  overview: {
+    sectionLabel: "Our Alliance Ecosystem",
+    heading: "Strategic Partnerships for Enterprise Success",
+    description:
+      "Our alliances bring together the world's best technologies, expertise, and innovation to deliver comprehensive solutions that drive enterprise transformation.",
+    items: [
+      {
+        id: "1",
+        title: "Technology Partnerships",
+        description:
+          "Strategic partnerships with leading technology providers to deliver integrated, best-in-class solutions for enterprise transformation.",
+        icon: "tech",
+      },
+      {
+        id: "2",
+        title: "Consulting Alliances",
+        description:
+          "Collaborations with global consulting firms to bring deep industry expertise and implementation excellence to complex transformation programs.",
+        icon: "consulting",
+      },
+      {
+        id: "3",
+        title: "Industry Alliances",
+        description:
+          "Partnerships with industry associations and standards bodies to drive innovation and shape the future of enterprise technology.",
+        icon: "industry",
+      },
+      {
+        id: "4",
+        title: "Academic Alliances",
+        description:
+          "Collaborations with leading academic institutions to advance research, develop talent, and foster innovation in emerging technologies.",
+        icon: "academic",
+      },
+      {
+        id: "5",
+        title: "Channel Partnerships",
+        description:
+          "A global network of channel partners who extend our reach and deliver our solutions to enterprises worldwide.",
+        icon: "channel",
+      },
+      {
+        id: "6",
+        title: "Innovation Alliances",
+        description:
+          "Strategic collaborations with startups and innovation labs to bring cutting-edge technologies and fresh perspectives to enterprise challenges.",
+        icon: "innovation",
+      },
+    ],
+  },
+  benefits: {
+    sectionLabel: "Why Partner With Us",
+    heading: "Building a Stronger Ecosystem Together",
+    description:
+      "Our alliance partners benefit from a collaborative ecosystem that drives mutual growth, innovation, and customer success.",
+    items: [
+      {
+        id: "1",
+        title: "Accelerated Innovation",
+        description:
+          "Leverage cutting-edge technologies and solutions through our strategic partnerships to accelerate your digital transformation.",
+        icon: "innovation",
+      },
+      {
+        id: "2",
+        title: "Deep Domain Expertise",
+        description:
+          "Access specialized knowledge and industry expertise through our consulting and technology alliances.",
+        icon: "expertise",
+      },
+      {
+        id: "3",
+        title: "Global Reach",
+        description:
+          "Extend your enterprise capabilities with our global network of partners and delivery centers worldwide.",
+        icon: "global",
+      },
+      {
+        id: "4",
+        title: "Integrated Solutions",
+        description:
+          "Benefit from seamlessly integrated solutions that combine the best of ApMoSys and partner technologies.",
+        icon: "integrated",
+      },
+    ],
+  },
+  partners: {
+    sectionLabel: "Featured Partners",
+    heading: "Trusted Technology Alliance Partners",
+    description:
+      "We collaborate with the world's leading technology providers to deliver integrated solutions that accelerate enterprise transformation.",
+    items: [
+      {
+        id: "1",
+        name: "Dynatrace",
+        category: "Technology Partner",
+        description:
+          "Endorsed Service Partner of the Year providing enterprise observability and AIOps solutions.",
+        logo: "",
+        link: "#",
+      },
+      {
+        id: "2",
+        name: "Automation Anywhere",
+        category: "Technology Partner",
+        description:
+          "Rising Star Partner delivering intelligent automation and RPA solutions.",
+        logo: "",
+        link: "#",
+      },
+      {
+        id: "3",
+        name: "AppDynamics",
+        category: "Technology Partner",
+        description:
+          "APM Specialist providing application performance monitoring and analytics.",
+        logo: "",
+        link: "#",
+      },
+      {
+        id: "4",
+        name: "MicroFocus",
+        category: "Technology Partner",
+        description:
+          "Testing Alliance partner delivering enterprise quality engineering solutions.",
+        logo: "",
+        link: "#",
+      },
+    ],
+  },
+  featured: {
+    sectionLabel: "Alliance Achievements",
+    heading: "Recognized Excellence in Partnerships",
+    description:
+      "Our partnerships have been recognized with industry awards, certifications, and publications that validate our commitment to excellence.",
+    items: [
+      {
+        id: "1",
+        title: "Endorsed Service Partner of the Year",
+        description:
+          "Recognized by Dynatrace for excellence in delivering observability and AIOps solutions to enterprise customers.",
+        icon: "🏆",
+      },
+      {
+        id: "2",
+        title: "Rising Star in Automation",
+        description:
+          "Awarded by Automation Anywhere for outstanding contributions to intelligent automation and RPA implementation.",
+        icon: "⭐",
+      },
+      {
+        id: "3",
+        title: "CMMI Maturity Level 3",
+        description:
+          "Achieved CMMI Maturity Level 3 Certification, demonstrating our commitment to process excellence and quality delivery.",
+        icon: "📋",
+      },
+      {
+        id: "4",
+        title: "Multiple IEEE Publications",
+        description:
+          "Published multiple research papers in Springer and IEEE journals on AI, automation, and quality engineering.",
+        icon: "📄",
+      },
+    ],
+  },
+},
+}
+
+
+
 
 interface ContentState {
   content: SiteContent;
@@ -1769,6 +1984,14 @@ interface ContentState {
   deleteProductBenefitItem: (id: string) => void;
   addProductCategoryItem: () => void;
   deleteProductCategoryItem: (id: string) => void;
+  addAllianceItem: () => void;
+  deleteAllianceItem: (id: string) => void;
+  addAllianceBenefitItem: () => void;
+  deleteAllianceBenefitItem: (id: string) => void;
+  addAlliancePartnerItem: () => void;
+  deleteAlliancePartnerItem: (id: string) => void;
+  addAllianceFeaturedItem: () => void;
+  deleteAllianceFeaturedItem: (id: string) => void;
 
   toggleSectionVisibility: (sectionId: string) => void;
 }
@@ -2739,6 +2962,193 @@ deleteProductCategoryItem: (id: string) =>
       isDirty: true,
     };
   }),
+  // ─── Alliance CRUD ───────────────────────────────────────────────
+
+addAllianceItem: () =>
+  set((state) => {
+    const currentItems = state.content.alliance?.overview?.items || [];
+    const newItems = [
+      ...currentItems,
+      {
+        id: Date.now().toString(),
+        title: "New Alliance",
+        description: "Describe this alliance...",
+        icon: "tech",
+      },
+    ];
+    return {
+      content: {
+        ...state.content,
+        alliance: {
+          ...state.content.alliance,
+          overview: {
+            ...state.content.alliance.overview,
+            items: newItems,
+          },
+        },
+      },
+      isDirty: true,
+    };
+  }),
+
+deleteAllianceItem: (id: string) =>
+  set((state) => {
+    const currentItems = state.content.alliance?.overview?.items || [];
+    const newItems = currentItems.filter((item) => item.id !== id);
+    return {
+      content: {
+        ...state.content,
+        alliance: {
+          ...state.content.alliance,
+          overview: {
+            ...state.content.alliance.overview,
+            items: newItems,
+          },
+        },
+      },
+      isDirty: true,
+    };
+  }),
+
+addAllianceBenefitItem: () =>
+  set((state) => {
+    const currentItems = state.content.alliance?.benefits?.items || [];
+    const newItems = [
+      ...currentItems,
+      {
+        id: Date.now().toString(),
+        title: "New Alliance Benefit",
+        description: "Describe this benefit...",
+        icon: "innovation",
+      },
+    ];
+    return {
+      content: {
+        ...state.content,
+        alliance: {
+          ...state.content.alliance,
+          benefits: {
+            ...state.content.alliance.benefits,
+            items: newItems,
+          },
+        },
+      },
+      isDirty: true,
+    };
+  }),
+
+deleteAllianceBenefitItem: (id: string) =>
+  set((state) => {
+    const currentItems = state.content.alliance?.benefits?.items || [];
+    const newItems = currentItems.filter((item) => item.id !== id);
+    return {
+      content: {
+        ...state.content,
+        alliance: {
+          ...state.content.alliance,
+          benefits: {
+            ...state.content.alliance.benefits,
+            items: newItems,
+          },
+        },
+      },
+      isDirty: true,
+    };
+  }),
+
+addAlliancePartnerItem: () =>
+  set((state) => {
+    const currentItems = state.content.alliance?.partners?.items || [];
+    const newItems = [
+      ...currentItems,
+      {
+        id: Date.now().toString(),
+        name: "New Partner",
+        category: "Technology Partner",
+        description: "Describe this partner...",
+        logo: "",
+        link: "#",
+      },
+    ];
+    return {
+      content: {
+        ...state.content,
+        alliance: {
+          ...state.content.alliance,
+          partners: {
+            ...state.content.alliance.partners,
+            items: newItems,
+          },
+        },
+      },
+      isDirty: true,
+    };
+  }),
+
+deleteAlliancePartnerItem: (id: string) =>
+  set((state) => {
+    const currentItems = state.content.alliance?.partners?.items || [];
+    const newItems = currentItems.filter((item) => item.id !== id);
+    return {
+      content: {
+        ...state.content,
+        alliance: {
+          ...state.content.alliance,
+          partners: {
+            ...state.content.alliance.partners,
+            items: newItems,
+          },
+        },
+      },
+      isDirty: true,
+    };
+  }),
+
+addAllianceFeaturedItem: () =>
+  set((state) => {
+    const currentItems = state.content.alliance?.featured?.items || [];
+    const newItems = [
+      ...currentItems,
+      {
+        id: Date.now().toString(),
+        title: "New Achievement",
+        description: "Describe this achievement...",
+        icon: "trophy",
+      },
+    ];
+    return {
+      content: {
+        ...state.content,
+        alliance: {
+          ...state.content.alliance,
+          featured: {
+            ...state.content.alliance.featured,
+            items: newItems,
+          },
+        },
+      },
+      isDirty: true,
+    };
+  }),
+
+deleteAllianceFeaturedItem: (id: string) =>
+  set((state) => {
+    const currentItems = state.content.alliance?.featured?.items || [];
+    const newItems = currentItems.filter((item) => item.id !== id);
+    return {
+      content: {
+        ...state.content,
+        alliance: {
+          ...state.content.alliance,
+          featured: {
+            ...state.content.alliance.featured,
+            items: newItems,
+          },
+        },
+      },
+      isDirty: true,
+    };
+  }),
       toggleSectionVisibility: (sectionId: string) =>
         set((state) => {
           const currentVisibilities = state.content.sectionVisibilities || {};
@@ -2755,6 +3165,7 @@ deleteProductCategoryItem: (id: string) =>
           };
         }),
     }),
+    
     {
       name: "admin-content",
       version: 10,
@@ -3234,4 +3645,33 @@ export interface CoEPaperItem {
   publication: string;
   link: string;
   tag: string;
+}
+export interface AllianceItem {
+  id: string;
+  title: string;
+  description: string;
+  icon: string;
+}
+
+export interface AllianceBenefitItem {
+  id: string;
+  title: string;
+  description: string;
+  icon: string;
+}
+
+export interface AlliancePartnerItem {
+  id: string;
+  name: string;
+  category: string;
+  description: string;
+  logo?: string;
+  link: string;
+}
+
+export interface AllianceFeaturedItem {
+  id: string;
+  title: string;
+  description: string;
+  icon: string;
 }

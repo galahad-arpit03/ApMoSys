@@ -1,14 +1,14 @@
 "use client";
 
 import React from "react";
-import HeroSection from "@/src/what-we-do/HeroSection/HeroSection";
-import IndustryGrid from "@/src/what-we-do/IndustryGrid/IndustryGrid";
-import ComplexProblems from "@/src/what-we-do/ComplexProblems/ComplexProblems";
-import TechnicalCapabilities from "@/src/what-we-do/TechnicalCapabilities/TechnicalCapabilities";
-import ImpactSection from "@/src/what-we-do/ImpactSection/ImpactSection";
-import ComplianceSection from "@/src/what-we-do/ComplianceSection/ComplianceSection";
-import TestimonialSection from "@/src/what-we-do/TestimonialSection/TestimonialSection";
-import CTASection from "@/src/what-we-do/CTASection/CTASection";
+import HeroSection from "@/src/what-we-do/industries/HeroSection/HeroSection";
+import IndustryGrid from "@/src/what-we-do/industries/IndustryGrid/IndustryGrid";
+import ComplexProblems from "@/src/what-we-do/industries/ComplexProblems/ComplexProblems";
+import TechnicalCapabilities from "./industries/TechnicalCapabilities/TechnicalCapabilities";
+import ImpactSection from "@/src/what-we-do/industries/ImpactSection/ImpactSection";
+import ComplianceSection from "./industries/ComplianceSection/ComplianceSection";
+import TestimonialSection from "./industries/TestimonialSection/TestimonialSection";
+import CTASection from "./industries/CTASection/CTASection";
 
 export default function IndustriesPageContent() {
   return (

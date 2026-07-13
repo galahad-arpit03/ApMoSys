@@ -1,27 +1,27 @@
 "use client";
 
 import React from "react";
-import HeroSection from "./coe/HeroSection/HeroSection";
-import CoEOverview from "./coe/CoEOverview/CoEOverview";
-import CoEAccordion from "./coe/CoEAccordion/CoEAccordion";
-import InnovationLabs from "./coe/InnovationLabs/InnovationLabs";
-import ResearchPapers from "./coe/ResearchPapers/ResearchPapers";
+import HeroSection from "./alliance/HeroSection/ HeroSection";
+import AllianceOverview from "./alliance/AllianceOverview/AllianceOverview";
+import AllianceBenefits from "./alliance/AllianceBenefits/AllianceBenefits";
+import PartnerTypes from "./alliance/PartnerTypes/PartnerTypes";
+import FeaturedPartners from "./alliance/FeaturedPartners/FeaturedPartners";
 // Shared components
 import ImpactSection from "./industries/ImpactSection/ImpactSection";
 import ComplianceSection from "./industries/ComplianceSection/ComplianceSection";
 import TestimonialSection from "./industries/TestimonialSection/TestimonialSection";
 import CTASection from "./industries/CTASection/CTASection";
 
-export default function CoEPageContent() {
+export default function AlliancePageContent() {
   return (
     <div className="bg-[#121212] min-h-screen">
       <HeroSection />
       <div className="bg-[#FFFFFF]">
-        <CoEOverview />
+        <AllianceOverview />
       </div>
-      <CoEAccordion />
-      <InnovationLabs />
-      <ResearchPapers />
+      <AllianceBenefits />
+      <PartnerTypes />
+      <FeaturedPartners />
       <ImpactSection />
       <ComplianceSection />
       <TestimonialSection />
