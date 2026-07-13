@@ -25,7 +25,7 @@ import EditableText from "@/src/admin/components/EditableText";
 
 export default function EventsSection() {
   return (
-    <SectionThemeWrapper sectionId="community_events" defaultTheme="light">
+    <SectionThemeWrapper sectionId="community_events" defaultTheme="dark">
       {(theme) => {
         const isDark = theme === "dark";
         return (

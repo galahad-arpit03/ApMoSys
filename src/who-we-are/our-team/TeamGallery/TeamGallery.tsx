@@ -16,7 +16,7 @@ import EditableText from "@/src/admin/components/EditableText";
 
 export default function TeamGallery() {
   return (
-    <SectionThemeWrapper sectionId="team_gallery" defaultTheme="light">
+    <SectionThemeWrapper sectionId="team_gallery" defaultTheme="dark">
       {(theme) => {
         const isDark = theme === "dark";
         return (

@@ -24,7 +24,7 @@ export default function CoreValues() {
   const values = Array.isArray(rawValues) ? rawValues : coreValuesData;
 
   return (
-    <SectionThemeWrapper sectionId="about_coreValues" defaultTheme="light">
+    <SectionThemeWrapper sectionId="about_coreValues" defaultTheme="dark">
       {(theme) => {
         const isDark = theme === "dark";
         return (

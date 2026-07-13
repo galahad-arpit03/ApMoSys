@@ -472,6 +472,7 @@ interface ProcessStep {
 export const defaultContent: SiteContent = {
   sectionThemes: {},
   sectionVisibilities: {},
+  coe: {} as any,
   navbar: {
     logo: "ApMoSys",
     ctaLabel: "Contact Us",

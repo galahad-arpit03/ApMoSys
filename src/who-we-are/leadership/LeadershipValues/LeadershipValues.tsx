@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 
 export default function LeadershipValues() {
   return (
-    <SectionThemeWrapper sectionId="leadership_values" defaultTheme="light">
+    <SectionThemeWrapper sectionId="leadership_values" defaultTheme="dark">
       {(theme) => {
         const isDark = theme === "dark";
         return (
