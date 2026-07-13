@@ -370,6 +370,38 @@ export interface SiteContent {
       items: ProductCategoryItem[];
     };
   };
+  coe: {
+  hero: {
+    badge: string;
+    heading: string;
+    subheading: string;
+    ctaPrimary: string;
+    ctaSecondary: string;
+    visualLabel: string;
+  };
+  overview: {
+    sectionLabel: string;
+    heading: string;
+    description: string;
+    items: CoEItem[];
+  };
+  accordion: {
+    heading: string;
+    description: string;
+  };
+  labs: {
+    sectionLabel: string;
+    heading: string;
+    description: string;
+    items: CoELabItem[];
+  };
+  papers: {
+    sectionLabel: string;
+    heading: string;
+    description: string;
+    items: CoEPaperItem[];
+  };
+}
 }
 
 
@@ -551,6 +583,7 @@ export const defaultContent: SiteContent = {
           {
             id: "coe",
             label: "CoE and Innovations",
+            href: "/coe",
             subLinks: [
               {
                 label: "AI Center of Excellence",
@@ -1655,6 +1688,113 @@ export const defaultContent: SiteContent = {
       products: ["Protean Device Lab"],
     },
   ],
+  },
+},
+coe: {
+  hero: {
+    badge: "Centers of Excellence",
+    heading: "Driving Innovation Through Centers of Excellence",
+    subheading:
+      "Dedicated innovation labs that establish best practices, develop specialized tools, and drive thought leadership across critical domains — from AI and automation to banking and insurance.",
+    ctaPrimary: "Explore CoEs",
+    ctaSecondary: "View Research",
+    visualLabel: "Innovation Ecosystem",
+  },
+  overview: {
+    sectionLabel: "Our Centers of Excellence",
+    heading: "Specialized Innovation Labs",
+    description:
+      "Our Centers of Excellence are dedicated innovation hubs that establish best practices, develop specialized tools, and drive thought leadership across critical domains.",
+    items: [
+      {
+        id: "1",
+        title: "Functional Center of Excellence",
+        shortName: "FCoE",
+        description:
+          "Certified testing engineers and quality consultants possessing specialized skillsets, domain experience, and tools expertise to add value in pursuit of excellence.",
+        icon: "functional",
+        image: "https://images.unsplash.com/photo-1517048676732-d65bc937f952?q=80&w=400&auto=format&fit=crop",
+        details: [
+          "Expertise in test strategy and planning",
+          "Automation framework development",
+          "Continuous testing integration",
+          "Quality metrics and dashboards",
+        ],
+      },
+      // ... add all 6 CoEs with full details
+    ],
+  },
+  accordion: {
+    heading: "Explore Our Centers of Excellence in Depth",
+    description: "Click on each CoE to discover its focus areas, capabilities, and how it drives innovation across our organization.",
+  },
+  labs: {
+    sectionLabel: "Innovation Labs",
+    heading: "Where Ideas Become Reality",
+    description:
+      "Our Innovation Labs are dedicated spaces where engineers, researchers, and domain experts collaborate to build the future of enterprise technology.",
+    items: [
+      {
+        id: "1",
+        title: "AI Research Lab",
+        description:
+          "Exploring cutting-edge AI technologies including generative AI, computer vision, and natural language processing for enterprise applications.",
+        icon: "🧠",
+      },
+      {
+        id: "2",
+        title: "Automation Innovation Hub",
+        description:
+          "Developing next-generation automation frameworks that combine RPA, AI, and intelligent decision-making for complex business processes.",
+        icon: "⚙️",
+      },
+      {
+        id: "3",
+        title: "Security & Compliance Lab",
+        description:
+          "Researching advanced security validation techniques, zero-trust architectures, and compliance automation for regulated industries.",
+        icon: "🔒",
+      },
+      {
+        id: "4",
+        title: "Cloud & DevOps Lab",
+        description:
+          "Innovating in cloud-native architectures, Kubernetes orchestration, and GitOps-driven continuous delivery pipelines.",
+        icon: "☁️",
+      },
+    ],
+  },
+  papers: {
+    sectionLabel: "Research & Publications",
+    heading: "Advancing the Frontiers of Technology",
+    description:
+      "Our research papers and technical publications represent our commitment to advancing knowledge in AI, automation, security, and quality engineering.",
+    items: [
+      {
+        id: "1",
+        title: "AI-Driven Test Automation: A Paradigm Shift in Quality Engineering",
+        authors: "ApMoSys Research Team",
+        publication: "Springer Nature, 2023",
+        link: "#",
+        tag: "AI & Automation",
+      },
+      {
+        id: "2",
+        title: "Performance Engineering for Microservices Architectures",
+        authors: "ApMoSys Research Team",
+        publication: "IEEE Xplore, 2023",
+        link: "#",
+        tag: "Performance",
+      },
+      {
+        id: "3",
+        title: "Zero-Trust Security Validation in CI/CD Pipelines",
+        authors: "ApMoSys Research Team",
+        publication: "Elsevier, 2024",
+        link: "#",
+        tag: "Security",
+      },
+    ],
   },
 },
 };
@@ -3117,3 +3257,28 @@ export const useAdminUIStore = create<UIState>((set) => ({
   toggleSidebar: () =>
     set((state) => ({ sidebarCollapsed: !state.sidebarCollapsed })),
 }));
+export interface CoEItem {
+  id: string;
+  title: string;
+  shortName: string;
+  description: string;
+  icon: string;
+  image?: string;
+  details?: string[];
+}
+
+export interface CoELabItem {
+  id: string;
+  title: string;
+  description: string;
+  icon: string;
+}
+
+export interface CoEPaperItem {
+  id: string;
+  title: string;
+  authors: string;
+  publication: string;
+  link: string;
+  tag: string;
+}

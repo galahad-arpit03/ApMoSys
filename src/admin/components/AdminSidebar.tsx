@@ -5,7 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { useAdminUIStore } from "@/src/admin/store/adminStore";
-import { LayoutDashboard, Home, Navigation, Footprints, Users, Settings, Lightbulb, Factory, Package, FileText, Briefcase, Phone, Palette } from "lucide-react";
+import { LayoutDashboard, Home, Navigation, Footprints, Users, Settings, Lightbulb, Factory, Package, FileText, Briefcase, Phone, Palette, FlaskConical } from "lucide-react";
 const navItems = [
   { label: "Dashboard", href: "/administrator/home", icon: <LayoutDashboard className="w-4 h-4" /> },
   { label: "Home", href: "/administrator", icon: <Home className="w-4 h-4" /> },
@@ -22,6 +22,7 @@ const navItems = [
   { divider: true },
   { label: "Colors", href: "/administrator/colors", icon: <Palette className="w-4 h-4" /> },
   { label: "Settings", href: "/administrator/settings", icon: <Settings className="w-4 h-4" /> },
+  { label: "CoE & Innovations", href: "/administrator/coe", icon: <FlaskConical className="w-4 h-4" /> },
 ];
 
 export default function AdminSidebar() {
