@@ -305,8 +305,72 @@ export interface SiteContent {
       stat4Value: string;
       stat4Label: string;
     };
+   
 
-  }
+  },
+   services: {
+    hero: {
+      badge: string;
+      heading: string;
+      subheading: string;
+      ctaPrimary: string;
+      ctaSecondary: string;
+      visualLabel: string;
+    };
+    overview: {
+      sectionLabel: string;
+      heading: string;
+      description: string;
+      items: ServiceOverviewItem[];
+    };
+    approach: {
+      sectionLabel: string;
+      heading: string;
+      description: string;
+      items: ApproachItem[];
+    };
+    benefits: {
+      sectionLabel: string;
+      heading: string;
+      description: string;
+      items: BenefitItem[];
+    };
+    process: {
+      sectionLabel: string;
+      heading: string;
+      description: string;
+      steps: ProcessStep[];
+    };
+  };
+}
+
+interface ServiceOverviewItem {
+  id: string;
+  title: string;
+  description: string;
+  icon: string;
+  linkText: string;
+}
+
+interface ApproachItem {
+  id: string;
+  title: string;
+  description: string;
+  icon: string;
+}
+
+interface BenefitItem {
+  id: string;
+  title: string;
+  description: string;
+  icon: string;
+}
+
+interface ProcessStep {
+  id: string;
+  title: string;
+  description: string;
+  icon: string;
 }
 
 export const defaultContent: SiteContent = {
@@ -333,62 +397,63 @@ export const defaultContent: SiteContent = {
           {
             id: "services",
             label: "Services",
+            href: "/services",
             subLinks: [
               {
                 label: "AI Engineering",
-                href: "/services"
+                href: ""
               },
               {
                 label: "Digital Assurance Engineering",
-                href: "/services"
+                href: ""
               },
               {
                 label: "Interface Engineering",
-                href: "/services"
+                href: ""
               },
               {
                 label: "NextGen Automation Engineering",
-                href: "/services"
+                href: ""
               },
               {
                 label: "NFR Engineering",
-                href: "/services"
+                href: ""
               },
               {
                 label: "Accessibility & Compliance Engineering",
-                href: "/services"
+                href: ""
               },
               {
                 label: "Observability Engineering",
-                href: "/services"
+                href: ""
               },
               {
                 label: "DevOps & Cloud Engineering",
-                href: "/services"
+                href: ""
               },
               {
                 label: "Intelligent Automation",
-                href: "/services"
+                href: ""
               },
               {
                 label: "Development Engineering",
-                href: "/services"
+                href: ""
               },
               {
                 label: "ITSM & Digital Operations",
-                href: "/services"
+                href: ""
               },
               {
                 label: "Command Centre Operations",
-                href: "/services"
+                href: ""
               },
               {
                 label: "Resiliency Operations Centre (ROC)",
-                href: "/services"
+                href: ""
               },
               {
                 label: "Quality Center of Excellence (QCoE)",
-                href: "/services"
+                href: ""
               }
             ]
           },
@@ -1160,6 +1225,218 @@ export const defaultContent: SiteContent = {
       stat4Label: "Countries Served",
     }
   },
+  services: {
+    hero: {
+      badge: "Our Services",
+      heading: "End-to-End Engineering Services for Enterprise Scale",
+      subheading:
+        "From quality assurance and automation to cloud-native infrastructure and AI-driven observability — we deliver the full spectrum of engineering services to accelerate your digital transformation.",
+      ctaPrimary: "Explore Services",
+      ctaSecondary: "Talk to an Expert",
+      visualLabel: "Full-Stack Engineering",
+    },
+    overview: {
+      sectionLabel: "Our Capabilities",
+      heading: "Full-Stack Engineering Services",
+      description:
+        "End-to-end engineering capabilities spanning quality assurance, automation, cloud, security, and AI — designed to accelerate your enterprise transformation.",
+      items: [
+        {
+          id: "1",
+          title: "Quality Engineering",
+          description:
+            "Comprehensive testing strategies including functional, automation, performance, and security testing to ensure zero-defect releases.",
+          icon: "quality",
+          linkText: "Learn More",
+        },
+        {
+          id: "2",
+          title: "Intelligent Automation",
+          description:
+            "AI-powered automation frameworks that reduce manual effort, accelerate delivery, and improve accuracy across your software lifecycle.",
+          icon: "automation",
+          linkText: "Learn More",
+        },
+        {
+          id: "3",
+          title: "Cloud & DevOps",
+          description:
+            "End-to-end cloud migration, CI/CD pipeline orchestration, infrastructure as code, and Kubernetes-based container management.",
+          icon: "cloud",
+          linkText: "Learn More",
+        },
+        {
+          id: "4",
+          title: "Security & Compliance",
+          description:
+            "Comprehensive security testing, vulnerability assessments, and compliance validation for regulated industries.",
+          icon: "security",
+          linkText: "Learn More",
+        },
+        {
+          id: "5",
+          title: "DevSecOps",
+          description:
+            "Integrated security practices into DevOps pipelines to ensure secure software delivery without compromising speed.",
+          icon: "devops",
+          linkText: "Learn More",
+        },
+        {
+          id: "6",
+          title: "AI Engineering",
+          description:
+            "Custom AI solutions including machine learning models, NLP, computer vision, and predictive analytics for enterprise applications.",
+          icon: "ai",
+          linkText: "Learn More",
+        },
+        {
+          id: "7",
+          title: "Observability & AIOps",
+          description:
+            "Real-time monitoring, anomaly detection, and intelligent operations management for mission-critical systems.",
+          icon: "observability",
+          linkText: "Learn More",
+        },
+        {
+          id: "8",
+          title: "Application Development",
+          description:
+            "Modern web and mobile application development using microservices, React, Next.js, and cloud-native architectures.",
+          icon: "devops",
+          linkText: "Learn More",
+        },
+      ],
+    },
+    approach: {
+      sectionLabel: "Our Approach",
+      heading: "Engineering Excellence Through a Proven Methodology",
+      description:
+        "Our approach combines deep industry expertise, technical excellence, and a relentless focus on quality to deliver measurable business outcomes. We partner with you at every stage of your transformation journey.",
+      items: [
+        {
+          id: "1",
+          title: "Consultative Discovery",
+          description:
+            "We start by understanding your unique business challenges, technical landscape, and strategic goals to craft a tailored engineering roadmap.",
+          icon: "🔍",
+        },
+        {
+          id: "2",
+          title: "Architectural Excellence",
+          description:
+            "Our solutions are built on robust, scalable architectures with industry best practices, ensuring long-term maintainability and performance.",
+          icon: "🏗️",
+        },
+        {
+          id: "3",
+          title: "Agile Delivery",
+          description:
+            "We adopt agile methodologies with continuous feedback loops, enabling rapid iterations, early value delivery, and adaptive planning.",
+          icon: "🔄",
+        },
+        {
+          id: "4",
+          title: "Quality-First Engineering",
+          description:
+            "Quality is embedded at every stage — from design to deployment — with automated testing, security validation, and performance benchmarks.",
+          icon: "✅",
+        },
+      ],
+    },
+    benefits: {
+      sectionLabel: "Why Choose ApMoSys",
+      heading: "Delivering Measurable Business Outcomes",
+      description:
+        "Our engineering services are designed to deliver tangible value across your entire software delivery lifecycle — from development to production.",
+      items: [
+        {
+          id: "1",
+          title: "Accelerated Time-to-Market",
+          description:
+            "Streamlined engineering processes and automation reduce release cycles by up to 50%, enabling faster innovation and competitive advantage.",
+          icon: "⚡",
+        },
+        {
+          id: "2",
+          title: "Zero-Defect Quality",
+          description:
+            "Comprehensive testing and quality assurance practices eliminate production defects, ensuring reliable, high-performing software.",
+          icon: "🎯",
+        },
+        {
+          id: "3",
+          title: "Cost Optimization",
+          description:
+            "Intelligent automation and efficient resource utilization reduce operational costs while maximizing engineering productivity.",
+          icon: "💰",
+        },
+        {
+          id: "4",
+          title: "Security & Compliance",
+          description:
+            "Built-in security validation and compliance frameworks protect your data and ensure adherence to industry regulations.",
+          icon: "🛡️",
+        },
+        {
+          id: "5",
+          title: "Scalable Architecture",
+          description:
+            "Modern, cloud-native architectures that scale seamlessly with your business growth without performance degradation.",
+          icon: "📈",
+        },
+        {
+          id: "6",
+          title: "Continuous Innovation",
+          description:
+            "AI-driven insights and continuous improvement practices keep your systems ahead of the curve, ready for future challenges.",
+          icon: "🚀",
+        },
+      ],
+    },
+    process: {
+      sectionLabel: "Our Process",
+      heading: "A Structured Path to Engineering Excellence",
+      description:
+        "Our five-stage engineering process ensures clarity, quality, and consistency across every engagement — from initial discovery to ongoing operations.",
+      steps: [
+        {
+          id: "1",
+          title: "Discovery & Assessment",
+          description:
+            "We analyze your current systems, processes, and challenges to identify opportunities for automation, optimization, and modernization.",
+          icon: "📋",
+        },
+        {
+          id: "2",
+          title: "Strategy & Architecture",
+          description:
+            "We design a tailored engineering strategy and architectural blueprint aligned with your business goals and technical requirements.",
+          icon: "🏗️",
+        },
+        {
+          id: "3",
+          title: "Implementation & Development",
+          description:
+            "Our engineering teams execute the strategy using agile methodologies, delivering value incrementally with continuous feedback.",
+          icon: "💻",
+        },
+        {
+          id: "4",
+          title: "Quality & Security Validation",
+          description:
+            "Comprehensive testing, security scanning, and performance validation ensure your systems meet the highest quality standards.",
+          icon: "✅",
+        },
+        {
+          id: "5",
+          title: "Deployment & Operations",
+          description:
+            "We deploy your solutions and provide ongoing monitoring, support, and optimization to ensure long-term success and reliability.",
+          icon: "🚀",
+        },
+      ],
+    },
+  },
 };
 
 interface ContentState {
@@ -1201,6 +1478,18 @@ interface ContentState {
   moveFooterLink: (section: "companyLinks" | "coreSystemsLinks", index: number, direction: "up" | "down") => void;
   updateMegaMenuSubLink: (megaMenuKey: string, categoryIndex: number, subLinkIndex: number, updates: Partial<{ label: string, href: string }>) => void;
   moveMegaMenuSubLink: (megaMenuKey: string, categoryIndex: number, subLinkIndex: number, direction: "up" | "down") => void;
+  addServiceOverviewItem: () => void;
+  deleteServiceOverviewItem: (id: string) => void;
+  
+  addApproachItem: () => void;
+  deleteApproachItem: (id: string) => void;
+  
+  addBenefitItem: () => void;
+  deleteBenefitItem: (id: string) => void;
+  
+  addProcessStep: () => void;
+  deleteProcessStep: (id: string) => void;
+
   toggleSectionVisibility: (sectionId: string) => void;
 }
 
@@ -1805,6 +2094,193 @@ export const useContentStore = create<ContentState>()(
             isDirty: true,
           };
         }),
+        addServiceOverviewItem: () =>
+        set((state) => {
+          const currentItems = state.content.services?.overview?.items || [];
+          const newItems = [
+            ...currentItems,
+            {
+              id: Date.now().toString(),
+              title: "New Service",
+              description: "Describe this service offering...",
+              icon: "automation",
+              linkText: "Learn More",
+            },
+          ];
+          return {
+            content: {
+              ...state.content,
+              services: {
+                ...state.content.services,
+                overview: {
+                  ...state.content.services.overview,
+                  items: newItems,
+                },
+              },
+            },
+            isDirty: true,
+          };
+        }),
+
+      deleteServiceOverviewItem: (id: string) =>
+        set((state) => {
+          const currentItems = state.content.services?.overview?.items || [];
+          const newItems = currentItems.filter((item) => item.id !== id);
+          return {
+            content: {
+              ...state.content,
+              services: {
+                ...state.content.services,
+                overview: {
+                  ...state.content.services.overview,
+                  items: newItems,
+                },
+              },
+            },
+            isDirty: true,
+          };
+        }),
+
+      // Approach Items
+      addApproachItem: () =>
+        set((state) => {
+          const currentItems = state.content.services?.approach?.items || [];
+          const newItems = [
+            ...currentItems,
+            {
+              id: Date.now().toString(),
+              title: "New Approach Pillar",
+              description: "Describe this approach...",
+              icon: "🔍",
+            },
+          ];
+          return {
+            content: {
+              ...state.content,
+              services: {
+                ...state.content.services,
+                approach: {
+                  ...state.content.services.approach,
+                  items: newItems,
+                },
+              },
+            },
+            isDirty: true,
+          };
+        }),
+
+      deleteApproachItem: (id: string) =>
+        set((state) => {
+          const currentItems = state.content.services?.approach?.items || [];
+          const newItems = currentItems.filter((item) => item.id !== id);
+          return {
+            content: {
+              ...state.content,
+              services: {
+                ...state.content.services,
+                approach: {
+                  ...state.content.services.approach,
+                  items: newItems,
+                },
+              },
+            },
+            isDirty: true,
+          };
+        }),
+
+      // Benefit Items
+      addBenefitItem: () =>
+        set((state) => {
+          const currentItems = state.content.services?.benefits?.items || [];
+          const newItems = [
+            ...currentItems,
+            {
+              id: Date.now().toString(),
+              title: "New Benefit",
+              description: "Describe this benefit...",
+              icon: "🚀",
+            },
+          ];
+          return {
+            content: {
+              ...state.content,
+              services: {
+                ...state.content.services,
+                benefits: {
+                  ...state.content.services.benefits,
+                  items: newItems,
+                },
+              },
+            },
+            isDirty: true,
+          };
+        }),
+
+      deleteBenefitItem: (id: string) =>
+        set((state) => {
+          const currentItems = state.content.services?.benefits?.items || [];
+          const newItems = currentItems.filter((item) => item.id !== id);
+          return {
+            content: {
+              ...state.content,
+              services: {
+                ...state.content.services,
+                benefits: {
+                  ...state.content.services.benefits,
+                  items: newItems,
+                },
+              },
+            },
+            isDirty: true,
+          };
+        }),
+
+      // Process Steps
+      addProcessStep: () =>
+        set((state) => {
+          const currentSteps = state.content.services?.process?.steps || [];
+          const newSteps = [
+            ...currentSteps,
+            {
+              id: Date.now().toString(),
+              title: "New Step",
+              description: "Describe this process step...",
+              icon: "📋",
+            },
+          ];
+          return {
+            content: {
+              ...state.content,
+              services: {
+                ...state.content.services,
+                process: {
+                  ...state.content.services.process,
+                  steps: newSteps,
+                },
+              },
+            },
+            isDirty: true,
+          };
+        }),
+
+      deleteProcessStep: (id: string) =>
+        set((state) => {
+          const currentSteps = state.content.services?.process?.steps || [];
+          const newSteps = currentSteps.filter((step) => step.id !== id);
+          return {
+            content: {
+              ...state.content,
+              services: {
+                ...state.content.services,
+                process: {
+                  ...state.content.services.process,
+                  steps: newSteps,
+                },
+              },
+            },
+            isDirty: true,
+          };
+        }),
       toggleSectionVisibility: (sectionId: string) =>
         set((state) => {
           const currentVisibilities = state.content.sectionVisibilities || {};
@@ -1823,7 +2299,7 @@ export const useContentStore = create<ContentState>()(
     }),
     {
       name: "admin-content",
-      version: 5,
+      version: 6,
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       migrate: (persistedState: any, version: number) => {
         if (version <= 3) {
@@ -1850,6 +2326,20 @@ export const useContentStore = create<ContentState>()(
             },
           };
         }
+        if (version <= 5) {
+      const content = persistedState.content;
+      if (content?.navbar?.megaMenuData?.["What we do"]?.categories) {
+        const categories = content.navbar.megaMenuData["What we do"].categories;
+        const servicesCat = categories.find((c: any) => c.id === "services");
+        if (servicesCat && !servicesCat.href) {
+          servicesCat.href = "/services";
+        }
+      }
+      return {
+        ...persistedState,
+        content,
+      };
+    }
         return persistedState;
       },
     },
@@ -2065,6 +2555,7 @@ export const useToastStore = create<ToastState>((set) => ({
   removeToast: (id) =>
     set((state) => ({ toasts: state.toasts.filter((t) => t.id !== id) })),
 }));
+
 
 // ─── UI Store ─────────────────────────────────────────────────────────────────
 interface UIState {
