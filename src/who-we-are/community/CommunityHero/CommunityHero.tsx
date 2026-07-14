@@ -24,7 +24,7 @@ export default function CommunityHero() {
       >
         <EditableImage label="Hero Background Image" className="relative w-full h-full">
           <Image
-            src="/community/community.png"
+            src="/who-we-are/community/CommunityHero/community.png"
             alt="Community"
             fill
             priority

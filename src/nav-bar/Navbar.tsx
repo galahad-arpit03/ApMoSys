@@ -42,55 +42,28 @@ export default function Navbar() {
   // Scroll visibility logic
   const { scrollY } = useScroll();
   const [navVisible, setNavVisible] = React.useState(true);
-  const [lastScrollY, setLastScrollY] = React.useState(0);
-  const timeoutRef = React.useRef<NodeJS.Timeout | null>(null);
-
-  React.useEffect(() => {
-    if (!activeDropdown && scrollY.get() > 100) {
-      if (timeoutRef.current) clearTimeout(timeoutRef.current);
-      timeoutRef.current = setTimeout(() => {
-        setNavVisible(false);
-      }, 2000);
-    } else if (activeDropdown) {
-      setNavVisible(true);
-      if (timeoutRef.current) clearTimeout(timeoutRef.current);
-    }
-  }, [activeDropdown, scrollY]);
+  const lastScrollY = React.useRef(0);
 
   useMotionValueEvent(scrollY, "change", (latest) => {
     if (activeDropdownRef.current) {
-      setLastScrollY(latest);
+      lastScrollY.current = latest;
       return; // Do not hide if dropdown is open
     }
 
     if (latest <= 100) {
       // Always show at top
       setNavVisible(true);
-      if (timeoutRef.current) clearTimeout(timeoutRef.current);
     } else {
-      if (latest > lastScrollY && latest > 100) {
+      if (latest > lastScrollY.current && latest > 100) {
         // Scrolling down -> Hide
         setNavVisible(false);
-        if (timeoutRef.current) clearTimeout(timeoutRef.current);
-      } else if (latest < lastScrollY) {
-        // Scrolling up -> Show for 2 seconds
+      } else if (latest < lastScrollY.current) {
+        // Scrolling up -> Show and stay shown
         setNavVisible(true);
-        if (timeoutRef.current) clearTimeout(timeoutRef.current);
-        timeoutRef.current = setTimeout(() => {
-          if (scrollY.get() > 100 && !activeDropdownRef.current) {
-            setNavVisible(false);
-          }
-        }, 2000);
       }
     }
-    setLastScrollY(latest);
+    lastScrollY.current = latest;
   });
-
-  React.useEffect(() => {
-    return () => {
-      if (timeoutRef.current) clearTimeout(timeoutRef.current);
-    };
-  }, []);
 
   React.useEffect(() => {
     if (
@@ -547,6 +520,25 @@ export default function Navbar() {
                       </div>
                     </div>
                   ))}
+                  
+                  {/* For menuItems like 'Who we are' */}
+                  {(megaMenuData[item.label].menuItems?.length ?? 0) > 0 && (
+                    <div className="flex flex-col space-y-2 mt-2">
+                      {megaMenuData[item.label].menuItems?.map((mi, idx) => (
+                        <Link
+                          key={idx}
+                          href={mi.href}
+                          onClick={() => {
+                            setMobileMenuOpen(false);
+                            setMobileExpandedItem(null);
+                          }}
+                          className={`text-sm font-medium transition-colors py-2 border-b border-[#1F1F1F] ${pathname === mi.href ? "text-[#B40001]" : "text-[#FFFFFF] hover:text-gray-300"}`}
+                        >
+                          {mi.label}
+                        </Link>
+                      ))}
+                    </div>
+                  )}
                 </div>
               )}
             </div>
