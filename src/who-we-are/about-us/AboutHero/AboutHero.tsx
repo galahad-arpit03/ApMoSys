@@ -36,8 +36,6 @@ export default function AboutHero() {
             className="object-cover object-[center_85%]"
           />
         </EditableImage>
-        {/* Dark overlay fading from left (60%) to transparent */}
-        {/* <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/60 to-black/20" /> */}
       </motion.div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
@@ -47,7 +45,7 @@ export default function AboutHero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
-            <h1 className="text-4xl sm:text-5xl lg:text-7xl font-medium tracking-tight mb-6 leading-tight text-black drop-shadow-sm">
+            <h1 className="text-4xl sm:text-5xl lg:text-7xl font-medium tracking-tight mb-6 leading-tight text-slate-800 drop-shadow-sm">
               <EditableText
                 path="about.hero.heading1"
                 fallback="Engineering Excellence at"
@@ -57,7 +55,7 @@ export default function AboutHero() {
                 path="about.hero.heading2"
                 fallback="Enterprise Scale."
                 as="span"
-                className="bg-[#242A56] text-white rounded-md px-3 py-1 inline-block mt-2"
+                className="text-slate-800"
               />
             </h1>
             <p className="text-slate-900 text-lg sm:text-xl max-w-2xl leading-relaxed mb-10 drop-shadow">

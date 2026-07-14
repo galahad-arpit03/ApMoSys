@@ -40,9 +40,9 @@ export default function CommunityHero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
-            <h1 className="text-4xl sm:text-5xl lg:text-7xl font-medium tracking-tight mb-6 leading-tight text-black drop-shadow-sm">
+            <h1 className="text-4xl sm:text-5xl lg:text-7xl font-medium tracking-tight mb-6 leading-tight text-slate-800 drop-shadow-sm">
               <EditableText path="community.hero.heading1" fallback="Empowering" as="span" /> <br/>
-              <EditableText path="community.hero.heading2" fallback="Through Technology" as="span" className="bg-[#242A56] text-white rounded-md px-3 py-1 inline-block mt-2" />
+              <EditableText path="community.hero.heading2" fallback="Through Technology" as="span" className="text-slate-800" />
             </h1>
             <p className="text-slate-800 text-lg sm:text-xl max-w-2xl leading-relaxed mb-10 drop-shadow">
               <EditableText 
@@ -53,6 +53,7 @@ export default function CommunityHero() {
               />
             </p>
 
+            <div className="flex flex-col sm:flex-row gap-4">
             <a 
               href="/contact" 
               className="inline-flex items-center justify-center gap-2 bg-[#242A56] hover:bg-[#1E234B] text-white px-8 py-3.5 rounded-md font-bold text-sm transition-colors duration-200 shadow-lg group"
@@ -62,6 +63,16 @@ export default function CommunityHero() {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M14 5l7 7m0 0l-7 7m7-7H3" />
               </svg>
             </a>
+            <a 
+              href="/contact" 
+              className="inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 backdrop-blur-md border border-[#242A56]/20 text-slate-800 px-8 py-3.5 rounded-md font-bold text-sm transition-colors duration-200 shadow-lg"
+            >
+              Join the Program
+              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+              </svg>
+            </a>
+            </div>
           </motion.div>
         </div>
       </div>
