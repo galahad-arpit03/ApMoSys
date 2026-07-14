@@ -76,7 +76,7 @@ export default function ServiceProcess() {
                   />
                 </span> */}
                 <h2
-                  className={`font-heading text-3xl sm:text-4xl font-extrabold mb-4 ${
+                  className={`font-heading text-3xl sm:text-4xl font-bold mb-4 ${
                     isDark ? "text-[#FFFFFF]" : "text-[#121212]"
                   }`}
                 >

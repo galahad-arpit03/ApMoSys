@@ -33,7 +33,7 @@ export default function ComplexProblems() {
                 path="industries.complex.heading"
                 fallback="Complex Problems. Precise Solutions."
                 as="h2"
-                className={`font-heading text-3xl font-extrabold mb-16 block ${
+                className={`font-heading text-3xl font-bold mb-16 block ${
                   isDark ? "text-[#FFFFFF]" : "text-[#121212]"
                 }`}
               />

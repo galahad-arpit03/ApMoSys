@@ -35,7 +35,7 @@ export default function ServiceApproach() {
                   className="lg:col-span-5 mb-12 lg:mb-0"
                 >
                   <h2
-                    className={`font-heading text-3xl sm:text-4xl font-extrabold mb-6 leading-tight ${
+                    className={`font-heading text-3xl sm:text-4xl font-bold mb-6 leading-tight ${
                       isDark ? "text-[#FFFFFF]" : "text-[#121212]"
                     }`}
                   >

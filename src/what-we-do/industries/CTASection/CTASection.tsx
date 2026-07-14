@@ -26,12 +26,12 @@ export default function CTASection() {
                 <div className="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] mix-blend-overlay"></div>
                 
                 <div className="relative z-10 max-w-2xl mx-auto">
-                  <h2 className="font-heading text-3xl md:text-4xl font-extrabold text-[#FFFFFF] mb-4">
+                  <h2 className="font-heading text-3xl md:text-4xl font-bold text-[#FFFFFF] mb-4">
                     <EditableText
                       path="industries.cta.heading"
                       fallback="Scale Your Industry Impact"
                       as="span"
-                      className="font-heading text-3xl md:text-4xl font-extrabold text-[#FFFFFF]"
+                      className="font-heading text-3xl md:text-4xl font-bold text-[#FFFFFF]"
                     />
                   </h2>
                   <p className="text-primary-soft text-base mb-8 leading-relaxed">
