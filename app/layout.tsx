@@ -37,7 +37,7 @@ export default function RootLayout({
       className={`${outfit.variable} ${manrope.variable} ${inter.variable} h-full antialiased`}
       suppressHydrationWarning
     >
-      <body className="min-h-full flex flex-col bg-[#121212] text-[#FAFAFA] font-sans selection:bg-primary-red selection:text-[#FFFFFF]" suppressHydrationWarning>
+      <body className="min-h-full flex flex-col bg-[#121212] text-[#FAFAFA] font-sans selection:bg-[#242A56] selection:text-white" suppressHydrationWarning>
         <ConditionalShell>
           {children}
         </ConditionalShell>

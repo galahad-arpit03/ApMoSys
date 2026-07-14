@@ -21,9 +21,9 @@ export default function CorporateCTA() {
                 {/* Glassmorphism gradient background */}
                 <div className="absolute inset-0 bg-gradient-to-br from-purple-100/30 via-transparent to-red-100/30 pointer-events-none" />
                 {/* Right decorative blur */}
-                <div className="absolute top-0 right-0 -mt-20 -mr-20 w-72 h-72 bg-primary-soft opacity-80 rounded-md blur-3xl pointer-events-none" />
+                <div className="absolute top-0 right-0 -mt-20 -mr-20 w-72 h-72 bg-[#242A56]/10 opacity-80 rounded-md blur-3xl pointer-events-none" />
                 {/* Left decorative blur */}
-                <div className="absolute bottom-0 left-0 -mb-20 -ml-20 w-72 h-72 bg-primary-soft opacity-80 rounded-md blur-3xl pointer-events-none" />
+                <div className="absolute bottom-0 left-0 -mb-20 -ml-20 w-72 h-72 bg-[#242A56]/10 opacity-80 rounded-md blur-3xl pointer-events-none" />
                 
                 <div className="relative z-10">
                   <h2 className={`text-4xl md:text-5xl font-medium tracking-tight mb-4 ${isDark ? "text-white" : "text-gray-900"}`}>
@@ -42,7 +42,7 @@ export default function CorporateCTA() {
                     />
                   </p>
                   <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                    <button className="bg-primary-red hover:bg-primary-hover text-white px-8 py-3.5 rounded-md font-semibold text-sm transition-colors shadow-md w-full sm:w-auto">
+                    <button className="bg-[#242A56] hover:bg-[#1E234B] text-white px-8 py-3.5 rounded-md font-semibold text-sm transition-colors shadow-md w-full sm:w-auto">
                       <EditableText
                         path="about.cta.buttonText"
                         fallback={corporateCTAData.buttonText}

@@ -78,7 +78,7 @@ export default function ExecutiveTeam() {
                     {isEditRoute && (
                       <button
                         onClick={() => deleteLeadershipExecutive(member.id)}
-                        className="mt-4 px-3 py-1 bg-red-600 text-white text-xs rounded hover:bg-red-700 w-full"
+                        className="mt-4 px-3 py-1 bg-[#242A56] text-white text-xs rounded hover:bg-[#1E234B] w-full"
                       >
                         Delete Member
                       </button>

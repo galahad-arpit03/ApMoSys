@@ -48,7 +48,7 @@ export default function CoreValues() {
                         path="about.coreValues.heading2"
                         fallback="Values"
                         as="span"
-                        className="text-transparent bg-clip-text bg-gradient-to-r from-[#B40001] to-red-600"
+                        className="text-[#242A56]"
                       />
                     </h2>
                     <p className={`text-lg font-medium leading-relaxed ${isDark ? "text-gray-400" : "text-gray-500"}`}>
@@ -85,7 +85,7 @@ export default function CoreValues() {
                           {isEditRoute && (
                             <button
                               onClick={() => deleteAboutCoreValue(value.id)}
-                              className="absolute right-4 top-4 w-8 h-8 flex items-center justify-center rounded-full bg-red-100/10 text-red-500 opacity-0 group-hover:opacity-100 transition-opacity hover:bg-red-500 hover:text-white z-20"
+                              className="absolute right-4 top-4 w-8 h-8 flex items-center justify-center rounded-full bg-[#242A56]/10 text-[#242A56] opacity-0 group-hover:opacity-100 transition-opacity hover:bg-[#242A56] hover:text-white z-20"
                               title="Delete Core Value"
                             >
                               ×
@@ -128,7 +128,7 @@ export default function CoreValues() {
                         layout
                         onClick={addAboutCoreValue}
                         className={`flex flex-col items-center justify-center p-6 sm:p-8 rounded-md border-2 border-dashed transition-colors ${
-                          isDark ? "border-[#2A2A2A] hover:border-primary-red/50 text-gray-500 hover:text-primary-red" : "border-gray-200 hover:border-primary-red/50 text-gray-400 hover:text-primary-red"
+                          isDark ? "border-[#2A2A2A] hover:border-[#242A56]/50 text-gray-500 hover:text-[#242A56]" : "border-gray-200 hover:border-[#242A56]/50 text-gray-400 hover:text-[#242A56]"
                         }`}
                       >
                         <span className="text-3xl mb-2">+</span>

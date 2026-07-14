@@ -50,7 +50,7 @@ export default function LeadershipHero() {
                 path="leadership.hero.heading2"
                 fallback="Guiding Innovation."
                 as="span"
-                className="text-primary-red drop-shadow-md block"
+                className="bg-[#242A56] text-white rounded-md px-3 py-1 inline-block mt-2"
               />
             </h1>
             <p className="text-slate-900 text-lg sm:text-xl max-w-2xl leading-relaxed mb-10 drop-shadow">
@@ -64,7 +64,7 @@ export default function LeadershipHero() {
             
             <a 
               href="/contact" 
-              className="inline-flex items-center justify-center gap-2 bg-primary-red hover:bg-red-700 text-white px-8 py-3.5 rounded-md font-bold text-sm transition-colors duration-200 shadow-lg group"
+              className="inline-flex items-center justify-center gap-2 bg-[#242A56] hover:bg-[#1E234B] text-white px-8 py-3.5 rounded-md font-bold text-sm transition-colors duration-200 shadow-lg group"
             >
               Work With Us
               <svg className="w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">

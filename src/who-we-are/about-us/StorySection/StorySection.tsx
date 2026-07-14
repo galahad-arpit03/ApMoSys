@@ -41,7 +41,7 @@ export default function StorySection() {
                       path="about.story.heading2"
                       fallback="Journey"
                       as="span"
-                      className="text-transparent bg-clip-text bg-gradient-to-r from-[#B40001] to-red-600"
+                      className="text-[#242A56]"
                     />
                   </h2>
                   <p className={`text-lg font-medium leading-relaxed mb-8 ${isDark ? "text-gray-400" : "text-gray-600"}`}>
@@ -88,7 +88,7 @@ export default function StorySection() {
                             {isEditRoute && (
                               <button
                                 onClick={() => deleteAboutStoryCard(card.id)}
-                                className="absolute right-4 top-4 w-8 h-8 flex items-center justify-center rounded-full bg-red-100 text-red-600 opacity-0 group-hover:opacity-100 transition-opacity hover:bg-red-200"
+                                className="absolute right-4 top-4 w-8 h-8 flex items-center justify-center rounded-full bg-[#242A56]/10 text-[#242A56] opacity-0 group-hover:opacity-100 transition-opacity hover:bg-[#242A56]/20"
                                 title="Delete Card"
                               >
                                 ×
@@ -123,7 +123,7 @@ export default function StorySection() {
                         <button
                           onClick={addAboutStoryCard}
                           className={`ml-8 sm:ml-12 flex-1 flex flex-col items-center justify-center p-8 sm:p-10 rounded-3xl border-2 border-dashed transition-colors ${
-                            isDark ? "border-[#2A2A2A] hover:border-primary-red/50 text-gray-500 hover:text-primary-red bg-[#1A1A1A]/50" : "border-gray-200 hover:border-primary-red/50 text-gray-400 hover:text-primary-red bg-white/50"
+                            isDark ? "border-[#2A2A2A] hover:border-[#242A56]/50 text-gray-500 hover:text-[#242A56] bg-[#1A1A1A]/50" : "border-gray-200 hover:border-[#242A56]/50 text-gray-400 hover:text-[#242A56] bg-white/50"
                           }`}
                         >
                           <span className="font-semibold text-lg">Add Story Card</span>

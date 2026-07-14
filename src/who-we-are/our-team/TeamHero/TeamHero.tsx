@@ -42,7 +42,7 @@ export default function TeamHero() {
           >
             <h1 className="text-4xl sm:text-5xl lg:text-7xl font-medium tracking-tight mb-6 leading-tight text-black drop-shadow-sm">
               <EditableText path="team.hero.heading1" fallback="The People Behind" as="span" />{" "}
-              <EditableText path="team.hero.heading2" fallback="ApMoSys" as="span" className="text-[#B40001] drop-shadow-md block" />
+              <EditableText path="team.hero.heading2" fallback="ApMoSys" as="span" className="bg-[#242A56] text-white rounded-md px-3 py-1 inline-block mt-2" />
             </h1>
             <p className="text-slate-800 text-lg sm:text-xl max-w-2xl leading-relaxed mb-10 drop-shadow">
               <EditableText 
@@ -55,7 +55,7 @@ export default function TeamHero() {
 
             <a 
               href="/careers" 
-              className="inline-flex items-center justify-center gap-2 bg-primary-red hover:bg-red-700 text-white px-8 py-3.5 rounded-md font-bold text-sm transition-colors duration-200 shadow-lg group"
+              className="inline-flex items-center justify-center gap-2 bg-[#242A56] hover:bg-[#1E234B] text-white px-8 py-3.5 rounded-md font-bold text-sm transition-colors duration-200 shadow-lg group"
             >
               <EditableText path="team.hero.button" fallback="Explore Careers" as="span" />
               <svg className="w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">

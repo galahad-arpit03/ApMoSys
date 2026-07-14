@@ -47,7 +47,7 @@ export default function AboutHero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
-            <h1 className="text-4xl sm:text-5xl lg:text-7xl font-medium tracking-tight mb-6 leading-tight text-slate-900 drop-shadow-sm">
+            <h1 className="text-4xl sm:text-5xl lg:text-7xl font-medium tracking-tight mb-6 leading-tight text-black drop-shadow-sm">
               <EditableText
                 path="about.hero.heading1"
                 fallback="Engineering Excellence at"
@@ -57,7 +57,7 @@ export default function AboutHero() {
                 path="about.hero.heading2"
                 fallback="Enterprise Scale."
                 as="span"
-                className="text-primary-red drop-shadow-md"
+                className="bg-[#242A56] text-white rounded-md px-3 py-1 inline-block mt-2"
               />
             </h1>
             <p className="text-slate-900 text-lg sm:text-xl max-w-2xl leading-relaxed mb-10 drop-shadow">
@@ -69,7 +69,7 @@ export default function AboutHero() {
               />
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <button className="bg-primary-red hover:bg-red-700 text-white px-8 py-3.5 rounded-md font-bold text-sm transition-colors duration-200 shadow-lg">
+              <button className="bg-[#242A56] hover:bg-[#1E234B] text-white px-8 py-3.5 rounded-md font-bold text-sm transition-colors duration-200 shadow-lg">
                 <EditableText
                   path="about.hero.button1"
                   fallback="Discover Our Services"

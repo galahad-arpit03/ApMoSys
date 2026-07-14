@@ -65,7 +65,7 @@ export default function MilestonesTimeline() {
                         path="about.milestones.heading2"
                         fallback="Achieved"
                         as="span"
-                        className="text-transparent bg-clip-text bg-gradient-to-r from-[#B40001] to-red-600"
+                        className="text-[#242A56]"
                       />
                     </h2>
                     <p className={`text-lg font-medium leading-relaxed ${isDark ? "text-gray-400" : "text-gray-500"}`}>
@@ -153,7 +153,7 @@ export default function MilestonesTimeline() {
                           </div>
 
                           {isEditRoute && (
-                            <button onClick={() => deleteAboutMilestone(ms.id)} className="absolute right-4 top-0 text-red-500 hover:text-red-700 text-xl font-bold" title="Delete Milestone">×</button>
+                            <button onClick={() => deleteAboutMilestone(ms.id)} className="absolute right-4 top-0 text-[#242A56] hover:text-[#1E234B] text-xl font-bold" title="Delete Milestone">×</button>
                           )}
                         </div>
                       );
@@ -164,7 +164,7 @@ export default function MilestonesTimeline() {
                         <button
                           onClick={addAboutMilestone}
                           className={`w-full h-full min-h-[300px] flex flex-col items-center justify-center gap-4 border-2 border-dashed rounded-xl text-lg font-bold transition-all cursor-pointer ${
-                            isDark ? "border-[#2A2A2A] hover:border-primary-red/50 text-[#FAFAFA] hover:text-primary-red" : "border-[#E8E8E8] hover:border-primary-red/50 text-[#121212] hover:text-primary-red"
+                            isDark ? "border-[#2A2A2A] hover:border-[#242A56]/50 text-[#FAFAFA] hover:text-[#242A56]" : "border-[#E8E8E8] hover:border-[#242A56]/50 text-[#121212] hover:text-[#242A56]"
                           }`}
                         >
                           <span className="text-4xl">+</span> Add Milestone
