@@ -663,6 +663,7 @@ export const defaultContent: SiteContent = {
           {
             id: "industries",
             label: "Industries",
+            href: "/industries",
             subLinks: [
               {
                 label: "Banking & Financial Services",
