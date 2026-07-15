@@ -13,7 +13,7 @@ export default function CorporateCTA() {
         return (
           <section className={`py-12 transition-colors duration-300 ${isDark ? "bg-[#000000]" : "bg-white"}`}>
             <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-              <div className="rounded-2xl p-12 md:p-16 text-center relative overflow-hidden border transition-colors shadow-2xl bg-slate-800 border-slate-700">
+              <div className="rounded-xl p-12 md:p-16 text-center relative overflow-hidden border transition-colors shadow-2xl bg-slate-800 border-slate-700">
                 {/* Glassmorphism gradient background */}
                 <div className="absolute inset-0 bg-gradient-to-br from-slate-700/50 via-transparent to-slate-900/50 pointer-events-none" />
                 {/* Top Right decorative blur */}

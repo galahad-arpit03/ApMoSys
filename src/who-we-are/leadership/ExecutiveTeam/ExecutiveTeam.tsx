@@ -15,18 +15,17 @@ export default function ExecutiveTeam() {
   const team = content.leadership?.executiveTeam || [];
   return (
     <SectionThemeWrapper sectionId="leadership_executive" defaultTheme="light">
-      {(theme) => {
-        const isDark = theme === "dark";
+      {() => {
         return (
-          <section className={`py-10 sm:py-14 lg:py-16 border-b transition-colors duration-300 ${isDark ? "bg-[#0F0F0F] border-[#222]" : "bg-gray-50 border-gray-200"}`}>
+          <section className="py-12 lg:py-24 relative overflow-clip transition-colors duration-300 bg-white border-gray-100">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-              <div className="text-left mb-10 sm:mb-16">
-                <h2 className={`text-3xl sm:text-4xl lg:text-5xl font-medium leading-tight ${isDark ? "text-white" : "text-gray-900"}`}>
-                  Meet Our <span className="text-[#B40001]">Executive Team</span>
+              <div className="text-left mb-12 sm:mb-16">
+                <h2 className="text-4xl lg:text-5xl font-medium tracking-tight mb-6 text-slate-800">
+                  Meet Our Executive Team
                 </h2>
 
-                <p className={`mt-6 max-w-3xl ${isDark ? "text-neutral-400" : "text-gray-600"}`}>
+                <p className="text-lg font-medium leading-relaxed max-w-3xl text-black">
                   Experienced leaders driving innovation, enterprise growth,
                   and engineering excellence across ApMoSys.
                 </p>
@@ -43,8 +42,7 @@ export default function ExecutiveTeam() {
                     className="group relative flex flex-col items-start"
                   >
                     {/* Image Section */}
-                    <div className={`relative w-full aspect-[4/5] overflow-hidden rounded-sm mb-6 ${isDark ? "bg-[#111]" : "bg-gray-100"}`}>
-                      <div className={`absolute inset-0 z-10 opacity-30 mix-blend-multiply transition-opacity duration-500 group-hover:opacity-0 ${isDark ? "bg-black" : "bg-transparent"}`} />
+                    <div className="relative w-full aspect-[4/5] overflow-hidden rounded-sm mb-6 bg-gray-100">
                       <EditableImage
                         className="w-full h-full relative"
                         label={`Executive: ${member.name}`}
@@ -56,21 +54,19 @@ export default function ExecutiveTeam() {
                           className="object-cover object-top grayscale group-hover:grayscale-0 transition-all duration-700 scale-100 group-hover:scale-105"
                         />
                       </EditableImage>
-
-
                     </div>
 
                     {/* Content Section */}
                     <div className="w-full">
-                      <p className="text-gray-500 uppercase tracking-widest text-xs font-bold mb-2">
+                      <p className="text-slate-500 uppercase tracking-widest text-xs font-bold mb-2">
                         <EditableText path={`leadership.executiveTeam.${i}.role`} fallback={member.role} />
                       </p>
                       
-                      <h3 className={`text-2xl font-bold tracking-tight mb-4 ${isDark ? "text-white" : "text-gray-900"}`}>
+                      <h3 className="text-2xl font-bold tracking-tight mb-4 text-slate-800">
                         <EditableText path={`leadership.executiveTeam.${i}.name`} fallback={member.name} />
                       </h3>
 
-                      <p className={`leading-relaxed text-sm sm:text-base font-light line-clamp-4 group-hover:line-clamp-none transition-all duration-500 ${isDark ? "text-[#A0A0A0]" : "text-gray-600"}`}>
+                      <p className="leading-relaxed text-base font-medium line-clamp-4 group-hover:line-clamp-none transition-all duration-500 text-black">
                         <EditableText path={`leadership.executiveTeam.${i}.description`} fallback={member.description} />
                       </p>
                     </div>
