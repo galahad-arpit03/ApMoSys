@@ -11,7 +11,7 @@ export default function StatsSection() {
       {(theme) => {
         const isDark = theme === "dark";
         return (
-          <section className={`py-6 border-y transition-colors duration-300 ${isDark ? "bg-black border-[#222]" : "bg-white border-gray-200"}`}>
+          <section className={`py-6 border-y transition-colors duration-300 ${isDark ? "bg-slate-800 border-[#222]" : "bg-white border-gray-200"}`}>
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className={`grid grid-cols-2 md:grid-cols-4 divide-x-0 md:divide-x gap-y-6 md:gap-y-0 ${isDark ? "divide-[#333]" : "divide-gray-200"}`}>
                 {statsData.map((stat, i) => {

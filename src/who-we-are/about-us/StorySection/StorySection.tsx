@@ -20,7 +20,7 @@ export default function StorySection() {
       {(theme) => {
         const isDark = theme === "dark";
         return (
-          <section className={`py-24 relative transition-colors duration-300 ${isDark ? "bg-[#0D0D0D] text-[#FAFAFA]" : "bg-gradient-to-b from-[#F0F4F8] to-white text-[#121212]"}`}>
+          <section className={`py-12 relative transition-colors duration-300 ${isDark ? "bg-[#0D0D0D] text-[#FAFAFA]" : "bg-gradient-to-b from-[#F0F4F8] to-white text-[#121212]"}`}>
             {/* Subtle Background Glows wrapped to prevent overflow without breaking sticky */}
             <div className="absolute inset-0 overflow-hidden pointer-events-none">
               <div className={`absolute top-0 right-0 w-[800px] h-[800px] rounded-full blur-[120px] pointer-events-none -translate-y-1/2 translate-x-1/3 ${isDark ? "bg-red-900/10" : "bg-red-100/40"}`} />
@@ -31,7 +31,7 @@ export default function StorySection() {
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
                 
                 <div className="lg:col-span-4 lg:sticky lg:top-32">
-                  <h2 className={`text-4xl lg:text-5xl font-medium tracking-tight mb-6 ${isDark ? "text-white" : "text-gray-900"}`}>
+                  <h2 className="text-4xl lg:text-5xl font-medium tracking-tight mb-6 text-slate-800">
                     <EditableText
                       path="about.story.heading1"
                       fallback="Our"
@@ -41,10 +41,9 @@ export default function StorySection() {
                       path="about.story.heading2"
                       fallback="Journey"
                       as="span"
-                      className="text-[#242A56]"
                     />
                   </h2>
-                  <p className={`text-lg font-medium leading-relaxed mb-8 ${isDark ? "text-gray-400" : "text-gray-600"}`}>
+                  <p className="text-lg font-medium leading-relaxed mb-8 text-black">
                     <EditableText
                       path="about.story.description"
                       fallback="A legacy built on..."
@@ -56,9 +55,9 @@ export default function StorySection() {
 
                 <div className="lg:col-span-8 relative">
                   {/* Vertical Timeline Line */}
-                  <div className={`absolute left-8 sm:left-10 top-10 bottom-10 w-px ${isDark ? "bg-gradient-to-b from-[#B40001]/50 via-[#2A2A2A] to-[#2A2A2A]" : "bg-gradient-to-b from-[#B40001]/40 via-gray-300 to-gray-200"}`}></div>
+                  <div className={`absolute left-8 sm:left-10 top-10 bottom-10 w-px ${isDark ? "bg-gradient-to-b from-slate-800 via-[#2A2A2A] to-[#2A2A2A]" : "bg-gradient-to-b from-slate-800 via-gray-300 to-gray-200"}`}></div>
                   
-                  <div className="flex flex-col gap-12 sm:gap-16">
+                  <div className="flex flex-col gap-6 sm:gap-8">
                     <AnimatePresence mode="popLayout">
                       {cards.map((card, idx) => (
                         <motion.div 
@@ -80,7 +79,7 @@ export default function StorySection() {
                           </div>
                           
                           {/* Card Content */}
-                          <div className={`ml-8 sm:ml-12 flex-1 p-8 sm:p-10 rounded-3xl border transition-all duration-500 hover:-translate-y-1 ${
+                          <div className={`ml-8 sm:ml-12 flex-1 p-8 sm:p-10 rounded-xl border transition-all duration-500 hover:-translate-y-1 ${
                             isDark 
                               ? "bg-[#1A1A1A] border-[#2A2A2A] hover:bg-[#222]" 
                               : "bg-white/80 backdrop-blur-md border-gray-200/60 shadow-[0_4px_20px_rgb(0,0,0,0.03)] hover:shadow-[0_8px_30px_rgb(0,0,0,0.06)] hover:bg-white"
@@ -95,14 +94,14 @@ export default function StorySection() {
                               </button>
                             )}
                             
-                            <h3 className={`font-bold text-2xl mb-4 transition-colors duration-300 ${isDark ? "text-white" : "text-gray-900"}`}>
+                            <h3 className="font-medium text-2xl mb-4 transition-colors duration-300 text-gray-700">
                               <EditableText
                                 path={`about.storyCards.${idx}.title`}
                                 fallback={card.title}
                                 as="span"
                               />
                             </h3>
-                            <p className={`text-base leading-relaxed font-medium ${isDark ? "text-gray-400" : "text-gray-600"}`}>
+                            <p className="text-base leading-relaxed font-medium text-black">
                               <EditableText
                                 path={`about.storyCards.${idx}.content`}
                                 fallback={card.content}

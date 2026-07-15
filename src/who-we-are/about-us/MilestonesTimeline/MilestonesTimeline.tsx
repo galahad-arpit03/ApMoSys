@@ -11,7 +11,7 @@ import { milestonesData } from "./MilestonesTimelineData";
 export default function MilestonesTimeline() {
   const pathname = usePathname();
   const isEditRoute = pathname?.startsWith("/administrator");
-  
+
   const { content, addAboutMilestone, deleteAboutMilestone } = useContentStore();
   const rawMilestones = content?.about?.milestones;
   const milestones = Array.isArray(rawMilestones) ? rawMilestones : milestonesData;
@@ -49,7 +49,7 @@ export default function MilestonesTimeline() {
       {(theme) => {
         const isDark = theme === "dark";
         return (
-          <section className={`py-24 relative border-t transition-colors duration-300 ${isDark ? "bg-[#121212] border-[#2A2A2A] text-[#FAFAFA]" : "bg-white border-gray-100 text-[#121212]"}`}>
+          <section className={`py-12 relative border-t transition-colors duration-300 ${isDark ? "bg-[#121212] border-[#2A2A2A] text-[#FAFAFA]" : "bg-white border-gray-100 text-[#121212]"}`}>
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-start relative">
                 {/* LHS - Header Content */}
@@ -68,7 +68,7 @@ export default function MilestonesTimeline() {
                         className="text-[#242A56]"
                       />
                     </h2>
-                    <p className={`text-lg font-medium leading-relaxed ${isDark ? "text-gray-400" : "text-gray-500"}`}>
+                    <p className={`text-lg font-medium leading-relaxed ${isDark ? "text-gray-400" : "text-gray-600"}`}>
                       <EditableText
                         path="about.milestones.description"
                         fallback="A legacy of technical excellence, continuous growth, and industry-defining innovation since 2012."
@@ -82,31 +82,29 @@ export default function MilestonesTimeline() {
                 <div className="lg:col-span-8 overflow-hidden relative">
                   {/* Navigation Arrows */}
                   <div className="flex justify-end gap-3 mb-4 pr-4">
-                    <button 
+                    <button
                       onClick={() => scrollToIndex(Math.max(0, activeIdx - 1))}
                       disabled={activeIdx === 0}
-                      className={`w-10 h-10 rounded-full flex items-center justify-center border transition-all ${
-                        activeIdx === 0 
-                          ? (isDark ? "border-gray-800 text-gray-700 cursor-not-allowed" : "border-gray-200 text-gray-300 cursor-not-allowed") 
-                          : (isDark ? "border-gray-600 text-white hover:bg-gray-800 hover:border-gray-400" : "border-gray-300 text-black hover:bg-gray-50 hover:border-gray-400")
-                      }`}
+                      className={`w-10 h-10 rounded-full flex items-center justify-center border transition-all ${activeIdx === 0
+                        ? (isDark ? "border-gray-800 text-gray-700 cursor-not-allowed" : "border-gray-200 text-gray-300 cursor-not-allowed")
+                        : (isDark ? "border-gray-600 text-white hover:bg-gray-800 hover:border-gray-400" : "border-gray-300 text-black hover:bg-gray-50 hover:border-gray-400")
+                        }`}
                     >
                       <ChevronLeft className="w-5 h-5" />
                     </button>
-                    <button 
+                    <button
                       onClick={() => scrollToIndex(Math.min(reversedMilestones.length - 1, activeIdx + 1))}
                       disabled={activeIdx === reversedMilestones.length - 1}
-                      className={`w-10 h-10 rounded-full flex items-center justify-center border transition-all ${
-                        activeIdx === reversedMilestones.length - 1 
-                          ? (isDark ? "border-gray-800 text-gray-700 cursor-not-allowed" : "border-gray-200 text-gray-300 cursor-not-allowed") 
-                          : (isDark ? "border-gray-600 text-white hover:bg-gray-800 hover:border-gray-400" : "border-gray-300 text-black hover:bg-gray-50 hover:border-gray-400")
-                      }`}
+                      className={`w-10 h-10 rounded-full flex items-center justify-center border transition-all ${activeIdx === reversedMilestones.length - 1
+                        ? (isDark ? "border-gray-800 text-gray-700 cursor-not-allowed" : "border-gray-200 text-gray-300 cursor-not-allowed")
+                        : (isDark ? "border-gray-600 text-white hover:bg-gray-800 hover:border-gray-400" : "border-gray-300 text-black hover:bg-gray-50 hover:border-gray-400")
+                        }`}
                     >
                       <ChevronRight className="w-5 h-5" />
                     </button>
                   </div>
 
-                  <div 
+                  <div
                     ref={scrollContainerRef}
                     onScroll={handleScroll}
                     className="flex overflow-x-auto snap-x snap-mandatory hide-scrollbar gap-0 pb-8 pt-4 scroll-smooth"
@@ -128,11 +126,11 @@ export default function MilestonesTimeline() {
                           {/* Scale Line with Ticks */}
                           <div className={`flex border-t relative h-12 w-full ${isDark ? "border-gray-800" : "border-gray-200"}`}>
                             {/* Main vertical tick for the year */}
-                            <div className={`absolute left-0 top-0 h-full w-[3px] ${isActive ? "bg-primary-red" : (isDark ? "bg-gray-600" : "bg-gray-300")}`}></div>
-                            
+                            <div className={`absolute left-0 top-0 h-full w-[3px] ${isActive ? "bg-slate-800" : (isDark ? "bg-gray-600" : "bg-gray-300")}`}></div>
+
                             {/* Small tick marks */}
                             <div className="w-full flex justify-evenly ml-[3px] pt-0">
-                              {Array.from({length: 10}).map((_, i) => (
+                              {Array.from({ length: 10 }).map((_, i) => (
                                 <div key={i} className={`w-[1px] h-4 ${isActive ? (isDark ? "bg-gray-700" : "bg-gray-300") : (isDark ? "bg-gray-800" : "bg-gray-200")}`}></div>
                               ))}
                             </div>
@@ -148,7 +146,7 @@ export default function MilestonesTimeline() {
                               ))}
                             </div>
                             <div className="w-full h-[220px] shrink-0 bg-gray-100 rounded-xl overflow-hidden relative shadow-sm mt-auto">
-                               <img src={`https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=600&h=400&seed=${ms.year}`} alt={ms.title} className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 hover:scale-105" />
+                              <img src={`https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=600&h=400&seed=${ms.year}`} alt={ms.title} className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 hover:scale-105" />
                             </div>
                           </div>
 
@@ -163,9 +161,8 @@ export default function MilestonesTimeline() {
                       <div className="min-w-[320px] shrink-0 flex items-center justify-center p-8">
                         <button
                           onClick={addAboutMilestone}
-                          className={`w-full h-full min-h-[300px] flex flex-col items-center justify-center gap-4 border-2 border-dashed rounded-xl text-lg font-bold transition-all cursor-pointer ${
-                            isDark ? "border-[#2A2A2A] hover:border-[#242A56]/50 text-[#FAFAFA] hover:text-[#242A56]" : "border-[#E8E8E8] hover:border-[#242A56]/50 text-[#121212] hover:text-[#242A56]"
-                          }`}
+                          className={`w-full h-full min-h-[300px] flex flex-col items-center justify-center gap-4 border-2 border-dashed rounded-xl text-lg font-bold transition-all cursor-pointer ${isDark ? "border-[#2A2A2A] hover:border-[#242A56]/50 text-[#FAFAFA] hover:text-[#242A56]" : "border-[#E8E8E8] hover:border-[#242A56]/50 text-[#121212] hover:text-[#242A56]"
+                            }`}
                         >
                           <span className="text-4xl">+</span> Add Milestone
                         </button>
