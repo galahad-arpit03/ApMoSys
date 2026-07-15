@@ -1,11 +1,10 @@
 "use client";
-import { ctasectionData } from "./CTASectionData";
 
 import React from "react";
 import { motion } from "framer-motion";
+import { ArrowRight } from "lucide-react";
 import EditableText from "@/src/admin/components/EditableText";
 import SectionThemeWrapper from "@/src/admin/components/SectionThemeWrapper";
-
 
 export default function CTASection() {
   return (
@@ -13,48 +12,47 @@ export default function CTASection() {
       {(theme) => {
         const isDark = theme === "dark";
         return (
-          <section className={`py-12 px-4 sm:px-6 lg:px-8 transition-colors duration-300 ${isDark ? "bg-[#121212]" : "bg-[#FAFAFA]"}`}>
-            <div className="max-w-6xl mx-auto">
-              <motion.div 
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5 }}
-                className="bg-primary-red rounded-2xl p-8 md:p-12 text-center relative overflow-hidden"
-              >
-                {/* Subtle Background Pattern */}
-                <div className="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] mix-blend-overlay"></div>
-                
-                <div className="relative z-10 max-w-2xl mx-auto">
-                  <h2 className="font-heading text-3xl md:text-4xl font-bold text-[#FFFFFF] mb-4">
+          <section className={`py-12 transition-colors duration-300 ${isDark ? "bg-[#000000]" : "bg-white"}`}>
+            <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div className="rounded-2xl p-12 md:p-16 text-center relative overflow-hidden border transition-colors shadow-2xl bg-slate-800 border-slate-700">
+                {/* Glassmorphism gradient background */}
+                <div className="absolute inset-0 bg-gradient-to-br from-slate-700/50 via-transparent to-slate-900/50 pointer-events-none" />
+                {/* Top Right decorative blur */}
+                <div className="absolute top-0 right-0 translate-x-1/3 -translate-y-1/3 w-[600px] h-[600px] bg-white/20 rounded-full blur-[120px] pointer-events-none" />
+                {/* Bottom Left decorative blur */}
+                <div className="absolute bottom-0 left-0 -translate-x-1/3 translate-y-1/3 w-[600px] h-[600px] bg-white/15 rounded-full blur-[120px] pointer-events-none" />
+
+                <div className="relative z-10">
+                  <h2 className="text-4xl md:text-5xl font-medium tracking-tight mb-4 text-white">
                     <EditableText
                       path="industries.cta.heading"
                       fallback="Scale Your Industry Impact"
                       as="span"
-                      className="font-heading text-3xl md:text-4xl font-bold text-[#FFFFFF]"
                     />
                   </h2>
-                  <p className="text-primary-soft text-base mb-8 leading-relaxed">
+                  <p className="text-base md:text-lg mb-10 max-w-2xl mx-auto font-medium text-gray-300">
                     <EditableText
                       path="industries.cta.subheading"
                       fallback="Join the hundreds of industry leaders globally that trust ApMoSys to drive their technological evolution."
                       as="span"
                       multiline
-                      className="text-primary-soft text-base leading-relaxed"
                     />
                   </p>
-                  <a
-                    href="#contact"
-                    className="inline-block bg-[#FFFFFF] hover:bg-[#FAFAFA] text-[#121212] font-bold text-center px-10 py-4 rounded-md text-sm tracking-wide transition-colors shadow-lg hover:shadow-xl"
-                  >
-                    <EditableText
-                      path="industries.cta.ctaLabel"
-                      fallback="Start Your Transformation"
-                      as="span"
-                    />
-                  </a>
+                  <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+                    <button className="bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/20 text-white px-8 py-3.5 rounded-md font-bold text-sm transition-colors duration-200 shadow-lg w-full sm:w-auto">
+                      <EditableText
+                        path="industries.cta.ctaLabel"
+                        fallback="Start Your Transformation"
+                        as="span"
+                      />
+                      <ArrowRight className="inline-block w-4 h-4 ml-2" />
+                    </button>
+                    <button className="px-8 py-3.5 rounded-md font-semibold text-sm transition-colors shadow-sm flex items-center justify-center gap-2 border w-full sm:w-auto bg-transparent border-slate-600 text-gray-300 hover:bg-slate-700 hover:text-white">
+                      Contact Sales
+                    </button>
+                  </div>
                 </div>
-              </motion.div>
+              </div>
             </div>
           </section>
         );

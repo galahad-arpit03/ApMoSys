@@ -58,14 +58,20 @@ export default function PartnerTypes() {
         const isDark = theme === "dark";
         return (
           <section
-            className={`py-24 border-t transition-colors duration-300 ${
+            className={`py-24 border-t transition-colors duration-300 relative overflow-hidden ${
               isDark
-                ? "bg-[#121212] border-[#1F1F1F]"
-                : "bg-[#FFFFFF] border-[#E8E8E8]"
+                ? "bg-slate-800 border-slate-700"
+                : "bg-white border-gray-200"
             }`}
           >
+            {/* Subtle background glows */}
+            <div className="absolute inset-0 overflow-hidden pointer-events-none">
+              <div className={`absolute top-0 right-0 w-[800px] h-[800px] rounded-full blur-[120px] pointer-events-none -translate-y-1/2 translate-x-1/3 ${
+                isDark ? "bg-[#242A56]/10" : "bg-[#242A56]/10"
+              }`} />
+            </div>
+
             <Container>
-              {/* Header */}
               <motion.div
                 initial={{ opacity: 0, y: 24 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -73,16 +79,9 @@ export default function PartnerTypes() {
                 transition={{ duration: 0.65, ease: "easeOut" }}
                 className="text-center max-w-3xl mx-auto mb-16"
               >
-                {/* <span className="text-primary-red text-xs font-bold uppercase tracking-widest block mb-4">
-                  <EditableText
-                    path="alliance.partners.sectionLabel"
-                    fallback="Featured Partners"
-                    as="span"
-                  />
-                </span> */}
                 <h2
-                  className={`font-heading text-3xl sm:text-4xl font-bold mb-4 ${
-                    isDark ? "text-[#FFFFFF]" : "text-[#121212]"
+                  className={`font-heading text-3xl sm:text-4xl font-medium tracking-tight mb-4 ${
+                    isDark ? "text-white" : "text-slate-800"
                   }`}
                 >
                   <EditableText
@@ -92,8 +91,8 @@ export default function PartnerTypes() {
                   />
                 </h2>
                 <p
-                  className={`text-sm sm:text-base leading-relaxed ${
-                    isDark ? "text-[#A0A0A0]" : "text-[#5A5A5A]"
+                  className={`text-base lg:text-lg font-medium leading-relaxed ${
+                    isDark ? "text-gray-300" : "text-black"
                   }`}
                 >
                   <EditableText
@@ -105,7 +104,6 @@ export default function PartnerTypes() {
                 </p>
               </motion.div>
 
-              {/* Partners Grid */}
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 {items.map((partner, idx) => (
                   <motion.div
@@ -114,15 +112,15 @@ export default function PartnerTypes() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: idx * 0.1, duration: 0.5 }}
-                    className={`p-6 rounded-xl border text-center transition-all hover:shadow-lg hover:-translate-y-1 group ${
+                    className={`p-8 rounded-xl border transition-all hover:shadow-lg hover:-translate-y-1 group ${
                       isDark
-                        ? "bg-[#1A1A1A] border-[#2A2A2A] hover:border-primary-red/30"
-                        : "bg-[#FFFFFF] border-[#E8E8E8] hover:border-primary-red/20"
+                        ? "bg-slate-700/50 border-slate-600 hover:border-[#242A56]/40"
+                        : "bg-white/80 backdrop-blur-sm border-gray-200/60 hover:border-[#242A56]/20 shadow-[0_4px_20px_rgb(0,0,0,0.03)] hover:shadow-[0_8px_30px_rgb(0,0,0,0.06)]"
                     }`}
                   >
                     <div
                       className={`w-full h-16 rounded-lg flex items-center justify-center mb-4 text-xs font-bold ${
-                        isDark ? "bg-[#0D0D0D]" : "bg-[#FAFAFA]"
+                        isDark ? "bg-slate-700/50" : "bg-gray-50"
                       }`}
                     >
                       <EditableText
@@ -130,13 +128,13 @@ export default function PartnerTypes() {
                         fallback={partner.name}
                         as="span"
                         className={`text-sm font-bold ${
-                          isDark ? "text-[#FFFFFF]" : "text-[#121212]"
+                          isDark ? "text-white" : "text-slate-800"
                         }`}
                       />
                     </div>
                     <span
                       className={`text-xs font-bold uppercase tracking-widest ${
-                        isDark ? "text-[#7A7A7A]" : "text-[#5A5A5A]"
+                        isDark ? "text-gray-400" : "text-slate-500"
                       }`}
                     >
                       <EditableText
@@ -147,7 +145,7 @@ export default function PartnerTypes() {
                     </span>
                     <p
                       className={`text-sm leading-relaxed mt-3 ${
-                        isDark ? "text-[#A0A0A0]" : "text-[#5A5A5A]"
+                        isDark ? "text-gray-300" : "text-slate-600"
                       }`}
                     >
                       <EditableText
@@ -157,13 +155,13 @@ export default function PartnerTypes() {
                         multiline
                       />
                     </p>
-                    <div className="mt-6 pt-4 border-t border-[#2A2A2A]">
+                    <div className="mt-6 pt-4 border-t border-slate-600">
                       <a
                         href={partner.link}
                         className={`inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider transition-colors group/link ${
                           isDark
-                            ? "text-[#FFFFFF] hover:text-primary-red"
-                            : "text-[#121212] hover:text-primary-red"
+                            ? "text-gray-300 hover:text-[#242A56]"
+                            : "text-slate-700 hover:text-[#242A56]"
                         }`}
                       >
                         Learn More

@@ -45,14 +45,16 @@ export default function ResearchPapers() {
         return (
           <section
             id="research"
-            className={`py-24 border-t transition-colors duration-300 ${
+            className={`py-24 border-t transition-colors duration-300 relative overflow-hidden ${
               isDark
-                ? "bg-[#121212] border-[#1F1F1F]"
-                : "bg-[#FAFAFA] border-[#E8E8E8]"
+                ? "bg-slate-800 border-slate-700"
+                : "bg-white border-gray-200"
             }`}
           >
+            {/* Decorative glows (optional, matching other sections) */}
+            <div className="absolute top-0 right-0 w-[600px] h-[600px] rounded-full blur-[100px] pointer-events-none -translate-y-1/2 translate-x-1/3 bg-slate-600/20" />
+
             <Container>
-              {/* Header */}
               <motion.div
                 initial={{ opacity: 0, y: 24 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -60,16 +62,9 @@ export default function ResearchPapers() {
                 transition={{ duration: 0.65, ease: "easeOut" }}
                 className="text-center max-w-3xl mx-auto mb-16"
               >
-                {/* <span className="text-primary-red text-xs font-bold uppercase tracking-widest block mb-4">
-                  <EditableText
-                    path="coe.papers.sectionLabel"
-                    fallback="Research & Publications"
-                    as="span"
-                  />
-                </span> */}
                 <h2
-                  className={`font-heading text-3xl sm:text-4xl font-bold mb-4 ${
-                    isDark ? "text-[#FFFFFF]" : "text-[#121212]"
+                  className={`font-heading text-3xl sm:text-4xl font-medium tracking-tight mb-4 ${
+                    isDark ? "text-white" : "text-slate-800"
                   }`}
                 >
                   <EditableText
@@ -79,8 +74,8 @@ export default function ResearchPapers() {
                   />
                 </h2>
                 <p
-                  className={`text-sm sm:text-base leading-relaxed ${
-                    isDark ? "text-[#A0A0A0]" : "text-[#5A5A5A]"
+                  className={`text-base lg:text-lg font-medium leading-relaxed ${
+                    isDark ? "text-gray-300" : "text-black"
                   }`}
                 >
                   <EditableText
@@ -92,7 +87,6 @@ export default function ResearchPapers() {
                 </p>
               </motion.div>
 
-              {/* Papers Grid */}
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {paperItems.map((paper, idx) => (
                   <motion.div
@@ -103,16 +97,17 @@ export default function ResearchPapers() {
                     transition={{ delay: idx * 0.08, duration: 0.5 }}
                     className={`p-8 rounded-xl border transition-all hover:shadow-lg hover:-translate-y-1 group ${
                       isDark
-                        ? "bg-[#1A1A1A] border-[#2A2A2A] hover:border-primary-red/30"
-                        : "bg-[#FFFFFF] border-[#E8E8E8] hover:border-primary-red/20"
+                        ? "bg-slate-700/50 border-slate-600 hover:border-[#242A56]/40"
+                        : "bg-white/80 backdrop-blur-sm border-gray-200/60 hover:border-[#242A56]/20 shadow-[0_4px_20px_rgb(0,0,0,0.03)] hover:shadow-[0_8px_30px_rgb(0,0,0,0.06)]"
                     }`}
                   >
+                    {/* Tag with contrast fix */}
                     <div className="flex items-center gap-2 mb-4">
                       <span
-                        className={`text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full ${
+                        className={`text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full border ${
                           isDark
-                            ? "bg-primary-red/10 text-primary-red border border-primary-red/20"
-                            : "bg-primary-soft text-primary-red border border-primary-red/20"
+                            ? "bg-[#242A56]/30 text-white border-[#242A56]/40"
+                            : "bg-[#242A56]/10 text-[#242A56] border-[#242A56]/20"
                         }`}
                       >
                         <EditableText
@@ -124,7 +119,7 @@ export default function ResearchPapers() {
                     </div>
                     <h3
                       className={`font-heading text-lg font-bold mb-3 leading-snug ${
-                        isDark ? "text-[#FFFFFF]" : "text-[#121212]"
+                        isDark ? "text-white" : "text-slate-800"
                       }`}
                     >
                       <EditableText
@@ -135,7 +130,7 @@ export default function ResearchPapers() {
                     </h3>
                     <p
                       className={`text-sm ${
-                        isDark ? "text-[#A0A0A0]" : "text-[#5A5A5A]"
+                        isDark ? "text-gray-300" : "text-slate-600"
                       }`}
                     >
                       <EditableText
@@ -146,7 +141,7 @@ export default function ResearchPapers() {
                     </p>
                     <p
                       className={`text-xs ${
-                        isDark ? "text-[#7A7A7A]" : "text-[#7A7A7A]"
+                        isDark ? "text-gray-400" : "text-slate-500"
                       }`}
                     >
                       <EditableText
@@ -155,13 +150,13 @@ export default function ResearchPapers() {
                         as="span"
                       />
                     </p>
-                    <div className="mt-6 pt-4 border-t border-[#2A2A2A]">
+                    <div className="mt-6 pt-4 border-t border-slate-600">
                       <a
                         href={paper.link}
                         className={`inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider transition-colors group/link ${
                           isDark
-                            ? "text-[#FFFFFF] hover:text-primary-red"
-                            : "text-[#121212] hover:text-primary-red"
+                            ? "text-gray-300 hover:text-[#242A56]"
+                            : "text-slate-700 hover:text-[#242A56]"
                         }`}
                       >
                         Read Paper

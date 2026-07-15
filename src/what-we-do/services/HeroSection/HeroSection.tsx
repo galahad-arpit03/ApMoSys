@@ -37,7 +37,7 @@ export default function HeroSection() {
           <section
             ref={ref}
             className={`relative pt-24 pb-16 lg:pt-32 lg:pb-24 overflow-hidden flex items-center min-h-[50vh] border-b transition-colors duration-300 ${
-              isDark ? "border-[#1F1F1F]" : "border-[#E8E8E8]"
+              isDark ? "border-slate-700" : "border-gray-200"
             }`}
           >
             {/* Parallax Background Image */}
@@ -66,7 +66,7 @@ export default function HeroSection() {
                 >
                   <motion.h1
                     variants={fadeUp}
-                    className="text-4xl sm:text-5xl lg:text-7xl font-medium tracking-tight mb-6 leading-tight drop-shadow-sm text-slate-900"
+                    className="text-4xl sm:text-5xl lg:text-7xl font-medium tracking-tight mb-6 leading-tight drop-shadow-sm text-slate-800"
                   >
                     <EditableText
                       path="services.hero.heading1"
@@ -77,7 +77,7 @@ export default function HeroSection() {
                       path="services.hero.heading2"
                       fallback="Services for Enterprise Scale"
                       as="span"
-                      className="text-primary-red drop-shadow-md"
+                      className="text-[#242A56] drop-shadow-md"
                     />
                   </motion.h1>
 
@@ -96,7 +96,7 @@ export default function HeroSection() {
                   <motion.div variants={fadeUp} className="flex flex-col sm:flex-row gap-4">
                     <a
                       href="#services-grid"
-                      className="inline-flex items-center justify-center gap-2 bg-primary-red hover:bg-red-700 text-white px-8 py-3.5 rounded-md font-bold text-sm transition-colors duration-200 shadow-lg group"
+                      className="inline-flex items-center justify-center gap-2 bg-[#242A56] hover:bg-[#1E234B] text-white px-8 py-3.5 rounded-md font-bold text-sm transition-colors duration-200 shadow-lg group"
                     >
                       <EditableText path="services.hero.ctaPrimary" fallback="Explore Services" as="span" />
                       <svg
@@ -111,7 +111,7 @@ export default function HeroSection() {
                     </a>
                     <a
                       href="#contact"
-                      className="inline-flex items-center justify-center gap-2 border border-slate-300 text-slate-700 hover:border-primary-red hover:text-primary-red font-bold text-sm px-8 py-3.5 rounded-md transition-colors duration-200"
+                      className="inline-flex items-center justify-center gap-2 border border-slate-300 text-slate-700 hover:border-[#242A56] hover:text-[#242A56] font-bold text-sm px-8 py-3.5 rounded-md transition-colors duration-200"
                     >
                       <EditableText path="services.hero.ctaSecondary" fallback="Talk to an Expert" as="span" />
                     </a>

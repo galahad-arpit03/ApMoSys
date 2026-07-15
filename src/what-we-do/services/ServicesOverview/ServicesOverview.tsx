@@ -26,7 +26,6 @@ export default function ServicesOverview() {
     startIndex + ITEMS_PER_PAGE
   );
 
-  // Fallback items if store is empty (shouldn't happen with default content)
   const fallbackItems = [
     {
       id: "1",
@@ -104,10 +103,10 @@ export default function ServicesOverview() {
         return (
           <section
             id="services-grid"
-            className={`py-24 transition-colors duration-300 ${
+            className={`py-16 transition-colors duration-300 ${
               isDark
-                ? "bg-[#121212] text-[#FAFAFA]"
-                : "bg-[#FFFFFF] text-[#121212]"
+                ? "bg-slate-800"
+                : "bg-white"
             }`}
           >
             <Container>
@@ -119,16 +118,9 @@ export default function ServicesOverview() {
                 transition={{ duration: 0.65, ease: "easeOut" }}
                 className="text-center max-w-3xl mx-auto mb-16"
               >
-                {/* <span className="text-primary-red text-xs font-bold uppercase tracking-widest block mb-4">
-                  <EditableText
-                    path="services.overview.sectionLabel"
-                    fallback="Our Capabilities"
-                    as="span"
-                  />
-                </span> */}
                 <h2
-                  className={`font-heading text-3xl sm:text-4xl font-bold mb-4 ${
-                    isDark ? "text-[#FFFFFF]" : "text-[#121212]"
+                  className={`text-4xl lg:text-5xl font-medium tracking-tight mb-4 ${
+                    isDark ? "text-white" : "text-slate-800"
                   }`}
                 >
                   <EditableText
@@ -138,8 +130,8 @@ export default function ServicesOverview() {
                   />
                 </h2>
                 <p
-                  className={`text-sm sm:text-base leading-relaxed ${
-                    isDark ? "text-[#A0A0A0]" : "text-[#5A5A5A]"
+                  className={`text-base lg:text-lg font-medium leading-relaxed ${
+                    isDark ? "text-gray-300" : "text-slate-600"
                   }`}
                 >
                   <EditableText
@@ -166,18 +158,18 @@ export default function ServicesOverview() {
                         exit={{ opacity: 0, scale: 0.95 }}
                         layout
                         transition={{ duration: 0.4 }}
-                        className={`p-8 md:p-10 rounded-xl shadow-sm border hover:shadow-md transition-shadow group flex flex-col h-full relative transition-colors ${
+                        className={`p-8 md:p-10 rounded-xl border transition-all hover:shadow-lg hover:-translate-y-1 group flex flex-col h-full ${
                           isDark
-                            ? "bg-[#1F1F1F] border-[#3A3A3A]"
-                            : "bg-[#FFFFFF] border-[#E8E8E8]"
+                            ? "bg-slate-700/50 border-slate-600 hover:border-[#242A56]/40"
+                            : "bg-white/80 backdrop-blur-sm border-gray-200/60 hover:border-[#242A56]/20 shadow-[0_4px_20px_rgb(0,0,0,0.03)] hover:shadow-[0_8px_30px_rgb(0,0,0,0.06)]"
                         }`}
                       >
                         {/* Icon */}
                         <div
                           className={`mb-6 w-16 h-16 rounded-xl flex items-center justify-center transition-colors ${
                             isDark
-                              ? "bg-primary-red/10 text-primary-red"
-                              : "bg-primary-soft text-primary-red"
+                              ? "bg-[#242A56]/20 text-[#242A56]"
+                              : "bg-[#242A56]/10 text-[#242A56]"
                           }`}
                         >
                           <IconComponent className="w-8 h-8" />
@@ -187,8 +179,8 @@ export default function ServicesOverview() {
                           path={`services.overview.items.${actualIdx}.title`}
                           fallback={item.title}
                           as="h3"
-                          className={`font-heading text-2xl font-bold mb-4 block ${
-                            isDark ? "text-[#FFFFFF]" : "text-[#121212]"
+                          className={`text-2xl font-medium mb-4 block ${
+                            isDark ? "text-white" : "text-slate-800"
                           }`}
                         />
 
@@ -196,21 +188,21 @@ export default function ServicesOverview() {
                           path={`services.overview.items.${actualIdx}.description`}
                           fallback={item.description}
                           as="p"
-                          className={`leading-relaxed mb-8 flex-grow block ${
-                            isDark ? "text-[#A0A0A0]" : "text-[#4A4A4A]"
+                          className={`text-base leading-relaxed mb-8 flex-grow font-medium ${
+                            isDark ? "text-gray-300" : "text-slate-600"
                           }`}
                           multiline
                         />
 
                         <div
                           className={`pt-6 border-t mt-auto transition-colors ${
-                            isDark ? "border-[#3A3A3A]" : "border-[#E8E8E8]"
+                            isDark ? "border-slate-600" : "border-gray-200"
                           }`}
                         >
                           <a
                             href="#"
-                            className={`inline-flex items-center text-xs font-bold tracking-widest uppercase group-hover:text-primary-red transition-colors ${
-                              isDark ? "text-[#FFFFFF]" : "text-[#121212]"
+                            className={`inline-flex items-center text-sm font-medium tracking-wide group-hover:text-[#242A56] transition-colors ${
+                              isDark ? "text-gray-300" : "text-slate-700"
                             }`}
                           >
                             <EditableText
@@ -223,11 +215,11 @@ export default function ServicesOverview() {
                               fill="none"
                               viewBox="0 0 24 24"
                               stroke="currentColor"
+                              strokeWidth={2}
                             >
                               <path
                                 strokeLinecap="round"
                                 strokeLinejoin="round"
-                                strokeWidth={2}
                                 d="M14 5l7 7m0 0l-7 7m7-7H3"
                               />
                             </svg>
@@ -248,25 +240,15 @@ export default function ServicesOverview() {
                     className={`p-2.5 rounded-lg border transition-colors ${
                       currentPage === 1
                         ? isDark
-                          ? "border-[#2A2A2A] text-[#5A5A5A] cursor-not-allowed"
-                          : "border-[#E8E8E8] text-[#C8C8C8] cursor-not-allowed"
+                          ? "border-slate-600 text-gray-500 cursor-not-allowed"
+                          : "border-gray-200 text-gray-300 cursor-not-allowed"
                         : isDark
-                        ? "border-[#3A3A3A] text-[#FFFFFF] hover:bg-[#1F1F1F] cursor-pointer"
-                        : "border-[#C8C8C8] text-[#121212] hover:bg-[#FAFAFA] cursor-pointer"
+                        ? "border-slate-500 text-gray-300 hover:bg-slate-700 hover:text-white cursor-pointer"
+                        : "border-gray-300 text-slate-600 hover:bg-gray-50 hover:text-slate-900 cursor-pointer"
                     }`}
                   >
-                    <svg
-                      className="w-4 h-4"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                      strokeWidth={2.5}
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M15 19l-7-7 7-7"
-                      />
+                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
                     </svg>
                   </button>
 
@@ -278,11 +260,11 @@ export default function ServicesOverview() {
                         onClick={() => setCurrentPage(pNum)}
                         className={`w-10 h-10 rounded-lg text-sm font-bold transition-all cursor-pointer ${
                           currentPage === pNum
-                            ? "bg-primary-red text-white border-primary-red shadow-lg shadow-red-500/25"
+                            ? "bg-[#242A56] text-white shadow-lg shadow-[#242A56]/20"
                             : `border transition-colors ${
                                 isDark
-                                  ? "border-[#3A3A3A] text-[#A0A0A0] hover:bg-[#1F1F1F] hover:text-[#FFFFFF]"
-                                  : "border-[#C8C8C8] text-[#5A5A5A] hover:bg-[#FAFAFA] hover:text-[#121212]"
+                                  ? "border-slate-600 text-gray-400 hover:bg-slate-700 hover:text-white"
+                                  : "border-gray-300 text-slate-600 hover:bg-gray-50 hover:text-slate-900"
                               }`
                         }`}
                       >
@@ -292,32 +274,20 @@ export default function ServicesOverview() {
                   })}
 
                   <button
-                    onClick={() =>
-                      setCurrentPage((p) => Math.min(p + 1, totalPages))
-                    }
+                    onClick={() => setCurrentPage((p) => Math.min(p + 1, totalPages))}
                     disabled={currentPage === totalPages}
                     className={`p-2.5 rounded-lg border transition-colors ${
                       currentPage === totalPages
                         ? isDark
-                          ? "border-[#2A2A2A] text-[#5A5A5A] cursor-not-allowed"
-                          : "border-[#E8E8E8] text-[#C8C8C8] cursor-not-allowed"
+                          ? "border-slate-600 text-gray-500 cursor-not-allowed"
+                          : "border-gray-200 text-gray-300 cursor-not-allowed"
                         : isDark
-                        ? "border-[#3A3A3A] text-[#FFFFFF] hover:bg-[#1F1F1F] cursor-pointer"
-                        : "border-[#C8C8C8] text-[#121212] hover:bg-[#FAFAFA] cursor-pointer"
+                        ? "border-slate-500 text-gray-300 hover:bg-slate-700 hover:text-white cursor-pointer"
+                        : "border-gray-300 text-slate-600 hover:bg-gray-50 hover:text-slate-900 cursor-pointer"
                     }`}
                   >
-                    <svg
-                      className="w-4 h-4"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                      strokeWidth={2.5}
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M9 5l7 7-7 7"
-                      />
+                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
                     </svg>
                   </button>
                 </div>

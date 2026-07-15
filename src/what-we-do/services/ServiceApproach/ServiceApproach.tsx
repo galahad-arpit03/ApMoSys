@@ -13,15 +13,15 @@ export default function ServiceApproach() {
   const approachItems = content.services?.approach?.items || [];
 
   return (
-    <SectionThemeWrapper sectionId="services_approach" defaultTheme="dark">
+    <SectionThemeWrapper sectionId="services_approach" defaultTheme="light">
       {(theme) => {
         const isDark = theme === "dark";
         return (
           <section
-            className={`py-24 border-t transition-colors duration-300 ${
+            className={`py-16 border-t transition-colors duration-300 ${
               isDark
-                ? "bg-[#121212] border-[#1F1F1F]"
-                : "bg-[#FAFAFA] border-[#E8E8E8]"
+                ? "bg-slate-800 border-slate-700"
+                : "bg-white/80 border-gray-200"
             }`}
           >
             <Container>
@@ -35,8 +35,8 @@ export default function ServiceApproach() {
                   className="lg:col-span-5 mb-12 lg:mb-0"
                 >
                   <h2
-                    className={`font-heading text-3xl sm:text-4xl font-bold mb-6 leading-tight ${
-                      isDark ? "text-[#FFFFFF]" : "text-[#121212]"
+                    className={`text-4xl lg:text-5xl font-medium tracking-tight mb-6 leading-tight ${
+                      isDark ? "text-white" : "text-slate-800"
                     }`}
                   >
                     <EditableText
@@ -46,8 +46,8 @@ export default function ServiceApproach() {
                     />
                   </h2>
                   <p
-                    className={`text-base leading-relaxed ${
-                      isDark ? "text-[#A0A0A0]" : "text-[#5A5A5A]"
+                    className={`text-base lg:text-lg font-medium leading-relaxed ${
+                      isDark ? "text-gray-300" : "text-slate-700"
                     }`}
                   >
                     <EditableText
@@ -73,16 +73,16 @@ export default function ServiceApproach() {
                         transition={{ delay: idx * 0.1, duration: 0.5 }}
                         className={`p-6 rounded-xl border transition-all hover:shadow-lg hover:-translate-y-1 group ${
                           isDark
-                            ? "bg-[#1A1A1A] border-[#2A2A2A] hover:border-primary-red/40"
-                            : "bg-[#FFFFFF] border-[#E8E8E8] hover:border-primary-red/30"
+                            ? "bg-slate-700/50 border-slate-600 hover:border-[#242A56]/50"
+                            : "bg-white/80 backdrop-blur-sm border-gray-200/60 hover:border-[#242A56]/30 shadow-[0_4px_20px_rgb(0,0,0,0.03)] hover:shadow-[0_8px_30px_rgb(0,0,0,0.06)]"
                         }`}
                       >
-                        <div className="mb-4 text-primary-red">
+                        <div className="mb-4 text-[#242A56]">
                           <IconComponent className="w-8 h-8" />
                         </div>
                         <h3
-                          className={`font-heading text-lg font-bold mb-3 ${
-                            isDark ? "text-[#FFFFFF]" : "text-[#121212]"
+                          className={`text-xl font-medium mb-3 ${
+                            isDark ? "text-white" : "text-slate-800"
                           }`}
                         >
                           <EditableText
@@ -92,8 +92,8 @@ export default function ServiceApproach() {
                           />
                         </h3>
                         <p
-                          className={`text-sm leading-relaxed ${
-                            isDark ? "text-[#A0A0A0]" : "text-[#5A5A5A]"
+                          className={`text-base leading-relaxed font-medium ${
+                            isDark ? "text-gray-300" : "text-slate-600"
                           }`}
                         >
                           <EditableText

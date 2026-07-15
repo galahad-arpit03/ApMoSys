@@ -12,7 +12,6 @@ export default function AllianceOverview() {
   const { content } = useContentStore();
   const allianceItems = content.alliance?.overview?.items || [];
 
-  // Fallback data
   const fallbackItems = [
     {
       id: "1",
@@ -67,14 +66,20 @@ export default function AllianceOverview() {
         return (
           <section
             id="partners"
-            className={`py-24 transition-colors duration-300 ${
+            className={`py-24 transition-colors duration-300 relative overflow-hidden ${
               isDark
-                ? "bg-[#121212] text-[#FAFAFA]"
-                : "bg-[#FFFFFF] text-[#121212]"
+                ? "bg-slate-800 text-white"
+                : "bg-gradient-to-b from-[#F0F4F8] to-white text-slate-800"
             }`}
           >
+            {/* Subtle background glows */}
+            <div className="absolute inset-0 overflow-hidden pointer-events-none">
+              <div className={`absolute top-0 right-0 w-[800px] h-[800px] rounded-full blur-[120px] pointer-events-none -translate-y-1/2 translate-x-1/3 ${
+                isDark ? "bg-[#242A56]/10" : "bg-[#242A56]/10"
+              }`} />
+            </div>
+
             <Container>
-              {/* Section Header */}
               <motion.div
                 initial={{ opacity: 0, y: 24 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -82,16 +87,9 @@ export default function AllianceOverview() {
                 transition={{ duration: 0.65, ease: "easeOut" }}
                 className="text-center max-w-3xl mx-auto mb-16"
               >
-                {/* <span className="text-primary-red text-xs font-bold uppercase tracking-widest block mb-4">
-                  <EditableText
-                    path="alliance.overview.sectionLabel"
-                    fallback="Our Alliance Ecosystem"
-                    as="span"
-                  />
-                </span> */}
                 <h2
-                  className={`font-heading text-3xl sm:text-4xl font-bold mb-4 ${
-                    isDark ? "text-[#FFFFFF]" : "text-[#121212]"
+                  className={`font-heading text-3xl sm:text-4xl font-medium tracking-tight mb-4 ${
+                    isDark ? "text-white" : "text-slate-800"
                   }`}
                 >
                   <EditableText
@@ -101,8 +99,8 @@ export default function AllianceOverview() {
                   />
                 </h2>
                 <p
-                  className={`text-sm sm:text-base leading-relaxed ${
-                    isDark ? "text-[#A0A0A0]" : "text-[#5A5A5A]"
+                  className={`text-base lg:text-lg font-medium leading-relaxed ${
+                    isDark ? "text-gray-300" : "text-black"
                   }`}
                 >
                   <EditableText
@@ -114,7 +112,6 @@ export default function AllianceOverview() {
                 </p>
               </motion.div>
 
-              {/* Alliance Grid */}
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {items.map((item, idx) => {
                   const IconComponent = allianceIconMap[item.icon] || defaultAllianceIcon;
@@ -127,16 +124,18 @@ export default function AllianceOverview() {
                       transition={{ delay: idx * 0.08, duration: 0.5 }}
                       className={`p-8 rounded-xl border transition-all hover:shadow-lg hover:-translate-y-1 group ${
                         isDark
-                          ? "bg-[#1A1A1A] border-[#2A2A2A] hover:border-primary-red/30"
-                          : "bg-[#FFFFFF] border-[#E8E8E8] hover:border-primary-red/20"
+                          ? "bg-slate-700/50 border-slate-600 hover:border-[#242A56]/40"
+                          : "bg-white/80 backdrop-blur-sm border-gray-200/60 hover:border-[#242A56]/20 shadow-[0_4px_20px_rgb(0,0,0,0.03)] hover:shadow-[0_8px_30px_rgb(0,0,0,0.06)]"
                       }`}
                     >
-                      <div className="mb-4 text-primary-red">
+                      <div className={`mb-4 p-3 rounded-xl inline-block ${
+                        isDark ? "bg-[#242A56]/20 text-[#242A56]" : "bg-[#242A56]/10 text-[#242A56]"
+                      }`}>
                         <IconComponent className="w-8 h-8" />
                       </div>
                       <h3
                         className={`font-heading text-xl font-bold mb-3 ${
-                          isDark ? "text-[#FFFFFF]" : "text-[#121212]"
+                          isDark ? "text-white" : "text-slate-800"
                         }`}
                       >
                         <EditableText
@@ -147,7 +146,7 @@ export default function AllianceOverview() {
                       </h3>
                       <p
                         className={`text-sm leading-relaxed ${
-                          isDark ? "text-[#A0A0A0]" : "text-[#5A5A5A]"
+                          isDark ? "text-gray-300" : "text-slate-600"
                         }`}
                       >
                         <EditableText

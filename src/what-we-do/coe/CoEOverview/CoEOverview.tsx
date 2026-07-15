@@ -12,7 +12,6 @@ export default function CoEOverview() {
   const { content } = useContentStore();
   const coeItems = content.coe?.overview?.items || [];
 
-  // Fallback data if store is empty
   const fallbackItems = [
     {
       id: "1",
@@ -21,7 +20,6 @@ export default function CoEOverview() {
       description:
         "Certified testing engineers and quality consultants possessing specialized skillsets, domain experience, and tools expertise to add value in pursuit of excellence.",
       icon: "functional",
-      image: "https://images.unsplash.com/photo-1517048676732-d65bc937f952?q=80&w=400&auto=format&fit=crop",
     },
     {
       id: "2",
@@ -30,7 +28,6 @@ export default function CoEOverview() {
       description:
         "Navigate challenges, achieve your performance goals, and deliver a rapid, responsive, and reliable experience that delights your customers.",
       icon: "performance",
-      image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=400&auto=format&fit=crop",
     },
     {
       id: "3",
@@ -39,7 +36,6 @@ export default function CoEOverview() {
       description:
         "Leverage the power of automation to reduce manual effort, improve reliability, increase repeatability, and identify issues as they are introduced.",
       icon: "automation",
-      image: "https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=400&auto=format&fit=crop",
     },
     {
       id: "4",
@@ -48,7 +44,6 @@ export default function CoEOverview() {
       description:
         "Dedicated research and implementation lab for integrating predictive analytics, NLP, and advanced machine learning models into enterprise workflows.",
       icon: "ai",
-      image: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?q=80&w=400&auto=format&fit=crop",
     },
     {
       id: "5",
@@ -57,7 +52,6 @@ export default function CoEOverview() {
       description:
         "Deep domain expertise in core banking, payments, and compliance testing, ensuring zero-defect releases for financial institutions.",
       icon: "banking",
-      image: "https://images.unsplash.com/photo-1501167786227-4cba60f6d58f?q=80&w=400&auto=format&fit=crop",
     },
     {
       id: "6",
@@ -66,7 +60,6 @@ export default function CoEOverview() {
       description:
         "Specialized frameworks for Policy Admin Systems, Claims Processing, and Underwriting validation tailored for the insurance sector.",
       icon: "insurance",
-      image: "https://images.unsplash.com/photo-1450101499163-c8848c66cb85?q=80&w=400&auto=format&fit=crop",
     },
   ];
 
@@ -79,14 +72,20 @@ export default function CoEOverview() {
         return (
           <section
             id="coe-grid"
-            className={`py-24 transition-colors duration-300 ${
+            className={`py-24 transition-colors duration-300 relative overflow-hidden ${
               isDark
-                ? "bg-[#121212] text-[#FAFAFA]"
-                : "bg-[#FFFFFF] text-[#121212]"
+                ? "bg-slate-800 text-white"
+                : "bg-gradient-to-b from-[#F0F4F8] to-white text-slate-800"
             }`}
           >
+            {/* Subtle background glows */}
+            <div className="absolute inset-0 overflow-hidden pointer-events-none">
+              <div className={`absolute top-0 right-0 w-[800px] h-[800px] rounded-full blur-[120px] pointer-events-none -translate-y-1/2 translate-x-1/3 ${
+                isDark ? "bg-[#242A56]/10" : "bg-[#242A56]/10"
+              }`} />
+            </div>
+
             <Container>
-              {/* Section Header */}
               <motion.div
                 initial={{ opacity: 0, y: 24 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -94,16 +93,9 @@ export default function CoEOverview() {
                 transition={{ duration: 0.65, ease: "easeOut" }}
                 className="text-center max-w-3xl mx-auto mb-16"
               >
-                {/* <span className="text-primary-red text-xs font-bold uppercase tracking-widest block mb-4">
-                  <EditableText
-                    path="coe.overview.sectionLabel"
-                    fallback="Our Centers of Excellence"
-                    as="span"
-                  />
-                </span> */}
                 <h2
-                  className={`font-heading text-3xl sm:text-4xl font-bold mb-4 ${
-                    isDark ? "text-[#FFFFFF]" : "text-[#121212]"
+                  className={`font-heading text-3xl sm:text-4xl font-medium tracking-tight mb-4 ${
+                    isDark ? "text-white" : "text-slate-800"
                   }`}
                 >
                   <EditableText
@@ -113,8 +105,8 @@ export default function CoEOverview() {
                   />
                 </h2>
                 <p
-                  className={`text-sm sm:text-base leading-relaxed ${
-                    isDark ? "text-[#A0A0A0]" : "text-[#5A5A5A]"
+                  className={`text-base lg:text-lg font-medium leading-relaxed ${
+                    isDark ? "text-gray-300" : "text-black"
                   }`}
                 >
                   <EditableText
@@ -126,7 +118,6 @@ export default function CoEOverview() {
                 </p>
               </motion.div>
 
-              {/* CoE Grid */}
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {items.map((item, idx) => {
                   const IconComponent = coesIconMap[item.icon] || defaultCoEIcon;
@@ -139,17 +130,19 @@ export default function CoEOverview() {
                       transition={{ delay: idx * 0.08, duration: 0.5 }}
                       className={`p-8 rounded-xl border transition-all hover:shadow-lg hover:-translate-y-1 group ${
                         isDark
-                          ? "bg-[#1A1A1A] border-[#2A2A2A] hover:border-primary-red/30"
-                          : "bg-[#FFFFFF] border-[#E8E8E8] hover:border-primary-red/20"
+                          ? "bg-slate-700/50 border-slate-600 hover:border-[#242A56]/40"
+                          : "bg-white/80 backdrop-blur-sm border-gray-200/60 hover:border-[#242A56]/20 shadow-[0_4px_20px_rgb(0,0,0,0.03)] hover:shadow-[0_8px_30px_rgb(0,0,0,0.06)]"
                       }`}
                     >
                       <div className="flex items-center gap-3 mb-4">
-                        <div className="text-primary-red">
-                          <IconComponent className="w-8 h-8" />
+                        <div className={`p-2 rounded-lg ${
+                          isDark ? "bg-[#242A56]/20 text-[#242A56]" : "bg-[#242A56]/10 text-[#242A56]"
+                        }`}>
+                          <IconComponent className="w-6 h-6" />
                         </div>
                         <span
                           className={`text-xs font-bold uppercase tracking-widest ${
-                            isDark ? "text-[#7A7A7A]" : "text-[#5A5A5A]"
+                            isDark ? "text-gray-400" : "text-slate-500"
                           }`}
                         >
                           <EditableText
@@ -161,7 +154,7 @@ export default function CoEOverview() {
                       </div>
                       <h3
                         className={`font-heading text-xl font-bold mb-3 ${
-                          isDark ? "text-[#FFFFFF]" : "text-[#121212]"
+                          isDark ? "text-white" : "text-slate-800"
                         }`}
                       >
                         <EditableText
@@ -172,7 +165,7 @@ export default function CoEOverview() {
                       </h3>
                       <p
                         className={`text-sm leading-relaxed ${
-                          isDark ? "text-[#A0A0A0]" : "text-[#5A5A5A]"
+                          isDark ? "text-gray-300" : "text-slate-600"
                         }`}
                       >
                         <EditableText

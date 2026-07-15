@@ -16,19 +16,18 @@ export default function ProductCategories() {
     categoryItems.length > 0 ? categoryItems[0].id : null
   );
 
-  // Find the active category object
   const activeCategoryData = categoryItems.find((c) => c.id === activeCategory);
 
   return (
-    <SectionThemeWrapper sectionId="products_categories" defaultTheme="dark">
+    <SectionThemeWrapper sectionId="products_categories" defaultTheme="light">
       {(theme) => {
         const isDark = theme === "dark";
         return (
           <section
-            className={`py-24 border-t transition-colors duration-300 ${
+            className={`py-16 transition-colors duration-300 relative ${
               isDark
-                ? "bg-[#121212] border-[#1F1F1F]"
-                : "bg-[#FAFAFA] border-[#E8E8E8]"
+                ? "bg-[#121212] text-[#FAFAFA]"
+                : "bg-white text-[#121212]"
             }`}
           >
             <Container>
@@ -41,8 +40,8 @@ export default function ProductCategories() {
                 className="text-center max-w-3xl mx-auto mb-16"
               >
                 <h2
-                  className={`font-heading text-3xl sm:text-4xl font-bold mb-4 ${
-                    isDark ? "text-[#FFFFFF]" : "text-[#121212]"
+                  className={`text-4xl lg:text-5xl font-medium tracking-tight mb-4 ${
+                    isDark ? "text-white" : "text-slate-800"
                   }`}
                 >
                   <EditableText
@@ -52,8 +51,8 @@ export default function ProductCategories() {
                   />
                 </h2>
                 <p
-                  className={`text-sm sm:text-base leading-relaxed ${
-                    isDark ? "text-[#A0A0A0]" : "text-[#5A5A5A]"
+                  className={`text-base lg:text-lg font-medium leading-relaxed ${
+                    isDark ? "text-gray-300" : "text-black"
                   }`}
                 >
                   <EditableText
@@ -71,35 +70,34 @@ export default function ProductCategories() {
                 <div className="flex flex-col gap-3">
                   {categoryItems.map((category) => {
                     const isActive = activeCategory === category.id;
-                    const IconComponent =
-                      productIconMap[category.icon] || defaultProductIcon;
+                    const IconComponent = productIconMap[category.icon] || defaultProductIcon;
                     return (
                       <button
                         key={category.id}
                         onClick={() => setActiveCategory(isActive ? null : category.id)}
                         className={`flex items-center gap-4 p-4 rounded-xl border transition-all duration-300 text-left ${
                           isActive
-                            ? `border-primary-red ${
+                            ? `border-[#242A56] ${
                                 isDark
-                                  ? "bg-[#1A1A1A] shadow-lg shadow-primary-red/5"
-                                  : "bg-[#FFFFFF] shadow-lg shadow-primary-red/10"
+                                  ? "bg-[#1A1A1A] shadow-lg shadow-[#242A56]/5"
+                                  : "bg-white shadow-lg shadow-[#242A56]/10"
                               }`
                             : isDark
-                            ? "border-[#2A2A2A] bg-[#0D0D0D] hover:bg-[#1A1A1A]"
-                            : "border-[#E8E8E8] bg-[#FAFAFA] hover:bg-[#FFFFFF]"
+                            ? "border-[#2A2A2A] bg-[#1A1A1A]/30 hover:bg-[#1A1A1A]"
+                            : "border-gray-200 bg-white/50 hover:bg-white"
                         }`}
                       >
-                        <div className="flex-shrink-0 text-primary-red">
+                        <div className="flex-shrink-0 text-[#242A56]">
                           <IconComponent className="w-6 h-6" />
                         </div>
                         <div className="flex-1">
                           <h3
-                            className={`font-heading font-bold text-base ${
+                            className={`font-medium text-base ${
                               isActive
-                                ? "text-primary-red"
+                                ? "text-[#242A56]"
                                 : isDark
-                                ? "text-[#FFFFFF]"
-                                : "text-[#121212]"
+                                ? "text-white"
+                                : "text-slate-800"
                             }`}
                           >
                             <EditableText
@@ -110,7 +108,7 @@ export default function ProductCategories() {
                           </h3>
                           <p
                             className={`text-sm leading-relaxed line-clamp-2 ${
-                              isDark ? "text-[#A0A0A0]" : "text-[#5A5A5A]"
+                              isDark ? "text-gray-300" : "text-slate-600"
                             }`}
                           >
                             <EditableText
@@ -124,7 +122,7 @@ export default function ProductCategories() {
                         <svg
                           className={`w-5 h-5 transition-transform duration-300 ${
                             isActive ? "rotate-180" : ""
-                          } ${isDark ? "text-[#7A7A7A]" : "text-[#5A5A5A]"}`}
+                          } ${isDark ? "text-gray-400" : "text-gray-400"}`}
                           fill="none"
                           viewBox="0 0 24 24"
                           stroke="currentColor"
@@ -141,13 +139,13 @@ export default function ProductCategories() {
                   })}
                 </div>
 
-                {/* Right: Products in category – now filled with rich content */}
+                {/* Right: Products in category */}
                 <div className="relative">
                   <div
                     className={`rounded-xl border p-6 h-full flex flex-col transition-all duration-300 ${
                       isDark
                         ? "bg-[#1A1A1A] border-[#2A2A2A]"
-                        : "bg-[#FFFFFF] border-[#E8E8E8]"
+                        : "bg-white/80 backdrop-blur-md border-gray-200/60 shadow-[0_4px_20px_rgb(0,0,0,0.03)]"
                     }`}
                   >
                     <AnimatePresence mode="wait">
@@ -162,15 +160,15 @@ export default function ProductCategories() {
                         >
                           {/* Icon & Title */}
                           <div className="flex items-center gap-4 mb-4">
-                            <div className="text-primary-red">
+                            <div className="text-[#242A56]">
                               {(() => {
                                 const Icon = productIconMap[activeCategoryData.icon] || defaultProductIcon;
                                 return <Icon className="w-10 h-10" />;
                               })()}
                             </div>
                             <h4
-                              className={`font-heading text-2xl font-bold ${
-                                isDark ? "text-[#FFFFFF]" : "text-[#121212]"
+                              className={`text-2xl font-medium ${
+                                isDark ? "text-white" : "text-slate-800"
                               }`}
                             >
                               <EditableText
@@ -184,7 +182,7 @@ export default function ProductCategories() {
                           {/* Category Description */}
                           <p
                             className={`text-sm leading-relaxed mb-6 ${
-                              isDark ? "text-[#A0A0A0]" : "text-[#5A5A5A]"
+                              isDark ? "text-gray-300" : "text-slate-600"
                             }`}
                           >
                             <EditableText
@@ -198,8 +196,8 @@ export default function ProductCategories() {
                           {/* Products List */}
                           <div className="flex-1">
                             <h5
-                              className={`text-xs font-bold uppercase tracking-widest mb-3 ${
-                                isDark ? "text-[#7A7A7A]" : "text-[#5A5A5A]"
+                              className={`text-xs font-semibold uppercase tracking-widest mb-3 ${
+                                isDark ? "text-gray-400" : "text-slate-500"
                               }`}
                             >
                               Products in this category
@@ -209,10 +207,10 @@ export default function ProductCategories() {
                                 <li
                                   key={product}
                                   className={`flex items-center gap-3 text-sm ${
-                                    isDark ? "text-[#C8C8C8]" : "text-[#5A5A5A]"
+                                    isDark ? "text-gray-300" : "text-slate-600"
                                   }`}
                                 >
-                                  <span className="text-primary-red">◆</span>
+                                  <span className="text-[#242A56]">◆</span>
                                   <span>{product}</span>
                                 </li>
                               ))}
@@ -220,13 +218,13 @@ export default function ProductCategories() {
                           </div>
 
                           {/* CTA Button */}
-                          <div className="mt-6 pt-4 border-t border-[#2A2A2A]">
+                          <div className="mt-6 pt-4 border-t border-slate-600">
                             <a
                               href="/products"
-                              className={`inline-flex items-center gap-2 text-sm font-bold transition-colors group ${
+                              className={`inline-flex items-center gap-2 text-sm font-semibold transition-colors group ${
                                 isDark
-                                  ? "text-[#FFFFFF] hover:text-primary-red"
-                                  : "text-[#121212] hover:text-primary-red"
+                                  ? "text-white hover:text-[#242A56]"
+                                  : "text-slate-700 hover:text-[#242A56]"
                               }`}
                             >
                               Explore all products
@@ -240,7 +238,7 @@ export default function ProductCategories() {
                           animate={{ opacity: 1 }}
                           className="flex flex-col items-center justify-center h-full min-h-[200px] text-center"
                         >
-                          <p className={`text-sm ${isDark ? "text-[#5A5A5A]" : "text-[#7A7A7A]"}`}>
+                          <p className={`text-sm ${isDark ? "text-gray-400" : "text-slate-500"}`}>
                             Select a category to view products
                           </p>
                         </motion.div>
