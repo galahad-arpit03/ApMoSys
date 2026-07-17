@@ -20,21 +20,25 @@ import WhyApmosys from "./WhyApmosys/WhyApmosys";
 import ProductsInnovations from "./ProductsInnovations/ProductsInnovations";
 import Industries from "./Industries/Industries";
 import CoreServices from "./CoreServices/CoreServices";
+import AboutApmosys from "./AboutApmosys/AboutApmosys";
+import TrustedBy from "./TrustedBy/TrustedBy";
 
 export default function LandingPage() {
   return (
     <div className="relative bg-[#0A1128] overflow-x-hidden w-full max-w-[100vw]">
       <Hero />
-      <ThinMarquee />
+      <TrustedBy />
+      {/* <ThinMarquee />
       <ClientLogos />
       <StatsStrip />
       <ValueProposition />
       <SolutionsFunnel />
-      <CoESection />
       <Testimonials />
-      <Partnerships />
+      <Partnerships /> */}
+      <AboutApmosys />
       <CoreServices />
       <Industries />
+      <CoESection />
       <ProductsInnovations />
       <WhyApmosys />
       <SuccessMetrics />

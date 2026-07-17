@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import Navbar from "@/src/nav-bar/Navbar";
 import Footer from "@/src/footer/Footer";
 import ThemeApplicator from "@/src/admin/components/ThemeApplicator";
+import AnnouncementBar from "@/src/landing/AnnouncementBar/AnnouncementBar";
 
 export default function ConditionalShell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
@@ -18,6 +19,7 @@ export default function ConditionalShell({ children }: { children: React.ReactNo
   return (
     <>
       <ThemeApplicator />
+      <AnnouncementBar />
       <Navbar />
       <main className="flex-grow">
         {children}

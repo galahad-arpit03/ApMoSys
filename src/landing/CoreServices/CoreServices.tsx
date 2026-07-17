@@ -88,10 +88,10 @@ export default function CoreServices() {
                 >
                   {/* Text Content Only */}
                   <div className="flex-grow">
-                    <h3 className="text-base xl:text-lg font-bold text-white mb-2 leading-tight group-hover:text-[#3B82F6] transition-colors duration-300">
+                    <h3 className="text-base xl:text-lg font-medium text-white mb-2 leading-tight group-hover:text-[#3B82F6] transition-colors duration-300">
                       {service.name}
                     </h3>
-                    <p className="text-[13px] xl:text-[14px] text-gray-400 leading-snug">
+                    <p className="text-[13px] xl:text-[14px] text-gray-200 leading-snug">
                       {service.desc}
                     </p>
                   </div>
