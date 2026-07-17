@@ -16,6 +16,7 @@ import MilestonesTimeline from "@/src/who-we-are/about-us/MilestonesTimeline/Mil
 import ExecutiveTeam from "@/src/who-we-are/leadership/ExecutiveTeam/ExecutiveTeam";
 import AwardsCertifications from "./AwardsCertifications/AwardsCertifications";
 import SuccessMetrics from "./SuccessMetrics/SuccessMetrics";
+import WhyApmosys from "./WhyApmosys/WhyApmosys";
 
 export default function LandingPage() {
   return (
@@ -29,6 +30,7 @@ export default function LandingPage() {
       <CoESection />
       <Testimonials />
       <Partnerships />
+      <WhyApmosys />
       <SuccessMetrics />
       <AwardsCertifications />
       <ExecutiveTeam />

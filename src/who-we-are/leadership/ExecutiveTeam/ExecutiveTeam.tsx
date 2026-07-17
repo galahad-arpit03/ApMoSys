@@ -52,7 +52,7 @@ export default function ExecutiveTeam() {
                           src={member.image || "/leadership/placeholder.png"}
                           alt={member.name}
                           fill
-                          className="object-cover object-top grayscale group-hover:grayscale-0 transition-all duration-700 scale-100 group-hover:scale-105"
+                          className="object-cover object-top transition-all duration-700 scale-100 group-hover:scale-105"
                         />
                       </EditableImage>
                     </div>
