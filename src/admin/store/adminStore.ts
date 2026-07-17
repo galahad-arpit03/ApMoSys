@@ -1741,7 +1741,7 @@ export const defaultContent: SiteContent = {
   },
   },
   leadership: {
-    executiveTeam: executiveteamData.map((m, i) => ({ id: `exec-${i}`, ...m })),
+    executiveTeam: executiveteamData.map((m) => ({ ...m })),
   },
   alliance: {
   hero: {

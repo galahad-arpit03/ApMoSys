@@ -9,37 +9,37 @@ const latestInsightsData = [
     id: 1,
     category: "Web Solution",
     title: "Make a better website solution for your product.",
-    image: "/assets/blog-1.jpg"
+    image: "/assets/news_1.png"
   },
   {
     id: 2,
     category: "UI Interface",
     title: "The Science of Color Contrast – An Expert Designer's Guide",
-    image: "/assets/blog-2.jpg"
+    image: "/assets/news_2.png"
   },
   {
     id: 3,
     category: "Web Interface",
     title: "SEO Made Simple: A Step by Step Guide for 2026",
-    image: "/assets/blog-3.jpg"
+    image: "/assets/news_3.png"
   },
   {
     id: 4,
     category: "Interface Design",
     title: "Make a better website solution for your product.",
-    image: "/assets/blog-4.jpg"
+    image: "/assets/news_4.png"
   },
   {
     id: 5,
     category: "Engineering",
     title: "Zero-Downtime Migration for Financial Systems",
-    image: "/assets/blog-1.jpg"
+    image: "/assets/news_5.png"
   },
   {
     id: 6,
     category: "Architecture",
     title: "The Future of AI in Enterprise Architecture",
-    image: "/assets/blog-2.jpg"
+    image: "/assets/news_6.png"
   }
 ];
 

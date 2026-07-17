@@ -7,25 +7,26 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { usePathname } from "next/navigation";
 
+import { executiveteamData } from "./ExecutiveTeamData";
+
 export default function ExecutiveTeam() {
   const { content, addLeadershipExecutive, deleteLeadershipExecutive } = useContentStore();
   const { isAuthenticated } = useAuthStore();
   const pathname = usePathname();
   const isEditRoute = pathname?.startsWith("/administrator") && isAuthenticated;
-  const team = content.leadership?.executiveTeam || [];
+  const team = executiveteamData; // Forced to bypass localstorage cache
   return (
     <SectionThemeWrapper sectionId="leadership_executive" defaultTheme="light">
       {() => {
         return (
           <section className="py-12 lg:py-24 relative overflow-clip transition-colors duration-300 bg-white border-gray-100">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
 
-              <div className="text-left mb-12 sm:mb-16">
-                <h2 className="text-4xl lg:text-5xl font-medium tracking-tight mb-6 text-slate-800">
-                  Meet Our Executive Team
+              <div className="mb-10 lg:grid lg:grid-cols-12 lg:gap-12 items-start">
+                <h2 className="lg:col-span-7 font-heading text-4xl sm:text-5xl lg:text-6xl font-normal tracking-normal text-black mb-6 lg:mb-0">
+                  Meet Our <br /> Executive Team
                 </h2>
-
-                <p className="text-lg font-medium leading-relaxed max-w-3xl text-black">
+                <p className="lg:col-span-5 text-lg leading-relaxed text-[#5A5A5A]">
                   Experienced leaders driving innovation, enterprise growth,
                   and engineering excellence across ApMoSys.
                 </p>
@@ -42,7 +43,7 @@ export default function ExecutiveTeam() {
                     className="group relative flex flex-col items-start"
                   >
                     {/* Image Section */}
-                    <div className="relative w-full aspect-[4/5] overflow-hidden rounded-sm mb-6 bg-gray-100">
+                    <div className="relative w-full aspect-square overflow-hidden rounded-sm mb-6 bg-gray-100">
                       <EditableImage
                         className="w-full h-full relative"
                         label={`Executive: ${member.name}`}
