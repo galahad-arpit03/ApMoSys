@@ -14,6 +14,7 @@ import CareersCTA from "./CareersCTA/CareersCTA";
 import InquirySection from "@/src/contact-us/InquirySection/InquirySection";
 import MilestonesTimeline from "@/src/who-we-are/about-us/MilestonesTimeline/MilestonesTimeline";
 import ExecutiveTeam from "@/src/who-we-are/leadership/ExecutiveTeam/ExecutiveTeam";
+import AwardsCertifications from "./AwardsCertifications/AwardsCertifications";
 
 export default function LandingPage() {
   return (
@@ -27,6 +28,7 @@ export default function LandingPage() {
       <CoESection />
       <Testimonials />
       <Partnerships />
+      <AwardsCertifications />
       <ExecutiveTeam />
       <MilestonesTimeline />
       <LatestInsights />
