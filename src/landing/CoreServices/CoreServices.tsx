@@ -52,7 +52,7 @@ const getBorderClasses = (idx: number, total: number) => {
 
 export default function CoreServices() {
   return (
-    <section className="py-12 lg:py-16 bg-[#0A1128] relative overflow-hidden">
+    <section className="py-10 lg:py-16 bg-[#0A1128] relative overflow-hidden">
       {/* Background glow effects */}
       <div className="absolute top-1/2 left-0 w-[500px] h-[500px] bg-[#2563EB]/10 rounded-full blur-[120px] pointer-events-none" />
       <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#2563EB]/10 rounded-full blur-[150px] pointer-events-none" />

@@ -8,7 +8,7 @@ export default function CoESection() {
   const [activeId, setActiveId] = useState<string | null>(coeData[0].id);
 
   return (
-    <section className="py-12 lg:py-16 bg-white border-b border-gray-100 relative overflow-hidden">
+    <section className="py-10 lg:py-16 bg-white border-b border-gray-100 relative overflow-hidden">
       <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Header - LHS/RHS Split */}

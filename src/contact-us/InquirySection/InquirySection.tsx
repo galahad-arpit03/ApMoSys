@@ -41,7 +41,7 @@ export default function InquirySection() {
   };
 
   return (
-    <section className="relative pt-12 lg:pt-16 pb-12 lg:pb-20 bg-[#F8FAFC] text-[#121212] overflow-hidden">
+    <section className="relative py-10 lg:py-16 bg-[#F8FAFC] text-[#121212] overflow-hidden">
       {/* Watery Ambient Background for Glassmorphism */}
       {/* <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-blue-200/40 rounded-full blur-[150px] pointer-events-none translate-x-1/4 -translate-y-1/4 z-0"></div> */}
       {/* <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-cyan-200/30 rounded-full blur-[120px] pointer-events-none -translate-x-1/4 translate-y-1/4 z-0"></div> */}

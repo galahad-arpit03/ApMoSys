@@ -13,11 +13,11 @@ const STATS_DATA = [
 
 export default function AboutApmosys() {
   return (
-    <section className="py-12 lg:py-16 bg-white relative overflow-hidden">
+    <section className="py-10 lg:py-16 bg-white relative overflow-hidden">
       <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
         {/* Header - LHS/RHS Split */}
-        <div className="mb-12 lg:mb-16 flex flex-col lg:flex-row lg:items-start justify-between gap-8 lg:gap-16">
+        <div className="mb-8 lg:mb-10 flex flex-col lg:flex-row lg:items-start justify-between gap-8 lg:gap-16">
           {/* Left Side: Heading */}
           <div className="lg:w-[55%] shrink-0">
             <h2 className="font-heading text-4xl sm:text-5xl lg:text-5xl xl:text-6xl font-normal text-black leading-[1.1] pr-4">

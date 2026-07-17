@@ -1,41 +1,34 @@
 import React from "react";
+import dynamic from "next/dynamic";
 
+// Eagerly loaded components (Above the fold)
 import Hero from "./Hero/Hero";
-import ThinMarquee from "./ThinMarquee/ThinMarquee";
-import StatsStrip from "./StatsStrip/StatsStrip";
-import ClientLogos from "./ClientLogos/ClientLogos";
-import SolutionsFunnel from "./SolutionsFunnel/SolutionsFunnel";
-import CoESection from "./CoESection/CoESection";
-import Partnerships from "./Partnerships/Partnerships";
-import ValueProposition from "./ValueProposition/ValueProposition";
-import Testimonials from "./Testimonials/Testimonials";
-import LatestInsights from "./LatestInsights/LatestInsights";
-import CareersCTA from "./CareersCTA/CareersCTA";
-import InquirySection from "@/src/contact-us/InquirySection/InquirySection";
-import MilestonesTimeline from "@/src/who-we-are/about-us/MilestonesTimeline/MilestonesTimeline";
-import ExecutiveTeam from "@/src/who-we-are/leadership/ExecutiveTeam/ExecutiveTeam";
-import AwardsCertifications from "./AwardsCertifications/AwardsCertifications";
-import SuccessMetrics from "./SuccessMetrics/SuccessMetrics";
-import WhyApmosys from "./WhyApmosys/WhyApmosys";
-import ProductsInnovations from "./ProductsInnovations/ProductsInnovations";
-import Industries from "./Industries/Industries";
-import CoreServices from "./CoreServices/CoreServices";
-import AboutApmosys from "./AboutApmosys/AboutApmosys";
 import TrustedBy from "./TrustedBy/TrustedBy";
+import AboutApmosys from "./AboutApmosys/AboutApmosys";
+
+// Lazy-loaded components (Below the fold)
+const CoreServices = dynamic(() => import("./CoreServices/CoreServices"));
+const Industries = dynamic(() => import("./Industries/Industries"));
+const CoESection = dynamic(() => import("./CoESection/CoESection"));
+const ProductsInnovations = dynamic(() => import("./ProductsInnovations/ProductsInnovations"));
+const WhyApmosys = dynamic(() => import("./WhyApmosys/WhyApmosys"));
+const SuccessMetrics = dynamic(() => import("./SuccessMetrics/SuccessMetrics"));
+const AwardsCertifications = dynamic(() => import("./AwardsCertifications/AwardsCertifications"));
+const LatestInsights = dynamic(() => import("./LatestInsights/LatestInsights"));
+const MilestonesTimeline = dynamic(() => import("@/src/who-we-are/about-us/MilestonesTimeline/MilestonesTimeline"));
+const ExecutiveTeam = dynamic(() => import("@/src/who-we-are/leadership/ExecutiveTeam/ExecutiveTeam"));
+const CareersCTA = dynamic(() => import("./CareersCTA/CareersCTA"));
+const InquirySection = dynamic(() => import("@/src/contact-us/InquirySection/InquirySection"));
 
 export default function LandingPage() {
   return (
     <div className="relative bg-[#0A1128] overflow-x-hidden w-full max-w-[100vw]">
+      {/* Above the fold - loaded instantly */}
       <Hero />
       <TrustedBy />
-      {/* <ThinMarquee />
-      <ClientLogos />
-      <StatsStrip />
-      <ValueProposition />
-      <SolutionsFunnel />
-      <Testimonials />
-      <Partnerships /> */}
       <AboutApmosys />
+
+      {/* Core Offerings & Value - loaded on scroll */}
       <CoreServices />
       <Industries />
       <CoESection />
@@ -43,9 +36,13 @@ export default function LandingPage() {
       <WhyApmosys />
       <SuccessMetrics />
       <AwardsCertifications />
-      <ExecutiveTeam />
-      <MilestonesTimeline />
       <LatestInsights />
+      
+      {/* Deep Dives (Moved to bottom for better conversion UX) */}
+      <MilestonesTimeline />
+      <ExecutiveTeam />
+      
+      {/* Footer CTAs */}
       <CareersCTA />
       <div className="bg-white">
         <InquirySection />

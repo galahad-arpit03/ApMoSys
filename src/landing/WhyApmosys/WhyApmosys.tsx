@@ -37,11 +37,11 @@ const getBorderClasses = (idx: number, total: number) => {
 
 export default function WhyApmosys() {
   return (
-    <section className="py-16 lg:py-24 bg-[#FAFAFA]">
+    <section className="py-10 lg:py-16 bg-[#FAFAFA]">
       <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header Section (LHS/RHS) */}
-        <div className="mb-16 lg:grid lg:grid-cols-12 lg:gap-12 items-start">
+        <div className="mb-10 lg:grid lg:grid-cols-12 lg:gap-12 items-start">
           <h2 className="lg:col-span-7 font-heading text-4xl sm:text-5xl lg:text-6xl font-normal tracking-normal text-black mb-6 lg:mb-0">
             Why People <br className="hidden lg:block" /> Choose Us?
           </h2>

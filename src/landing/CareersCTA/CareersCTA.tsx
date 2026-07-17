@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 
 export default function CareersCTA() {
   return (
-    <section className="py-12 lg:py-16 bg-white px-4 sm:px-6 lg:px-8">
+    <section className="py-10 lg:py-16 bg-white px-4 sm:px-6 lg:px-8">
       <div className="max-w-[1600px] mx-auto relative rounded-[12px] overflow-hidden shadow-2xl">
         {/* Background Image & Overlay */}
         <div className="absolute inset-0 z-0">

@@ -75,7 +75,7 @@ export default function LatestInsights() {
   };
 
   return (
-    <section className="py-12 lg:py-16 bg-[#F8FAFC] text-[#121212] overflow-hidden">
+    <section className="py-10 lg:py-16 bg-[#F8FAFC] text-[#121212] overflow-hidden">
       <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Header Section */}

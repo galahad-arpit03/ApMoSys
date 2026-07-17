@@ -76,11 +76,11 @@ export default function ProductsInnovations() {
   }, []);
 
   return (
-    <section className="py-12 lg:py-16 bg-white">
+    <section className="py-10 lg:py-16 bg-white">
       <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header - LHS/RHS Split with Navigation */}
-        <div className="mb-12 lg:mb-16 flex flex-col lg:flex-row lg:items-start justify-between gap-8">
+        <div className="mb-8 lg:mb-10 flex flex-col lg:flex-row lg:items-start justify-between gap-8">
           {/* Left Side: Heading */}
           <div className="shrink-0">
             <h2 className="font-heading text-4xl sm:text-5xl lg:text-6xl font-normal text-black leading-[1.1]">

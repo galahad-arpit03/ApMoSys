@@ -43,7 +43,7 @@ const Counter = ({ end, suffix }: { end: number; suffix: string }) => {
 
 export default function SuccessMetrics() {
   return (
-    <section className="py-6 lg:py-8 bg-[#0F172A] relative overflow-hidden">
+    <section className="py-10 lg:py-16 bg-[#0F172A] relative overflow-hidden">
       {/* Background ambient light */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-blue-900/20 rounded-full blur-[120px] pointer-events-none"></div>
 
