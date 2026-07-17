@@ -45,30 +45,30 @@ export default function MilestonesTimeline() {
   };
 
   return (
-    <SectionThemeWrapper sectionId="about_milestones" defaultTheme="light">
+    <SectionThemeWrapper sectionId="about_milestones" defaultTheme="dark">
       {(theme) => {
-        const isDark = theme === "dark";
+        const isDark = true;
         return (
-          <section className={`py-12 relative border-t transition-colors duration-300 ${isDark ? "bg-[#121212] border-[#2A2A2A] text-[#FAFAFA]" : "bg-white border-gray-100 text-[#121212]"}`}>
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <section className={`py-6 lg:py-8 relative border-t transition-colors duration-300 ${isDark ? "bg-[#0F172A] border-slate-800 text-white" : "bg-white border-gray-100 text-[#121212]"}`}>
+            <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-start relative">
                 {/* LHS - Header Content */}
                 <div className="lg:col-span-4">
                   <div className="text-left relative">
-                    <h2 className={`text-4xl md:text-5xl font-medium tracking-tight mb-6 ${isDark ? "text-white" : "text-gray-900"}`}>
+                    <h2 className={`text-4xl md:text-5xl lg:text-6xl font-light leading-none tracking-tight mb-6 ${isDark ? "text-white" : "text-gray-900"}`}>
                       <EditableText
                         path="about.milestones.heading1"
                         fallback="Milestones"
                         as="span"
-                      />{' '}
+                      />
+                      <br />
                       <EditableText
                         path="about.milestones.heading2"
-                        fallback="Achieved"
+                        fallback="Achieved."
                         as="span"
-                        className="text-[#242A56]"
                       />
                     </h2>
-                    <p className={`text-lg font-medium leading-relaxed ${isDark ? "text-gray-400" : "text-gray-600"}`}>
+                    <p className={`text-lg font-medium leading-relaxed ${isDark ? "text-white/80" : "text-gray-600"}`}>
                       <EditableText
                         path="about.milestones.description"
                         fallback="A legacy of technical excellence, continuous growth, and industry-defining innovation since 2012."
@@ -115,10 +115,10 @@ export default function MilestonesTimeline() {
                         <div key={ms.id} className="w-[85%] sm:w-[65%] lg:w-[60%] shrink-0 snap-start flex flex-col relative group border-l-0">
                           {/* Year & Subtitle */}
                           <div className="mb-6 px-6">
-                            <div className={`text-5xl tracking-tight mb-2 transition-colors ${isActive ? (isDark ? "text-white font-medium" : "text-black font-medium") : "text-gray-400 font-light group-hover:text-gray-500"}`}>
+                            <div className={`text-5xl tracking-tight mb-2 transition-colors ${isActive ? (isDark ? "text-white font-medium" : "text-black font-medium") : (isDark ? "text-white/40 font-light group-hover:text-white/60" : "text-gray-400 font-light group-hover:text-gray-500")}`}>
                               <EditableText path={`about.milestones.${idx}.year`} fallback={ms.year} as="span" />
                             </div>
-                            <div className={`text-sm font-semibold tracking-wide uppercase transition-colors ${isActive ? (isDark ? "text-gray-300" : "text-gray-800") : "text-gray-400 group-hover:text-gray-500"}`}>
+                            <div className={`text-sm font-semibold tracking-wide uppercase transition-colors ${isActive ? (isDark ? "text-white/90" : "text-gray-800") : (isDark ? "text-white/40 group-hover:text-white/60" : "text-gray-400 group-hover:text-gray-500")}`}>
                               <EditableText path={`about.milestones.${idx}.title`} fallback={ms.title} as="span" />
                             </div>
                           </div>
@@ -138,7 +138,7 @@ export default function MilestonesTimeline() {
 
                           {/* Content & Image */}
                           <div className="px-6 mt-6 pr-8 flex flex-col h-full">
-                            <div className={`text-base mb-8 leading-relaxed line-clamp-2 min-h-[48px] ${isDark ? "text-gray-400" : "text-gray-600"}`}>
+                            <div className={`text-base mb-8 leading-relaxed line-clamp-2 min-h-[48px] ${isDark ? "text-white/80" : "text-gray-600"}`}>
                               {ms.items.map((item, i) => (
                                 <div key={i} className="mb-1 last:mb-0">
                                   <EditableText path={`about.milestones.${idx}.items.${i}`} fallback={item} as="span" />

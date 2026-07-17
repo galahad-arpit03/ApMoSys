@@ -107,7 +107,7 @@ export default function Navbar() {
       id="navbar-container"
       className={`${navBgColor} ${isExpanded ? 'border-transparent' : 'border-gray-200'} sticky top-0 z-50 transition-all duration-500 ease-in-out ${navVisible ? "translate-y-0" : "-translate-y-full"}`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
 
           {/* Logo Text on Left */}
@@ -233,7 +233,7 @@ export default function Navbar() {
             transition={{ duration: 0.2 }}
             className="absolute top-16 left-0 w-full bg-white z-40 pb-16 pt-10 shadow-2xl"
           >
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
 
               {/* Left Column (Title & Description) - 3/12 */}

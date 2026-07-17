@@ -1,99 +1,156 @@
 "use client";
 
-import React from "react";
+import React, { useRef, useState } from "react";
 import { motion } from "framer-motion";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
 
 const latestInsightsData = [
   {
     id: 1,
-    category: "Whitepaper",
-    date: "June 15, 2026",
-    title: "The Future of AI in Enterprise Architecture",
-    excerpt: "Discover how Fortune 500 companies are integrating generative AI into their core operations to drive unprecedented efficiency.",
+    category: "Web Solution",
+    title: "Make a better website solution for your product.",
     image: "/assets/blog-1.jpg"
   },
   {
     id: 2,
-    category: "Case Study",
-    date: "May 28, 2026",
-    title: "Zero-Downtime Migration for Financial Systems",
-    excerpt: "Learn the exact strategies our CoE used to migrate a legacy banking system without a single second of service interruption.",
+    category: "UI Interface",
+    title: "The Science of Color Contrast – An Expert Designer's Guide",
     image: "/assets/blog-2.jpg"
   },
   {
     id: 3,
-    category: "Engineering",
-    date: "May 10, 2026",
-    title: "Optimizing Microservices for Sub-Millisecond Latency",
-    excerpt: "A deep technical dive into our proprietary caching layer and how it dramatically reduced load times for global e-commerce clients.",
+    category: "Web Interface",
+    title: "SEO Made Simple: A Step by Step Guide for 2026",
     image: "/assets/blog-3.jpg"
+  },
+  {
+    id: 4,
+    category: "Interface Design",
+    title: "Make a better website solution for your product.",
+    image: "/assets/blog-4.jpg"
+  },
+  {
+    id: 5,
+    category: "Engineering",
+    title: "Zero-Downtime Migration for Financial Systems",
+    image: "/assets/blog-1.jpg"
+  },
+  {
+    id: 6,
+    category: "Architecture",
+    title: "The Future of AI in Enterprise Architecture",
+    image: "/assets/blog-2.jpg"
   }
 ];
 
 export default function LatestInsights() {
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  const scroll = (direction: "left" | "right") => {
+    if (scrollRef.current) {
+      const scrollAmount = direction === "left" ? -400 : 400;
+      scrollRef.current.scrollBy({ left: scrollAmount, behavior: "smooth" });
+    }
+  };
+
+  const handleScroll = () => {
+    if (scrollRef.current) {
+      const scrollLeft = scrollRef.current.scrollLeft;
+      const itemWidth = scrollRef.current.scrollWidth / latestInsightsData.length;
+      const newIndex = Math.round(scrollLeft / itemWidth);
+
+      if (newIndex !== activeIndex && newIndex >= 0 && newIndex < latestInsightsData.length) {
+        setActiveIndex(newIndex);
+      }
+    }
+  };
+
+  const scrollTo = (index: number) => {
+    if (scrollRef.current) {
+      const itemWidth = scrollRef.current.scrollWidth / latestInsightsData.length;
+      scrollRef.current.scrollTo({ left: itemWidth * index, behavior: "smooth" });
+      setActiveIndex(index);
+    }
+  };
+
   return (
-    <section className="py-24 bg-[#0A1128] border-b border-[#1A264A]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
-          
-          {/* LHS */}
-          <div className="lg:col-span-4 lg:sticky lg:top-24">
-            <h2 className="text-3xl md:text-5xl font-black text-white mb-6 tracking-tight leading-tight">
-              From the <br/> <span className="text-[#B40001]">Newsroom.</span>
+    <section className="py-12 lg:py-16 bg-[#F8FAFC] text-[#121212] overflow-hidden">
+      <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
+
+        {/* Header Section */}
+        <div className="flex flex-col md:flex-row justify-between items-end mb-10">
+          <div>
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-light text-black leading-none tracking-tight">
+              From the <br /> Newsroom.
             </h2>
-            <div className="w-12 h-1 bg-[#B40001] mb-6 rounded-md" />
-            <p className="text-gray-400 text-lg leading-relaxed mb-8">
-              Stay ahead of the curve with our latest research, technical deep dives, and company updates.
-            </p>
-            <button className="flex items-center gap-2 text-white font-bold hover:text-[#B40001] transition-colors group">
-              View all resources <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" />
+          </div>
+
+          <div className="flex items-center gap-3 mt-6 md:mt-0">
+            <button
+              onClick={() => scroll("left")}
+              className="w-10 h-10 border border-slate-300 rounded-full flex items-center justify-center hover:bg-slate-100 transition-colors text-slate-600 bg-white shadow-sm"
+            >
+              <ChevronLeft className="w-5 h-5" />
+            </button>
+            <button
+              onClick={() => scroll("right")}
+              className="w-10 h-10 bg-[#121212]  rounded-full text-white flex items-center justify-center hover:bg-slate-800 transition-colors shadow-sm"
+            >
+              <ChevronRight className="w-5 h-5" />
             </button>
           </div>
-
-          {/* RHS */}
-          <div className="lg:col-span-8">
-            <div className="flex flex-col gap-6">
-              {latestInsightsData.map((post, idx) => (
-                <motion.div
-                  key={post.id}
-                  initial={{ opacity: 0, x: 20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: idx * 0.1 }}
-                  className="flex flex-col sm:flex-row gap-6 p-6 bg-[#121B38] border border-[#1A264A] rounded-md hover:border-[#243461] transition-all duration-300 group cursor-pointer"
-                >
-                  <div className="w-full sm:w-48 h-48 sm:h-auto rounded-md overflow-hidden flex-shrink-0 relative bg-[#1A264A]">
-                    <div className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105" style={{ backgroundImage: `url(${post.image})` }} />
-                    <div className="absolute inset-0 bg-[#0A1128]/20 group-hover:bg-transparent transition-colors duration-300" />
-                  </div>
-                  
-                  <div className="flex flex-col justify-center flex-grow py-2">
-                    <div className="flex items-center gap-3 mb-3">
-                      <span className="px-3 py-1 bg-[#1A264A] text-[#B40001] text-xs font-bold uppercase tracking-wider rounded-md border border-[#243461]">
-                        {post.category}
-                      </span>
-                      <span className="text-gray-500 text-sm">{post.date}</span>
-                    </div>
-                    
-                    <h3 className="text-xl font-bold text-white mb-3 group-hover:text-[#B40001] transition-colors leading-snug">
-                      {post.title}
-                    </h3>
-                    
-                    <p className="text-gray-400 text-sm leading-relaxed mb-4">
-                      {post.excerpt}
-                    </p>
-                    
-                    <div className="mt-auto flex items-center text-[#B40001] font-bold text-sm">
-                      Read Article <ArrowRight className="w-4 h-4 ml-1 transform group-hover:translate-x-1 transition-transform" />
-                    </div>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-
         </div>
+
+        {/* Cards Carousel */}
+        <style dangerouslySetInnerHTML={{
+          __html: `
+          .hide-scroll::-webkit-scrollbar { display: none; }
+          .hide-scroll { -ms-overflow-style: none; scrollbar-width: none; }
+        `}} />
+
+        <div
+          ref={scrollRef}
+          onScroll={handleScroll}
+          className="flex gap-6 overflow-x-auto snap-x snap-mandatory hide-scroll pb-4"
+        >
+          {latestInsightsData.map((post, idx) => (
+            <motion.div
+              key={post.id}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: idx * 0.1 }}
+              className="w-[85vw] sm:w-[calc(50%-12px)] lg:w-[calc(25%-18px)] flex-shrink-0 snap-start bg-white overflow-hidden shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-[#E8E8E8] group flex flex-col h-full rounded-md"
+            >
+              <div className="w-full h-48 bg-slate-200 relative overflow-hidden flex-shrink-0">
+                <div className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105" style={{ backgroundImage: `url(${post.image})` }} />
+              </div>
+              <div className="p-4 lg:p-5 flex flex-col flex-grow">
+                <span className="text-xs text-slate-400 font-medium mb-2">{post.category}</span>
+                <h3 className="text-base font-semibold text-slate-800 mb-6 leading-relaxed transition-colors group-hover:text-[#2563EB]">
+                  {post.title}
+                </h3>
+                <div className="mt-auto flex items-center text-slate-500 font-semibold text-sm hover:text-[#121212] transition-colors cursor-pointer w-fit group-hover:text-[#2563EB]">
+                  Read Blog <ArrowRight className="w-4 h-4 ml-2" />
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Dots Indicator */}
+        <div className="flex justify-center items-center gap-2 mt-10">
+          {latestInsightsData.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => scrollTo(i)}
+              className={`rounded-full transition-all duration-300 ${i === activeIndex ? 'bg-[#121212] w-2 h-2' : 'bg-slate-300 w-1.5 h-1.5 hover:bg-slate-400'}`}
+              aria-label={`Go to slide ${i + 1}`}
+            ></button>
+          ))}
+        </div>
+
       </div>
     </section>
   );

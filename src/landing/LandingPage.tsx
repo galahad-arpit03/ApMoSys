@@ -10,11 +10,13 @@ import Partnerships from "./Partnerships/Partnerships";
 import ValueProposition from "./ValueProposition/ValueProposition";
 import Testimonials from "./Testimonials/Testimonials";
 import LatestInsights from "./LatestInsights/LatestInsights";
-import ContactCTA from "./ContactCTA/ContactCTA";
+import CareersCTA from "./CareersCTA/CareersCTA";
+import InquirySection from "@/src/contact-us/InquirySection/InquirySection";
+import MilestonesTimeline from "@/src/who-we-are/about-us/MilestonesTimeline/MilestonesTimeline";
 
 export default function LandingPage() {
   return (
-    <div className="relative bg-[#0A1128]">
+    <div className="relative bg-[#0A1128] overflow-x-hidden w-full max-w-[100vw]">
       <Hero />
       <ThinMarquee />
       <ClientLogos />
@@ -24,8 +26,12 @@ export default function LandingPage() {
       <CoESection />
       <Testimonials />
       <Partnerships />
+      <MilestonesTimeline />
       <LatestInsights />
-      <ContactCTA />
+      <CareersCTA />
+      <div className="bg-white">
+        <InquirySection />
+      </div>
     </div>
   );
 }
