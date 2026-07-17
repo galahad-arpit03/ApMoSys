@@ -34,7 +34,7 @@ const Counter = ({ end, suffix }: { end: number; suffix: string }) => {
   }, [isInView, end]);
 
   return (
-    <div ref={ref} className="text-4xl md:text-5xl lg:text-6xl font-light text-white mb-2">
+    <div ref={ref} className="text-3xl md:text-4xl lg:text-5xl font-light text-white mb-2">
       {count}
       <span className="text-[#3B82F6]">{suffix}</span>
     </div>
@@ -43,24 +43,13 @@ const Counter = ({ end, suffix }: { end: number; suffix: string }) => {
 
 export default function SuccessMetrics() {
   return (
-    <section className="py-8 lg:py-12 bg-[#0F172A] relative overflow-hidden">
+    <section className="py-6 lg:py-8 bg-[#0F172A] relative overflow-hidden">
       {/* Background ambient light */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-blue-900/20 rounded-full blur-[120px] pointer-events-none"></div>
 
-      <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10 flex flex-col lg:flex-row items-center justify-between gap-8">
+      <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
-        <div className="text-center lg:text-left shrink-0">
-          <motion.h3 
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            className="text-4xl sm:text-5xl lg:text-6xl font-light text-white tracking-tight pr-4"
-          >
-            By the <br /> Numbers
-          </motion.h3>
-        </div>
-
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 lg:gap-12 w-full lg:w-auto">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 lg:gap-12 w-full">
           {metrics.map((metric, idx) => (
             <motion.div 
               key={metric.id}
@@ -68,7 +57,7 @@ export default function SuccessMetrics() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: idx * 0.1, duration: 0.5 }}
-              className="flex flex-col items-center lg:items-start text-center lg:text-left"
+              className="flex flex-col items-center text-center"
             >
               <Counter end={metric.end} suffix={metric.suffix} />
               <p className="text-[10px] md:text-xs font-bold text-gray-400 uppercase tracking-widest max-w-[150px]">

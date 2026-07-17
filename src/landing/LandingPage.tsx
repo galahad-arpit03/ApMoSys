@@ -17,6 +17,9 @@ import ExecutiveTeam from "@/src/who-we-are/leadership/ExecutiveTeam/ExecutiveTe
 import AwardsCertifications from "./AwardsCertifications/AwardsCertifications";
 import SuccessMetrics from "./SuccessMetrics/SuccessMetrics";
 import WhyApmosys from "./WhyApmosys/WhyApmosys";
+import ProductsInnovations from "./ProductsInnovations/ProductsInnovations";
+import Industries from "./Industries/Industries";
+import CoreServices from "./CoreServices/CoreServices";
 
 export default function LandingPage() {
   return (
@@ -30,6 +33,9 @@ export default function LandingPage() {
       <CoESection />
       <Testimonials />
       <Partnerships />
+      <CoreServices />
+      <Industries />
+      <ProductsInnovations />
       <WhyApmosys />
       <SuccessMetrics />
       <AwardsCertifications />
