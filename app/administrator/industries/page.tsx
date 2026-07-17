@@ -7,9 +7,9 @@ import HeroSection from "@/src/what-we-do/industries/HeroSection/HeroSection";
 import IndustryGrid from "@/src/what-we-do/industries/IndustryGrid/IndustryGrid";
 import ComplexProblems from "@/src/what-we-do/industries/ComplexProblems/ComplexProblems";
 import TechnicalCapabilities from "@/src/what-we-do/industries/TechnicalCapabilities/TechnicalCapabilities";
-import ImpactSection from "@/src/what-we-do/industries/ImpactSection/ImpactSection";
-import ComplianceSection from "@/src/what-we-do/industries/ComplianceSection/ComplianceSection";
-import TestimonialSection from "@/src/what-we-do/industries/TestimonialSection/TestimonialSection";
+import ImpactSection from "@/src/what-we-do/services/ImpactSection/ImpactSection";
+import ComplianceSection from "@/src/what-we-do/services/ComplianceSection/ComplianceSection";
+import TestimonialSection from "@/src/what-we-do/services/TestimonialSection/TestimonialSection";
 import CTASection from "@/src/what-we-do/industries/CTASection/CTASection";
 
 export default function AdminIndustriesPage() {

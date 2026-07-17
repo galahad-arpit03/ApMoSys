@@ -48,15 +48,15 @@ export default function ServiceProcess() {
   const [activeStep, setActiveStep] = useState<string | null>(processSteps[0].id);
 
   return (
-    <SectionThemeWrapper sectionId="services_process" defaultTheme="dark">
+    <SectionThemeWrapper sectionId="services_process" defaultTheme="light">
       {(theme) => {
         const isDark = theme === "dark";
         return (
           <section
-            className={`py-24 border-t transition-colors duration-300 ${
+            className={`py-16 border-t transition-colors duration-300 ${
               isDark
-                ? "bg-[#121212] border-[#1F1F1F]"
-                : "bg-[#FAFAFA] border-[#E8E8E8]"
+                ? "bg-slate-800 border-slate-700"
+                : "bg-white/80 border-gray-200"
             }`}
           >
             <Container>
@@ -68,16 +68,9 @@ export default function ServiceProcess() {
                 transition={{ duration: 0.65, ease: "easeOut" }}
                 className="text-center max-w-3xl mx-auto mb-16"
               >
-                {/* <span className="text-primary-red text-xs font-bold uppercase tracking-widest block mb-4">
-                  <EditableText
-                    path="services.process.sectionLabel"
-                    fallback="Our Process"
-                    as="span"
-                  />
-                </span> */}
                 <h2
-                  className={`font-heading text-3xl sm:text-4xl font-bold mb-4 ${
-                    isDark ? "text-[#FFFFFF]" : "text-[#121212]"
+                  className={`text-4xl lg:text-5xl font-medium tracking-tight mb-4 ${
+                    isDark ? "text-white" : "text-slate-800"
                   }`}
                 >
                   <EditableText
@@ -87,8 +80,8 @@ export default function ServiceProcess() {
                   />
                 </h2>
                 <p
-                  className={`text-sm sm:text-base leading-relaxed ${
-                    isDark ? "text-[#A0A0A0]" : "text-[#5A5A5A]"
+                  className={`text-base lg:text-lg font-medium leading-relaxed ${
+                    isDark ? "text-gray-300" : "text-slate-600"
                   }`}
                 >
                   <EditableText
@@ -114,14 +107,14 @@ export default function ServiceProcess() {
                         transition={{ delay: idx * 0.08, duration: 0.4 }}
                         className={`border rounded-xl overflow-hidden transition-all duration-300 ${
                           isActive
-                            ? `border-primary-red ${
+                            ? `border-[#242A56] ${
                                 isDark
-                                  ? "bg-[#1A1A1A] shadow-lg shadow-primary-red/5"
-                                  : "bg-[#FFFFFF] shadow-lg shadow-primary-red/10"
+                                  ? "bg-slate-700/70 shadow-lg shadow-[#242A56]/5"
+                                  : "bg-white shadow-lg shadow-[#242A56]/10"
                               }`
                             : isDark
-                            ? "border-[#2A2A2A] bg-[#0D0D0D]"
-                            : "border-[#E8E8E8] bg-[#FAFAFA]"
+                            ? "border-slate-600 bg-slate-700/30"
+                            : "border-gray-200 bg-white/50"
                         }`}
                       >
                         <button
@@ -133,22 +126,22 @@ export default function ServiceProcess() {
                           <div
                             className={`flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold transition-colors ${
                               isActive
-                                ? "bg-primary-red text-white"
+                                ? "bg-[#242A56] text-white"
                                 : isDark
-                                ? "bg-[#2A2A2A] text-[#7A7A7A]"
-                                : "bg-[#E8E8E8] text-[#7A7A7A]"
+                                ? "bg-slate-600 text-gray-300"
+                                : "bg-gray-100 text-gray-500"
                             }`}
                           >
                             {step.id}
                           </div>
                           <div className="flex-1">
                             <h3
-                              className={`font-heading font-bold text-base ${
+                              className={`font-medium text-base ${
                                 isActive
-                                  ? "text-primary-red"
+                                  ? "text-[#242A56]"
                                   : isDark
-                                  ? "text-[#FFFFFF]"
-                                  : "text-[#121212]"
+                                  ? "text-white"
+                                  : "text-slate-800"
                               }`}
                             >
                               <EditableText
@@ -161,7 +154,7 @@ export default function ServiceProcess() {
                           <svg
                             className={`w-5 h-5 transition-transform duration-300 ${
                               isActive ? "rotate-180" : ""
-                            } ${isDark ? "text-[#7A7A7A]" : "text-[#5A5A5A]"}`}
+                            } ${isDark ? "text-gray-400" : "text-gray-400"}`}
                             fill="none"
                             viewBox="0 0 24 24"
                             stroke="currentColor"
@@ -186,12 +179,12 @@ export default function ServiceProcess() {
                             >
                               <div
                                 className={`px-6 pb-6 pt-2 border-t ${
-                                  isDark ? "border-[#2A2A2A]" : "border-[#E8E8E8]"
+                                  isDark ? "border-slate-600" : "border-gray-200"
                                 }`}
                               >
                                 <p
-                                  className={`text-sm leading-relaxed ${
-                                    isDark ? "text-[#A0A0A0]" : "text-[#5A5A5A]"
+                                  className={`text-base leading-relaxed font-medium ${
+                                    isDark ? "text-gray-300" : "text-slate-600"
                                   }`}
                                 >
                                   <EditableText

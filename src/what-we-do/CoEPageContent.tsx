@@ -7,10 +7,11 @@ import CoEAccordion from "./coe/CoEAccordion/CoEAccordion";
 import InnovationLabs from "./coe/InnovationLabs/InnovationLabs";
 import ResearchPapers from "./coe/ResearchPapers/ResearchPapers";
 // Shared components
-import ImpactSection from "./industries/ImpactSection/ImpactSection";
-import ComplianceSection from "./industries/ComplianceSection/ComplianceSection";
-import TestimonialSection from "./industries/TestimonialSection/TestimonialSection";
+import ImpactSection from "./services/ImpactSection/ImpactSection";
+import ComplianceSection from "./services/ComplianceSection/ComplianceSection";
+import TestimonialSection from "./services/TestimonialSection/TestimonialSection";
 import CTASection from "./industries/CTASection/CTASection";
+import CorporateCTA from "../who-we-are/about-us/CorporateCTA/CorporateCTA";
 
 export default function CoEPageContent() {
   return (
@@ -22,10 +23,10 @@ export default function CoEPageContent() {
       <CoEAccordion />
       <InnovationLabs />
       <ResearchPapers />
-      <ImpactSection />
+      {/* <ImpactSection />
       <ComplianceSection />
-      <TestimonialSection />
-      <CTASection />
+      <TestimonialSection /> */}
+      <CorporateCTA />
     </div>
   );
 }

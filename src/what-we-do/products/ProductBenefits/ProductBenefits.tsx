@@ -18,12 +18,14 @@ export default function ProductBenefits() {
         const isDark = theme === "dark";
         return (
           <section
-            className={`py-24 border-t transition-colors duration-300 ${
-              isDark
-                ? "bg-[#121212] border-[#1F1F1F]"
-                : "bg-[#FAFAFA] border-[#E8E8E8]"
+            className={`py-16 relative overflow-clip transition-colors duration-300 ${
+              isDark ? "bg-slate-800 text-white" : "bg-white text-slate-800"
             }`}
           >
+            {/* Decorative glows */}
+            <div className="absolute top-0 right-0 w-[600px] h-[600px] rounded-full blur-[100px] pointer-events-none -translate-y-1/2 translate-x-1/3 bg-slate-600/20" />
+            <div className="absolute bottom-0 left-0 w-[600px] h-[600px] rounded-full blur-[100px] pointer-events-none translate-y-1/2 -translate-x-1/3 bg-slate-600/20" />
+
             <Container>
               {/* Header */}
               <motion.div
@@ -33,16 +35,9 @@ export default function ProductBenefits() {
                 transition={{ duration: 0.65, ease: "easeOut" }}
                 className="text-center max-w-3xl mx-auto mb-16"
               >
-                {/* <span className="text-primary-red text-xs font-bold uppercase tracking-widest block mb-4">
-                  <EditableText
-                    path="products.benefits.sectionLabel"
-                    fallback="Why Our Products"
-                    as="span"
-                  />
-                </span> */}
                 <h2
-                  className={`font-heading text-3xl sm:text-4xl font-bold mb-4 ${
-                    isDark ? "text-[#FFFFFF]" : "text-[#121212]"
+                  className={`text-4xl lg:text-5xl font-medium tracking-tight mb-4 ${
+                    isDark ? "text-white" : "text-slate-800"
                   }`}
                 >
                   <EditableText
@@ -52,8 +47,8 @@ export default function ProductBenefits() {
                   />
                 </h2>
                 <p
-                  className={`text-sm sm:text-base leading-relaxed ${
-                    isDark ? "text-[#A0A0A0]" : "text-[#5A5A5A]"
+                  className={`text-base lg:text-lg font-medium leading-relaxed ${
+                    isDark ? "text-gray-300" : "text-slate-600"
                   }`}
                 >
                   <EditableText
@@ -68,8 +63,7 @@ export default function ProductBenefits() {
               {/* Benefits Grid */}
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {benefitItems.map((benefit, idx) => {
-                  const IconComponent =
-                    productIconMap[benefit.icon] || defaultProductIcon;
+                  const IconComponent = productIconMap[benefit.icon] || defaultProductIcon;
                   return (
                     <motion.div
                       key={benefit.id}
@@ -77,38 +71,49 @@ export default function ProductBenefits() {
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true }}
                       transition={{ delay: idx * 0.08, duration: 0.5 }}
-                      className={`p-8 rounded-xl border text-center transition-all hover:shadow-lg hover:-translate-y-1 group ${
-                        isDark
-                          ? "bg-[#1A1A1A] border-[#2A2A2A] hover:border-primary-red/30"
-                          : "bg-[#FFFFFF] border-[#E8E8E8] hover:border-primary-red/20"
-                      }`}
+                      className="group relative p-[1px] rounded-md overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 bg-gradient-to-b from-slate-600/50 to-slate-700/50 hover:from-slate-500 hover:to-slate-600"
                     >
-                      <div className="flex justify-center mb-4 text-primary-red">
-                        <IconComponent className="w-10 h-10" />
+                      <div className="absolute inset-0 bg-gradient-to-br from-white/0 via-white/0 to-white/0 group-hover:from-white/5 group-hover:to-white/10 transition-all duration-500" />
+                      <div className={`relative h-full backdrop-blur-xl p-6 sm:p-8 rounded-md flex flex-col items-start transition-colors duration-500 ${
+                        isDark ? "bg-slate-800/90 group-hover:bg-slate-800" : "bg-white/80 group-hover:bg-white"
+                      } overflow-hidden`}>
+                        {/* Large Background Number */}
+                        <div className={`absolute -top-6 -right-6 text-[120px] leading-none font-black select-none pointer-events-none z-0 ${
+                          isDark ? "text-slate-700/40 group-hover:text-slate-600/50" : "text-gray-200/60 group-hover:text-gray-300/70"
+                        }`}>
+                          0{idx + 1}
+                        </div>
+
+                        <div className="relative z-10 pt-4">
+                          {/* Icon with dynamic colors for contrast */}
+                          <div className={`mb-6 w-16 h-16 rounded-xl flex items-center justify-center transition-colors ${
+                            isDark
+                              ? "bg-[#242A56]/30 text-white"
+                              : "bg-[#242A56]/10 text-[#242A56]"
+                          }`}>
+                            <IconComponent className="w-8 h-8" />
+                          </div>
+                          <h3 className={`font-bold text-xl lg:text-2xl mb-4 transition-colors duration-300 ${
+                            isDark ? "text-white" : "text-slate-800"
+                          }`}>
+                            <EditableText
+                              path={`products.benefits.items.${idx}.title`}
+                              fallback={benefit.title}
+                              as="span"
+                            />
+                          </h3>
+                          <p className={`text-sm lg:text-base leading-relaxed font-medium ${
+                            isDark ? "text-gray-400" : "text-slate-600"
+                          }`}>
+                            <EditableText
+                              path={`products.benefits.items.${idx}.description`}
+                              fallback={benefit.description}
+                              as="span"
+                              multiline
+                            />
+                          </p>
+                        </div>
                       </div>
-                      <h3
-                        className={`font-heading text-lg font-bold mb-3 ${
-                          isDark ? "text-[#FFFFFF]" : "text-[#121212]"
-                        }`}
-                      >
-                        <EditableText
-                          path={`products.benefits.items.${idx}.title`}
-                          fallback={benefit.title}
-                          as="span"
-                        />
-                      </h3>
-                      <p
-                        className={`text-sm leading-relaxed ${
-                          isDark ? "text-[#A0A0A0]" : "text-[#5A5A5A]"
-                        }`}
-                      >
-                        <EditableText
-                          path={`products.benefits.items.${idx}.description`}
-                          fallback={benefit.description}
-                          as="span"
-                          multiline
-                        />
-                      </p>
                     </motion.div>
                   );
                 })}

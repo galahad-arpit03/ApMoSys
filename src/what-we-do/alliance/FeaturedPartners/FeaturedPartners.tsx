@@ -8,7 +8,6 @@ import SectionThemeWrapper from "@/src/admin/components/SectionThemeWrapper";
 import { useContentStore } from "@/src/admin/store/adminStore";
 import { allianceIconMap, defaultAllianceIcon } from "../icons";
 
-// Fallback data with icon keys (not emojis)
 const features = [
   {
     id: "1",
@@ -50,14 +49,17 @@ export default function FeaturedPartners() {
         const isDark = theme === "dark";
         return (
           <section
-            className={`py-24 border-t transition-colors duration-300 ${
+            className={`py-24 border-t transition-colors duration-300 relative overflow-hidden ${
               isDark
-                ? "bg-[#121212] border-[#1F1F1F]"
-                : "bg-[#FAFAFA] border-[#E8E8E8]"
+                ? "bg-slate-800 border-slate-700"
+                : "bg-white border-gray-200"
             }`}
           >
+            {/* Decorative glows */}
+            <div className="absolute top-0 left-0 w-[600px] h-[600px] rounded-full blur-[100px] pointer-events-none -translate-y-1/2 -translate-x-1/3 bg-slate-600/20" />
+            <div className="absolute bottom-0 right-0 w-[600px] h-[600px] rounded-full blur-[100px] pointer-events-none translate-y-1/2 translate-x-1/3 bg-slate-600/20" />
+
             <Container>
-              {/* Header */}
               <motion.div
                 initial={{ opacity: 0, y: 24 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -66,8 +68,8 @@ export default function FeaturedPartners() {
                 className="text-center max-w-3xl mx-auto mb-16"
               >
                 <h2
-                  className={`font-heading text-3xl sm:text-4xl font-bold mb-4 ${
-                    isDark ? "text-[#FFFFFF]" : "text-[#121212]"
+                  className={`font-heading text-3xl sm:text-4xl font-medium tracking-tight mb-4 ${
+                    isDark ? "text-white" : "text-slate-800"
                   }`}
                 >
                   <EditableText
@@ -77,8 +79,8 @@ export default function FeaturedPartners() {
                   />
                 </h2>
                 <p
-                  className={`text-sm sm:text-base leading-relaxed ${
-                    isDark ? "text-[#A0A0A0]" : "text-[#5A5A5A]"
+                  className={`text-base lg:text-lg font-medium leading-relaxed ${
+                    isDark ? "text-gray-300" : "text-black"
                   }`}
                 >
                   <EditableText
@@ -90,7 +92,6 @@ export default function FeaturedPartners() {
                 </p>
               </motion.div>
 
-              {/* Features Grid */}
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 {featuredItems.map((feature, idx) => {
                   const IconComponent = allianceIconMap[feature.icon] || defaultAllianceIcon;
@@ -101,38 +102,42 @@ export default function FeaturedPartners() {
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true }}
                       transition={{ delay: idx * 0.1, duration: 0.5 }}
-                      className={`p-8 rounded-xl border text-center transition-all hover:shadow-lg hover:-translate-y-1 group ${
-                        isDark
-                          ? "bg-[#1A1A1A] border-[#2A2A2A] hover:border-primary-red/30"
-                          : "bg-[#FFFFFF] border-[#E8E8E8] hover:border-primary-red/20"
-                      }`}
+                      className="group relative p-[1px] rounded-md overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 bg-gradient-to-b from-slate-600/50 to-slate-700/50 hover:from-slate-500 hover:to-slate-600"
                     >
-                      <div className="flex justify-center mb-4 text-primary-red">
-                        <IconComponent className="w-10 h-10" />
+                      <div className="absolute inset-0 bg-gradient-to-br from-white/0 via-white/0 to-white/0 group-hover:from-white/5 group-hover:to-white/10 transition-all duration-500" />
+                      <div className={`relative h-full backdrop-blur-xl p-6 sm:p-8 rounded-md flex flex-col items-start transition-colors duration-500 ${
+                        isDark ? "bg-slate-800/90 group-hover:bg-slate-800" : "bg-white/80 group-hover:bg-white"
+                      } overflow-hidden`}>
+                        <div className="relative z-10 pt-4 w-full">
+                          {/* Icon with contrast fix */}
+                          <div className={`mb-4 p-3 rounded-xl inline-block ${
+                            isDark
+                              ? "bg-[#242A56]/30 text-white"
+                              : "bg-[#242A56]/10 text-[#242A56]"
+                          }`}>
+                            <IconComponent className="w-10 h-10" />
+                          </div>
+                          <h3 className={`font-bold text-xl lg:text-2xl mb-4 transition-colors duration-300 ${
+                            isDark ? "text-white" : "text-slate-800"
+                          }`}>
+                            <EditableText
+                              path={`alliance.featured.items.${idx}.title`}
+                              fallback={feature.title}
+                              as="span"
+                            />
+                          </h3>
+                          <p className={`text-sm lg:text-base leading-relaxed font-medium ${
+                            isDark ? "text-gray-400" : "text-slate-600"
+                          }`}>
+                            <EditableText
+                              path={`alliance.featured.items.${idx}.description`}
+                              fallback={feature.description}
+                              as="span"
+                              multiline
+                            />
+                          </p>
+                        </div>
                       </div>
-                      <h3
-                        className={`font-heading text-lg font-bold mb-3 ${
-                          isDark ? "text-[#FFFFFF]" : "text-[#121212]"
-                        }`}
-                      >
-                        <EditableText
-                          path={`alliance.featured.items.${idx}.title`}
-                          fallback={feature.title}
-                          as="span"
-                        />
-                      </h3>
-                      <p
-                        className={`text-sm leading-relaxed ${
-                          isDark ? "text-[#A0A0A0]" : "text-[#5A5A5A]"
-                        }`}
-                      >
-                        <EditableText
-                          path={`alliance.featured.items.${idx}.description`}
-                          fallback={feature.description}
-                          as="span"
-                          multiline
-                        />
-                      </p>
                     </motion.div>
                   );
                 })}

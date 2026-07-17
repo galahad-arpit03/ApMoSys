@@ -6,10 +6,11 @@ import ProductsOverview from "./products/ProductsOverview/ProductsOverview";
 import ProductBenefits from "./products/ProductBenefits/ProductBenefits";
 import ProductCategories from "./products/ProductCategories/ProductCategories";
 // Shared components
-import ImpactSection from "./industries/ImpactSection/ImpactSection";
-import ComplianceSection from "./industries/ComplianceSection/ComplianceSection";
-import TestimonialSection from "./industries/TestimonialSection/TestimonialSection";
+import ImpactSection from "./services/ImpactSection/ImpactSection";
+import ComplianceSection from "./services/ComplianceSection/ComplianceSection";
+import TestimonialSection from "./services/TestimonialSection/TestimonialSection";
 import CTASection from "./industries/CTASection/CTASection";
+import CorporateCTA from "../who-we-are/about-us/CorporateCTA/CorporateCTA";
 
 export default function ProductsPageContent() {
   return (
@@ -20,10 +21,10 @@ export default function ProductsPageContent() {
       </div>
       <ProductBenefits />
       <ProductCategories />
-      <ImpactSection />
+      {/* <ImpactSection />
       <ComplianceSection />
-      <TestimonialSection />
-      <CTASection />
+      <TestimonialSection /> */}
+      <CorporateCTA />
     </div>
   );
 }

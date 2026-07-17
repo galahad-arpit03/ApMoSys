@@ -8,10 +8,11 @@ import ServiceApproach from "./services/ServiceApproach/ServiceApproach";
 import ServiceBenefits from "./services/ServiceBenefits/ServiceBenefits";
 import ServiceProcess from "./services/ServiceProcess/ServiceProcess";
 // Shared components (keep imports as-is)
-import ImpactSection from "./industries/ImpactSection/ImpactSection";
-import ComplianceSection from "./industries/ComplianceSection/ComplianceSection";
-import TestimonialSection from "./industries/TestimonialSection/TestimonialSection";
+import ImpactSection from "./services/ImpactSection/ImpactSection";
+import ComplianceSection from "./services/ComplianceSection/ComplianceSection";
+import TestimonialSection from "./services/TestimonialSection/TestimonialSection";
 import CTASection from "./industries/CTASection/CTASection";
+import CorporateCTA from "../who-we-are/about-us/CorporateCTA/CorporateCTA";
 
 export default function ServicesPageContent() {
   return (
@@ -28,7 +29,7 @@ export default function ServicesPageContent() {
       <ImpactSection />
       <ComplianceSection />
       <TestimonialSection />
-      <CTASection />
+      <CorporateCTA />
     </div>
   );
 }

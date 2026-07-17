@@ -1,5 +1,4 @@
 "use client";
-import { complexproblemsData } from "./ComplexProblemsData";
 
 import React from "react";
 import Container from "@/src/components/Container";
@@ -8,7 +7,6 @@ import { usePathname } from "next/navigation";
 import { useContentStore } from "@/src/admin/store/adminStore";
 import EditableText from "@/src/admin/components/EditableText";
 import SectionThemeWrapper from "@/src/admin/components/SectionThemeWrapper";
-
 
 export default function ComplexProblems() {
   const pathname = usePathname();
@@ -23,39 +21,50 @@ export default function ComplexProblems() {
         const isDark = theme === "dark";
         return (
           <section
-            className={`py-16 pb-24 border-b transition-colors duration-300 ${
-              isDark ? "bg-[#121212] text-[#FAFAFA] border-[#1F1F1F]" : "bg-[#FFFFFF] text-[#121212] border-[#E8E8E8]"
+            className={`py-16 pb-24 border-b transition-colors duration-300 relative overflow-hidden ${
+              isDark
+                ? "bg-[#0D0D0D] text-[#FAFAFA] border-[#1F1F1F]"
+                : "bg-gradient-to-b from-[#F0F4F8] to-white text-[#121212] border-[#E8E8E8]"
             }`}
           >
-                        <Container>
-              
+            {/* Subtle background glows */}
+            <div className="absolute inset-0 overflow-hidden pointer-events-none">
+              <div className={`absolute top-0 right-0 w-[800px] h-[800px] rounded-full blur-[120px] pointer-events-none -translate-y-1/2 translate-x-1/3 ${
+                isDark ? "bg-[#242A56]/10" : "bg-[#242A56]/10"
+              }`} />
+              <div className={`absolute bottom-0 left-0 w-[600px] h-[600px] rounded-full blur-[100px] pointer-events-none translate-y-1/3 -translate-x-1/3 ${
+                isDark ? "bg-[#242A56]/10" : "bg-[#242A56]/10"
+              }`} />
+            </div>
+
+            <Container>
               <EditableText
                 path="industries.complex.heading"
                 fallback="Complex Problems. Precise Solutions."
                 as="h2"
-                className={`font-heading text-3xl font-bold mb-16 block ${
-                  isDark ? "text-[#FFFFFF]" : "text-[#121212]"
+                className={`font-heading text-3xl lg:text-4xl font-medium tracking-tight mb-16 block ${
+                  isDark ? "text-white" : "text-slate-800"
                 }`}
               />
-              
+
               <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
                 <AnimatePresence mode="popLayout">
                   {items.map((item, idx) => (
-                    <motion.div 
+                    <motion.div
                       key={item.id}
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: -20 }}
                       layout
                       transition={{ duration: 0.4 }}
-                      className="relative pl-6 border-l-2 border-primary-red/30 hover:border-primary-red transition-colors group/card"
+                      className="relative pl-6 border-l-2 border-[#242A56]/30 hover:border-[#242A56] transition-colors group/card"
                     >
                       <EditableText
                         path={`industries.complexItems.${idx}.title`}
                         fallback={item.title}
                         as="h3"
                         className={`font-heading text-xl font-bold mb-3 block ${
-                          isDark ? "text-[#FFFFFF]" : "text-[#121212]"
+                          isDark ? "text-white" : "text-slate-800"
                         }`}
                       />
                       <EditableText
@@ -63,7 +72,7 @@ export default function ComplexProblems() {
                         fallback={item.description}
                         as="p"
                         className={`leading-relaxed block ${
-                          isDark ? "text-[#A0A0A0]" : "text-[#4A4A4A]"
+                          isDark ? "text-gray-300" : "text-slate-600"
                         }`}
                         multiline
                       />
@@ -93,13 +102,13 @@ export default function ComplexProblems() {
                   <button
                     onClick={addIndustryComplexItem}
                     className={`flex items-center gap-2 border-2 border-dashed px-8 py-3 rounded-xl text-sm font-bold transition-all cursor-pointer group ${
-                      isDark 
-                        ? "border-[#3A3A3A] hover:border-primary-red/50 text-[#FAFAFA] hover:text-primary-red" 
-                        : "border-[#E8E8E8] hover:border-primary-red/50 text-[#121212] hover:text-primary-red"
+                      isDark
+                        ? "border-[#3A3A3A] hover:border-[#242A56]/50 text-white hover:text-[#242A56]"
+                        : "border-[#E8E8E8] hover:border-[#242A56]/50 text-slate-800 hover:text-[#242A56]"
                     }`}
                   >
                     <svg className={`w-4 h-4 transition-colors ${
-                      isDark ? "text-[#5A5A5A] group-hover:text-primary-red" : "text-[#7A7A7A] group-hover:text-primary-red"
+                      isDark ? "text-[#5A5A5A] group-hover:text-[#242A56]" : "text-[#7A7A7A] group-hover:text-[#242A56]"
                     }`} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                       <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m8-8H4" />
                     </svg>
@@ -107,8 +116,7 @@ export default function ComplexProblems() {
                   </button>
                 </div>
               )}
-
-                        </Container>
+            </Container>
           </section>
         );
       }}
