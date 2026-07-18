@@ -1,14 +1,14 @@
 "use client";
 import React from "react";
 import { motion } from "framer-motion";
-import { 
-  Landmark, 
-  ShieldCheck, 
-  HeartPulse, 
-  ShoppingCart, 
-  Factory, 
-  Building2, 
-  RadioTower, 
+import {
+  Landmark,
+  ShieldCheck,
+  HeartPulse,
+  ShoppingCart,
+  Factory,
+  Building2,
+  RadioTower,
   Truck,
   ArrowUpRight
 } from "lucide-react";
@@ -26,7 +26,7 @@ const industries = [
 
 const getBorderClasses = (idx: number, total: number) => {
   let classes = "border-gray-200 ";
-  
+
   if (idx < total - 1) classes += "border-b ";
 
   if (idx === total - 2) classes += "md:border-b-0 ";
@@ -35,7 +35,7 @@ const getBorderClasses = (idx: number, total: number) => {
 
   if (idx >= 4) classes += "lg:border-b-0 ";
   else classes += "lg:border-b ";
-  
+
   if ((idx + 1) % 4 !== 0) classes += "lg:border-r ";
   else classes += "lg:border-r-0 ";
 
@@ -45,8 +45,8 @@ const getBorderClasses = (idx: number, total: number) => {
 export default function Industries() {
   return (
     <section className="py-10 lg:py-16 bg-[#FAFAFA]">
-      <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
-        
+      <div className="max-w-[1600px] mx-auto px-6 sm:px-8 lg:px-16">
+
         {/* Header - LHS/RHS Split */}
         <div className="mb-8 lg:mb-10 flex flex-col lg:flex-row lg:items-start justify-between gap-8">
           {/* Left Side: Heading */}
@@ -56,7 +56,7 @@ export default function Industries() {
               <span>Serve</span>
             </h2>
           </div>
-          
+
           {/* Right Side: Paragraph */}
           <div className="flex flex-col lg:items-end gap-6 max-w-xl">
             <p className="text-base lg:text-lg leading-relaxed text-[#5A5A5A] lg:text-left">
@@ -74,15 +74,15 @@ export default function Industries() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: idx * 0.05, duration: 0.5 }}
-              className={`group py-10 px-6 xl:px-10 flex flex-col sm:flex-row lg:flex-col xl:flex-row items-start gap-5 hover:bg-gray-100/50 transition-colors ${getBorderClasses(idx, industries.length)}`}
+              className={`group py-6 md:py-10 px-6 xl:px-10 flex flex-col sm:flex-row lg:flex-col xl:flex-row items-start gap-5 hover:bg-gray-100/50 transition-colors ${getBorderClasses(idx, industries.length)}`}
             >
               <div className="shrink-0 w-12 h-12 rounded-full border border-[#2563EB]/20 bg-transparent flex items-center justify-center text-[#2563EB]">
                 <industry.icon className="w-5 h-5" strokeWidth={1.5} />
               </div>
-              
+
               <div>
                 <h4 className="text-[17px] font-bold text-slate-900 mb-1.5">{industry.name}</h4>
-                <p className="text-[13px] text-slate-500 leading-relaxed max-w-[200px]">{industry.desc}</p>
+                <p className="text-[13px] font-normal text-slate-900 leading-relaxed max-w-[200px]">{industry.desc}</p>
               </div>
             </motion.div>
           ))}

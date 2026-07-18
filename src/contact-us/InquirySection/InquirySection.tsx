@@ -47,7 +47,7 @@ export default function InquirySection() {
       {/* <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-cyan-200/30 rounded-full blur-[120px] pointer-events-none -translate-x-1/4 translate-y-1/4 z-0"></div> */}
       {/* <div className="absolute top-1/2 left-1/2 w-[700px] h-[700px] bg-indigo-200/30 rounded-full blur-[140px] pointer-events-none -translate-x-1/2 -translate-y-1/2 z-0"></div> */}
 
-      <div className="relative z-10 max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="relative z-10 max-w-[1600px] mx-auto px-6 sm:px-8 lg:px-16">
         {/* Hero Text — staggered reveal */}
         <motion.div
           variants={containerVariants}

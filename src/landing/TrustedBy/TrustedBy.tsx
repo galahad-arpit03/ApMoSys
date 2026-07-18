@@ -18,7 +18,7 @@ const CLIENTS = [
 export default function TrustedBy() {
   return (
     <section className="py-2 bg-white overflow-hidden border-b-[0.5px] border-gray-200">
-      <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-[1600px] mx-auto px-6 sm:px-8 lg:px-16">
 
         {/* Carousel Container */}
         <div className="relative flex overflow-x-hidden group">

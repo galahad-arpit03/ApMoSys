@@ -126,7 +126,7 @@ export default function Footer() {
       transition={{ duration: 0.8, ease: "easeOut" }}
       className="bg-[#0F172A] pt-16 pb-8 mt-auto text-sm text-slate-400 relative overflow-hidden font-sans"
     >
-      <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="max-w-[1600px] mx-auto px-6 sm:px-8 lg:px-16 relative z-10">
 
         {/* Top Section: Logo & Subscribe */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 items-start mb-12">

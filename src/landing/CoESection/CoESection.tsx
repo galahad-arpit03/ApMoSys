@@ -9,7 +9,7 @@ export default function CoESection() {
 
   return (
     <section className="py-10 lg:py-16 bg-white border-b border-gray-100 relative overflow-hidden">
-      <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="max-w-[1600px] mx-auto px-6 sm:px-8 lg:px-16 relative z-10">
         
         {/* Header - LHS/RHS Split */}
         <div className="mb-8 lg:mb-4 flex flex-col lg:flex-row lg:items-start justify-between gap-8">
@@ -23,7 +23,7 @@ export default function CoESection() {
           
           {/* Right Side: Paragraph */}
           <div className="flex flex-col lg:items-end gap-6 max-w-xl">
-            <p className="text-base lg:text-lg leading-relaxed text-[#5A5A5A] lg:text-right">
+            <p className="text-base lg:text-lg leading-relaxed text-[#5A5A5A] lg:text-left">
               We operate dedicated innovation labs to establish best practices, develop specialized tools, and drive thought leadership across critical domains.
             </p>
           </div>
@@ -40,12 +40,12 @@ export default function CoESection() {
                 onClick={() => setActiveId(item.id)}
                 className={`relative overflow-hidden cursor-pointer rounded-md bg-white transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] ${
                   isActive 
-                    ? "flex-grow h-full shadow-2xl z-10 border border-gray-200 scale-[1.02] md:scale-100" 
-                    : "w-16 md:w-20 flex-shrink-0 h-[90%] shadow-sm border border-gray-100 z-0"
+                    ? "flex-grow w-full h-full shadow-2xl z-10 border border-gray-200 scale-100" 
+                    : "h-14 md:h-[90%] w-full md:w-20 flex-shrink-0 shadow-sm border border-gray-100 z-0"
                 }`}
               >
                   {isActive ? (
-                    <div className="absolute inset-0 flex w-[100vw] md:w-[calc(100vw-400px)] lg:w-[800px] max-w-full h-full bg-white animate-in fade-in duration-500">
+                    <div className="absolute inset-0 flex w-full max-w-full h-full bg-white animate-in fade-in duration-500 overflow-y-auto md:overflow-hidden hide-scroll">
                       {/* Left Spine (Maintained in Active State) */}
                       <div className="hidden md:flex flex-col items-center w-20 h-full py-8 border-r border-gray-100 flex-shrink-0 bg-gray-50/50">
                         <div className="text-[#2563EB] font-medium text-lg mb-auto tracking-wider">
@@ -96,9 +96,9 @@ export default function CoESection() {
                       </div>
                     </div>
                   ) : (
-                    <div className="absolute inset-0 flex items-center justify-center bg-gray-50 hover:bg-gray-100 group">
+                    <div className="absolute inset-0 flex items-center justify-center md:justify-center justify-start px-4 md:px-0 bg-gray-50 hover:bg-gray-100 group">
                       {/* Mobile View: Horizontal Text */}
-                      <span className="md:hidden text-black font-medium text-sm tracking-widest uppercase">
+                      <span className="md:hidden text-black font-semibold text-sm tracking-wide uppercase">
                         {item.title}
                       </span>
 

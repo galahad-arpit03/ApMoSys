@@ -57,7 +57,7 @@ export default function CoreServices() {
       <div className="absolute top-1/2 left-0 w-[500px] h-[500px] bg-[#2563EB]/10 rounded-full blur-[120px] pointer-events-none" />
       <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#2563EB]/10 rounded-full blur-[150px] pointer-events-none" />
 
-      <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="max-w-[1600px] mx-auto px-6 sm:px-8 lg:px-16 relative z-10">
 
         <div className="flex flex-col xl:flex-row items-start gap-12 xl:gap-20">
 
@@ -91,7 +91,7 @@ export default function CoreServices() {
                     <h3 className="text-base xl:text-lg font-medium text-white mb-2 leading-tight group-hover:text-[#3B82F6] transition-colors duration-300">
                       {service.name}
                     </h3>
-                    <p className="text-[13px] xl:text-[14px] text-gray-200 leading-snug">
+                    <p className="text-[13px] xl:text-[14px] text-gray-200 leading-snug opacity-100 translate-y-0 lg:opacity-0 lg:translate-y-3 lg:group-hover:opacity-100 lg:group-hover:translate-y-0 transition-all duration-300 ease-out">
                       {service.desc}
                     </p>
                   </div>

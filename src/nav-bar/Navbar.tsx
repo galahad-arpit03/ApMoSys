@@ -88,7 +88,7 @@ export default function Navbar() {
   });
 
   const isExpanded = activeDropdown !== null;
-  const navBgColor = isExpanded ? "bg-white backdrop-blur-3xl backdrop-saturate-200" : "bg-white backdrop-blur-3xl backdrop-saturate-200 border-b border-gray-200";
+  const navBgColor = isExpanded ? "bg-[#0F172A] backdrop-blur-3xl backdrop-saturate-200" : "bg-[#0F172A] backdrop-blur-3xl backdrop-saturate-200 border-b border-gray-800";
 
   // Close dropdown on click outside
   React.useEffect(() => {
@@ -107,15 +107,15 @@ export default function Navbar() {
       id="navbar-container"
       className={`${navBgColor} ${isExpanded ? 'border-transparent' : 'border-gray-200'} sticky top-0 z-50 transition-all duration-500 ease-in-out ${navVisible ? "translate-y-0" : "-translate-y-full"}`}
     >
-      <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
+      <div className="max-w-[1600px] mx-auto px-6 sm:px-8 lg:px-16">
+        <div className="flex items-center justify-between h-14">
 
           {/* Logo Text on Left */}
           <div className="flex-shrink-0 flex items-center lg:flex-1 z-50">
             <Link
               href="/"
               onClick={() => setActiveDropdown(null)}
-              className="font-heading font-semibold text-3xl tracking-normal text-[#242A56] hover:text-[#242A56] transition-colors"
+              className="font-heading font-semibold text-3xl tracking-normal text-white hover:text-gray-200 transition-colors"
             >
               ApMoSys<span className="text-primary-red">.</span>
             </Link>
@@ -160,7 +160,7 @@ export default function Navbar() {
                         setActiveDropdown(null);
                       }
                     }}
-                    className={`group flex items-center gap-1 px-2 py-2 text-sm font-medium transition-colors duration-200 shrink-0 ${isActive || activeDropdown === item.label ? 'text-[#242A56]' : 'text-[#242A56] hover:text-[#242A56]'}`}
+                    className={`group flex items-center gap-1 px-2 py-2 text-sm font-medium transition-colors duration-200 shrink-0 ${isActive || activeDropdown === item.label ? 'text-white' : 'text-gray-300 hover:text-white'}`}
                   >
                     <span className="whitespace-nowrap relative pb-1">
                       {item.label}
@@ -193,7 +193,7 @@ export default function Navbar() {
           <div className="hidden lg:flex items-center justify-end lg:flex-1 z-50 space-x-6">
             <Link
               href="/contact"
-              className="px-5 py-2 text-sm font-medium rounded-md transition-all duration-300 overflow-hidden bg-[#242A56] text-white hover:bg-[#1E234B]"
+              className="px-5 py-2 text-sm font-medium rounded-md transition-all duration-300 overflow-hidden bg-white text-[#0F172A] hover:bg-gray-100"
             >
               Contact Us
             </Link>
@@ -204,7 +204,7 @@ export default function Navbar() {
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               type="button"
-              className="inline-flex items-center justify-center p-2 rounded-md text-[#242A56] hover:text-[#242A56] hover:bg-gray-100 focus:outline-none transition-colors"
+              className="inline-flex items-center justify-center p-2 rounded-md text-white hover:text-white hover:bg-white/10 focus:outline-none transition-colors"
               aria-expanded="false"
             >
               <span className="sr-only">Open main menu</span>
@@ -231,24 +231,24 @@ export default function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.2 }}
-            className="absolute top-16 left-0 w-full bg-white z-40 pb-16 pt-10 shadow-2xl"
+            className="absolute top-14 left-0 w-full bg-[#0F172A] z-40 pb-16 pt-10 shadow-2xl border-t border-gray-800"
           >
-          <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-[1600px] mx-auto px-6 sm:px-8 lg:px-16">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
 
               {/* Left Column (Title & Description) - 3/12 */}
               <div className="lg:col-span-3 flex flex-col justify-between pr-4">
                 <div>
-                  <h2 className="text-2xl font-bold text-[#242A56] mb-4">
+                  <h2 className="text-2xl font-bold text-white mb-4">
                     {megaMenuData[activeDropdown].title}
                   </h2>
-                  <p className="text-[#242A56] text-sm leading-relaxed mb-8">
+                  <p className="text-gray-300 text-sm leading-relaxed mb-8">
                     {megaMenuData[activeDropdown].description}
                   </p>
                 </div>
                 <Link
                   href={megaMenuData[activeDropdown].linkHref}
-                  className="inline-flex items-center text-[#242A56] text-sm font-medium hover:text-[#242A56] hover:underline transition-colors group"
+                  className="inline-flex items-center text-white text-sm font-medium hover:text-gray-300 hover:underline transition-colors group"
                 >
                   {megaMenuData[activeDropdown].linkText}
                   <svg className="ml-2 w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -261,16 +261,16 @@ export default function Navbar() {
               {activeDropdown === "Who we are" ? (
                 <>
                   {/* Column 2 - Menu Items */}
-                  <div className="lg:col-span-3 border-t border-gray-200">
+                  <div className="lg:col-span-3 border-t border-gray-800">
                     {megaMenuData["Who we are"].menuItems?.map((item, index) => (
                       <Link
                         key={item.id}
                         href={item.href}
                         onMouseEnter={() => setHoveredWhoWeAre(index)}
                         onClick={() => setActiveDropdown(null)}
-                        className={`flex items-center justify-between px-4 py-4 border-b border-gray-200 transition-all duration-200 ${hoveredWhoWeAre === index
-                            ? "bg-gray-100 text-[#242A56]"
-                            : "text-[#242A56] hover:text-[#242A56]"
+                        className={`flex items-center justify-between px-4 py-4 border-b border-gray-800 transition-all duration-200 ${hoveredWhoWeAre === index
+                            ? "bg-white/10 text-white"
+                            : "text-gray-300 hover:text-white"
                           }`}
                       >
                         <span className="font-medium text-[15px]">
@@ -297,7 +297,7 @@ export default function Navbar() {
                   {/* Column 3 - Hover Description */}
                   <div className="lg:col-span-6 pl-8 flex items-start">
                     <div className="max-w-2xl animate-fadeIn">
-                      <h3 className="text-2xl font-semibold text-[#242A56] mb-4">
+                      <h3 className="text-2xl font-semibold text-white mb-4">
                         {
                           megaMenuData["Who we are"].menuItems?.[
                             hoveredWhoWeAre
@@ -305,7 +305,7 @@ export default function Navbar() {
                         }
                       </h3>
 
-                      <p className="text-[#242A56] leading-relaxed text-base">
+                      <p className="text-gray-300 leading-relaxed text-base">
                         {
                           megaMenuData["Who we are"].menuItems?.[
                             hoveredWhoWeAre
@@ -318,12 +318,12 @@ export default function Navbar() {
               ) : (
                 <>
                   {/* Existing Categories Column */}
-                  <div className="lg:col-span-3 flex flex-col border-t border-gray-200">
+                  <div className="lg:col-span-3 flex flex-col border-t border-gray-800">
                     {megaMenuData[activeDropdown]?.categories?.map((category) => {
                       const isActive = activeCategory === category.id;
-                      const categoryClasses = `flex items-center justify-between cursor-pointer border-b border-gray-200 px-4 py-3 transition-colors duration-200 ${isActive
-                        ? "bg-gray-100 text-[#242A56]"
-                        : "text-[#242A56] hover:text-[#242A56]"
+                      const categoryClasses = `flex items-center justify-between cursor-pointer border-b border-gray-800 px-4 py-3 transition-colors duration-200 ${isActive
+                        ? "bg-white/10 text-white"
+                        : "text-gray-300 hover:text-white"
                         }`;
 
                       const categoryContent = (
@@ -334,8 +334,8 @@ export default function Navbar() {
 
                           <svg
                             className={`w-4 h-4 transition-transform ${isActive
-                              ? "translate-x-1 text-[#242A56]"
-                              : "text-[#888]"
+                              ? "translate-x-1 text-white"
+                              : "text-gray-500"
                               }`}
                             fill="none"
                             viewBox="0 0 24 24"
@@ -397,7 +397,7 @@ export default function Navbar() {
                                 key={idx}
                                 href={link.href}
                                 onClick={() => setActiveDropdown(null)}
-                                className={`py-1.5 text-[13px] ${pathname === link.href ? "text-[#242A56] underline" : "text-[#242A56] hover:text-[#242A56]"}`}
+                                className={`py-1.5 text-[13px] ${pathname === link.href ? "text-white underline" : "text-gray-300 hover:text-white"}`}
                               >
                                 {link.label}
                               </Link>
@@ -410,7 +410,7 @@ export default function Navbar() {
                                 key={idx}
                                 href={link.href}
                                 onClick={() => setActiveDropdown(null)}
-                                className={`py-1.5 text-[13px] ${pathname === link.href ? "text-[#242A56] underline" : "text-[#242A56] hover:text-[#242A56]"}`}
+                                className={`py-1.5 text-[13px] ${pathname === link.href ? "text-white underline" : "text-gray-300 hover:text-white"}`}
                               >
                                 {link.label}
                               </Link>
@@ -437,7 +437,7 @@ export default function Navbar() {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.2 }}
-            className="lg:hidden bg-white border-b border-gray-200 px-4 pt-2 pb-6 space-y-2 overflow-y-auto max-h-[calc(100vh-4rem)]"
+            className="lg:hidden bg-[#0F172A] border-b border-gray-800 px-4 pt-2 pb-6 space-y-2 overflow-y-auto max-h-[calc(100vh-3.5rem)]"
           >
           {navigationItems.map((item) => {
             const checkIsActive = () => {
@@ -466,8 +466,8 @@ export default function Navbar() {
                 {item.hasDropdown ? (
                   <button
                     onClick={() => setMobileExpandedItem(mobileExpandedItem === item.label ? null : item.label)}
-                    className={`w-full flex items-center justify-between hover:bg-gray-100 px-3 py-2 rounded-md text-base font-medium transition-colors ${
-                      isActive || mobileExpandedItem === item.label ? "text-[#242A56] underline" : "text-[#242A56]"
+                    className={`w-full flex items-center justify-between hover:bg-white/10 px-3 py-2 rounded-md text-base font-medium transition-colors ${
+                      isActive || mobileExpandedItem === item.label ? "text-white underline" : "text-gray-300"
                     }`}
                   >
                     {item.label}
@@ -485,8 +485,8 @@ export default function Navbar() {
                   <Link
                     href={item.href}
                     onClick={() => setMobileMenuOpen(false)}
-                    className={`block hover:bg-gray-100 px-3 py-2 rounded-md text-base font-medium transition-colors ${
-                      isActive ? "text-[#242A56] underline" : "text-[#242A56]"
+                    className={`block hover:bg-white/10 px-3 py-2 rounded-md text-base font-medium transition-colors ${
+                      isActive ? "text-white underline" : "text-gray-300"
                     }`}
                   >
                     {item.label}
@@ -495,15 +495,15 @@ export default function Navbar() {
 
               {/* Accordion content for mobile */}
               {item.hasDropdown && mobileExpandedItem === item.label && megaMenuData[item.label] && (
-                <div className="pl-4 pr-2 py-3 space-y-4 bg-gray-50 rounded-md mt-1 mb-2 border border-gray-200">
+                <div className="pl-4 pr-2 py-3 space-y-4 bg-white/5 rounded-md mt-1 mb-2 border border-gray-800">
                   <div className="mb-3">
-                    <p className="text-xs text-[#A0A0A0] leading-relaxed mb-2">
+                    <p className="text-xs text-gray-400 leading-relaxed mb-2">
                       {megaMenuData[item.label].description}
                     </p>
                     <Link
                       href={megaMenuData[item.label].linkHref}
                       onClick={() => setMobileMenuOpen(false)}
-                      className="text-sm text-[#242A56] underline hover:text-gray-200 font-medium inline-flex items-center"
+                      className="text-sm text-white underline hover:text-gray-300 font-medium inline-flex items-center"
                     >
                       {megaMenuData[item.label].linkText}
                       <svg className="ml-1 w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -513,8 +513,8 @@ export default function Navbar() {
                   </div>
                   {megaMenuData[item.label].categories?.map((category) => (
                     <div key={category.id} className="space-y-1">
-                      <div className="text-sm font-semibold text-[#242A56] mb-2">{category.label}</div>
-                      <div className="flex flex-col space-y-1 border-l border-gray-200 pl-3">
+                      <div className="text-sm font-semibold text-white mb-2">{category.label}</div>
+                      <div className="flex flex-col space-y-1 border-l border-gray-700 pl-3">
                         {category.subLinks.map((sublink: { label: string; href: string }, idx) => (
                           <Link
                             key={idx}
@@ -523,7 +523,7 @@ export default function Navbar() {
                               setMobileMenuOpen(false);
                               setMobileExpandedItem(null);
                             }}
-                            className={`text-xs transition-colors py-1 ${pathname === sublink.href ? "text-[#242A56] underline" : "text-[#242A56] hover:text-[#242A56]"}`}
+                            className={`text-xs transition-colors py-1 ${pathname === sublink.href ? "text-white underline" : "text-gray-300 hover:text-white"}`}
                           >
                             {sublink.label}
                           </Link>
@@ -543,7 +543,7 @@ export default function Navbar() {
                             setMobileMenuOpen(false);
                             setMobileExpandedItem(null);
                           }}
-                          className={`text-sm font-medium transition-colors py-2 border-b border-gray-200 ${pathname === mi.href ? "text-[#242A56] underline" : "text-[#242A56] hover:text-gray-300"}`}
+                          className={`text-sm font-medium transition-colors py-2 border-b border-gray-800 ${pathname === mi.href ? "text-white underline" : "text-gray-300 hover:text-white"}`}
                         >
                           {mi.label}
                         </Link>
@@ -556,11 +556,11 @@ export default function Navbar() {
           );
           })}
 
-          <div className="pt-4 border-t border-gray-200 mt-4">
+          <div className="pt-4 border-t border-gray-800 mt-4">
             <Link
               href="/contact"
               onClick={() => setMobileMenuOpen(false)}
-              className="block text-center bg-[#242A56] text-white hover:bg-[#1E234B] px-4 py-3 rounded-md text-base font-semibold"
+              className="block text-center bg-white text-[#0F172A] hover:bg-gray-100 px-4 py-3 rounded-md text-base font-semibold"
             >
               Contact Us
             </Link>

@@ -38,7 +38,7 @@ const getBorderClasses = (idx: number, total: number) => {
 export default function WhyApmosys() {
   return (
     <section className="py-10 lg:py-16 bg-[#FAFAFA]">
-      <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-[1600px] mx-auto px-6 sm:px-8 lg:px-16">
         
         {/* Header Section (LHS/RHS) */}
         <div className="mb-10 lg:grid lg:grid-cols-12 lg:gap-12 items-start">
@@ -59,7 +59,7 @@ export default function WhyApmosys() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: idx * 0.05, duration: 0.5 }}
-              className={`py-10 px-6 xl:px-10 flex flex-col sm:flex-row lg:flex-col xl:flex-row items-start gap-5 hover:bg-gray-100/50 transition-colors ${getBorderClasses(idx, features.length)}`}
+              className={`py-6 md:py-10 px-6 xl:px-10 flex flex-col sm:flex-row lg:flex-col xl:flex-row items-start gap-5 hover:bg-gray-100/50 transition-colors ${getBorderClasses(idx, features.length)}`}
             >
               <div className="shrink-0 w-12 h-12 rounded-full border border-[#2563EB]/20 bg-transparent flex items-center justify-center text-[#2563EB]">
                 <feature.icon className="w-5 h-5" strokeWidth={1.5} />
@@ -67,7 +67,7 @@ export default function WhyApmosys() {
               
               <div>
                 <h4 className="text-[17px] font-bold text-slate-900 mb-1.5">{feature.title}</h4>
-                <p className="text-[13px] text-slate-500 leading-relaxed max-w-[200px]">{feature.desc}</p>
+                <p className="text-[13px] font-normal text-slate-900 leading-relaxed max-w-[200px]">{feature.desc}</p>
               </div>
             </motion.div>
           ))}

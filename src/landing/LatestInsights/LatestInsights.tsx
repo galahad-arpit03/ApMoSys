@@ -76,10 +76,10 @@ export default function LatestInsights() {
 
   return (
     <section className="py-10 lg:py-16 bg-[#F8FAFC] text-[#121212] overflow-hidden">
-      <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-[1600px] mx-auto px-6 sm:px-8 lg:px-16">
 
         {/* Header Section */}
-        <div className="flex flex-col md:flex-row justify-between items-end mb-10">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-10">
           <div>
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-light text-black leading-none tracking-tight">
               From the <br /> Newsroom.

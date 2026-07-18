@@ -50,7 +50,7 @@ export default function MilestonesTimeline() {
         const isDark = true;
         return (
           <section className={`py-10 lg:py-16 relative border-t transition-colors duration-300 ${isDark ? "bg-[#0F172A] border-slate-800 text-white" : "bg-white border-gray-100 text-[#121212]"}`}>
-            <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="max-w-[1600px] mx-auto px-6 sm:px-8 lg:px-16">
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-start relative">
                 {/* LHS - Header Content */}
                 <div className="lg:col-span-4">

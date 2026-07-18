@@ -47,7 +47,7 @@ export default function SuccessMetrics() {
       {/* Background ambient light */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-blue-900/20 rounded-full blur-[120px] pointer-events-none"></div>
 
-      <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="max-w-[1600px] mx-auto px-6 sm:px-8 lg:px-16 relative z-10">
         
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 lg:gap-12 w-full">
           {metrics.map((metric, idx) => (

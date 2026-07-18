@@ -14,7 +14,7 @@ const STATS_DATA = [
 export default function AboutApmosys() {
   return (
     <section className="py-10 lg:py-16 bg-white relative overflow-hidden">
-      <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="max-w-[1600px] mx-auto px-6 sm:px-8 lg:px-16 relative z-10">
 
         {/* Header - LHS/RHS Split */}
         <div className="mb-8 lg:mb-10 flex flex-col lg:flex-row lg:items-start justify-between gap-8 lg:gap-16">
