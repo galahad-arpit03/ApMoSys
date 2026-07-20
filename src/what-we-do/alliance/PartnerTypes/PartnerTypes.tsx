@@ -1,10 +1,10 @@
+// src/what-we-do/alliance/PartnerTypes/PartnerTypes.tsx
 "use client";
 
 import React from "react";
-import Container from "@/src/components/Container";
 import { motion } from "framer-motion";
+import { ArrowRight } from "lucide-react";
 import EditableText from "@/src/admin/components/EditableText";
-import SectionThemeWrapper from "@/src/admin/components/SectionThemeWrapper";
 import { useContentStore } from "@/src/admin/store/adminStore";
 
 export default function PartnerTypes() {
@@ -18,7 +18,6 @@ export default function PartnerTypes() {
       category: "Technology Partner",
       description:
         "Endorsed Service Partner of the Year providing enterprise observability and AIOps solutions.",
-      logo: "https://via.placeholder.com/120x60/1A1A1A/B40001?text=Dynatrace",
       link: "#",
     },
     {
@@ -27,7 +26,6 @@ export default function PartnerTypes() {
       category: "Technology Partner",
       description:
         "Rising Star Partner delivering intelligent automation and RPA solutions.",
-      logo: "https://via.placeholder.com/120x60/1A1A1A/B40001?text=Automation+Anywhere",
       link: "#",
     },
     {
@@ -36,7 +34,6 @@ export default function PartnerTypes() {
       category: "Technology Partner",
       description:
         "APM Specialist providing application performance monitoring and analytics.",
-      logo: "https://via.placeholder.com/120x60/1A1A1A/B40001?text=AppDynamics",
       link: "#",
     },
     {
@@ -45,7 +42,6 @@ export default function PartnerTypes() {
       category: "Technology Partner",
       description:
         "Testing Alliance partner delivering enterprise quality engineering solutions.",
-      logo: "https://via.placeholder.com/120x60/1A1A1A/B40001?text=MicroFocus",
       link: "#",
     },
   ];
@@ -53,140 +49,98 @@ export default function PartnerTypes() {
   const items = partnerItems.length > 0 ? partnerItems : fallbackPartners;
 
   return (
-    <SectionThemeWrapper sectionId="alliance_partners" defaultTheme="light">
-      {(theme) => {
-        const isDark = theme === "dark";
-        return (
-          <section
-            className={`py-24 border-t transition-colors duration-300 relative overflow-hidden ${
-              isDark
-                ? "bg-slate-800 border-slate-700"
-                : "bg-white border-gray-200"
-            }`}
-          >
-            {/* Subtle background glows */}
-            <div className="absolute inset-0 overflow-hidden pointer-events-none">
-              <div className={`absolute top-0 right-0 w-[800px] h-[800px] rounded-full blur-[120px] pointer-events-none -translate-y-1/2 translate-x-1/3 ${
-                isDark ? "bg-[#242A56]/10" : "bg-[#242A56]/10"
-              }`} />
-            </div>
+    <section className="py-16 lg:py-24 bg-white border-t border-gray-100 relative overflow-hidden">
+      {/* Subtle background glow */}
+      <div className="absolute inset-0 opacity-[0.03] pointer-events-none">
+        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#2563EB] rounded-full blur-[120px]" />
+        <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-[#2563EB] rounded-full blur-[120px]" />
+      </div>
 
-            <Container>
-              <motion.div
-                initial={{ opacity: 0, y: 24 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.65, ease: "easeOut" }}
-                className="text-center max-w-3xl mx-auto mb-16"
-              >
-                <h2
-                  className={`font-heading text-3xl sm:text-4xl font-medium tracking-tight mb-4 ${
-                    isDark ? "text-white" : "text-slate-800"
-                  }`}
-                >
-                  <EditableText
-                    path="alliance.partners.heading"
-                    fallback="Trusted Technology Alliance Partners"
-                    as="span"
-                  />
-                </h2>
-                <p
-                  className={`text-base lg:text-lg font-medium leading-relaxed ${
-                    isDark ? "text-gray-300" : "text-black"
-                  }`}
-                >
-                  <EditableText
-                    path="alliance.partners.description"
-                    fallback="We collaborate with the world's leading technology providers to deliver integrated solutions that accelerate enterprise transformation."
-                    as="span"
-                    multiline
-                  />
-                </p>
-              </motion.div>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        {/* Split Header */}
+        <div className="mb-12 lg:mb-16 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+          <div className="lg:col-span-5">
+            {/* <span className="text-[#2563EB] uppercase tracking-[0.25em] text-xs font-semibold">
+              <EditableText
+                path="alliance.partners.label"
+                fallback="Our Partners"
+                as="span"
+              />
+            </span> */}
+            <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-normal text-black mt-4 leading-[1.1]">
+              <EditableText
+                path="alliance.partners.heading"
+                fallback="Trusted Technology Alliance Partners"
+                as="span"
+              />
+            </h2>
+          </div>
+          <div className="lg:col-span-7">
+            <p className="text-base lg:text-lg text-[#5A5A5A] leading-relaxed">
+              <EditableText
+                path="alliance.partners.description"
+                fallback="We collaborate with the world's leading technology providers to deliver integrated solutions that accelerate enterprise transformation."
+                as="span"
+                multiline
+              />
+            </p>
+          </div>
+        </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                {items.map((partner, idx) => (
-                  <motion.div
-                    key={partner.id}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: idx * 0.1, duration: 0.5 }}
-                    className={`p-8 rounded-xl border transition-all hover:shadow-lg hover:-translate-y-1 group ${
-                      isDark
-                        ? "bg-slate-700/50 border-slate-600 hover:border-[#242A56]/40"
-                        : "bg-white/80 backdrop-blur-sm border-gray-200/60 hover:border-[#242A56]/20 shadow-[0_4px_20px_rgb(0,0,0,0.03)] hover:shadow-[0_8px_30px_rgb(0,0,0,0.06)]"
-                    }`}
-                  >
-                    <div
-                      className={`w-full h-16 rounded-lg flex items-center justify-center mb-4 text-xs font-bold ${
-                        isDark ? "bg-slate-700/50" : "bg-gray-50"
-                      }`}
-                    >
-                      <EditableText
-                        path={`alliance.partners.items.${idx}.name`}
-                        fallback={partner.name}
-                        as="span"
-                        className={`text-sm font-bold ${
-                          isDark ? "text-white" : "text-slate-800"
-                        }`}
-                      />
-                    </div>
-                    <span
-                      className={`text-xs font-bold uppercase tracking-widest ${
-                        isDark ? "text-gray-400" : "text-slate-500"
-                      }`}
-                    >
-                      <EditableText
-                        path={`alliance.partners.items.${idx}.category`}
-                        fallback={partner.category}
-                        as="span"
-                      />
-                    </span>
-                    <p
-                      className={`text-sm leading-relaxed mt-3 ${
-                        isDark ? "text-gray-300" : "text-slate-600"
-                      }`}
-                    >
-                      <EditableText
-                        path={`alliance.partners.items.${idx}.description`}
-                        fallback={partner.description}
-                        as="span"
-                        multiline
-                      />
-                    </p>
-                    <div className="mt-6 pt-4 border-t border-slate-600">
-                      <a
-                        href={partner.link}
-                        className={`inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider transition-colors group/link ${
-                          isDark
-                            ? "text-gray-300 hover:text-[#242A56]"
-                            : "text-slate-700 hover:text-[#242A56]"
-                        }`}
-                      >
-                        Learn More
-                        <svg
-                          className="w-3.5 h-3.5 transform group-hover/link:translate-x-1 transition-transform"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          stroke="currentColor"
-                          strokeWidth={2.5}
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            d="M14 5l7 7m0 0l-7 7m7-7H3"
-                          />
-                        </svg>
-                      </a>
-                    </div>
-                  </motion.div>
-                ))}
+        {/* Partners Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+          {items.map((partner, idx) => (
+            <motion.div
+              key={partner.id}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: idx * 0.1, duration: 0.5 }}
+              className="group relative bg-white border border-gray-200 rounded-md p-8 hover:border-[#2563EB]/30 hover:shadow-lg transition-all hover:-translate-y-1"
+            >
+              {/* Partner Logo Placeholder */}
+              <div className="w-full h-16 rounded-md bg-gray-100 flex items-center justify-center mb-4 text-xs font-bold text-gray-500">
+                <EditableText
+                  path={`alliance.partners.items.${idx}.name`}
+                  fallback={partner.name}
+                  as="span"
+                  className="text-sm font-bold text-black"
+                />
               </div>
-            </Container>
-          </section>
-        );
-      }}
-    </SectionThemeWrapper>
+
+              <span className="text-xs font-bold text-[#2563EB] uppercase tracking-widest">
+                <EditableText
+                  path={`alliance.partners.items.${idx}.category`}
+                  fallback={partner.category}
+                  as="span"
+                />
+              </span>
+
+              <p className="text-sm text-[#5A5A5A] leading-relaxed mt-3">
+                <EditableText
+                  path={`alliance.partners.items.${idx}.description`}
+                  fallback={partner.description}
+                  as="span"
+                  multiline
+                />
+              </p>
+
+              <div className="mt-6 pt-4 border-t border-gray-100">
+                <a
+                  href={partner.link}
+                  className="inline-flex items-center gap-2 text-xs font-bold text-black hover:text-[#2563EB] transition-colors group/link"
+                >
+                  Learn More
+                  <ArrowRight className="w-3.5 h-3.5 transform group-hover/link:translate-x-1 transition-transform" />
+                </a>
+              </div>
+
+              {/* Decorative bottom line */}
+              <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-12 h-0.5 bg-[#2563EB] rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
   );
 }

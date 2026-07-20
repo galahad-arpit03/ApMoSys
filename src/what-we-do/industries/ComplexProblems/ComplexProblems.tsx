@@ -1,125 +1,75 @@
+// src/what-we-do/industries/ComplexProblems/ComplexProblems.tsx
 "use client";
 
 import React from "react";
-import Container from "@/src/components/Container";
-import { motion, AnimatePresence } from "framer-motion";
-import { usePathname } from "next/navigation";
-import { useContentStore } from "@/src/admin/store/adminStore";
-import EditableText from "@/src/admin/components/EditableText";
-import SectionThemeWrapper from "@/src/admin/components/SectionThemeWrapper";
+import { motion } from "framer-motion";
+
+const problems = [
+  {
+    id: "1",
+    title: "Legacy Modernization",
+    description: "Transform monolithic legacy systems into scalable, cloud-native architectures with zero business disruption.",
+  },
+  {
+    id: "2",
+    title: "Data Integration & Governance",
+    description: "Unify siloed data sources, ensure data quality, and enforce governance across your entire enterprise ecosystem.",
+  },
+  {
+    id: "3",
+    title: "Security & Compliance",
+    description: "Build zero-trust architectures with automated compliance validation for regulated industries.",
+  },
+];
 
 export default function ComplexProblems() {
-  const pathname = usePathname();
-  const isEditRoute = pathname?.startsWith("/administrator");
-
-  const { content, addIndustryComplexItem, deleteIndustryComplexItem } = useContentStore();
-  const items = content.industries.complexItems || [];
-
   return (
-    <SectionThemeWrapper sectionId="industries_complex" defaultTheme="light">
-      {(theme) => {
-        const isDark = theme === "dark";
-        return (
-          <section
-            className={`py-16 pb-24 border-b transition-colors duration-300 relative overflow-hidden ${
-              isDark
-                ? "bg-[#0D0D0D] text-[#FAFAFA] border-[#1F1F1F]"
-                : "bg-gradient-to-b from-[#F0F4F8] to-white text-[#121212] border-[#E8E8E8]"
-            }`}
-          >
-            {/* Subtle background glows */}
-            <div className="absolute inset-0 overflow-hidden pointer-events-none">
-              <div className={`absolute top-0 right-0 w-[800px] h-[800px] rounded-full blur-[120px] pointer-events-none -translate-y-1/2 translate-x-1/3 ${
-                isDark ? "bg-[#242A56]/10" : "bg-[#242A56]/10"
-              }`} />
-              <div className={`absolute bottom-0 left-0 w-[600px] h-[600px] rounded-full blur-[100px] pointer-events-none translate-y-1/3 -translate-x-1/3 ${
-                isDark ? "bg-[#242A56]/10" : "bg-[#242A56]/10"
-              }`} />
-            </div>
+    <section className="py-16 lg:py-24 bg-[#FAFAFA] border-b border-gray-100 relative overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        {/* Split Header – No eyebrow */}
+        <div className="mb-12 lg:mb-16 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+          <div className="lg:col-span-5">
+            <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-normal text-black leading-[1.1]">
+              Complex Problems.<br />Precise Solutions.
+            </h2>
+          </div>
+          <div className="lg:col-span-7">
+            <p className="text-base lg:text-lg text-[#5A5A5A] leading-relaxed">
+              We tackle the most challenging enterprise problems with deep technical expertise, innovative thinking, and a commitment to delivering measurable results.
+            </p>
+          </div>
+        </div>
 
-            <Container>
-              <EditableText
-                path="industries.complex.heading"
-                fallback="Complex Problems. Precise Solutions."
-                as="h2"
-                className={`font-heading text-3xl lg:text-4xl font-medium tracking-tight mb-16 block ${
-                  isDark ? "text-white" : "text-slate-800"
-                }`}
-              />
-
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-                <AnimatePresence mode="popLayout">
-                  {items.map((item, idx) => (
-                    <motion.div
-                      key={item.id}
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: -20 }}
-                      layout
-                      transition={{ duration: 0.4 }}
-                      className="relative pl-6 border-l-2 border-[#242A56]/30 hover:border-[#242A56] transition-colors group/card"
-                    >
-                      <EditableText
-                        path={`industries.complexItems.${idx}.title`}
-                        fallback={item.title}
-                        as="h3"
-                        className={`font-heading text-xl font-bold mb-3 block ${
-                          isDark ? "text-white" : "text-slate-800"
-                        }`}
-                      />
-                      <EditableText
-                        path={`industries.complexItems.${idx}.description`}
-                        fallback={item.description}
-                        as="p"
-                        className={`leading-relaxed block ${
-                          isDark ? "text-gray-300" : "text-slate-600"
-                        }`}
-                        multiline
-                      />
-
-                      {/* Delete Button (Admin Only) */}
-                      {isEditRoute && (
-                        <button
-                          onClick={() => deleteIndustryComplexItem(item.id)}
-                          className={`absolute right-0 top-0 text-red-500 hover:text-red-400 p-1.5 rounded-full opacity-0 group-hover/card:opacity-100 transition-opacity duration-200 z-30 cursor-pointer ${
-                            isDark ? "bg-red-950/40 hover:bg-red-950/60" : "bg-red-50 hover:bg-red-100"
-                          }`}
-                          title="Delete item"
-                        >
-                          <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                            <path strokeLinecap="round" strokeLinejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                          </svg>
-                        </button>
-                      )}
-                    </motion.div>
-                  ))}
-                </AnimatePresence>
+        {/* Problems Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+          {problems.map((problem, idx) => (
+            <motion.div
+              key={problem.id}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: idx * 0.1, duration: 0.5 }}
+              className="group relative bg-white border border-gray-200 rounded-md p-8 hover:border-[#2563EB]/30 hover:shadow-lg transition-all hover:-translate-y-1"
+            >
+              {/* Step Number */}
+              <div className="text-6xl font-bold text-gray-100 group-hover:text-[#2563EB]/10 transition-colors mb-4">
+                {String(idx + 1).padStart(2, "0")}
               </div>
 
-              {/* Add Button (Admin Only) */}
-              {isEditRoute && (
-                <div className="mt-12 flex justify-center">
-                  <button
-                    onClick={addIndustryComplexItem}
-                    className={`flex items-center gap-2 border-2 border-dashed px-8 py-3 rounded-xl text-sm font-bold transition-all cursor-pointer group ${
-                      isDark
-                        ? "border-[#3A3A3A] hover:border-[#242A56]/50 text-white hover:text-[#242A56]"
-                        : "border-[#E8E8E8] hover:border-[#242A56]/50 text-slate-800 hover:text-[#242A56]"
-                    }`}
-                  >
-                    <svg className={`w-4 h-4 transition-colors ${
-                      isDark ? "text-[#5A5A5A] group-hover:text-[#242A56]" : "text-[#7A7A7A] group-hover:text-[#242A56]"
-                    }`} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m8-8H4" />
-                    </svg>
-                    Add Architectural Challenge
-                  </button>
-                </div>
-              )}
-            </Container>
-          </section>
-        );
-      }}
-    </SectionThemeWrapper>
+              <h3 className="text-xl font-bold text-black mb-3 group-hover:text-[#2563EB] transition-colors">
+                {problem.title}
+              </h3>
+
+              <p className="text-sm text-[#5A5A5A] leading-relaxed">
+                {problem.description}
+              </p>
+
+              {/* Decorative bottom line */}
+              <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-12 h-0.5 bg-[#2563EB] rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
   );
 }

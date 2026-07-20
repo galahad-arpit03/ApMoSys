@@ -1,10 +1,9 @@
+// src/what-we-do/alliance/AllianceBenefits/AllianceBenefits.tsx
 "use client";
 
 import React from "react";
-import Container from "@/src/components/Container";
 import { motion } from "framer-motion";
 import EditableText from "@/src/admin/components/EditableText";
-import SectionThemeWrapper from "@/src/admin/components/SectionThemeWrapper";
 import { useContentStore } from "@/src/admin/store/adminStore";
 import { allianceIconMap, defaultAllianceIcon } from "../icons";
 
@@ -46,115 +45,85 @@ export default function AllianceBenefits() {
   const items = benefitItems.length > 0 ? benefitItems : fallbackBenefits;
 
   return (
-    <SectionThemeWrapper sectionId="alliance_benefits" defaultTheme="dark">
-      {(theme) => {
-        const isDark = theme === "dark";
-        return (
-          <section
-            className={`py-24 border-t transition-colors duration-300 ${
-              isDark
-                ? "bg-slate-800 border-slate-700"
-                : "bg-white border-gray-200"
-            }`}
-          >
-            {/* Decorative glows (matching CoreValues) */}
-            <div className="absolute top-0 right-0 w-[600px] h-[600px] rounded-full blur-[100px] pointer-events-none -translate-y-1/2 translate-x-1/3 bg-slate-600/20" />
-            <div className="absolute bottom-0 left-0 w-[600px] h-[600px] rounded-full blur-[100px] pointer-events-none translate-y-1/2 -translate-x-1/3 bg-slate-600/20" />
+    <section className="py-16 lg:py-24 bg-[#0A1128] border-t border-[#1A264A] relative overflow-hidden">
+      {/* Subtle background glow */}
+      <div className="absolute inset-0 opacity-[0.05] pointer-events-none">
+        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#2563EB] rounded-full blur-[120px]" />
+        <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-[#2563EB] rounded-full blur-[120px]" />
+      </div>
 
-            <Container>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        {/* Split Header */}
+        <div className="mb-12 lg:mb-16 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+          <div className="lg:col-span-5">
+            {/* <span className="text-[#2563EB] uppercase tracking-[0.25em] text-xs font-semibold">
+              <EditableText
+                path="alliance.benefits.label"
+                fallback="Why Partner"
+                as="span"
+              />
+            </span> */}
+            <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-normal text-white mt-4 leading-[1.1]">
+              <EditableText
+                path="alliance.benefits.heading"
+                fallback="Building a Stronger Ecosystem Together"
+                as="span"
+              />
+            </h2>
+          </div>
+          <div className="lg:col-span-7">
+            <p className="text-base lg:text-lg text-gray-300 leading-relaxed">
+              <EditableText
+                path="alliance.benefits.description"
+                fallback="Our alliance partners benefit from a collaborative ecosystem that drives mutual growth, innovation, and customer success."
+                as="span"
+                multiline
+              />
+            </p>
+          </div>
+        </div>
+
+        {/* Benefits Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+          {items.map((benefit, idx) => {
+            const IconComponent = allianceIconMap[benefit.icon] || defaultAllianceIcon;
+            return (
               <motion.div
-                initial={{ opacity: 0, y: 24 }}
+                key={benefit.id}
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.65, ease: "easeOut" }}
-                className="text-center max-w-3xl mx-auto mb-16"
+                transition={{ delay: idx * 0.1, duration: 0.5 }}
+                className="group relative bg-[#121B38] border border-[#1A264A] rounded-md p-8 transition-all hover:-translate-y-1 hover:border-[#2563EB]/40 hover:shadow-[0_0_40px_rgba(37,99,235,0.05)]"
               >
-                <h2
-                  className={`font-heading text-3xl sm:text-4xl font-medium tracking-tight mb-4 ${
-                    isDark ? "text-white" : "text-slate-800"
-                  }`}
-                >
+                <div className="w-14 h-14 rounded-md border border-[#2563EB]/30 bg-[#2563EB]/20 flex items-center justify-center text-[#2563EB] mb-5 group-hover:bg-[#2563EB] group-hover:text-white transition-colors">
+                  <IconComponent className="w-7 h-7" strokeWidth={1.5} />
+                </div>
+
+                <h3 className="text-lg font-bold text-white mb-3 group-hover:text-[#2563EB] transition-colors">
                   <EditableText
-                    path="alliance.benefits.heading"
-                    fallback="Building a Stronger Ecosystem Together"
+                    path={`alliance.benefits.items.${idx}.title`}
+                    fallback={benefit.title}
                     as="span"
                   />
-                </h2>
-                <p
-                  className={`text-base lg:text-lg font-medium leading-relaxed ${
-                    isDark ? "text-gray-300" : "text-black"
-                  }`}
-                >
+                </h3>
+
+                <p className="text-sm text-gray-300 leading-relaxed">
                   <EditableText
-                    path="alliance.benefits.description"
-                    fallback="Our alliance partners benefit from a collaborative ecosystem that drives mutual growth, innovation, and customer success."
+                    path={`alliance.benefits.items.${idx}.description`}
+                    fallback={benefit.description}
                     as="span"
                     multiline
                   />
                 </p>
+
+                {/* Decorative bottom line */}
+                <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-12 h-0.5 bg-[#2563EB] rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               </motion.div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                {items.map((benefit, idx) => {
-                  const IconComponent = allianceIconMap[benefit.icon] || defaultAllianceIcon;
-                  return (
-                    <motion.div
-                      key={benefit.id}
-                      initial={{ opacity: 0, y: 20 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: idx * 0.08, duration: 0.5 }}
-                      className="group relative p-[1px] rounded-md overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 bg-gradient-to-b from-slate-600/50 to-slate-700/50 hover:from-slate-500 hover:to-slate-600"
-                    >
-                      <div className="absolute inset-0 bg-gradient-to-br from-white/0 via-white/0 to-white/0 group-hover:from-white/5 group-hover:to-white/10 transition-all duration-500" />
-                      <div className={`relative h-full backdrop-blur-xl p-6 sm:p-8 rounded-md flex flex-col items-start transition-colors duration-500 ${
-                        isDark ? "bg-slate-800/90 group-hover:bg-slate-800" : "bg-white/80 group-hover:bg-white"
-                      } overflow-hidden`}>
-                        {/* Large Background Number */}
-                        <div className={`absolute -top-6 -right-6 text-[120px] leading-none font-black select-none pointer-events-none z-0 ${
-                          isDark ? "text-slate-700/40 group-hover:text-slate-600/50" : "text-gray-200/60 group-hover:text-gray-300/70"
-                        }`}>
-                          0{idx + 1}
-                        </div>
-
-                        <div className="relative z-10 pt-4">
-                          {/* Icon with contrast fix */}
-                          <div className={`mb-4 p-3 rounded-xl inline-block ${
-                            isDark
-                              ? "bg-[#242A56]/30 text-white"
-                              : "bg-[#242A56]/10 text-[#242A56]"
-                          }`}>
-                            <IconComponent className="w-8 h-8" />
-                          </div>
-                          <h3 className={`font-bold text-xl lg:text-2xl mb-4 transition-colors duration-300 ${
-                            isDark ? "text-white" : "text-slate-800"
-                          }`}>
-                            <EditableText
-                              path={`alliance.benefits.items.${idx}.title`}
-                              fallback={benefit.title}
-                              as="span"
-                            />
-                          </h3>
-                          <p className={`text-sm lg:text-base leading-relaxed font-medium ${
-                            isDark ? "text-gray-400" : "text-slate-600"
-                          }`}>
-                            <EditableText
-                              path={`alliance.benefits.items.${idx}.description`}
-                              fallback={benefit.description}
-                              as="span"
-                              multiline
-                            />
-                          </p>
-                        </div>
-                      </div>
-                    </motion.div>
-                  );
-                })}
-              </div>
-            </Container>
-          </section>
-        );
-      }}
-    </SectionThemeWrapper>
+            );
+          })}
+        </div>
+      </div>
+    </section>
   );
 }

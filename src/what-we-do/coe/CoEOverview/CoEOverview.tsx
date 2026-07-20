@@ -1,7 +1,7 @@
+// src/what-we-do/coe/CoEOverview/CoEOverview.tsx
 "use client";
 
 import React from "react";
-import Container from "@/src/components/Container";
 import { motion } from "framer-motion";
 import EditableText from "@/src/admin/components/EditableText";
 import SectionThemeWrapper from "@/src/admin/components/SectionThemeWrapper";
@@ -72,53 +72,61 @@ export default function CoEOverview() {
         return (
           <section
             id="coe-grid"
-            className={`py-24 transition-colors duration-300 relative overflow-hidden ${
+            className={`py-16 lg:py-24 transition-colors duration-300 relative overflow-hidden ${
               isDark
-                ? "bg-slate-800 text-white"
-                : "bg-gradient-to-b from-[#F0F4F8] to-white text-slate-800"
+                ? "bg-[#0A1128] text-white"
+                : "bg-white text-[#121212]"
             }`}
           >
-            {/* Subtle background glows */}
-            <div className="absolute inset-0 overflow-hidden pointer-events-none">
-              <div className={`absolute top-0 right-0 w-[800px] h-[800px] rounded-full blur-[120px] pointer-events-none -translate-y-1/2 translate-x-1/3 ${
-                isDark ? "bg-[#242A56]/10" : "bg-[#242A56]/10"
-              }`} />
+            {/* Subtle background glow */}
+            <div className={`absolute inset-0 pointer-events-none ${
+              isDark ? "opacity-[0.05]" : "opacity-[0.03]"
+            }`}>
+              <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#2563EB] rounded-full blur-[120px]" />
+              <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-[#2563EB] rounded-full blur-[120px]" />
             </div>
 
-            <Container>
-              <motion.div
-                initial={{ opacity: 0, y: 24 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.65, ease: "easeOut" }}
-                className="text-center max-w-3xl mx-auto mb-16"
-              >
-                <h2
-                  className={`font-heading text-3xl sm:text-4xl font-medium tracking-tight mb-4 ${
-                    isDark ? "text-white" : "text-slate-800"
-                  }`}
-                >
-                  <EditableText
-                    path="coe.overview.heading"
-                    fallback="Specialized Innovation Labs"
-                    as="span"
-                  />
-                </h2>
-                <p
-                  className={`text-base lg:text-lg font-medium leading-relaxed ${
-                    isDark ? "text-gray-300" : "text-black"
-                  }`}
-                >
-                  <EditableText
-                    path="coe.overview.description"
-                    fallback="Our Centers of Excellence are dedicated innovation hubs that establish best practices, develop specialized tools, and drive thought leadership across critical domains."
-                    as="span"
-                    multiline
-                  />
-                </p>
-              </motion.div>
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+              {/* Split Header */}
+              <div className="mb-12 lg:mb-16 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+                <div className="lg:col-span-5">
+                  {/* <span className="text-[#2563EB] uppercase tracking-[0.25em] text-xs font-semibold">
+                    <EditableText
+                      path="coe.overview.label"
+                      fallback="Our CoEs"
+                      as="span"
+                    />
+                  </span> */}
+                  <h2
+                    className={`font-heading text-3xl sm:text-4xl lg:text-5xl font-normal mt-4 leading-[1.1] ${
+                      isDark ? "text-white" : "text-black"
+                    }`}
+                  >
+                    <EditableText
+                      path="coe.overview.heading"
+                      fallback="Specialized Innovation Labs"
+                      as="span"
+                    />
+                  </h2>
+                </div>
+                <div className="lg:col-span-7">
+                  <p
+                    className={`text-base lg:text-lg leading-relaxed ${
+                      isDark ? "text-gray-300" : "text-[#5A5A5A]"
+                    }`}
+                  >
+                    <EditableText
+                      path="coe.overview.description"
+                      fallback="Our Centers of Excellence are dedicated innovation hubs that establish best practices, develop specialized tools, and drive thought leadership across critical domains."
+                      as="span"
+                      multiline
+                    />
+                  </p>
+                </div>
+              </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {/* CoE Grid */}
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
                 {items.map((item, idx) => {
                   const IconComponent = coesIconMap[item.icon] || defaultCoEIcon;
                   return (
@@ -128,21 +136,25 @@ export default function CoEOverview() {
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true }}
                       transition={{ delay: idx * 0.08, duration: 0.5 }}
-                      className={`p-8 rounded-xl border transition-all hover:shadow-lg hover:-translate-y-1 group ${
+                      className={`group relative rounded-md p-8 transition-all hover:-translate-y-1 ${
                         isDark
-                          ? "bg-slate-700/50 border-slate-600 hover:border-[#242A56]/40"
-                          : "bg-white/80 backdrop-blur-sm border-gray-200/60 hover:border-[#242A56]/20 shadow-[0_4px_20px_rgb(0,0,0,0.03)] hover:shadow-[0_8px_30px_rgb(0,0,0,0.06)]"
+                          ? "bg-[#121B38] border border-[#1A264A] hover:border-[#2563EB]/40 hover:shadow-[0_0_40px_rgba(37,99,235,0.05)]"
+                          : "bg-white border border-gray-200 hover:border-[#2563EB]/30 hover:shadow-lg"
                       }`}
                     >
                       <div className="flex items-center gap-3 mb-4">
-                        <div className={`p-2 rounded-lg ${
-                          isDark ? "bg-[#242A56]/20 text-[#242A56]" : "bg-[#242A56]/10 text-[#242A56]"
-                        }`}>
-                          <IconComponent className="w-6 h-6" />
+                        <div
+                          className={`p-2 rounded-md transition-colors ${
+                            isDark
+                              ? "bg-[#2563EB]/20 text-[#2563EB]"
+                              : "bg-[#2563EB]/10 text-[#2563EB]"
+                          }`}
+                        >
+                          <IconComponent className="w-6 h-6" strokeWidth={1.5} />
                         </div>
                         <span
                           className={`text-xs font-bold uppercase tracking-widest ${
-                            isDark ? "text-gray-400" : "text-slate-500"
+                            isDark ? "text-gray-400" : "text-gray-500"
                           }`}
                         >
                           <EditableText
@@ -152,9 +164,12 @@ export default function CoEOverview() {
                           />
                         </span>
                       </div>
+
                       <h3
-                        className={`font-heading text-xl font-bold mb-3 ${
-                          isDark ? "text-white" : "text-slate-800"
+                        className={`text-xl font-bold mb-3 transition-colors ${
+                          isDark
+                            ? "text-white group-hover:text-[#2563EB]"
+                            : "text-black group-hover:text-[#2563EB]"
                         }`}
                       >
                         <EditableText
@@ -163,9 +178,10 @@ export default function CoEOverview() {
                           as="span"
                         />
                       </h3>
+
                       <p
                         className={`text-sm leading-relaxed ${
-                          isDark ? "text-gray-300" : "text-slate-600"
+                          isDark ? "text-gray-300" : "text-[#5A5A5A]"
                         }`}
                       >
                         <EditableText
@@ -175,11 +191,14 @@ export default function CoEOverview() {
                           multiline
                         />
                       </p>
+
+                      {/* Decorative bottom line */}
+                      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-12 h-0.5 bg-[#2563EB] rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                     </motion.div>
                   );
                 })}
               </div>
-            </Container>
+            </div>
           </section>
         );
       }}
