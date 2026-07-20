@@ -1,108 +1,134 @@
+// src/what-we-do/services/ImpactSection/ImpactSection.tsx
 "use client";
-import React from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { usePathname } from "next/navigation";
-import { useContentStore } from "@/src/admin/store/adminStore";
-import EditableText from "@/src/admin/components/EditableText";
-import SectionThemeWrapper from "@/src/admin/components/SectionThemeWrapper";
 
-export default function ImpactSection() {
-  const pathname = usePathname();
-  const isEditRoute = pathname?.startsWith("/administrator");
+import React, { useEffect, useState, useRef } from "react";
+import { motion, useInView } from "framer-motion";
+import { TrendingUp, Shield, Gauge, DollarSign } from "lucide-react";
 
-  // Default stats data
-  const defaultStats = [
-    { value: "40%", label: "REDUCED TIME TO MARKET" },
-    { value: "99.9%", label: "SYSTEM RELIABILITY" },
-    { value: "3.5x", label: "FASTER DEPLOYMENT" },
-    { value: "60%", label: "COST REDUCTION" },
-  ];
+const metrics = [
+  {
+    value: 40,
+    suffix: "%",
+    label: "Reduced Time to Market",
+    description: "Faster delivery cycles with automated pipelines and agile processes",
+    icon: TrendingUp,
+  },
+  {
+    value: 99.9,
+    suffix: "%",
+    label: "System Reliability",
+    description: "Enterprise-grade uptime with proactive monitoring and AIOps",
+    icon: Shield,
+  },
+  {
+    value: 3.5,
+    suffix: "x",
+    label: "Faster Deployment",
+    description: "Accelerated release cycles with CI/CD and infrastructure as code",
+    icon: Gauge,
+  },
+  {
+    value: 60,
+    suffix: "%",
+    label: "Cost Reduction",
+    description: "Optimized cloud spend and operational efficiency at scale",
+    icon: DollarSign,
+  },
+];
 
-  // In the future, this can be fetched from the store
-  // For now, we keep it static as it's likely not intended to be editable per stat
-  const stats = defaultStats;
+const Counter = ({ end, suffix }: { end: number; suffix: string }) => {
+  const [count, setCount] = useState(0);
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-50px" });
+
+  useEffect(() => {
+    if (isInView) {
+      let start = 0;
+      const duration = 2000;
+      const increment = end / (duration / 16);
+
+      const timer = setInterval(() => {
+        start += increment;
+        if (start >= end) {
+          setCount(end);
+          clearInterval(timer);
+        } else {
+          setCount(Math.floor(start));
+        }
+      }, 16);
+      return () => clearInterval(timer);
+    }
+  }, [isInView, end]);
 
   return (
-    <SectionThemeWrapper sectionId="services_impact" defaultTheme="dark">
-      {() => {
-        return (
-          <section className="py-12 relative overflow-clip transition-colors duration-300 bg-slate-800 text-white">
-            {/* Decorative Elements */}
-            <div className="absolute top-0 left-0 w-[500px] h-[500px] rounded-full blur-[120px] pointer-events-none -translate-y-1/3 -translate-x-1/3 bg-slate-600/20" />
-            <div className="absolute bottom-0 right-0 w-[500px] h-[500px] rounded-full blur-[120px] pointer-events-none translate-y-1/3 translate-x-1/3 bg-slate-600/20" />
+    <span ref={ref} className="text-5xl sm:text-6xl font-light tracking-tight">
+      {count}
+      <span className="text-[#2563EB]">{suffix}</span>
+    </span>
+  );
+};
 
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-              <div className="flex flex-col gap-8">
-                {/* Header */}
-                <div className="flex flex-col lg:flex-row justify-between items-start gap-6">
-                  <div className="text-left relative">
-                    <h2 className="text-4xl lg:text-5xl font-medium tracking-tight text-white">
-                      <EditableText
-                        path="services.impact.heading"
-                        fallback="Quantifiable Technical Impact"
-                        as="span"
-                      />
-                    </h2>
-                  </div>
-                  <div className="text-left lg:text-right relative max-w-2xl">
-                    <p className="text-lg font-medium leading-relaxed text-gray-300">
-                      <EditableText
-                        path="services.impact.description"
-                        fallback="Our engineering solutions deliver measurable outcomes that drive business value and operational excellence."
-                        as="span"
-                        multiline
-                      />
-                    </p>
-                  </div>
+export default function ImpactSection() {
+  return (
+    <section className="py-16 lg:py-24 bg-[#0A1128] border-t border-[#1A264A] relative overflow-hidden">
+      {/* Background Glows - Keep blue theme */}
+      <div className="absolute top-0 left-0 w-[600px] h-[600px] bg-[#2563EB]/10 rounded-full blur-[120px] pointer-events-none -translate-x-1/2 -translate-y-1/2" />
+      <div className="absolute bottom-0 right-0 w-[600px] h-[600px] bg-[#2563EB]/5 rounded-full blur-[120px] pointer-events-none translate-x-1/2 translate-y-1/2" />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        {/* Header */}
+        <div className="mb-12 lg:mb-16 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+          <div className="lg:col-span-5">
+            {/* <span className="text-[#2563EB] uppercase tracking-[0.25em] text-xs font-semibold">
+              Measurable Impact
+            </span> */}
+            <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-normal text-white mt-4 leading-[1.1]">
+              Quantifiable Technical Impact
+            </h2>
+          </div>
+          <div className="lg:col-span-7">
+            <p className="text-base lg:text-lg text-gray-300 leading-relaxed">
+              Our engineering solutions deliver measurable outcomes that drive business value and operational excellence.
+            </p>
+          </div>
+        </div>
+
+        {/* Metrics Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {metrics.map((metric, idx) => {
+            const Icon = metric.icon;
+            return (
+              <motion.div
+                key={idx}
+                initial={{ opacity: 0, scale: 0.95 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: idx * 0.1, duration: 0.5 }}
+                className="group relative bg-[#121B38] border border-[#1A264A] rounded-md p-8 hover:border-[#2563EB]/40 hover:shadow-[0_0_40px_rgba(37,99,235,0.05)] transition-all"
+              >
+                {/* Unified Blue Top Border on Hover */}
+                <div className="absolute inset-x-0 top-0 h-0.5 bg-[#2563EB] opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-t-md" />
+
+                {/* Icon */}
+                <div className="w-12 h-12 rounded-md bg-[#2563EB]/10 border border-[#2563EB]/20 flex items-center justify-center text-[#2563EB] mb-5 group-hover:bg-[#2563EB] group-hover:text-white transition-colors">
+                  <Icon className="w-6 h-6" strokeWidth={1.5} />
                 </div>
 
-                {/* Stats Grid */}
-                <div>
-                  <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
-                    {stats.map((stat, idx) => (
-                      <motion.div
-                        key={idx}
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: idx * 0.1, duration: 0.5 }}
-                        className="group relative p-[1px] rounded-md overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 bg-gradient-to-b from-slate-600/50 to-slate-700/50 hover:from-slate-500 hover:to-slate-600"
-                      >
-                        <div className="absolute inset-0 bg-gradient-to-br from-white/0 via-white/0 to-white/0 group-hover:from-white/5 group-hover:to-white/10 transition-all duration-500" />
-
-                        <div className="relative h-full backdrop-blur-xl p-6 sm:p-8 rounded-md flex flex-col items-center justify-center text-center transition-colors duration-500 bg-slate-800/90 group-hover:bg-slate-800 overflow-hidden">
-                          {/* Large Background Number */}
-                          <div className="absolute -top-6 -right-6 text-[100px] leading-none font-black text-slate-700/40 group-hover:text-slate-600/50 transition-colors duration-500 select-none pointer-events-none z-0">
-                            0{idx + 1}
-                          </div>
-
-                          <div className="relative z-10 pt-4 w-full">
-                            <div className="text-4xl sm:text-5xl lg:text-6xl font-sans font-light tracking-tight mb-2 text-white">
-                              <EditableText
-                                path={`services.impact.stat${idx + 1}Value`}
-                                fallback={stat.value}
-                                as="span"
-                              />
-                            </div>
-                            {/* Label - fixed contrast */}
-                            <div className="text-[10px] sm:text-xs font-manrope font-semibold tracking-[0.2em] uppercase text-gray-300">
-                              <EditableText
-                                path={`services.impact.stat${idx + 1}Label`}
-                                fallback={stat.label}
-                                as="span"
-                              />
-                            </div>
-                          </div>
-                        </div>
-                      </motion.div>
-                    ))}
-                  </div>
+                {/* Value */}
+                <div className="text-white mb-1">
+                  <Counter end={metric.value} suffix={metric.suffix} />
                 </div>
-              </div>
-            </div>
-          </section>
-        );
-      }}
-    </SectionThemeWrapper>
+
+                {/* Label */}
+                <h3 className="text-sm font-bold text-gray-200 mb-2">{metric.label}</h3>
+
+                {/* Description */}
+                <p className="text-xs text-gray-400 leading-relaxed">{metric.description}</p>
+              </motion.div>
+            );
+          })}
+        </div>
+      </div>
+    </section>
   );
 }

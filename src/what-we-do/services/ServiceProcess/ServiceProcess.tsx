@@ -1,212 +1,158 @@
+// src/what-we-do/services/ServiceProcess/ServiceProcess.tsx
 "use client";
 
-import React, { useState } from "react";
-import Container from "@/src/components/Container";
-import { motion, AnimatePresence } from "framer-motion";
-import EditableText from "@/src/admin/components/EditableText";
-import SectionThemeWrapper from "@/src/admin/components/SectionThemeWrapper";
+import React, { useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { CheckCircle2, Search, Layers, Code, ShieldCheck, Rocket } from "lucide-react";
 
-const processSteps = [
+const steps = [
   {
     id: "1",
     title: "Discovery & Assessment",
     description:
       "We analyze your current systems, processes, and challenges to identify opportunities for automation, optimization, and modernization.",
-    icon: "📋",
+    icon: Search,
+    details: ["Technical Audit", "Stakeholder Interviews", "Process Mapping"],
   },
   {
     id: "2",
     title: "Strategy & Architecture",
     description:
       "We design a tailored engineering strategy and architectural blueprint aligned with your business goals and technical requirements.",
-    icon: "🏗️",
+    icon: Layers,
+    details: ["Architecture Design", "Technology Selection", "Roadmap Planning"],
   },
   {
     id: "3",
     title: "Implementation & Development",
     description:
       "Our engineering teams execute the strategy using agile methodologies, delivering value incrementally with continuous feedback.",
-    icon: "💻",
+    icon: Code,
+    details: ["Agile Sprints", "CI/CD Pipeline", "Code Reviews"],
   },
   {
     id: "4",
     title: "Quality & Security Validation",
     description:
       "Comprehensive testing, security scanning, and performance validation ensure your systems meet the highest quality standards.",
-    icon: "✅",
+    icon: ShieldCheck,
+    details: ["Automated Testing", "Security Audit", "Performance Testing"],
   },
   {
     id: "5",
     title: "Deployment & Operations",
     description:
       "We deploy your solutions and provide ongoing monitoring, support, and optimization to ensure long-term success and reliability.",
-    icon: "🚀",
+    icon: Rocket,
+    details: ["Production Deployment", "24/7 Monitoring", "Continuous Optimization"],
   },
 ];
 
 export default function ServiceProcess() {
-  const [activeStep, setActiveStep] = useState<string | null>(processSteps[0].id);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  // Scroll-driven line animation
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start center", "end center"],
+  });
+
+  const lineHeight = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
 
   return (
-    <SectionThemeWrapper sectionId="services_process" defaultTheme="light">
-      {(theme) => {
-        const isDark = theme === "dark";
-        return (
-          <section
-            className={`py-16 border-t transition-colors duration-300 ${
-              isDark
-                ? "bg-slate-800 border-slate-700"
-                : "bg-white/80 border-gray-200"
-            }`}
-          >
-            <Container>
-              {/* Header */}
+    <section className="py-16 lg:py-24 bg-[#FAFAFA] border-b border-gray-100 relative overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Split Header – following landing page pattern */}
+        <div className="mb-12 lg:mb-16 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+          <div className="lg:col-span-5">
+            {/* <span className="text-[#2563EB] uppercase tracking-[0.25em] text-xs font-semibold">
+              Our Process
+            </span> */}
+            <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-normal text-black mt-4 leading-[1.1]">
+              A Structured Path to Engineering Excellence
+            </h2>
+          </div>
+          <div className="lg:col-span-7">
+            <p className="text-base lg:text-lg text-[#5A5A5A] leading-relaxed">
+              Our five-stage engineering process ensures clarity, quality, and consistency across every engagement — from initial discovery to ongoing operations.
+            </p>
+          </div>
+        </div>
+
+        {/* Vertical Timeline with Animated Line */}
+        <div className="relative max-w-5xl mx-auto" ref={containerRef}>
+          {/* Central Line – Static background */}
+          <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-0.5 bg-gray-200 transform md:-translate-x-1/2 rounded-full" />
+
+          {/* Animated Line – grows with scroll */}
+          <motion.div
+            className="absolute left-8 md:left-1/2 top-0 w-0.5 bg-[#2563EB] transform md:-translate-x-1/2 rounded-full origin-top"
+            style={{ height: lineHeight }}
+          />
+
+          {steps.map((step, idx) => {
+            const isEven = idx % 2 === 0;
+            const Icon = step.icon;
+
+            return (
               <motion.div
-                initial={{ opacity: 0, y: 24 }}
+                key={step.id}
+                initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.65, ease: "easeOut" }}
-                className="text-center max-w-3xl mx-auto mb-16"
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ delay: idx * 0.1, duration: 0.5 }}
+                className={`relative flex flex-col md:flex-row items-start mb-12 last:mb-0 ${
+                  isEven ? "md:flex-row" : "md:flex-row-reverse"
+                }`}
               >
-                <h2
-                  className={`text-4xl lg:text-5xl font-medium tracking-tight mb-4 ${
-                    isDark ? "text-white" : "text-slate-800"
-                  }`}
-                >
-                  <EditableText
-                    path="services.process.heading"
-                    fallback="A Structured Path to Engineering Excellence"
-                    as="span"
-                  />
-                </h2>
-                <p
-                  className={`text-base lg:text-lg font-medium leading-relaxed ${
-                    isDark ? "text-gray-300" : "text-slate-600"
-                  }`}
-                >
-                  <EditableText
-                    path="services.process.description"
-                    fallback="Our five-stage engineering process ensures clarity, quality, and consistency across every engagement — from initial discovery to ongoing operations."
-                    as="span"
-                    multiline
-                  />
-                </p>
-              </motion.div>
-
-              {/* Process Visual - Stacked Cards with Toggle */}
-              <div className="max-w-3xl mx-auto">
-                <div className="space-y-3">
-                  {processSteps.map((step, idx) => {
-                    const isActive = activeStep === step.id;
-                    return (
-                      <motion.div
-                        key={step.id}
-                        initial={{ opacity: 0, x: -20 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: idx * 0.08, duration: 0.4 }}
-                        className={`border rounded-xl overflow-hidden transition-all duration-300 ${
-                          isActive
-                            ? `border-[#242A56] ${
-                                isDark
-                                  ? "bg-slate-700/70 shadow-lg shadow-[#242A56]/5"
-                                  : "bg-white shadow-lg shadow-[#242A56]/10"
-                              }`
-                            : isDark
-                            ? "border-slate-600 bg-slate-700/30"
-                            : "border-gray-200 bg-white/50"
-                        }`}
-                      >
-                        <button
-                          onClick={() =>
-                            setActiveStep(isActive ? null : step.id)
-                          }
-                          className="w-full text-left px-6 py-4 flex items-center gap-4 cursor-pointer"
-                        >
-                          <div
-                            className={`flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold transition-colors ${
-                              isActive
-                                ? "bg-[#242A56] text-white"
-                                : isDark
-                                ? "bg-slate-600 text-gray-300"
-                                : "bg-gray-100 text-gray-500"
-                            }`}
-                          >
-                            {step.id}
-                          </div>
-                          <div className="flex-1">
-                            <h3
-                              className={`font-medium text-base ${
-                                isActive
-                                  ? "text-[#242A56]"
-                                  : isDark
-                                  ? "text-white"
-                                  : "text-slate-800"
-                              }`}
-                            >
-                              <EditableText
-                                path={`services.process.steps.${idx}.title`}
-                                fallback={step.title}
-                                as="span"
-                              />
-                            </h3>
-                          </div>
-                          <svg
-                            className={`w-5 h-5 transition-transform duration-300 ${
-                              isActive ? "rotate-180" : ""
-                            } ${isDark ? "text-gray-400" : "text-gray-400"}`}
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor"
-                            strokeWidth={2}
-                          >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              d="M19 9l-7 7-7-7"
-                            />
-                          </svg>
-                        </button>
-
-                        <AnimatePresence>
-                          {isActive && (
-                            <motion.div
-                              initial={{ height: 0, opacity: 0 }}
-                              animate={{ height: "auto", opacity: 1 }}
-                              exit={{ height: 0, opacity: 0 }}
-                              transition={{ duration: 0.3, ease: "easeInOut" }}
-                              className="overflow-hidden"
-                            >
-                              <div
-                                className={`px-6 pb-6 pt-2 border-t ${
-                                  isDark ? "border-slate-600" : "border-gray-200"
-                                }`}
-                              >
-                                <p
-                                  className={`text-base leading-relaxed font-medium ${
-                                    isDark ? "text-gray-300" : "text-slate-600"
-                                  }`}
-                                >
-                                  <EditableText
-                                    path={`services.process.steps.${idx}.description`}
-                                    fallback={step.description}
-                                    as="span"
-                                    multiline
-                                  />
-                                </p>
-                              </div>
-                            </motion.div>
-                          )}
-                        </AnimatePresence>
-                      </motion.div>
-                    );
-                  })}
+                {/* Timeline Dot */}
+                <div className="absolute left-8 md:left-1/2 w-4 h-4 bg-[#2563EB] rounded-full transform -translate-x-1/2 z-10 shadow-[0_0_20px_rgba(37,99,235,0.4)] border-2 border-white">
+                  <div className="absolute inset-0 rounded-full animate-ping bg-[#2563EB]/30" />
                 </div>
-              </div>
-            </Container>
-          </section>
-        );
-      }}
-    </SectionThemeWrapper>
+
+                {/* Content Card */}
+                <div className={`ml-16 md:ml-0 w-full md:w-[45%] ${isEven ? "md:pr-12" : "md:pl-12"}`}>
+                  <div className="bg-white border border-gray-200 rounded-md p-6 hover:border-[#2563EB]/30 hover:shadow-lg transition-all group">
+                    {/* Step Number & Icon */}
+                    <div className="flex items-center gap-3 mb-3">
+                      <span className="text-[10px] font-bold text-[#2563EB] uppercase tracking-wider bg-[#2563EB]/10 px-3 py-1 rounded-full">
+                        Step {step.id}
+                      </span>
+                      <div className="w-8 h-8 rounded-md bg-[#2563EB]/10 border border-[#2563EB]/20 flex items-center justify-center text-[#2563EB] group-hover:bg-[#2563EB] group-hover:text-white transition-colors">
+                        <Icon className="w-4 h-4" strokeWidth={1.5} />
+                      </div>
+                    </div>
+
+                    <h3 className="text-xl font-bold text-black mb-2 group-hover:text-[#2563EB] transition-colors">
+                      {step.title}
+                    </h3>
+
+                    <p className="text-[#5A5A5A] text-sm leading-relaxed mb-4">
+                      {step.description}
+                    </p>
+
+                    {/* Details Tags */}
+                    <div className="flex flex-wrap gap-2">
+                      {step.details.map((detail) => (
+                        <span
+                          key={detail}
+                          className="text-[10px] font-medium text-gray-600 bg-gray-50 border border-gray-200 px-3 py-1.5 rounded-full flex items-center gap-1.5 group-hover:border-[#2563EB]/20 group-hover:bg-[#2563EB]/5 transition-colors"
+                        >
+                          <CheckCircle2 className="w-3 h-3 text-[#2563EB]" />
+                          {detail}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+
+                {/* Empty spacer for alignment */}
+                <div className="hidden md:block w-[45%]" />
+              </motion.div>
+            );
+          })}
+        </div>
+      </div>
+    </section>
   );
 }
