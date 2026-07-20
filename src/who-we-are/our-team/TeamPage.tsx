@@ -13,7 +13,14 @@ export default function TeamPage() {
       <TeamCulture />
       <TeamDepartments />
       <TeamGallery />
-      <CorporateCTA />
+      <CorporateCTA 
+        tag="Careers"
+        heading="Build your career with 1400+ engineers."
+        description="Join a team that values craftsmanship, continuous learning and real enterprise impact — across India and the UAE."
+        buttonText="Explore Careers"
+        sectionId="team_cta"
+        editablePrefix="team.cta"
+      />
     </main>
   );
 }

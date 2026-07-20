@@ -4,52 +4,83 @@ import { corporateCTAData } from "./CorporateCTAData";
 import EditableText from "@/src/admin/components/EditableText";
 import SectionThemeWrapper from "@/src/admin/components/SectionThemeWrapper";
 import { ArrowRight } from "lucide-react";
+import Image from "next/image";
 
-export default function CorporateCTA() {
+interface CorporateCTAProps {
+  tag?: string;
+  heading?: string;
+  description?: string;
+  buttonText?: string;
+  sectionId?: string;
+  editablePrefix?: string;
+}
+
+export default function CorporateCTA({
+  tag,
+  heading = corporateCTAData.heading,
+  description = corporateCTAData.description,
+  buttonText = corporateCTAData.buttonText,
+  sectionId = "about_cta",
+  editablePrefix = "about.cta"
+}: CorporateCTAProps) {
   return (
-    <SectionThemeWrapper sectionId="about_cta" defaultTheme="light">
+    <SectionThemeWrapper sectionId={sectionId} defaultTheme="light">
       {(theme) => {
         const isDark = theme === "dark";
         return (
-          <section className={`py-12 transition-colors duration-300 ${isDark ? "bg-[#000000]" : "bg-white"}`}>
-            <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-              <div className="rounded-xl p-12 md:p-16 text-center relative overflow-hidden border transition-colors shadow-2xl bg-slate-800 border-slate-700">
-                {/* Glassmorphism gradient background */}
-                <div className="absolute inset-0 bg-gradient-to-br from-slate-700/50 via-transparent to-slate-900/50 pointer-events-none" />
-                {/* Top Right decorative blur */}
-                <div className="absolute top-0 right-0 translate-x-1/3 -translate-y-1/3 w-[600px] h-[600px] bg-white/20 rounded-full blur-[120px] pointer-events-none" />
-                {/* Bottom Left decorative blur */}
-                <div className="absolute bottom-0 left-0 -translate-x-1/3 translate-y-1/3 w-[600px] h-[600px] bg-white/15 rounded-full blur-[120px] pointer-events-none" />
+          <section className={`py-10 lg:py-16 transition-colors duration-300 ${isDark ? "bg-[#0F0F0F]" : "bg-white"} px-6 sm:px-8 lg:px-16`}>
+            <div className="max-w-[1600px] mx-auto relative rounded-[12px] overflow-hidden shadow-2xl min-h-[300px] md:min-h-[350px] lg:min-h-[380px] flex flex-col justify-center">
+              
+              {/* Background Image & Overlay */}
+              <div className="absolute inset-0 z-0">
+                <Image
+                  src="/assets/images/abstract-waves.png"
+                  alt="Background"
+                  fill
+                  quality={90}
+                  className="object-cover"
+                />
+                <div className="absolute inset-0 bg-[#2b4c8f]/80 mix-blend-multiply"></div>
+              </div>
 
-                <div className="relative z-10">
-                  <h2 className="text-4xl md:text-5xl font-medium tracking-tight mb-4 text-white">
+              <div className="relative z-10 p-8 sm:p-12 lg:p-16 w-full flex flex-col lg:flex-row items-center justify-between gap-8">
+                
+                <div className="max-w-2xl text-left w-full">
+                  {tag && (
+                    <span className="text-white/80 font-bold uppercase tracking-widest text-xs sm:text-sm mb-4 block">
+                      {tag}
+                    </span>
+                  )}
+                  <h2 className="text-3xl sm:text-4xl lg:text-5xl font-medium text-white mb-4 tracking-tight leading-tight">
                     <EditableText
-                      path="about.cta.heading"
-                      fallback={corporateCTAData.heading}
+                      path={`${editablePrefix}.heading`}
+                      fallback={heading}
                       as="span"
                     />
                   </h2>
-                  <p className="text-base md:text-lg mb-10 max-w-2xl mx-auto font-medium text-gray-300">
+                  <p className="text-white/90 text-sm sm:text-base lg:text-lg leading-relaxed max-w-xl">
                     <EditableText
-                      path="about.cta.description"
-                      fallback={corporateCTAData.description}
+                      path={`${editablePrefix}.description`}
+                      fallback={description}
                       as="span"
                       multiline
                     />
                   </p>
-                  <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                    <button className="bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/20 text-white px-8 py-3.5 rounded-md font-bold text-sm transition-colors duration-200 shadow-lg w-full sm:w-auto">
-                      <EditableText
-                        path="about.cta.buttonText"
-                        fallback={corporateCTAData.buttonText}
-                        as="span"
-                      />
-                    </button>
-                    <button className="px-8 py-3.5 rounded-md font-semibold text-sm transition-colors shadow-sm flex items-center justify-center gap-2 border w-full sm:w-auto bg-transparent border-slate-600 text-gray-300 hover:bg-slate-700 hover:text-white">
-                      View Blogs <ArrowRight className="w-4 h-4" />
-                    </button>
-                  </div>
                 </div>
+
+                <div className="flex flex-col sm:flex-row gap-4 w-full lg:w-auto shrink-0">
+                  <button className="px-8 py-3.5 bg-white text-[#0F172A] rounded-md font-semibold text-sm text-center shadow-lg hover:shadow-xl transition-all hover:scale-[1.02]">
+                    <EditableText
+                      path={`${editablePrefix}.buttonText`}
+                      fallback={buttonText}
+                      as="span"
+                    />
+                  </button>
+                  <button className="px-8 py-3.5 bg-white text-[#0F172A] rounded-md font-semibold text-sm text-center shadow-lg hover:shadow-xl transition-all hover:scale-[1.02]">
+                    View Blogs
+                  </button>
+                </div>
+
               </div>
             </div>
           </section>

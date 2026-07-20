@@ -17,23 +17,25 @@ export default function AboutApmosys() {
       <div className="max-w-[1600px] mx-auto px-6 sm:px-8 lg:px-16 relative z-10">
 
         {/* Header - LHS/RHS Split */}
-        <div className="mb-8 lg:mb-10 flex flex-col lg:flex-row lg:items-start justify-between gap-8 lg:gap-16">
+        <div className="mb-8 lg:mb-10 flex flex-col lg:flex-row lg:items-start justify-between gap-8">
           {/* Left Side: Heading */}
-          <div className="lg:w-[55%] shrink-0">
-            <h2 className="font-heading text-4xl sm:text-5xl lg:text-5xl xl:text-6xl font-normal text-black leading-[1.1] pr-4">
-              Making Digital Transformation Smoother
+          <div className="shrink-0">
+            <h2 className="font-heading text-4xl sm:text-5xl lg:text-6xl font-normal text-black leading-[1.1]">
+              Engineering <br className="hidden lg:block" /> Digital Excellence
             </h2>
           </div>
 
           {/* Right Side: Paragraph & CTA */}
-          <div className="lg:w-[45%] flex flex-col lg:items-start gap-5">
-            <p className="text-base lg:text-lg leading-relaxed text-[#5A5A5A]">
+          <div className="flex flex-col lg:items-end gap-6 max-w-xl">
+            <p className="text-base lg:text-lg leading-relaxed text-[#5A5A5A] lg:text-left">
               We architect scalable, secure, and intelligent solutions that simplify complex enterprise challenges. Experience seamless technology designed to fit effortlessly into your business model.
             </p>
-            <button className="group flex items-center gap-2 bg-[#2563EB] text-white px-7 py-3 rounded-md font-bold text-sm hover:bg-blue-700 transition-all shadow-[0_0_15px_rgba(37,99,235,0.2)]">
-              Discover Our Story
-              <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" />
-            </button>
+            <div className="w-full lg:text-left flex lg:justify-start">
+              <button className="group flex items-center gap-2 bg-[#2563EB] text-white px-7 py-3 rounded-md font-bold text-sm hover:bg-blue-700 transition-all shadow-[0_0_15px_rgba(37,99,235,0.2)]">
+                Discover Our Story
+                <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" />
+              </button>
+            </div>
           </div>
         </div>
 

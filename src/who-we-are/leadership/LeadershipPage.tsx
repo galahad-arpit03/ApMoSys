@@ -15,7 +15,14 @@ export default function LeadershipPage() {
       <ExecutiveTeam />
       <LeadershipValues />
       <LeadershipVision />
-      <CorporateCTA />
+      <CorporateCTA 
+        tag="Leadership"
+        heading="Meet Our Experts"
+        description="Connect with our leadership team to discuss strategic partnerships, digital transformation, and enterprise growth."
+        buttonText="Contact Leadership"
+        sectionId="leadership_cta"
+        editablePrefix="leadership.cta"
+      />
     </main>
   );
 }

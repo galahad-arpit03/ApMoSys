@@ -49,13 +49,13 @@ export default function MilestonesTimeline() {
       {(theme) => {
         const isDark = true;
         return (
-          <section className={`py-10 lg:py-16 relative border-t transition-colors duration-300 ${isDark ? "bg-[#0F172A] border-slate-800 text-white" : "bg-white border-gray-100 text-[#121212]"}`}>
+          <section className={`py-10 lg:py-16 relative border-t transition-colors duration-300 ${isDark ? "bg-[#0F172A] border-gray-800 text-white" : "bg-white border-gray-100 text-[#121212]"}`}>
             <div className="max-w-[1600px] mx-auto px-6 sm:px-8 lg:px-16">
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-start relative">
                 {/* LHS - Header Content */}
                 <div className="lg:col-span-4">
                   <div className="text-left relative">
-                    <h2 className={`text-4xl md:text-5xl lg:text-6xl font-light leading-none tracking-tight mb-6 ${isDark ? "text-white" : "text-gray-900"}`}>
+                    <h2 className={`text-4xl sm:text-5xl lg:text-6xl font-heading font-normal leading-[1.1] tracking-tight mb-6 ${isDark ? "text-white" : "text-gray-900"}`}>
                       <EditableText
                         path="about.milestones.heading1"
                         fallback="Milestones"
@@ -126,7 +126,7 @@ export default function MilestonesTimeline() {
                           {/* Scale Line with Ticks */}
                           <div className={`flex border-t relative h-12 w-full ${isDark ? "border-gray-800" : "border-gray-200"}`}>
                             {/* Main vertical tick for the year */}
-                            <div className={`absolute left-0 top-0 h-full w-[3px] ${isActive ? "bg-slate-800" : (isDark ? "bg-gray-600" : "bg-gray-300")}`}></div>
+                            <div className={`absolute left-0 top-0 h-full w-[3px] ${isActive ? "bg-gray-800" : (isDark ? "bg-gray-600" : "bg-gray-300")}`}></div>
 
                             {/* Small tick marks */}
                             <div className="w-full flex justify-evenly ml-[3px] pt-0">

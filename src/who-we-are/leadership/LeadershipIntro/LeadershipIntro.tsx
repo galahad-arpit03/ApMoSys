@@ -10,7 +10,7 @@ export default function LeadershipIntro() {
           <section className="py-12 border-b transition-colors duration-300 bg-white border-gray-100 text-[#121212]">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-left">
 
-              <h2 className="text-3xl sm:text-4xl md:text-5xl font-medium leading-tight text-slate-800">
+              <h2 className="text-4xl sm:text-5xl lg:text-6xl font-heading font-normal tracking-tight leading-[1.1] text-gray-800">
                 Driving Growth Through Vision,
                 <br/> Experience & Innovation
               </h2>

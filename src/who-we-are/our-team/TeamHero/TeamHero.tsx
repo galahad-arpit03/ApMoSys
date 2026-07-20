@@ -40,11 +40,11 @@ export default function TeamHero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
-            <h1 className="text-4xl sm:text-5xl lg:text-7xl font-medium tracking-tight mb-6 leading-tight text-slate-800 drop-shadow-sm">
+            <h1 className="text-4xl sm:text-5xl lg:text-7xl font-heading font-normal tracking-tight mb-6 leading-[1.1] text-gray-800 drop-shadow-sm">
               <EditableText path="team.hero.heading1" fallback="The People Behind" as="span" />{" "}
-              <EditableText path="team.hero.heading2" fallback="ApMoSys" as="span" className="text-slate-800" />
+              <EditableText path="team.hero.heading2" fallback="ApMoSys" as="span" className="text-gray-800" />
             </h1>
-            <p className="text-slate-800 text-lg sm:text-xl max-w-2xl leading-relaxed mb-10 drop-shadow">
+            <p className="text-gray-800 text-lg sm:text-xl max-w-2xl leading-relaxed mb-10 drop-shadow">
               <EditableText 
                 path="team.hero.description" 
                 fallback="Our strength lies in our people. Engineers, innovators, consultants, and problem-solvers working together to create intelligent solutions that transform enterprises worldwide." 
@@ -65,7 +65,7 @@ export default function TeamHero() {
             </a>
             <a 
               href="/careers" 
-              className="inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 backdrop-blur-md border border-[#242A56]/20 text-slate-800 px-8 py-3.5 rounded-md font-bold text-sm transition-colors duration-200 shadow-lg"
+              className="inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 backdrop-blur-md border border-[#242A56]/20 text-gray-800 px-8 py-3.5 rounded-md font-bold text-sm transition-colors duration-200 shadow-lg"
             >
               View Openings
               <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">

@@ -22,14 +22,21 @@ export default function ExecutiveTeam() {
           <section className="py-10 lg:py-16 relative overflow-clip transition-colors duration-300 bg-white border-gray-100">
             <div className="max-w-[1600px] mx-auto px-6 sm:px-8 lg:px-16">
 
-              <div className="mb-10 lg:grid lg:grid-cols-12 lg:gap-12 items-start">
-                <h2 className="lg:col-span-7 font-heading text-4xl sm:text-5xl lg:text-6xl font-normal tracking-normal text-black mb-6 lg:mb-0">
-                  Meet Our <br /> Executive Team
-                </h2>
-                <p className="lg:col-span-5 text-lg leading-relaxed text-[#5A5A5A]">
-                  Experienced leaders driving innovation, enterprise growth,
-                  and engineering excellence across ApMoSys.
-                </p>
+              {/* Header - LHS/RHS Split */}
+              <div className="mb-8 lg:mb-10 flex flex-col lg:flex-row lg:items-start justify-between gap-8">
+                {/* Left Side: Heading */}
+                <div className="shrink-0">
+                  <h2 className="font-heading text-4xl sm:text-5xl lg:text-6xl font-normal text-gray-800 leading-[1.1]">
+                    Meet Our <br className="hidden lg:block" /> Executive Team
+                  </h2>
+                </div>
+
+                {/* Right Side: Paragraph */}
+                <div className="flex flex-col lg:items-end gap-6 max-w-xl">
+                  <p className="text-base lg:text-lg leading-relaxed text-[#5A5A5A] lg:text-left">
+                    Experienced leaders driving innovation, enterprise growth, and engineering excellence across ApMoSys.
+                  </p>
+                </div>
               </div>
 
               <div className="grid gap-8 lg:grid-cols-4 lg:gap-8 mt-12 sm:mt-16">
@@ -63,7 +70,7 @@ export default function ExecutiveTeam() {
                         <EditableText path={`leadership.executiveTeam.${i}.role`} fallback={member.role} />
                       </p>
                       
-                      <h3 className="text-2xl font-bold tracking-tight mb-4 text-slate-800">
+                      <h3 className="text-2xl font-bold tracking-tight mb-4 text-gray-800">
                         <EditableText path={`leadership.executiveTeam.${i}.name`} fallback={member.name} />
                       </h3>
 

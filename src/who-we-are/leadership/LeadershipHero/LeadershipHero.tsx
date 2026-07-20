@@ -40,7 +40,7 @@ export default function LeadershipHero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
-            <h1 className="text-4xl sm:text-5xl lg:text-7xl font-medium tracking-tight mb-6 leading-tight text-slate-800 drop-shadow-sm">
+            <h1 className="text-4xl sm:text-5xl lg:text-7xl font-heading font-normal tracking-tight mb-6 leading-[1.1] text-gray-800 drop-shadow-sm">
               <EditableText
                 path="leadership.hero.heading1"
                 fallback="Our Leadership"
@@ -50,7 +50,7 @@ export default function LeadershipHero() {
                 path="leadership.hero.heading2"
                 fallback="Guiding Innovation."
                 as="span"
-                className="text-slate-800"
+                className="text-gray-800"
               />
             </h1>
             <p className="text-slate-900 text-lg sm:text-xl max-w-2xl leading-relaxed mb-10 drop-shadow">
@@ -74,7 +74,7 @@ export default function LeadershipHero() {
             </a>
             <a 
               href="/contact" 
-              className="inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 backdrop-blur-md border border-[#242A56]/20 text-slate-800 px-8 py-3.5 rounded-md font-bold text-sm transition-colors duration-200 shadow-lg"
+              className="inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 backdrop-blur-md border border-[#242A56]/20 text-gray-800 px-8 py-3.5 rounded-md font-bold text-sm transition-colors duration-200 shadow-lg"
             >
               Contact Team
               <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">

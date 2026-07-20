@@ -3,61 +3,74 @@ import { leadershipvaluesData } from "./LeadershipValuesData";
 import SectionThemeWrapper from "@/src/admin/components/SectionThemeWrapper";
 import { motion } from "framer-motion";
 
+const getBorderClasses = (idx: number) => {
+  let classes = "";
+  
+  if (idx < 3) classes += "border-b ";
+  else classes += "border-b-0 ";
+  
+  if (idx < 2) classes += "md:border-b ";
+  else classes += "md:border-b-0 ";
+  
+  classes += "lg:border-b-0 ";
+  
+  if (idx % 2 === 0) classes += "md:border-r ";
+  else classes += "md:border-r-0 ";
+  
+  if (idx < 3) classes += "lg:border-r ";
+  else classes += "lg:border-r-0 ";
+  
+  return classes;
+};
+
 export default function LeadershipValues() {
   return (
     <SectionThemeWrapper sectionId="leadership_values" defaultTheme="dark">
-      {() => {
+      {(theme) => {
+        const isDark = theme === "dark";
         return (
-          <section className="py-12 relative overflow-hidden transition-colors duration-500 bg-slate-800 text-white">
+          <section className={`py-10 sm:py-14 lg:py-16 relative overflow-hidden transition-colors duration-500 ${isDark ? "bg-[#0A1128] text-white" : "bg-white text-gray-900"}`}>
             
-            {/* Subtle atmospheric background */}
-            <div className="absolute inset-0 overflow-hidden pointer-events-none">
-              <div className="absolute top-0 right-0 w-[600px] h-[600px] rounded-full blur-[100px] pointer-events-none -translate-y-1/2 translate-x-1/3 bg-slate-600/20" />
-            </div>
+            {/* Subtle atmospheric background for dark mode */}
+            {isDark && (
+              <div className="absolute inset-0 overflow-hidden pointer-events-none">
+                <div className="absolute top-0 right-0 w-[600px] h-[600px] rounded-full blur-[100px] pointer-events-none -translate-y-1/2 translate-x-1/3 bg-blue-600/20" />
+              </div>
+            )}
 
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
               
-              <div className="flex flex-col md:flex-row justify-between items-end gap-8 mb-16 lg:mb-24">
-                <div>
-                  <h2 className="text-4xl lg:text-5xl font-medium tracking-tight text-white mb-6">
+              <div className="flex flex-col lg:flex-row lg:items-start justify-between gap-8 mb-10 sm:mb-16">
+                <div className="shrink-0">
+                  <h2 className={`text-4xl sm:text-5xl lg:text-6xl font-heading font-normal tracking-tight leading-[1.1] ${isDark ? "text-white" : "text-gray-900"}`}>
                     Core Principles
                   </h2>
-                  <p className="mt-6 max-w-2xl text-lg leading-relaxed text-gray-300 font-medium">
+                </div>
+                <div className="flex flex-col lg:items-end gap-6 max-w-xl">
+                  <p className={`text-base lg:text-lg leading-relaxed lg:text-left font-medium ${isDark ? "text-gray-300" : "text-[#5A5A5A]"}`}>
                     These foundational values guide our leadership team in every decision, ensuring a culture of innovation, integrity, and relentless dedication to our customers' success.
                   </p>
                 </div>
               </div>
 
-              <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
+              {/* Tabular Grid Section */}
+              <div className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 w-full border-t border-b ${isDark ? "border-[#1F2C47]" : "border-gray-200"}`}>
                 {leadershipvaluesData.map((value, i) => (
                   <motion.div
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, margin: "-50px" }}
-                    transition={{ delay: i * 0.15, duration: 0.7, ease: "easeOut" }}
                     key={value.title}
-                    className="group relative p-8 sm:p-10 rounded-2xl flex flex-col h-full border backdrop-blur-sm transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl bg-slate-700/50 border-slate-600 hover:bg-slate-700 hover:border-slate-500"
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: i * 0.05, duration: 0.5 }}
+                    className={`group py-6 md:py-10 px-6 xl:px-10 flex flex-col items-start gap-5 transition-colors ${
+                      isDark ? "hover:bg-[#121B31]/50 border-[#1F2C47]" : "hover:bg-gray-100/50 border-gray-200"
+                    } ${getBorderClasses(i)}`}
                   >
-                    <div className="mb-auto relative z-10">
-                      <div className="flex items-center gap-4 mb-6">
-                        <span className="text-lg sm:text-xl font-mono font-bold transition-colors duration-500 text-gray-400 group-hover:text-white">
-                          0{i + 1}.
-                        </span>
-                        <div className="h-[1px] flex-1 transition-colors duration-500 bg-slate-600 group-hover:bg-slate-500"></div>
-                      </div>
-                      
-                      <h3 className="text-2xl font-bold mb-4 tracking-tight transition-colors duration-300 text-white group-hover:text-gray-100">
-                        {value.title}
-                      </h3>
-                    </div>
-
-                    <p className="font-medium leading-relaxed relative z-10 transition-colors duration-300 text-gray-400 group-hover:text-gray-300">
-                      {value.description}
-                    </p>
-                    
-                    {/* Faint watermark number behind the text on hover */}
-                    <div className="absolute -bottom-6 -right-4 text-9xl font-black opacity-0 group-hover:opacity-[0.03] transition-all duration-700 pointer-events-none text-white scale-75 group-hover:scale-100">
-                      0{i + 1}
+                    <div>
+                      <h4 className={`text-xl font-bold mb-2 ${isDark ? "text-white" : "text-gray-900"}`}>{value.title}</h4>
+                      <p className={`text-sm font-normal leading-relaxed ${isDark ? "text-gray-400" : "text-gray-600"}`}>
+                        {value.description}
+                      </p>
                     </div>
                   </motion.div>
                 ))}

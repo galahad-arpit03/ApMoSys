@@ -35,15 +35,15 @@ const leaders = [
 
 export default function LeadershipGrid() {
   return (
-    <section className="py-16 sm:py-20 lg:py-24 border-b border-[#222]">
+    <section className="py-16 sm:py-20 lg:py-24 bg-gray-50 border-b border-gray-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         <div className="text-center mb-10 sm:mb-16">
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-medium leading-tight">
-            Meet Our Leaders
+          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-heading font-normal leading-[1.1] tracking-tight text-gray-800">
+            Meet Our <br/> Executive Team
           </h2>
 
-          <p className="text-neutral-400 max-w-3xl mx-auto mt-6">
+          <p className="text-gray-600 font-medium max-w-3xl mx-auto mt-6 text-lg">
             Visionaries, technologists, and industry experts driving
             ApMoSys toward innovation, growth, and customer success.
           </p>
@@ -54,27 +54,27 @@ export default function LeadershipGrid() {
           {leaders.map((leader) => (
             <div
               key={leader.name}
-              className="bg-[#161616] border border-[#2A2A2A] rounded-xl overflow-hidden hover:border-[#B40001] transition-all"
+              className="bg-white border border-gray-200 rounded-xl overflow-hidden hover:border-gray-800 hover:shadow-xl transition-all duration-500 group"
             >
-              <div className="h-56 sm:h-72 lg:h-80 bg-[#222]">
+              <div className="h-56 sm:h-72 lg:h-80 bg-gray-100 overflow-hidden">
                 {/* Replace with actual image */}
                 <img
                   src={leader.image}
                   alt={leader.name}
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                 />
               </div>
 
               <div className="p-6 sm:p-8">
-                <h3 className="text-xl sm:text-2xl font-bold">
+                <h3 className="font-heading font-medium text-2xl md:text-3xl text-gray-800">
                   {leader.name}
                 </h3>
 
-                <p className="text-[#B40001] mt-2 font-medium">
+                <p className="text-[#3B82F6] mt-2 font-medium">
                   {leader.designation}
                 </p>
 
-                <p className="text-neutral-400 mt-5 sm:mt-6 leading-7 sm:leading-8">
+                <p className="text-gray-600 font-medium mt-5 sm:mt-6 leading-7 sm:leading-8">
                   {leader.description}
                 </p>
               </div>

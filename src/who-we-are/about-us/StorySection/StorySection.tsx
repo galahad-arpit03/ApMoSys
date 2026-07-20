@@ -31,7 +31,7 @@ export default function StorySection() {
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
                 
                 <div className="lg:col-span-4 lg:sticky lg:top-32">
-                  <h2 className="text-4xl lg:text-5xl font-medium tracking-tight mb-6 text-slate-800">
+                  <h2 className="text-4xl sm:text-5xl lg:text-6xl font-heading font-normal tracking-tight mb-6 leading-[1.1] text-gray-800">
                     <EditableText
                       path="about.story.heading1"
                       fallback="Our"
@@ -55,7 +55,7 @@ export default function StorySection() {
 
                 <div className="lg:col-span-8 relative">
                   {/* Vertical Timeline Line */}
-                  <div className={`absolute left-8 sm:left-10 top-10 bottom-10 w-px ${isDark ? "bg-gradient-to-b from-slate-800 via-[#2A2A2A] to-[#2A2A2A]" : "bg-gradient-to-b from-slate-800 via-gray-300 to-gray-200"}`}></div>
+                  <div className={`absolute left-8 sm:left-10 top-10 bottom-10 w-px ${isDark ? "bg-gradient-to-b from-gray-800 via-[#2A2A2A] to-[#2A2A2A]" : "bg-gradient-to-b from-gray-800 via-gray-300 to-gray-200"}`}></div>
                   
                   <div className="flex flex-col gap-6 sm:gap-8">
                     <AnimatePresence mode="popLayout">
@@ -94,7 +94,7 @@ export default function StorySection() {
                               </button>
                             )}
                             
-                            <h3 className="font-medium text-2xl mb-4 transition-colors duration-300 text-gray-700">
+                            <h3 className="font-heading font-medium text-2xl md:text-3xl mb-4 transition-colors duration-300 text-gray-700">
                               <EditableText
                                 path={`about.storyCards.${idx}.title`}
                                 fallback={card.title}

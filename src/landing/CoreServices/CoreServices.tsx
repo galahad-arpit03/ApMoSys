@@ -65,8 +65,8 @@ export default function CoreServices() {
           <div className="xl:w-[350px] shrink-0">
             <div className="sticky top-32">
               <h2 className="font-heading text-4xl sm:text-5xl lg:text-6xl font-normal text-white leading-[1.1] mb-6 lg:mb-8">
-                Core <br className="hidden xl:block" />
-                <span className="text-white">Services</span>
+                Core Services <br className="hidden xl:block" />
+                <span className="text-white"></span>
               </h2>
               <p className="text-base lg:text-lg leading-relaxed text-gray-200 max-w-xl xl:max-w-none">
                 Empowering your digital transformation with a comprehensive suite of enterprise-grade services engineered for speed, scalability, and zero-defect delivery.
@@ -91,7 +91,7 @@ export default function CoreServices() {
                     <h3 className="text-base xl:text-lg font-medium text-white mb-2 leading-tight group-hover:text-[#3B82F6] transition-colors duration-300">
                       {service.name}
                     </h3>
-                    <p className="text-[13px] xl:text-[14px] text-gray-200 leading-snug opacity-100 translate-y-0 lg:opacity-0 lg:translate-y-3 lg:group-hover:opacity-100 lg:group-hover:translate-y-0 transition-all duration-300 ease-out">
+                    <p className="text-[13px] xl:text-[14px] text-gray-200 leading-snug opacity-100 translate-y-0 sm:opacity-0 sm:translate-y-3 sm:group-hover:opacity-100 sm:group-hover:translate-y-0 transition-all duration-300 ease-out">
                       {service.desc}
                     </p>
                   </div>

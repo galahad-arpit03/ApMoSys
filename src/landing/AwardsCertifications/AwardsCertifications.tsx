@@ -37,13 +37,21 @@ export default function AwardsCertifications() {
     <section className="py-10 lg:py-16 bg-[#FAFAFA] overflow-hidden">
       <div className="max-w-[1600px] mx-auto px-6 sm:px-8 lg:px-16">
         
-        <div className="mb-8 lg:grid lg:grid-cols-12 lg:gap-12 items-start">
-          <h2 className="lg:col-span-7 font-heading text-4xl sm:text-5xl lg:text-6xl font-normal tracking-normal text-black mb-6 lg:mb-0">
-            Awards & <br className="hidden lg:block" /> Certifications
-          </h2>
-          <p className="lg:col-span-5 text-lg leading-relaxed text-[#5A5A5A]">
-            A testament to our continuous pursuit of engineering excellence, security compliance, and global enterprise partnerships.
-          </p>
+        {/* Header - LHS/RHS Split */}
+        <div className="mb-8 lg:mb-10 flex flex-col lg:flex-row lg:items-start justify-between gap-8">
+          {/* Left Side: Heading */}
+          <div className="shrink-0">
+            <h2 className="font-heading text-4xl sm:text-5xl lg:text-6xl font-normal text-black leading-[1.1]">
+              Awards & <br className="hidden lg:block" /> Certifications
+            </h2>
+          </div>
+
+          {/* Right Side: Paragraph */}
+          <div className="flex flex-col lg:items-end gap-6 max-w-xl">
+            <p className="text-base lg:text-lg leading-relaxed text-[#5A5A5A] lg:text-left">
+              A testament to our continuous pursuit of engineering excellence, security compliance, and global enterprise partnerships.
+            </p>
+          </div>
         </div>
 
         <div className="relative mt-16 md:mt-24">

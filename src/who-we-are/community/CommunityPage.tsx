@@ -13,7 +13,14 @@ export default function CommunityPage() {
       <CSRSection />
       <Initiatives />
       <EventsSection />
-      <CorporateCTA />
+      <CorporateCTA 
+        tag="Community"
+        heading="Make an Impact"
+        description="Collaborate with us on community initiatives, sustainability programs, and technology-driven social impact. Together, we can make a difference."
+        buttonText="Get Involved"
+        sectionId="community_cta"
+        editablePrefix="community.cta"
+      />
     </main>
   );
 }

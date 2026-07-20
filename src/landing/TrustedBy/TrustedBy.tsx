@@ -1,18 +1,21 @@
 "use client";
 import React from "react";
-import { Hexagon, Triangle, Circle, Box, Layers, Globe, Activity, Command, Code, Cpu } from "lucide-react";
+import { Hexagon, Triangle, Circle, Box, Layers, Globe, Activity, Command, Code, Cpu, Landmark, Building2, Shield, Zap } from "lucide-react";
 
 const CLIENTS = [
-  { name: "Acme Corp", icon: Hexagon },
-  { name: "Globex", icon: Globe },
-  { name: "Soylent", icon: Circle },
-  { name: "Initech", icon: Box },
-  { name: "Umbrella", icon: Triangle },
-  { name: "Stark Ind.", icon: Activity },
-  { name: "Wayne Ent.", icon: Layers },
-  { name: "Cyberdyne", icon: Cpu },
-  { name: "Massive Dyn.", icon: Command },
-  { name: "Hooli", icon: Code },
+  { name: "CRIS", icon: Command },
+  { name: "Axis Bank", icon: Landmark },
+  { name: "FDC India", icon: Building2 },
+  { name: "Protean eGov Technologies", icon: Hexagon },
+  { name: "L&T Finance", icon: Activity },
+  { name: "Bank of Maharashtra", icon: Landmark },
+  { name: "UCO Bank", icon: Landmark },
+  { name: "RBL Bank", icon: Landmark },
+  { name: "ABCD Bank", icon: Landmark },
+  { name: "Generali Central Life Insurance (GCLI)", icon: Shield },
+  { name: "NSDL Payments Bank", icon: Landmark },
+  { name: "IDBI Bank", icon: Landmark },
+  { name: "Muscat Finance", icon: Zap },
 ];
 
 export default function TrustedBy() {
@@ -55,7 +58,7 @@ export default function TrustedBy() {
           100% { transform: translateX(-33.33333%); }
         }
         .animate-marquee {
-          animation: marquee 30s linear infinite;
+          animation: marquee 80s linear infinite;
         }
         .group:hover .animate-marquee {
           animation-play-state: paused;
