@@ -1,15 +1,13 @@
 "use client";
 
 import React, { useState } from "react";
-import Container from "@/src/components/Container";
 import { motion, AnimatePresence } from "framer-motion";
 import { usePathname } from "next/navigation";
 import { useContentStore } from "@/src/admin/store/adminStore";
 import EditableText from "@/src/admin/components/EditableText";
-import SectionThemeWrapper from "@/src/admin/components/SectionThemeWrapper";
 import { ArrowRight } from "lucide-react";
 
-// Icon mapping - Removed explicit text color, inherits from parent
+// Icon mapping - inherits color from parent
 const updatedIconMap: Record<string, React.ReactNode> = {
   "cliqtest": (
     <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
@@ -55,6 +53,25 @@ const updatedIconMap: Record<string, React.ReactNode> = {
 };
 
 const ITEMS_PER_PAGE = 6;
+
+// Helper to determine border classes based on grid position
+const getBorderClasses = (idx: number, total: number) => {
+  let classes = "border-gray-200 ";
+
+  if (idx < total - 1) classes += "border-b ";
+
+  if (idx === total - 2) classes += "sm:border-b-0 ";
+  if (idx % 2 === 0) classes += "sm:border-r ";
+  else classes += "sm:border-r-0 ";
+
+  if (idx >= total - 3) classes += "lg:border-b-0 ";
+  else classes += "lg:border-b ";
+
+  if ((idx + 1) % 3 !== 0) classes += "lg:border-r ";
+  else classes += "lg:border-r-0 ";
+
+  return classes;
+};
 
 export default function ProductsOverview() {
   const [currentPage, setCurrentPage] = useState(1);
@@ -138,212 +155,148 @@ export default function ProductsOverview() {
   const items = paginatedItems.length > 0 ? paginatedItems : defaultItems.slice(0, ITEMS_PER_PAGE);
 
   return (
-    <SectionThemeWrapper sectionId="products_overview" defaultTheme="light">
-      {(theme) => {
-        const isDark = theme === "dark";
-        return (
-          <section
-            id="products-grid"
-            className={`py-16 lg:py-24 transition-colors duration-300 relative overflow-hidden ${
-              isDark
-                ? "bg-[#0A1128] text-white"
-                : "bg-white text-[#121212]"
-            }`}
-          >
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-              {/* Split Header */}
-              <div className="mb-12 lg:mb-16 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
-                <div className="lg:col-span-5">
-                  {/* <span className="text-[#2563EB] uppercase tracking-[0.25em] text-xs font-semibold">
-                    <EditableText
-                      path="products.overview.label"
-                      fallback="Our Products"
-                      as="span"
-                    />
-                  </span> */}
-                  <h2
-                    className={`font-heading text-3xl sm:text-4xl lg:text-5xl font-normal mt-4 leading-[1.1] ${
-                      isDark ? "text-white" : "text-black"
-                    }`}
-                  >
-                    <EditableText
-                      path="products.overview.heading"
-                      fallback="Purpose-Built Platforms for Enterprise Excellence"
-                      as="span"
-                    />
-                  </h2>
-                </div>
-                <div className="lg:col-span-7">
-                  <p
-                    className={`text-base lg:text-lg leading-relaxed ${
-                      isDark ? "text-gray-300" : "text-[#5A5A5A]"
-                    }`}
-                  >
-                    <EditableText
-                      path="products.overview.description"
-                      fallback="From AI-powered testing and observability to security validation and device labs — our products are designed to solve real-world enterprise challenges."
-                      as="span"
-                      multiline
-                    />
-                  </p>
-                </div>
-              </div>
+    <section id="products-grid" className="py-16 lg:py-24 bg-white border-t border-gray-100 relative overflow-hidden">
+      {/* Subtle background glow */}
+      <div className="absolute inset-0 opacity-[0.03] pointer-events-none">
+        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#2563EB] rounded-full blur-[120px]" />
+        <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-[#2563EB] rounded-full blur-[120px]" />
+      </div>
 
-              {/* Products Grid */}
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-                <AnimatePresence mode="popLayout">
-                  {items.map((item, index) => {
-                    const actualIdx = startIndex + index;
-                    return (
-                      <motion.div
-                        key={item.id}
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, scale: 0.95 }}
-                        layout
-                        transition={{ duration: 0.4, delay: index * 0.05 }}
-                        className={`group relative bg-white border border-gray-200 rounded-md p-8 hover:border-[#2563EB]/40 hover:shadow-lg transition-all hover:-translate-y-1 flex flex-col ${
-                          isDark
-                            ? "bg-[#121B38] border-[#1A264A] hover:border-[#2563EB]/40"
-                            : "bg-white border-gray-200"
-                        }`}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        {/* Split Header – No Eyebrow */}
+        <div className="mb-12 lg:mb-16 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+          <div className="lg:col-span-5">
+            <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-normal text-black leading-[1.1]">
+              <EditableText
+                path="products.overview.heading"
+                fallback="Purpose-Built Platforms for Enterprise Excellence"
+                as="span"
+              />
+            </h2>
+          </div>
+          <div className="lg:col-span-7">
+            <p className="text-base lg:text-lg text-[#5A5A5A] leading-relaxed">
+              <EditableText
+                path="products.overview.description"
+                fallback="From AI-powered testing and observability to security validation and device labs — our products are designed to solve real-world enterprise challenges."
+                as="span"
+                multiline
+              />
+            </p>
+          </div>
+        </div>
+
+        {/* Tabular Grid – Light Theme */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 w-full border-t border-b border-gray-200">
+          <AnimatePresence mode="popLayout">
+            {items.map((item, index) => {
+              const actualIdx = startIndex + index;
+              return (
+                <motion.div
+                  key={item.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, scale: 0.95 }}
+                  layout
+                  transition={{ duration: 0.3, delay: index * 0.05 }}
+                  className={`group flex items-start gap-4 p-5 xl:p-8 hover:bg-gray-50/50 transition-all duration-300 cursor-pointer ${getBorderClasses(
+                    actualIdx,
+                    items.length
+                  )}`}
+                >
+                  {/* Icon */}
+                  <div className="flex-shrink-0 w-10 h-10 rounded-md bg-[#2563EB]/10 border border-[#2563EB]/20 flex items-center justify-center text-[#2563EB] group-hover:bg-[#2563EB] group-hover:text-white transition-colors">
+                    {updatedIconMap[item.icon] || updatedIconMap["cliqtest"]}
+                  </div>
+
+                  {/* Text Content */}
+                  <div className="flex-grow min-w-0">
+                    <h3 className="text-base xl:text-lg font-medium text-black mb-1 leading-tight group-hover:text-[#2563EB] transition-colors duration-300">
+                      <EditableText
+                        path={`products.overview.items.${actualIdx}.title`}
+                        fallback={item.title}
+                        as="span"
+                      />
+                    </h3>
+                    <p className="text-[13px] xl:text-[14px] text-[#5A5A5A] leading-snug opacity-100 translate-y-0 sm:opacity-0 sm:translate-y-3 sm:group-hover:opacity-100 sm:group-hover:translate-y-0 transition-all duration-300 ease-out">
+                      <EditableText
+                        path={`products.overview.items.${actualIdx}.description`}
+                        fallback={item.description}
+                        as="span"
+                        multiline
+                      />
+                    </p>
+                    {/* Learn More link appears inside description area on hover */}
+                    <div className="mt-2 opacity-0 sm:opacity-0 sm:translate-y-2 sm:group-hover:opacity-100 sm:group-hover:translate-y-0 transition-all duration-300 ease-out">
+                      <a
+                        href="#"
+                        className="inline-flex items-center text-xs font-bold text-[#2563EB] hover:text-blue-700 transition-colors group/link"
                       >
-                        {/* Icon - Parent handles color: text-[#2563EB] -> group-hover:text-white */}
-                        <div
-                          className={`w-14 h-14 rounded-md border flex items-center justify-center mb-5 transition-colors ${
-                            isDark
-                              ? "bg-[#2563EB]/20 border-[#2563EB]/30 text-[#2563EB] group-hover:bg-[#2563EB] group-hover:text-white"
-                              : "bg-[#2563EB]/10 border-[#2563EB]/20 text-[#2563EB] group-hover:bg-[#2563EB] group-hover:text-white"
-                          }`}
-                        >
-                          {updatedIconMap[item.icon] || updatedIconMap["cliqtest"]}
-                        </div>
+                        <EditableText
+                          path={`products.overview.items.${actualIdx}.linkText`}
+                          fallback="Learn More"
+                          as="span"
+                        />
+                        <ArrowRight className="w-3.5 h-3.5 ml-1.5 transform group-hover/link:translate-x-1 transition-transform" />
+                      </a>
+                    </div>
+                  </div>
+                </motion.div>
+              );
+            })}
+          </AnimatePresence>
+        </div>
 
-                        {/* Title */}
-                        <h3
-                          className={`text-xl font-bold mb-2 transition-colors ${
-                            isDark
-                              ? "text-white group-hover:text-[#2563EB]"
-                              : "text-black group-hover:text-[#2563EB]"
-                          }`}
-                        >
-                          <EditableText
-                            path={`products.overview.items.${actualIdx}.title`}
-                            fallback={item.title}
-                            as="span"
-                          />
-                        </h3>
+        {/* Pagination – Light Theme */}
+        {totalPages > 1 && (
+          <div className="mt-12 flex justify-center items-center gap-3">
+            <button
+              onClick={() => setCurrentPage((p) => Math.max(p - 1, 1))}
+              disabled={currentPage === 1}
+              className={`p-2.5 rounded-md border transition-colors ${
+                currentPage === 1
+                  ? "border-gray-200 text-gray-300 cursor-not-allowed"
+                  : "border-gray-300 text-gray-600 hover:bg-gray-100 cursor-pointer"
+              }`}
+            >
+              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+              </svg>
+            </button>
 
-                        {/* Description */}
-                        <p
-                          className={`text-sm leading-relaxed flex-grow ${
-                            isDark ? "text-gray-300" : "text-[#5A5A5A]"
-                          }`}
-                        >
-                          <EditableText
-                            path={`products.overview.items.${actualIdx}.description`}
-                            fallback={item.description}
-                            as="span"
-                            multiline
-                          />
-                        </p>
+            {Array.from({ length: totalPages }).map((_, idx) => {
+              const pNum = idx + 1;
+              return (
+                <button
+                  key={pNum}
+                  onClick={() => setCurrentPage(pNum)}
+                  className={`w-10 h-10 rounded-md text-sm font-bold transition-all cursor-pointer ${
+                    currentPage === pNum
+                      ? "bg-[#2563EB] text-white shadow-[0_0_20px_rgba(37,99,235,0.2)]"
+                      : "border border-gray-300 text-gray-600 hover:bg-gray-100"
+                  }`}
+                >
+                  {pNum}
+                </button>
+              );
+            })}
 
-                        {/* Learn More Link */}
-                        <div
-                          className={`pt-4 mt-4 border-t transition-colors ${
-                            isDark ? "border-[#1A264A]" : "border-gray-100"
-                          }`}
-                        >
-                          <a
-                            href="#"
-                            className={`inline-flex items-center text-xs font-bold transition-colors group/link ${
-                              isDark
-                                ? "text-gray-300 hover:text-[#2563EB]"
-                                : "text-black hover:text-[#2563EB]"
-                            }`}
-                          >
-                            <EditableText
-                              path={`products.overview.items.${actualIdx}.linkText`}
-                              fallback="Learn More"
-                              as="span"
-                            />
-                            <ArrowRight className="w-3.5 h-3.5 ml-2 transform group-hover/link:translate-x-1 transition-transform" />
-                          </a>
-                        </div>
-
-                        {/* Decorative bottom line */}
-                        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-12 h-0.5 bg-[#2563EB] rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                      </motion.div>
-                    );
-                  })}
-                </AnimatePresence>
-              </div>
-
-              {/* Pagination */}
-              {totalPages > 1 && (
-                <div className="mt-12 flex justify-center items-center gap-3">
-                  <button
-                    onClick={() => setCurrentPage((p) => Math.max(p - 1, 1))}
-                    disabled={currentPage === 1}
-                    className={`p-2.5 rounded-md border transition-colors ${
-                      currentPage === 1
-                        ? isDark
-                          ? "border-[#1A264A] text-gray-500 cursor-not-allowed"
-                          : "border-gray-200 text-gray-300 cursor-not-allowed"
-                        : isDark
-                        ? "border-gray-600 text-gray-300 hover:bg-[#1A264A] hover:text-white cursor-pointer"
-                        : "border-gray-300 text-gray-600 hover:bg-gray-100 cursor-pointer"
-                    }`}
-                  >
-                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
-                    </svg>
-                  </button>
-
-                  {Array.from({ length: totalPages }).map((_, idx) => {
-                    const pNum = idx + 1;
-                    return (
-                      <button
-                        key={pNum}
-                        onClick={() => setCurrentPage(pNum)}
-                        className={`w-10 h-10 rounded-md text-sm font-bold transition-all cursor-pointer ${
-                          currentPage === pNum
-                            ? "bg-[#2563EB] text-white shadow-[0_0_20px_rgba(37,99,235,0.2)]"
-                            : `border transition-colors ${
-                                isDark
-                                  ? "border-[#1A264A] text-gray-400 hover:bg-[#1A264A] hover:text-white"
-                                  : "border-gray-300 text-gray-600 hover:bg-gray-100"
-                              }`
-                        }`}
-                      >
-                        {pNum}
-                      </button>
-                    );
-                  })}
-
-                  <button
-                    onClick={() => setCurrentPage((p) => Math.min(p + 1, totalPages))}
-                    disabled={currentPage === totalPages}
-                    className={`p-2.5 rounded-md border transition-colors ${
-                      currentPage === totalPages
-                        ? isDark
-                          ? "border-[#1A264A] text-gray-500 cursor-not-allowed"
-                          : "border-gray-200 text-gray-300 cursor-not-allowed"
-                        : isDark
-                        ? "border-gray-600 text-gray-300 hover:bg-[#1A264A] hover:text-white cursor-pointer"
-                        : "border-gray-300 text-gray-600 hover:bg-gray-100 cursor-pointer"
-                    }`}
-                  >
-                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-                    </svg>
-                  </button>
-                </div>
-              )}
-            </div>
-          </section>
-        );
-      }}
-    </SectionThemeWrapper>
+            <button
+              onClick={() => setCurrentPage((p) => Math.min(p + 1, totalPages))}
+              disabled={currentPage === totalPages}
+              className={`p-2.5 rounded-md border transition-colors ${
+                currentPage === totalPages
+                  ? "border-gray-200 text-gray-300 cursor-not-allowed"
+                  : "border-gray-300 text-gray-600 hover:bg-gray-100 cursor-pointer"
+              }`}
+            >
+              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+              </svg>
+            </button>
+          </div>
+        )}
+      </div>
+    </section>
   );
 }

@@ -1,8 +1,8 @@
 // src/what-we-do/industries/IndustryGrid/IndustryGrid.tsx
 "use client";
 
-import React, { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import React from "react";
+import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 
 const iconMap: Record<string, React.ReactNode> = {
@@ -24,6 +24,31 @@ const iconMap: Record<string, React.ReactNode> = {
   heart: (
     <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
       <path strokeLinecap="round" strokeLinejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+    </svg>
+  ),
+  shield: (
+    <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+      <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
+    </svg>
+  ),
+  wifi: (
+    <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+      <path strokeLinecap="round" strokeLinejoin="round" d="M8.288 15.038a5.25 5.25 0 017.424 0M5.106 11.856c3.807-3.808 9.98-3.808 13.788 0M1.924 8.674c5.565-5.565 14.587-5.565 20.152 0M12.75 18.75a.75.75 0 11-1.5 0 .75.75 0 011.5 0z" />
+    </svg>
+  ),
+  truck: (
+    <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+      <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 00-3.213-9.193 2.056 2.056 0 00-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 00-10.026 0 1.106 1.106 0 00-.987 1.106v7.635c0 .568.422 1.048.987 1.106a48.554 48.554 0 0010.026 0 1.106 1.106 0 00.987-1.106V14.25m-2.25 0h-4.5m4.5 0v-3.75m0 3.75h4.5" />
+    </svg>
+  ),
+  building: (
+    <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+      <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 21h16.5M4.5 3h15M5.25 3v18m13.5-18v18M9 6.75h1.5m-1.5 3h1.5m-1.5 3h1.5m3-6h1.5m-1.5 3h1.5m-1.5 3h1.5M9 21v-3.375c0-.621.504-1.125 1.125-1.125h3.75c.621 0 1.125.504 1.125 1.125V21" />
+    </svg>
+  ),
+  bolt: (
+    <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+      <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
     </svg>
   ),
 };
@@ -94,17 +119,28 @@ const industries = [
   },
 ];
 
-const ITEMS_PER_PAGE = 6;
+// Helper to determine border classes based on grid position
+const getBorderClasses = (idx: number, total: number) => {
+  let classes = "border-gray-200 ";
+
+  if (idx < total - 1) classes += "border-b ";
+
+  if (idx === total - 2) classes += "sm:border-b-0 ";
+  if (idx % 2 === 0) classes += "sm:border-r ";
+  else classes += "sm:border-r-0 ";
+
+  if (idx >= total - 3) classes += "lg:border-b-0 ";
+  else classes += "lg:border-b ";
+
+  if ((idx + 1) % 3 !== 0) classes += "lg:border-r ";
+  else classes += "lg:border-r-0 ";
+
+  return classes;
+};
 
 export default function IndustryGrid() {
-  const [currentPage, setCurrentPage] = useState(1);
-
-  const totalPages = Math.ceil(industries.length / ITEMS_PER_PAGE);
-  const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
-  const paginatedIndustries = industries.slice(startIndex, startIndex + ITEMS_PER_PAGE);
-
   return (
-    <section id="industries-grid" className="py-16 lg:py-24 bg-white border-b border-gray-100 relative overflow-hidden">
+    <section id="industries-grid" className="py-16 lg:py-24 bg-white border-t border-gray-100 relative overflow-hidden">
       {/* Subtle background glow */}
       <div className="absolute inset-0 opacity-[0.03] pointer-events-none">
         <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#2563EB] rounded-full blur-[120px]" />
@@ -112,7 +148,7 @@ export default function IndustryGrid() {
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Split Header – No eyebrow */}
+        {/* Split Header – No Eyebrow */}
         <div className="mb-12 lg:mb-16 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
           <div className="lg:col-span-5">
             <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-normal text-black leading-[1.1]">
@@ -126,97 +162,47 @@ export default function IndustryGrid() {
           </div>
         </div>
 
-        {/* Industries Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-          <AnimatePresence mode="popLayout">
-            {paginatedIndustries.map((industry, index) => (
-              <motion.div
-                key={industry.id}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, scale: 0.95 }}
-                layout
-                transition={{ duration: 0.4, delay: index * 0.05 }}
-                className="group relative bg-white border border-gray-200 rounded-md p-8 hover:border-[#2563EB]/30 hover:shadow-lg transition-all hover:-translate-y-1"
-              >
-                <div className="w-14 h-14 rounded-md bg-[#2563EB]/10 border border-[#2563EB]/20 flex items-center justify-center text-[#2563EB] mb-5 group-hover:bg-[#2563EB] group-hover:text-white transition-colors">
-                  {iconMap[industry.icon] || iconMap.bank}
-                </div>
+        {/* Tabular Grid – All 9 items */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 w-full border-t border-b border-gray-200">
+          {industries.map((industry, idx) => (
+            <motion.div
+              key={industry.id}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: idx * 0.05, duration: 0.4 }}
+              className={`group flex items-start gap-4 p-5 xl:p-8 hover:bg-gray-50/50 transition-all duration-300 cursor-pointer ${getBorderClasses(
+                idx,
+                industries.length
+              )}`}
+            >
+              {/* Icon */}
+              <div className="flex-shrink-0 w-10 h-10 rounded-md bg-[#2563EB]/10 border border-[#2563EB]/20 flex items-center justify-center text-[#2563EB] group-hover:bg-[#2563EB] group-hover:text-white transition-colors">
+                {iconMap[industry.icon] || iconMap.bank}
+              </div>
 
-                <h3 className="text-xl font-bold text-black mb-3 group-hover:text-[#2563EB] transition-colors">
+              {/* Text Content */}
+              <div className="flex-grow min-w-0">
+                <h3 className="text-base xl:text-lg font-medium text-black mb-1 leading-tight group-hover:text-[#2563EB] transition-colors duration-300">
                   {industry.title}
                 </h3>
-
-                <p className="text-sm text-[#5A5A5A] leading-relaxed mb-6">
+                <p className="text-[13px] xl:text-[14px] text-[#5A5A5A] leading-snug opacity-100 translate-y-0 sm:opacity-0 sm:translate-y-3 sm:group-hover:opacity-100 sm:group-hover:translate-y-0 transition-all duration-300 ease-out">
                   {industry.description}
                 </p>
-
-                <div className="pt-4 border-t border-gray-100 group-hover:border-[#2563EB]/20 transition-colors">
+                {/* Link appears on hover */}
+                <div className="mt-2 opacity-0 sm:opacity-0 sm:translate-y-2 sm:group-hover:opacity-100 sm:group-hover:translate-y-0 transition-all duration-300 ease-out">
                   <a
                     href="#"
-                    className="inline-flex items-center text-xs font-bold text-black hover:text-[#2563EB] transition-colors group/link"
+                    className="inline-flex items-center text-xs font-bold text-[#2563EB] hover:text-blue-700 transition-colors group/link"
                   >
                     {industry.linkText}
-                    <ArrowRight className="w-3.5 h-3.5 ml-2 transform group-hover/link:translate-x-1 transition-transform" />
+                    <ArrowRight className="w-3.5 h-3.5 ml-1.5 transform group-hover/link:translate-x-1 transition-transform" />
                   </a>
                 </div>
-
-                {/* Decorative bottom line */}
-                <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-12 h-0.5 bg-[#2563EB] rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              </motion.div>
-            ))}
-          </AnimatePresence>
+              </div>
+            </motion.div>
+          ))}
         </div>
-
-        {/* Pagination */}
-        {totalPages > 1 && (
-          <div className="mt-12 flex justify-center items-center gap-3">
-            <button
-              onClick={() => setCurrentPage((p) => Math.max(p - 1, 1))}
-              disabled={currentPage === 1}
-              className={`p-2.5 rounded-md border transition-colors ${
-                currentPage === 1
-                  ? "border-gray-200 text-gray-300 cursor-not-allowed"
-                  : "border-gray-300 text-gray-600 hover:bg-gray-100 cursor-pointer"
-              }`}
-            >
-              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
-              </svg>
-            </button>
-
-            {Array.from({ length: totalPages }).map((_, idx) => {
-              const pNum = idx + 1;
-              return (
-                <button
-                  key={pNum}
-                  onClick={() => setCurrentPage(pNum)}
-                  className={`w-10 h-10 rounded-md text-sm font-bold transition-all cursor-pointer ${
-                    currentPage === pNum
-                      ? "bg-[#2563EB] text-white shadow-[0_0_20px_rgba(37,99,235,0.2)]"
-                      : "border border-gray-300 text-gray-600 hover:bg-gray-100"
-                  }`}
-                >
-                  {pNum}
-                </button>
-              );
-            })}
-
-            <button
-              onClick={() => setCurrentPage((p) => Math.min(p + 1, totalPages))}
-              disabled={currentPage === totalPages}
-              className={`p-2.5 rounded-md border transition-colors ${
-                currentPage === totalPages
-                  ? "border-gray-200 text-gray-300 cursor-not-allowed"
-                  : "border-gray-300 text-gray-600 hover:bg-gray-100 cursor-pointer"
-              }`}
-            >
-              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-              </svg>
-            </button>
-          </div>
-        )}
       </div>
     </section>
   );
