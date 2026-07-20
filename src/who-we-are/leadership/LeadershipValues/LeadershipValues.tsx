@@ -48,7 +48,7 @@ export default function LeadershipValues() {
                 </div>
                 <div className="flex flex-col lg:items-end gap-6 max-w-xl">
                   <p className={`text-base lg:text-lg leading-relaxed lg:text-left font-medium ${isDark ? "text-gray-300" : "text-[#5A5A5A]"}`}>
-                    These foundational values guide our leadership team in every decision, ensuring a culture of innovation, integrity, and relentless dedication to our customers' success.
+                    These foundational values guide our leadership team in every decision, ensuring a culture of innovation, integrity, and relentless dedication to our customers&apos; success.
                   </p>
                 </div>
               </div>

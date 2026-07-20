@@ -7,11 +7,13 @@ export default function AnnouncementBar() {
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
-    setIsMounted(true);
-    const isDismissed = localStorage.getItem("announcementDismissed");
-    if (isDismissed === "true") {
-      setIsVisible(false);
-    }
+    setTimeout(() => {
+      setIsMounted(true);
+      const isDismissed = localStorage.getItem("announcementDismissed");
+      if (isDismissed === "true") {
+        setIsVisible(false);
+      }
+    }, 0);
   }, []);
 
   const handleClose = () => {

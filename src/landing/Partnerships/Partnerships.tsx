@@ -23,7 +23,7 @@ export default function Partnerships() {
             </h2>
             <div className="w-12 h-1 bg-blue-600 mb-6 rounded-md" />
             <p className="text-gray-600 text-lg leading-relaxed mb-8">
-              We collaborate with the world's leading technology providers to ensure our clients have access to best-in-class tools and uninterrupted enterprise ecosystems.
+              We collaborate with the world&apos;s leading technology providers to ensure our clients have access to best-in-class tools and uninterrupted enterprise ecosystems.
             </p>
           </div>
 

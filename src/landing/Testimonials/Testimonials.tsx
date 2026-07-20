@@ -33,7 +33,7 @@ export default function Testimonials() {
           </h2>
           <div className="w-12 h-1 bg-[#B40001] mb-6 rounded-md" />
           <p className="text-gray-400 text-lg leading-relaxed">
-            Don't just take our word for it. Hear from the enterprise leaders who trust ApMoSys to engineer their digital future.
+            Don&apos;t just take our word for it. Hear from the enterprise leaders who trust ApMoSys to engineer their digital future.
           </p>
         </div>
       </div>
@@ -55,7 +55,7 @@ export default function Testimonials() {
               <Quote className="absolute top-8 right-8 w-8 h-8 md:w-12 md:h-12 text-[#1A264A] group-hover/card:text-[#B40001]/20 transition-colors" />
               
               <p className="text-gray-300 text-sm md:text-base leading-relaxed mb-8 relative z-10 italic flex-grow">
-                "{test.quote}"
+                &quot;{test.quote}&quot;
               </p>
               
               <div className="mt-auto flex items-center gap-4 relative z-10">
@@ -90,7 +90,7 @@ export default function Testimonials() {
               <Quote className="absolute top-8 right-8 w-8 h-8 md:w-12 md:h-12 text-[#1A264A] group-hover/card:text-[#B40001]/20 transition-colors" />
               
               <p className="text-gray-300 text-sm md:text-base leading-relaxed mb-8 relative z-10 italic flex-grow">
-                "{test.quote}"
+                &quot;{test.quote}&quot;
               </p>
               
               <div className="mt-auto flex items-center gap-4 relative z-10">

@@ -66,16 +66,15 @@ export default function Navbar() {
   });
 
   React.useEffect(() => {
-    if (
-      activeDropdown &&
-      megaMenuData[activeDropdown] &&
-      megaMenuData[activeDropdown].categories?.length
-    ) {
-      setActiveCategory(
-        megaMenuData[activeDropdown].categories[0].id
-      );
+    const categories = activeDropdown ? megaMenuData[activeDropdown]?.categories : undefined;
+    if (categories && categories.length > 0) {
+      setTimeout(() => {
+        setActiveCategory(categories[0].id);
+      }, 0);
     } else {
-      setActiveCategory(null);
+      setTimeout(() => {
+        setActiveCategory(null);
+      }, 0);
     }
   }, [activeDropdown, megaMenuData]);
 

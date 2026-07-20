@@ -65,8 +65,8 @@ export default function LeadershipVision() {
                       
                       <motion.div 
                         variants={{
-                          hidden: { WebkitTextStroke: "1px rgba(30,41,59,0.2)" },
-                          visible: { WebkitTextStroke: "1px rgba(30,41,59,1)", transition: { duration: 0.7, delay: 0.1 } }
+                          hidden: { WebkitTextStroke: "1px rgba(30,41,59,0.2)" } as any,
+                          visible: { WebkitTextStroke: "1px rgba(30,41,59,1)", transition: { duration: 1.5, ease: "easeOut" } } as any
                         }}
                         className="text-6xl sm:text-7xl font-black text-transparent bg-clip-text mb-4 select-none"
                       >
