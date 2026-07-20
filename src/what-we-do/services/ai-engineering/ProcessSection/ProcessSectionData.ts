@@ -1,5 +1,8 @@
+// src/what-we-do/services/ai-engineering/ProcessSection/ProcessSectionData.ts
 export const processData = {
   heading: "Our AI Engineering Lifecycle.",
+  description:
+    "A structured, iterative approach that ensures each AI solution is built on a solid foundation of data, rigorously validated, and seamlessly deployed into production.",
   steps: [
     {
       title: "Discovery & Data Strategy",

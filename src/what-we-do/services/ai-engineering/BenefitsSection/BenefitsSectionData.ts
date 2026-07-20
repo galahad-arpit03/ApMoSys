@@ -1,7 +1,7 @@
 import { Brain, RefreshCw, ShieldCheck, Zap, Plug, TrendingUp } from "lucide-react";
 
 export const benefitsData = {
-  heading: "Why Enterprises Choose Our AI Engineering.",
+  heading: "Why Choose Our AI Engineering.",
   description:
     "We deliver AI solutions that are not just intelligent — they're practical, scalable, and built to deliver measurable ROI from day one.",
   benefits: [

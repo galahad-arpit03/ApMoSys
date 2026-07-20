@@ -532,7 +532,7 @@ export const defaultContent: SiteContent = {
             subLinks: [
               {
                 label: "AI Engineering",
-                href: "/ai-engineering"
+                href: "/services/ai-engineering"
               },
               {
                 label: "Digital Assurance Engineering",

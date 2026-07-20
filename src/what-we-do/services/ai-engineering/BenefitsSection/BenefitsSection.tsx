@@ -9,17 +9,18 @@ export default function BenefitsSection() {
   return (
     <section className="py-16 lg:py-24 bg-[#FAFAFA] border-b border-gray-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
-        <div className="text-center max-w-3xl mx-auto mb-14">
-          {/* <span className="text-blue-600 uppercase tracking-[0.25em] text-xs font-semibold">
-            Why AI Engineering
-          </span> */}
-          <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-normal text-black mt-4">
-            {heading}
-          </h2>
-          <p className="mt-4 text-base lg:text-lg text-[#5A5A5A] leading-relaxed">
-            {description}
-          </p>
+        {/* Split Header: Heading left, Description right */}
+        <div className="mb-12 lg:mb-16 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+          <div className="lg:col-span-5">
+            <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-normal text-black leading-[1.1]">
+              {heading}
+            </h2>
+          </div>
+          <div className="lg:col-span-7">
+            <p className="text-base lg:text-lg text-[#5A5A5A] leading-relaxed">
+              {description}
+            </p>
+          </div>
         </div>
 
         {/* Benefits Grid */}
