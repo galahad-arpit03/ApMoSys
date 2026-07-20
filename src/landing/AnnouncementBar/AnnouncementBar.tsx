@@ -1,11 +1,25 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { ArrowRight, X } from "lucide-react";
 
 export default function AnnouncementBar() {
   const [isVisible, setIsVisible] = useState(true);
+  const [isMounted, setIsMounted] = useState(false);
 
-  if (!isVisible) return null;
+  useEffect(() => {
+    setIsMounted(true);
+    const isDismissed = localStorage.getItem("announcementDismissed");
+    if (isDismissed === "true") {
+      setIsVisible(false);
+    }
+  }, []);
+
+  const handleClose = () => {
+    setIsVisible(false);
+    localStorage.setItem("announcementDismissed", "true");
+  };
+
+  if (!isMounted || !isVisible) return null;
 
   return (
     <div className="bg-[#2563EB] text-white text-[13px] font-seminbold py-2 px-4 relative z-50">
@@ -23,7 +37,7 @@ export default function AnnouncementBar() {
 
         {/* Close Button */}
         <button
-          onClick={() => setIsVisible(false)}
+          onClick={handleClose}
           className="absolute right-4 p-1 hover:bg-white/20 rounded-full transition-colors"
           aria-label="Close announcement"
         >
