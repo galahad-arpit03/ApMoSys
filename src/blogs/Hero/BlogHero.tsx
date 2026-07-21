@@ -1,3 +1,6 @@
+// app/blogs/components/HeroSection.tsx
+// or src/blogs/HeroSection/HeroSection.tsx (adjust path as needed)
+
 "use client";
 
 import { useRef } from "react";
@@ -20,7 +23,7 @@ const fadeUp = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: "easeOut" as const } },
 };
 
-export default function HeroSection() {
+export default function BlogHero() {
   const ref = useRef(null);
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -30,7 +33,7 @@ export default function HeroSection() {
   const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "25%"]);
 
   return (
-    <SectionThemeWrapper sectionId="careers_hero" defaultTheme="dark">
+    <SectionThemeWrapper sectionId="blogs_hero" defaultTheme="dark">
       {(theme) => {
         const isDark = theme === "dark";
         return (
@@ -45,10 +48,10 @@ export default function HeroSection() {
               className="absolute inset-0 z-0 origin-top"
               style={{ y: backgroundY, scale: 1 }}
             >
-              <EditableImage label="Careers Hero Background" className="relative w-full h-full">
+              <EditableImage label="Blogs Hero Background" className="relative w-full h-full">
                 <Image
-                  src="/careers/careers.png"
-                  alt="Careers at ApMoSys"
+                  src="/blogs/blogs_hero.png"
+                  alt="Blogs at ApMoSys"
                   fill
                   priority
                   className="object-cover object-center"
@@ -69,8 +72,8 @@ export default function HeroSection() {
                     className="text-4xl sm:text-5xl lg:text-7xl font-medium tracking-tight mb-6 leading-tight drop-shadow-sm text-slate-800"
                   >
                     <EditableText
-                      path="careers.hero.heading"
-                      fallback="Engineer Your Future with Precision."
+                      path="blogs.hero.heading"
+                      fallback="Insights to Engineer Your Digital Future"
                       as="span"
                       className="text-[#242A56] drop-shadow-md"
                     />
@@ -81,8 +84,8 @@ export default function HeroSection() {
                     className="text-lg sm:text-xl max-w-2xl leading-relaxed mb-10 drop-shadow text-slate-700"
                   >
                     <EditableText
-                      path="careers.hero.subheading"
-                      fallback="Join a global team of QA innovators and AIOps architects redefining enterprise software resilience at an unprecedented scale."
+                      path="blogs.hero.subheading"
+                      fallback="Explore the latest in quality engineering, AI, cloud, DevOps, and enterprise innovation — straight from the engineers at ApMoSys."
                       as="span"
                       multiline
                     />
@@ -90,10 +93,10 @@ export default function HeroSection() {
 
                   <motion.div variants={fadeUp} className="flex flex-col sm:flex-row gap-4">
                     <a
-                      href="#openings"
+                      href="#blog-list"
                       className="inline-flex items-center justify-center gap-2 bg-[#242A56] hover:bg-[#1E234B] text-white px-8 py-3.5 rounded-md font-bold text-sm transition-colors duration-200 shadow-lg group"
                     >
-                      <EditableText path="careers.hero.ctaPrimary" fallback="View Open Roles" as="span" />
+                      <EditableText path="blogs.hero.ctaPrimary" fallback="Read the Blog" as="span" />
                       <svg
                         className="w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-300"
                         fill="none"
@@ -105,10 +108,10 @@ export default function HeroSection() {
                       </svg>
                     </a>
                     <a
-                      href="#life"
+                      href="#subscribe"
                       className="inline-flex items-center justify-center gap-2 border border-slate-300 text-slate-700 hover:border-[#242A56] hover:text-[#242A56] font-bold text-sm px-8 py-3.5 rounded-md transition-colors duration-200"
                     >
-                      <EditableText path="careers.hero.ctaSecondary" fallback="Life at ApMoSys" as="span" />
+                      <EditableText path="blogs.hero.ctaSecondary" fallback="Subscribe" as="span" />
                     </a>
                   </motion.div>
                 </motion.div>

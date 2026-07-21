@@ -64,7 +64,7 @@ export default function CoEOverview() {
     },
     {
       id: "5",
-      title: "Banking CoE",
+      title: "Banking Center of Excellence",
       shortName: "BCoE",
       description:
         "Deep domain expertise in core banking, payments, and compliance testing, ensuring zero-defect releases for financial institutions.",
@@ -72,7 +72,7 @@ export default function CoEOverview() {
     },
     {
       id: "6",
-      title: "Insurance CoE",
+      title: "Insurance Center of Excellence",
       shortName: "ICoE",
       description:
         "Specialized frameworks for Policy Admin Systems, Claims Processing, and Underwriting validation tailored for the insurance sector.",
