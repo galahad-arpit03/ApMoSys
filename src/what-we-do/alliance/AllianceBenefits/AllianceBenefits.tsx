@@ -7,6 +7,20 @@ import EditableText from "@/src/admin/components/EditableText";
 import { useContentStore } from "@/src/admin/store/adminStore";
 import { allianceIconMap, defaultAllianceIcon } from "../icons";
 
+// Helper to determine border classes based on grid position (2 columns)
+const getBorderClasses = (idx: number, total: number) => {
+  let classes = "border-[#1A264A] ";
+
+  // All items except the last row get border-bottom
+  const isLastRow = idx >= total - 2;
+  if (!isLastRow) classes += "border-b ";
+
+  // Items in the first column (even indices) get border-right
+  if (idx % 2 === 0 && idx + 1 < total) classes += "border-r ";
+
+  return classes;
+};
+
 export default function AllianceBenefits() {
   const { content } = useContentStore();
   const benefitItems = content.alliance?.benefits?.items || [];
@@ -46,82 +60,75 @@ export default function AllianceBenefits() {
 
   return (
     <section className="py-16 lg:py-24 bg-[#0A1128] border-t border-[#1A264A] relative overflow-hidden">
-      {/* Subtle background glow */}
-      <div className="absolute inset-0 opacity-[0.05] pointer-events-none">
-        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#2563EB] rounded-full blur-[120px]" />
-        <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-[#2563EB] rounded-full blur-[120px]" />
-      </div>
+      {/* Background glow effects */}
+      <div className="absolute top-1/2 left-0 w-[500px] h-[500px] bg-[#2563EB]/10 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#2563EB]/10 rounded-full blur-[150px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Split Header */}
-        <div className="mb-12 lg:mb-16 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
-          <div className="lg:col-span-5">
-            {/* <span className="text-[#2563EB] uppercase tracking-[0.25em] text-xs font-semibold">
-              <EditableText
-                path="alliance.benefits.label"
-                fallback="Why Partner"
-                as="span"
-              />
-            </span> */}
-            <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-normal text-white mt-4 leading-[1.1]">
-              <EditableText
-                path="alliance.benefits.heading"
-                fallback="Building a Stronger Ecosystem Together"
-                as="span"
-              />
-            </h2>
+        <div className="flex flex-col xl:flex-row items-start gap-12 xl:gap-20">
+          {/* LHS: Sticky Header & Paragraph */}
+          <div className="xl:w-[350px] shrink-0">
+            <div className="sticky top-32">
+              <h2 className="font-heading text-4xl sm:text-5xl lg:text-6xl font-normal text-white leading-[1.1] mb-6 lg:mb-8">
+                <EditableText
+                  path="alliance.benefits.heading"
+                  fallback="Building a Stronger Ecosystem Together"
+                  as="span"
+                />
+              </h2>
+              <p className="text-base lg:text-lg leading-relaxed text-gray-300 max-w-xl xl:max-w-none">
+                <EditableText
+                  path="alliance.benefits.description"
+                  fallback="Our alliance partners benefit from a collaborative ecosystem that drives mutual growth, innovation, and customer success."
+                  as="span"
+                  multiline
+                />
+              </p>
+            </div>
           </div>
-          <div className="lg:col-span-7">
-            <p className="text-base lg:text-lg text-gray-300 leading-relaxed">
-              <EditableText
-                path="alliance.benefits.description"
-                fallback="Our alliance partners benefit from a collaborative ecosystem that drives mutual growth, innovation, and customer success."
-                as="span"
-                multiline
-              />
-            </p>
+
+          {/* RHS: Tabular Grid (2 Columns) */}
+          <div className="flex-grow">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 w-full border-t border-b border-[#1A264A]">
+              {items.map((benefit, idx) => {
+                const IconComponent = allianceIconMap[benefit.icon] || defaultAllianceIcon;
+                return (
+                  <motion.div
+                    key={benefit.id}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: idx * 0.05, duration: 0.5 }}
+                    className={`group flex items-start gap-4 p-6 xl:p-10 hover:bg-white/[0.02] transition-all duration-300 cursor-pointer ${getBorderClasses(idx, items.length)}`}
+                  >
+                    {/* Icon */}
+                    <div className="flex-shrink-0 w-12 h-12 rounded-md bg-[#2563EB]/20 border border-[#2563EB]/30 flex items-center justify-center text-[#2563EB] group-hover:bg-[#2563EB] group-hover:text-white transition-colors">
+                      <IconComponent className="w-6 h-6" strokeWidth={1.5} />
+                    </div>
+
+                    {/* Text Content */}
+                    <div className="flex-grow min-w-0">
+                      <h3 className="text-base xl:text-lg font-medium text-white mb-2 leading-tight group-hover:text-[#2563EB] transition-colors duration-300">
+                        <EditableText
+                          path={`alliance.benefits.items.${idx}.title`}
+                          fallback={benefit.title}
+                          as="span"
+                        />
+                      </h3>
+                      <p className="text-sm xl:text-base text-gray-300 leading-relaxed opacity-100 translate-y-0 sm:opacity-0 sm:translate-y-3 sm:group-hover:opacity-100 sm:group-hover:translate-y-0 transition-all duration-300 ease-out">
+                        <EditableText
+                          path={`alliance.benefits.items.${idx}.description`}
+                          fallback={benefit.description}
+                          as="span"
+                          multiline
+                        />
+                      </p>
+                    </div>
+                  </motion.div>
+                );
+              })}
+            </div>
           </div>
-        </div>
-
-        {/* Benefits Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
-          {items.map((benefit, idx) => {
-            const IconComponent = allianceIconMap[benefit.icon] || defaultAllianceIcon;
-            return (
-              <motion.div
-                key={benefit.id}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: idx * 0.1, duration: 0.5 }}
-                className="group relative bg-[#121B38] border border-[#1A264A] rounded-md p-8 transition-all hover:-translate-y-1 hover:border-[#2563EB]/40 hover:shadow-[0_0_40px_rgba(37,99,235,0.05)]"
-              >
-                <div className="w-14 h-14 rounded-md border border-[#2563EB]/30 bg-[#2563EB]/20 flex items-center justify-center text-[#2563EB] mb-5 group-hover:bg-[#2563EB] group-hover:text-white transition-colors">
-                  <IconComponent className="w-7 h-7" strokeWidth={1.5} />
-                </div>
-
-                <h3 className="text-lg font-bold text-white mb-3 group-hover:text-[#2563EB] transition-colors">
-                  <EditableText
-                    path={`alliance.benefits.items.${idx}.title`}
-                    fallback={benefit.title}
-                    as="span"
-                  />
-                </h3>
-
-                <p className="text-sm text-gray-300 leading-relaxed">
-                  <EditableText
-                    path={`alliance.benefits.items.${idx}.description`}
-                    fallback={benefit.description}
-                    as="span"
-                    multiline
-                  />
-                </p>
-
-                {/* Decorative bottom line */}
-                <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-12 h-0.5 bg-[#2563EB] rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              </motion.div>
-            );
-          })}
         </div>
       </div>
     </section>

@@ -91,7 +91,8 @@ export default function ServiceBenefits() {
                       as="span"
                     />
                   </h3>
-                  <p className="text-[13px] xl:text-[14px] text-[#5A5A5A] leading-snug opacity-100 translate-y-0 sm:opacity-0 sm:translate-y-3 sm:group-hover:opacity-100 sm:group-hover:translate-y-0 transition-all duration-300 ease-out">
+                  {/* Description - Always visible, static */}
+                  <p className="text-[13px] xl:text-[14px] text-[#5A5A5A] leading-snug">
                     <EditableText
                       path={`services.benefits.items.${idx}.description`}
                       fallback={benefit.description}

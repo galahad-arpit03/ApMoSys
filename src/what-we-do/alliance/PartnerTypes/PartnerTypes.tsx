@@ -1,9 +1,9 @@
 // src/what-we-do/alliance/PartnerTypes/PartnerTypes.tsx
 "use client";
 
-import React from "react";
-import { motion } from "framer-motion";
-import { ArrowRight } from "lucide-react";
+import React, { useState, useEffect, useRef } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
 import EditableText from "@/src/admin/components/EditableText";
 import { useContentStore } from "@/src/admin/store/adminStore";
 
@@ -47,9 +47,39 @@ export default function PartnerTypes() {
   ];
 
   const items = partnerItems.length > 0 ? partnerItems : fallbackPartners;
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+  const autoplayRef = useRef<NodeJS.Timeout | null>(null);
+
+  const ITEMS_PER_SLIDE = 2;
+  const totalSlides = Math.ceil(items.length / ITEMS_PER_SLIDE);
+
+  const goToSlide = (index: number) => {
+    setCurrentIndex((index + totalSlides) % totalSlides);
+  };
+
+  const nextSlide = () => goToSlide(currentIndex + 1);
+  const prevSlide = () => goToSlide(currentIndex - 1);
+
+  // Autoplay
+  useEffect(() => {
+    if (isPaused) return;
+    autoplayRef.current = setInterval(nextSlide, 5000);
+    return () => {
+      if (autoplayRef.current) clearInterval(autoplayRef.current);
+    };
+  }, [currentIndex, isPaused]);
+
+  // Get items for current slide
+  const startIndex = currentIndex * ITEMS_PER_SLIDE;
+  const currentItems = items.slice(startIndex, startIndex + ITEMS_PER_SLIDE);
 
   return (
-    <section className="py-16 lg:py-24 bg-white border-t border-gray-100 relative overflow-hidden">
+    <section 
+      className="py-16 lg:py-24 bg-white border-t border-gray-100 relative overflow-hidden"
+      onMouseEnter={() => setIsPaused(true)}
+      onMouseLeave={() => setIsPaused(false)}
+    >
       {/* Subtle background glow */}
       <div className="absolute inset-0 opacity-[0.03] pointer-events-none">
         <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#2563EB] rounded-full blur-[120px]" />
@@ -60,14 +90,7 @@ export default function PartnerTypes() {
         {/* Split Header */}
         <div className="mb-12 lg:mb-16 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
           <div className="lg:col-span-5">
-            {/* <span className="text-[#2563EB] uppercase tracking-[0.25em] text-xs font-semibold">
-              <EditableText
-                path="alliance.partners.label"
-                fallback="Our Partners"
-                as="span"
-              />
-            </span> */}
-            <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-normal text-black mt-4 leading-[1.1]">
+            <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-normal text-black leading-[1.1]">
               <EditableText
                 path="alliance.partners.heading"
                 fallback="Trusted Technology Alliance Partners"
@@ -87,59 +110,112 @@ export default function PartnerTypes() {
           </div>
         </div>
 
-        {/* Partners Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
-          {items.map((partner, idx) => (
-            <motion.div
-              key={partner.id}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: idx * 0.1, duration: 0.5 }}
-              className="group relative bg-white border border-gray-200 rounded-md p-8 hover:border-[#2563EB]/30 hover:shadow-lg transition-all hover:-translate-y-1"
+        {/* Carousel - 2 Items at a Time */}
+        <div className="relative">
+          {/* Slide Container */}
+          <div className="overflow-hidden rounded-md">
+            <div
+              className="flex transition-transform duration-500 ease-in-out"
+              style={{ transform: `translateX(-${currentIndex * 100}%)` }}
             >
-              {/* Partner Logo Placeholder */}
-              <div className="w-full h-16 rounded-md bg-gray-100 flex items-center justify-center mb-4 text-xs font-bold text-gray-500">
-                <EditableText
-                  path={`alliance.partners.items.${idx}.name`}
-                  fallback={partner.name}
-                  as="span"
-                  className="text-sm font-bold text-black"
-                />
-              </div>
+              {Array.from({ length: totalSlides }).map((_, slideIdx) => {
+                const start = slideIdx * ITEMS_PER_SLIDE;
+                const slideItems = items.slice(start, start + ITEMS_PER_SLIDE);
+                return (
+                  <div
+                    key={slideIdx}
+                    className="flex-shrink-0 w-full grid grid-cols-1 md:grid-cols-2 gap-6"
+                  >
+                    {slideItems.map((partner) => (
+                      <div
+                        key={partner.id}
+                        className="bg-[#FAFAFA] border border-gray-200 rounded-md p-6 lg:p-8 hover:border-[#2563EB]/30 hover:shadow-lg transition-all group"
+                      >
+                        {/* Partner Logo */}
+                        <div className="flex items-center gap-4 mb-4">
+                          <div className="w-14 h-14 rounded-md bg-[#2563EB]/10 border border-[#2563EB]/20 flex items-center justify-center text-[#2563EB] font-bold text-xl group-hover:bg-[#2563EB] group-hover:text-white transition-colors">
+                            {partner.name.charAt(0)}
+                          </div>
+                          <div>
+                            <h3 className="text-lg font-bold text-black group-hover:text-[#2563EB] transition-colors">
+                              <EditableText
+                                path={`alliance.partners.items.${Number(partner.id) - 1}.name`}
+                                fallback={partner.name}
+                                as="span"
+                              />
+                            </h3>
+                            <span className="text-xs font-bold text-[#2563EB] uppercase tracking-widest bg-[#2563EB]/10 px-2.5 py-0.5 rounded-full inline-block">
+                              <EditableText
+                                path={`alliance.partners.items.${Number(partner.id) - 1}.category`}
+                                fallback={partner.category}
+                                as="span"
+                              />
+                            </span>
+                          </div>
+                        </div>
 
-              <span className="text-xs font-bold text-[#2563EB] uppercase tracking-widest">
-                <EditableText
-                  path={`alliance.partners.items.${idx}.category`}
-                  fallback={partner.category}
-                  as="span"
-                />
-              </span>
+                        <p className="text-sm text-[#5A5A5A] leading-relaxed mb-4 line-clamp-3">
+                          <EditableText
+                            path={`alliance.partners.items.${Number(partner.id) - 1}.description`}
+                            fallback={partner.description}
+                            as="span"
+                            multiline
+                          />
+                        </p>
 
-              <p className="text-sm text-[#5A5A5A] leading-relaxed mt-3">
-                <EditableText
-                  path={`alliance.partners.items.${idx}.description`}
-                  fallback={partner.description}
-                  as="span"
-                  multiline
-                />
-              </p>
+                        <a
+                          href={partner.link}
+                          className="inline-flex items-center gap-2 text-xs font-bold text-black hover:text-[#2563EB] transition-colors group/link"
+                        >
+                          Learn More
+                          <ArrowRight className="w-3.5 h-3.5 transform group-hover/link:translate-x-1 transition-transform" />
+                        </a>
+                      </div>
+                    ))}
+                  </div>
+                );
+              })}
+            </div>
+          </div>
 
-              <div className="mt-6 pt-4 border-t border-gray-100">
-                <a
-                  href={partner.link}
-                  className="inline-flex items-center gap-2 text-xs font-bold text-black hover:text-[#2563EB] transition-colors group/link"
-                >
-                  Learn More
-                  <ArrowRight className="w-3.5 h-3.5 transform group-hover/link:translate-x-1 transition-transform" />
-                </a>
-              </div>
-
-              {/* Decorative bottom line */}
-              <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-12 h-0.5 bg-[#2563EB] rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-            </motion.div>
-          ))}
+          {/* Navigation Arrows */}
+          {totalSlides > 1 && (
+            <>
+              <button
+                onClick={prevSlide}
+                className="absolute -left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white border border-gray-200 shadow-md flex items-center justify-center text-gray-600 hover:text-[#2563EB] hover:border-[#2563EB] transition-all z-10"
+                aria-label="Previous partners"
+              >
+                <ChevronLeft className="w-5 h-5" />
+              </button>
+              <button
+                onClick={nextSlide}
+                className="absolute -right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white border border-gray-200 shadow-md flex items-center justify-center text-gray-600 hover:text-[#2563EB] hover:border-[#2563EB] transition-all z-10"
+                aria-label="Next partners"
+              >
+                <ChevronRight className="w-5 h-5" />
+              </button>
+            </>
+          )}
         </div>
+
+        {/* Dots Indicator */}
+        {totalSlides > 1 && (
+          <div className="flex justify-center items-center gap-2 mt-6">
+            {Array.from({ length: totalSlides }).map((_, idx) => (
+              <button
+                key={idx}
+                onClick={() => goToSlide(idx)}
+                className={`rounded-full transition-all duration-300 ${
+                  idx === currentIndex
+                    ? "w-8 h-2.5 bg-[#2563EB]"
+                    : "w-2.5 h-2.5 bg-gray-300 hover:bg-gray-400"
+                }`}
+                aria-label={`Go to slide ${idx + 1}`}
+              />
+            ))}
+          </div>
+        )}
       </div>
     </section>
   );

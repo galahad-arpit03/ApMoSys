@@ -109,7 +109,7 @@ export default function AllianceOverview() {
           </div>
         </div>
 
-        {/* Tabular Grid – Light Theme */}
+        {/* Tabular Grid – Light Theme - Spacious */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 w-full border-t border-b border-gray-200">
           {items.map((item, idx) => {
             const IconComponent = allianceIconMap[item.icon] || defaultAllianceIcon;
@@ -120,26 +120,27 @@ export default function AllianceOverview() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: idx * 0.08, duration: 0.5 }}
-                className={`group flex items-start gap-4 p-5 xl:p-8 hover:bg-gray-50/50 transition-all duration-300 cursor-pointer ${getBorderClasses(
+                className={`group flex items-start gap-5 p-6 xl:p-10 hover:bg-gray-50/50 transition-all duration-300 cursor-pointer ${getBorderClasses(
                   idx,
                   items.length
                 )}`}
               >
-                {/* Icon */}
-                <div className="flex-shrink-0 w-10 h-10 rounded-md bg-[#2563EB]/10 border border-[#2563EB]/20 flex items-center justify-center text-[#2563EB] group-hover:bg-[#2563EB] group-hover:text-white transition-colors">
-                  <IconComponent className="w-5 h-5" strokeWidth={1.5} />
+                {/* Icon - Larger */}
+                <div className="flex-shrink-0 w-12 h-12 rounded-md bg-[#2563EB]/10 border border-[#2563EB]/20 flex items-center justify-center text-[#2563EB] group-hover:bg-[#2563EB] group-hover:text-white transition-colors">
+                  <IconComponent className="w-6 h-6" strokeWidth={1.5} />
                 </div>
 
-                {/* Text Content */}
+                {/* Text Content - More breathing room */}
                 <div className="flex-grow min-w-0">
-                  <h3 className="text-base xl:text-lg font-medium text-black mb-1 leading-tight group-hover:text-[#2563EB] transition-colors duration-300">
+                  <h3 className="text-base xl:text-lg font-medium text-black mb-2 leading-tight group-hover:text-[#2563EB] transition-colors duration-300">
                     <EditableText
                       path={`alliance.overview.items.${idx}.title`}
                       fallback={item.title}
                       as="span"
                     />
                   </h3>
-                  <p className="text-[13px] xl:text-[14px] text-[#5A5A5A] leading-snug opacity-100 translate-y-0 sm:opacity-0 sm:translate-y-3 sm:group-hover:opacity-100 sm:group-hover:translate-y-0 transition-all duration-300 ease-out">
+                  {/* Description - Always visible, larger font */}
+                  <p className="text-sm xl:text-base text-[#5A5A5A] leading-relaxed">
                     <EditableText
                       path={`alliance.overview.items.${idx}.description`}
                       fallback={item.description}
