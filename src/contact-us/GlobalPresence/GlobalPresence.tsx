@@ -23,37 +23,48 @@ export default function GlobalPresence() {
       {(theme) => {
         const isDark = theme === "dark";
         return (
-          <section className={`py-20 border-t transition-colors duration-300 overflow-hidden ${
-            isDark ? "bg-[#161616] border-[#2A2A2A] text-[#FFFFFF]" : "bg-[#FAFAFA] border-[#E8E8E8] text-[#121212]"
+          <section className={`py-10 lg:py-16 border-t transition-colors duration-300 overflow-hidden ${
+            isDark ? "bg-[#0A1128] border-[#1F2C47] text-white" : "bg-white border-gray-200 text-slate-900"
           }`}>
                         <Container>
 
-              {/* Heading */}
-              <motion.div
-                initial={{ opacity: 0, y: 24 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.65, ease: "easeOut" }}
-                className="text-center max-w-3xl mx-auto mb-16"
-              >
-                <EditableText
-                  path="contact.presence.heading"
-                  fallback="Global Presence"
-                  as="h2"
-                  className={`font-heading text-3xl sm:text-4xl font-extrabold mb-4 block ${
-                    isDark ? "text-[#FFFFFF]" : "text-[#121212]"
-                  }`}
-                />
-                <EditableText
-                  path="contact.presence.subheading"
-                  fallback="Connect with our experts around the globe. Our distributed engineering teams are always within reach."
-                  as="p"
-                  className={`text-sm sm:text-base leading-relaxed block ${
-                    isDark ? "text-[#CCCCCC]" : "text-[#5A5A5A]"
-                  }`}
-                  multiline
-                />
-              </motion.div>
+              {/* Header */}
+              <div className="flex flex-col lg:flex-row lg:items-end justify-between mb-16 gap-8">
+                <motion.div
+                  initial={{ opacity: 0, x: -24 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.65, ease: "easeOut" }}
+                  className="max-w-2xl shrink-0"
+                >
+                  <EditableText
+                    path="contact.presence.heading"
+                    fallback="Global Presence"
+                    as="h2"
+                    className={`font-heading text-4xl sm:text-5xl lg:text-6xl tracking-tight font-normal mb-4 block ${
+                      isDark ? "text-white" : "text-slate-900"
+                    }`}
+                  />
+                </motion.div>
+                
+                <motion.div
+                  initial={{ opacity: 0, x: 24 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.65, ease: "easeOut" }}
+                  className="max-w-lg"
+                >
+                  <EditableText
+                    path="contact.presence.subheading"
+                    fallback="Connect with our experts around the globe. Our distributed engineering teams are always within reach."
+                    as="p"
+                    className={`text-[15px] sm:text-base leading-relaxed block ${
+                      isDark ? "text-gray-400" : "text-gray-500"
+                    }`}
+                    multiline
+                  />
+                </motion.div>
+              </div>
 
               {/* Office Grid - max 3 cards per row */}
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -66,8 +77,8 @@ export default function GlobalPresence() {
                       exit={{ opacity: 0, scale: 0.95, y: -10 }}
                       viewport={{ once: true }}
                       transition={{ duration: 0.5 }}
-                      className={`rounded-xl overflow-hidden shadow-sm transition-all border flex flex-col group relative ${
-                        isDark ? "bg-[#1E1E1E] border-[#2D2D2D] text-[#FFFFFF]" : "bg-[#FFFFFF] border-[#E8E8E8] text-[#121212]"
+                      className={`rounded-xl overflow-hidden transition-all border flex flex-col group relative ${
+                        isDark ? "bg-[#1A233A] border-[#1F2C47] text-white" : "bg-gray-50 border-gray-200 text-slate-900"
                       }`}
                     >
                       {/* Delete button (Admin Only) */}
@@ -108,8 +119,8 @@ export default function GlobalPresence() {
                           path={`contact.offices.${idx}.city`}
                           fallback={office.city}
                           as="h3"
-                          className={`font-heading font-extrabold text-lg uppercase tracking-wider mb-2 block ${
-                            isDark ? "text-[#FFFFFF]" : "text-[#121212]"
+                          className={`font-heading font-bold text-[22px] tracking-wide mb-2 block ${
+                            isDark ? "text-white" : "text-slate-900"
                           }`}
                         />
                         
@@ -134,7 +145,7 @@ export default function GlobalPresence() {
                                 path={`contact.offices.${idx}.email`}
                                 fallback={office.email}
                                 as="p"
-                                className={`text-sm font-medium text-primary-red block`}
+                                className={`text-[15px] font-normal text-[#2563EB] block`}
                               />
                             </div>
                           </div>
@@ -143,7 +154,9 @@ export default function GlobalPresence() {
                             href={office.link || "#"}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="bg-transparent hover:bg-primary-red text-primary-red hover:text-white border-2 border-primary-red transition-all duration-300 font-bold uppercase tracking-wider text-xs py-3 px-6 rounded-md inline-block text-center cursor-pointer shadow-sm"
+                            className={`bg-transparent transition-all duration-300 font-normal uppercase tracking-wider text-sm py-3 px-6 rounded-md inline-block text-center cursor-pointer border ${
+                              isDark ? "border-[#2563EB] text-[#2563EB] hover:bg-[#2563EB] hover:text-white" : "border-[#0A1128] text-[#0A1128] hover:bg-[#0A1128] hover:text-white"
+                            }`}
                           >
                             View on Map
                           </a>

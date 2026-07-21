@@ -7,17 +7,54 @@ import { useContentStore } from "@/src/admin/store/adminStore";
 import EditableText from "@/src/admin/components/EditableText";
 import SectionThemeWrapper from "@/src/admin/components/SectionThemeWrapper";
 
+const getBorderClasses = (idx: number, total: number) => {
+  if (idx < total - 1) return "border-b ";
+  return "";
+};
 
 export default function OpeningsSection() {
   const [activeCategory, setActiveCategory] = useState("All Roles");
 
+  // Check admin mode based on routing namespace
+  const isAdmin = typeof window !== "undefined" && window.location.pathname.startsWith("/administrator");
+
   // Get dynamic jobs from the persistent Zustand store
-  const jobs = useContentStore((state) => state.content.careers.jobs) || [];
+  const storeJobs = useContentStore((state) => state.content.careers?.jobs) || [];
   const addCareerJob = useContentStore((state) => state.addCareerJob);
   const deleteCareerJob = useContentStore((state) => state.deleteCareerJob);
 
-  // Check admin mode based on routing namespace
-  const isAdmin = typeof window !== "undefined" && window.location.pathname.startsWith("/administrator");
+  // Fallback jobs if the store is empty (so the user sees the requested data)
+  const defaultJobs = [
+    {
+      id: "job-1",
+      title: "Senior Quality Engineer",
+      type: "Full-Time",
+      department: "Engineering",
+      location: "Navi Mumbai, India (Hybrid)",
+      experience: "5+ Years",
+      link: "#"
+    },
+    {
+      id: "job-2",
+      title: "DevSecOps Architect",
+      type: "Full-Time",
+      department: "Operations",
+      location: "Remote (Global)",
+      experience: "8+ Years",
+      link: "#"
+    },
+    {
+      id: "job-3",
+      title: "Lead SDET (Playwright/Go)",
+      type: "Full-Time",
+      department: "Engineering",
+      location: "Navi Mumbai, India (Hybrid)",
+      experience: "6+ Years",
+      link: "#"
+    }
+  ];
+
+  const jobs = storeJobs.length > 0 ? storeJobs : defaultJobs;
 
   // Dynamically compute departments / categories from existing jobs to keep it scalable and expandable
   const departmentsSet = new Set<string>();
@@ -37,82 +74,87 @@ export default function OpeningsSection() {
       {(theme) => {
         const isDark = theme === "dark";
         return (
-          <section id="openings" className={`py-24 border-t transition-colors duration-300 overflow-hidden ${
-            isDark ? "bg-[#121212] border-[#2A2A2A] text-[#FFFFFF]" : "bg-[#FAFAFA] border-[#E8E8E8] text-[#121212]"
+          <section id="openings" className={`py-12 lg:py-16 border-t transition-colors duration-300 overflow-hidden ${
+            isDark ? "bg-[#0A1128] border-[#1F2C47] text-white" : "bg-white border-gray-200 text-gray-900"
           }`}>
-            <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               
-              {/* Header & Filters */}
-              <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-8">
-                <div className="flex-1">
+              {/* Header - LHS/RHS Split */}
+              <div className="mb-8 lg:mb-12 flex flex-col lg:flex-row lg:items-start justify-between gap-8">
+                {/* Left Side: Heading */}
+                <div className="shrink-0 lg:max-w-xl">
                   <EditableText
                     path="careers.openings.heading"
                     fallback="Current Openings"
                     as="h2"
-                    className={`font-heading text-3xl sm:text-4xl font-extrabold mb-3 block ${
-                      isDark ? "text-[#FFFFFF]" : "text-[#121212]"
+                    className={`font-heading text-4xl sm:text-5xl lg:text-6xl font-normal tracking-tight leading-[1.1] block ${
+                      isDark ? "text-white" : "text-gray-900"
                     }`}
                   />
+                </div>
+
+                {/* Right Side: Paragraph */}
+                <div className="flex flex-col lg:items-end gap-6 max-w-xl">
                   <EditableText
                     path="careers.openings.subheading"
                     fallback="Find your next role in high-performance engineering."
                     as="p"
-                    className={`text-sm block ${
-                      isDark ? "text-[#CCCCCC]" : "text-[#5A5A5A]"
+                    className={`text-lg sm:text-xl leading-relaxed lg:text-left block ${
+                      isDark ? "text-gray-300" : "text-gray-600"
                     }`}
+                    multiline
                   />
                 </div>
+              </div>
 
-                <div className="flex flex-col items-start md:items-end gap-4">
-                  {isAdmin && (
+              {/* Filters & Admin Actions */}
+              <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 mb-8">
+                <div className="flex flex-wrap gap-2">
+                  {categories.map((cat) => (
                     <button
-                      onClick={() => addCareerJob()}
-                      className="bg-primary-red hover:bg-primary-hover text-[#FFFFFF] font-bold text-xs uppercase tracking-wider px-5 py-2.5 rounded-md flex items-center gap-2 shadow-md transition-all self-start md:self-auto cursor-pointer"
-                    >
-                      <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m8-8H4" />
-                      </svg>
-                      Add Job Posting
-                    </button>
-                  )}
-
-                  <div className="flex flex-wrap gap-2">
-                    {categories.map((cat) => (
-                      <button
                         key={cat}
                         onClick={() => setActiveCategory(cat)}
                         className={`px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider transition-colors border cursor-pointer ${
-                          activeCategory === cat
-                            ? (isDark ? "bg-[#FFFFFF] text-[#121212] border-[#FFFFFF]" : "bg-[#121212] text-[#FFFFFF] border-[#121212]")
-                            : (isDark ? "bg-transparent text-[#CCCCCC] border-[#333333] hover:border-[#FFFFFF] hover:text-[#FFFFFF]" : "bg-transparent text-[#5A5A5A] border-[#C8C8C8] hover:border-[#121212] hover:text-[#121212]")
+                           activeCategory === cat
+                             ? (isDark ? "bg-white text-black border-white" : "bg-gray-900 text-white border-gray-900")
+                             : (isDark ? "bg-transparent text-gray-400 border-gray-600 hover:border-white hover:text-white" : "bg-transparent text-gray-500 border-gray-300 hover:border-gray-900 hover:text-gray-900")
                         }`}
                       >
                         {cat}
                       </button>
-                    ))}
-                  </div>
+                  ))}
                 </div>
+                {isAdmin && (
+                  <button
+                    onClick={() => addCareerJob()}
+                    className="bg-[#2563EB] hover:bg-blue-700 text-white font-bold text-xs uppercase tracking-wider px-5 py-2.5 rounded-md flex items-center gap-2 transition-colors shrink-0 cursor-pointer"
+                  >
+                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m8-8H4" />
+                    </svg>
+                    Add Job Posting
+                  </button>
+                )}
               </div>
 
-              {/* Job List */}
-              <div className="space-y-4">
+              {/* Job List Tabular */}
+              <div className={`flex flex-col w-full border-t border-b ${isDark ? "border-[#1F2C47]" : "border-gray-200"}`}>
                 <AnimatePresence mode="wait">
                   {filteredJobs.map((job, idx) => {
-                    // Find index in global jobs array to map correct state paths
                     const globalIndex = jobs.findIndex((j) => j.id === job.id);
                     if (globalIndex === -1) return null;
 
                     return (
                       <motion.div
                         layout
-                        initial={{ opacity: 0, scale: 0.98, y: 10 }}
-                        animate={{ opacity: 1, scale: 1, y: 0 }}
-                        exit={{ opacity: 0, scale: 0.98, y: -10 }}
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -10 }}
                         transition={{ duration: 0.3 }}
                         key={job.id}
-                        className={`border rounded-xl p-6 sm:p-8 flex flex-col sm:flex-row sm:items-center justify-between gap-6 hover:shadow-lg transition-all group relative ${
-                          isDark ? "bg-[#1A1A1A] border-[#2A2A2A] text-[#FFFFFF]" : "bg-[#FFFFFF] border-[#E8E8E8] text-[#121212]"
-                        }`}
+                        className={`group py-6 px-4 sm:px-8 flex flex-col sm:flex-row sm:items-center justify-between gap-6 transition-colors ${
+                           isDark ? "hover:bg-[#121B31]/50 border-[#1F2C47]" : "hover:bg-gray-100/50 border-gray-200"
+                        } ${getBorderClasses(idx, filteredJobs.length)}`}
                       >
                         <div className="flex-1">
                           <div className="flex flex-wrap items-center gap-3 mb-2">
@@ -120,8 +162,8 @@ export default function OpeningsSection() {
                               path={`careers.jobs.${globalIndex}.title`}
                               fallback={job.title}
                               as="h3"
-                              className={`text-xl font-bold group-hover:text-primary-red transition-colors inline-block ${
-                                isDark ? "text-[#FFFFFF]" : "text-[#121212]"
+                              className={`text-xl font-bold transition-colors inline-block ${
+                                isDark ? "text-white" : "text-gray-900"
                               }`}
                             />
                             <EditableText
@@ -129,16 +171,16 @@ export default function OpeningsSection() {
                               fallback={job.type}
                               as="span"
                               className={`text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-sm whitespace-nowrap flex-shrink-0 ${
-                                isDark ? "bg-primary-red/10 text-primary-red" : "bg-primary-soft text-primary-red"
+                                isDark ? "bg-blue-600/10 text-blue-400" : "bg-blue-50 text-blue-600"
                               }`}
                             />
                           </div>
-                          <div className={`flex flex-wrap items-center gap-1.5 text-sm ${isDark ? "text-[#9A9A9A]" : "text-[#7A7A7A]"}`}>
+                          <div className={`flex flex-wrap items-center gap-1.5 text-sm ${isDark ? "text-gray-400" : "text-gray-500"}`}>
                             <EditableText
                               path={`careers.jobs.${globalIndex}.department`}
                               fallback={job.department}
                               as="span"
-                              className={`font-semibold ${isDark ? "text-[#CCCCCC]" : "text-[#5A5A5A]"}`}
+                              className={`font-semibold ${isDark ? "text-gray-300" : "text-gray-700"}`}
                             />
                             <span>·</span>
                             <EditableText
@@ -150,16 +192,14 @@ export default function OpeningsSection() {
                         </div>
                         
                         <div className="flex items-center gap-3 flex-shrink-0">
-                          <motion.a
+                          <a
                             href="#apply"
-                            whileHover={{ scale: 1.05 }}
-                            whileTap={{ scale: 0.95 }}
                             className={`inline-block font-bold px-8 py-3 rounded-md text-sm transition-colors text-center cursor-pointer ${
-                              isDark ? "bg-[#FFFFFF] hover:bg-primary-red text-black hover:text-white" : "bg-[#121212] hover:bg-primary-red text-white"
+                               isDark ? "bg-white hover:bg-gray-200 text-black" : "bg-gray-900 hover:bg-black text-white"
                             }`}
                           >
                             Apply Now
-                          </motion.a>
+                          </a>
 
                           {isAdmin && (
                             <button

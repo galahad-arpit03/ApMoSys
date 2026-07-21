@@ -29,6 +29,26 @@ const iconMap: Record<string, string> = {
   shield: "M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
 };
 
+const getBorderClasses = (idx: number, total: number, isDark: boolean) => {
+  let classes = isDark ? "border-[#1F2C47] " : "border-gray-200 ";
+  
+  if (idx < total - 1) classes += "border-b ";
+
+  // md: 2 columns
+  if (idx >= Math.floor((total - 1) / 2) * 2) classes += "md:border-b-0 ";
+  if ((idx + 1) % 2 !== 0) classes += "md:border-r ";
+  else classes += "md:border-r-0 ";
+
+  // lg: 4 columns
+  if (idx >= Math.floor((total - 1) / 4) * 4) classes += "lg:border-b-0 ";
+  else classes += "lg:border-b ";
+  
+  if ((idx + 1) % 4 !== 0) classes += "lg:border-r ";
+  else classes += "lg:border-r-0 ";
+
+  return classes;
+};
+
 export default function GrowthSection() {
   const pathname = usePathname();
   const isEditRoute = pathname?.startsWith("/administrator");
@@ -38,7 +58,7 @@ export default function GrowthSection() {
 
   // Pagination Logic
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 9; // 3 rows of max 3 items
+  const itemsPerPage = 8; // 4 columns
   const totalPages = Math.ceil(perks.length / itemsPerPage);
   const startIndex = (currentPage - 1) * itemsPerPage;
   const paginatedPerks = perks.slice(startIndex, startIndex + itemsPerPage);
@@ -48,45 +68,54 @@ export default function GrowthSection() {
       {(theme) => {
         const isDark = theme === "dark";
         return (
-          <section className={`py-24 border-t transition-colors duration-300 overflow-hidden ${
-            isDark ? "bg-[#121212] border-[#2A2A2A] text-[#FFFFFF]" : "bg-[#FAFAFA] border-[#E8E8E8] text-[#121212]"
+          <section className={`py-12 lg:py-16 border-t transition-colors duration-300 overflow-hidden ${
+            isDark ? "bg-[#0A1128] border-[#1F2C47] text-white" : "bg-white border-gray-200 text-gray-900"
           }`}>
                         <Container>
               
-              {/* Header */}
+              {/* Header - LHS/RHS Split */}
               <motion.div
                 initial={{ opacity: 0, y: 24 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.65, ease: "easeOut" }}
-                className="text-center max-w-3xl mx-auto mb-16"
+                className="mb-12 lg:mb-16 flex flex-col lg:flex-row lg:items-start justify-between gap-8"
               >
-                <EditableText
-                  path="careers.growth.heading"
-                  fallback="Engineered for Your Growth."
-                  as="h2"
-                  className={`font-heading text-3xl sm:text-4xl font-extrabold mb-4 block ${
-                    isDark ? "text-[#FFFFFF]" : "text-[#121212]"
-                  }`}
-                />
-                <EditableText
-                  path="careers.growth.subheading"
-                  fallback="We invest heavily in our team's well-being and professional development. Here is what you get when you join our ranks."
-                  as="p"
-                  className={`text-sm sm:text-base leading-relaxed block ${
-                    isDark ? "text-[#CCCCCC]" : "text-[#5A5A5A]"
-                  }`}
-                  multiline
-                />
+                {/* Left Side: Heading */}
+                <div className="shrink-0 lg:max-w-xl">
+                  <EditableText
+                    path="careers.growth.heading"
+                    fallback="Engineered for Your Growth."
+                    as="h2"
+                    className={`font-heading text-4xl sm:text-5xl lg:text-6xl font-normal tracking-tight leading-[1.1] block ${
+                      isDark ? "text-white" : "text-gray-900"
+                    }`}
+                  />
+                </div>
+
+                {/* Right Side: Paragraph */}
+                <div className="flex flex-col lg:items-end gap-6 max-w-xl">
+                  <EditableText
+                    path="careers.growth.subheading"
+                    fallback="We invest heavily in our team's well-being and professional development. Here is what you get when you join our ranks."
+                    as="p"
+                    className={`text-lg sm:text-xl leading-relaxed lg:text-left block ${
+                      isDark ? "text-gray-300" : "text-[#5A5A5A]"
+                    }`}
+                    multiline
+                  />
+                </div>
               </motion.div>
 
-              {/* Perks Grid - 3 items in a row max */}
+              {/* Tabular Grid Section (Seamless, No Boxes) */}
               <motion.div
                 variants={containerVariants}
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, margin: "-50px" }}
-                className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
+                className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 w-full border-t border-b transition-colors ${
+                  isDark ? "border-[#1F2C47]" : "border-gray-200"
+                }`}
               >
                 <AnimatePresence mode="wait">
                   {paginatedPerks.map((perk, index) => {
@@ -99,15 +128,12 @@ export default function GrowthSection() {
                         initial={{ opacity: 0, scale: 0.9 }}
                         animate={{ opacity: 1, scale: 1 }}
                         exit={{ opacity: 0, scale: 0.9 }}
-                        whileHover={{ y: -6, boxShadow: isDark ? "0 20px 40px rgba(0,0,0,0.4)" : "0 20px 40px rgba(0,0,0,0.06)" }}
+                        whileHover={{ y: 0 }}
                         transition={{ duration: 0.3 }}
-                        className={`p-8 rounded-xl shadow-sm transition-all relative overflow-hidden group border ${
-                          isDark ? "bg-[#1A1A1A] border-[#2A2A2A] text-[#FFFFFF]" : "bg-[#FFFFFF] border-[#E8E8E8] text-[#121212]"
-                        }`}
+                        className={`group py-8 md:py-10 px-6 xl:px-10 flex flex-col sm:flex-row lg:flex-col xl:flex-row items-start gap-5 transition-colors relative ${
+                          isDark ? "hover:bg-[#121B31]/50" : "hover:bg-gray-100/50"
+                        } ${getBorderClasses(index, paginatedPerks.length + (isEditRoute ? 1 : 0), isDark)}`}
                       >
-                        {/* Subtle top accent */}
-                        <div className="absolute top-0 left-0 w-full h-1 bg-primary-red opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                        
                         {/* Delete Button (Admin Only) */}
                         {isEditRoute && (
                           <button
@@ -119,67 +145,58 @@ export default function GrowthSection() {
                                 setCurrentPage(currentPage - 1);
                               }
                             }}
-                            className={`absolute top-4 right-4 p-1.5 rounded-full transition-colors z-30 cursor-pointer ${
+                            className={`absolute top-4 right-4 p-1.5 rounded-md transition-colors z-30 cursor-pointer ${
                               isDark ? "text-red-400 hover:text-red-300 bg-red-950/50 hover:bg-red-900/50" : "text-red-500 hover:text-red-700 bg-red-50 hover:bg-red-100"
                             }`}
                             title="Delete perk card"
                           >
-                            <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                               <path strokeLinecap="round" strokeLinejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
                             </svg>
                           </button>
                         )}
 
-                        <div className={`w-12 h-12 rounded-lg flex items-center justify-center text-primary-red mb-6 group-hover:scale-110 transition-transform duration-300 ${
-                          isDark ? "bg-primary-red/10" : "bg-primary-soft"
-                        }`}>
-                          <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-                            <path strokeLinecap="round" strokeLinejoin="round" d={iconMap[perk.icon] || iconMap.bolt} />
-                          </svg>
+                        <div>
+                          <EditableText
+                            path={`careers.growth.items.${globalIndex}.title`}
+                            fallback={perk.title}
+                            as="h4"
+                            className={`text-[17px] font-bold mb-1.5 block ${isDark ? "text-white" : "text-slate-900"}`}
+                          />
+                          
+                          <EditableText
+                            path={`careers.growth.items.${globalIndex}.description`}
+                            fallback={perk.description}
+                            as="p"
+                            className={`text-[13px] font-normal leading-relaxed max-w-[200px] block ${isDark ? "text-gray-400" : "text-slate-900"}`}
+                            multiline
+                          />
                         </div>
-                        
-                        <EditableText
-                          path={`careers.growth.items.${globalIndex}.title`}
-                          fallback={perk.title}
-                          as="h3"
-                          className={`font-bold text-lg mb-3 block ${isDark ? "text-[#FFFFFF]" : "text-[#121212]"}`}
-                        />
-                        
-                        <EditableText
-                          path={`careers.growth.items.${globalIndex}.description`}
-                          fallback={perk.description}
-                          as="p"
-                          className={`text-sm leading-relaxed block ${isDark ? "text-[#CCCCCC]" : "text-[#7A7A7A]"}`}
-                          multiline
-                        />
                       </motion.div>
                     );
                   })}
 
                   {/* "Add Perk" Card (Admin Only) */}
                   {isEditRoute && (
-                    <motion.button
-                      key="add-perk-card"
-                      variants={fadeUp}
-                      onClick={addCareerPerk}
-                      className={`p-8 rounded-xl shadow-sm transition-all flex flex-col items-center justify-center text-center min-h-[220px] group cursor-pointer border-2 border-dashed ${
-                        isDark ? "bg-[#1A1A1A] border-[#333333] hover:border-primary-red/50 text-[#FFFFFF]" : "bg-[#FFFFFF] border-[#E8E8E8] hover:border-primary-red/50 text-[#121212]"
-                      }`}
-                    >
-                      <div className={`w-10 h-10 rounded-lg flex items-center justify-center text-primary-red mb-4 group-hover:scale-115 transition-transform duration-300 ${
-                        isDark ? "bg-primary-red/10" : "bg-primary-soft"
-                      }`}>
-                        <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                          <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m8-8H4" />
-                        </svg>
-                      </div>
-                      <span className={`font-bold text-sm group-hover:text-primary-red transition-colors ${isDark ? "text-[#FFFFFF]" : "text-[#121212]"}`}>
-                        Add Benefit Card
-                      </span>
-                      <span className="text-[#9A9A9A] text-xs mt-1 max-w-[200px]">
-                        Pushes a new dynamic benefit card to this list grid
-                      </span>
-                    </motion.button>
+                      <motion.button
+                        key="add-perk-card"
+                        variants={fadeUp}
+                        onClick={addCareerPerk}
+                        className={`group py-8 md:py-10 px-6 xl:px-10 flex flex-col sm:flex-row lg:flex-col xl:flex-row items-center justify-center text-center gap-5 transition-colors relative cursor-pointer ${
+                          isDark ? "hover:bg-[#121B31]/50 text-white" : "hover:bg-gray-100/50 text-gray-900"
+                        } ${getBorderClasses(paginatedPerks.length, paginatedPerks.length + 1, isDark)}`}
+                      >
+                        <div className="shrink-0 w-12 h-12 rounded-full border border-dashed border-gray-400 bg-transparent flex items-center justify-center text-gray-400 group-hover:text-[#2563EB] group-hover:border-[#2563EB] transition-colors">
+                          <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m8-8H4" />
+                          </svg>
+                        </div>
+                        <div>
+                          <span className="font-bold text-[17px] group-hover:text-[#2563EB] transition-colors block">
+                            Add Benefit
+                          </span>
+                        </div>
+                      </motion.button>
                   )}
                 </AnimatePresence>
               </motion.div>

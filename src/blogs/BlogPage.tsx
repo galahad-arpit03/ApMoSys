@@ -5,7 +5,6 @@ import FeaturedPost from "./FeaturedPost/FeaturedPost";
 import BlogList from "./BlogList/BlogList";
 import TechnicalLibrary from "./TechnicalLibrary/TechnicalLibrary";
 import SubscribeBanner from "./SubscribeBanner/SubscribeBanner";
-import Consultation from "./Consultation/Consultation";
 
 export default function BlogPage() {
   return (
@@ -14,7 +13,6 @@ export default function BlogPage() {
       <BlogList />
       <TechnicalLibrary />
       <SubscribeBanner />
-      <Consultation />
     </>
   );
 }

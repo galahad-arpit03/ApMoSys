@@ -25,6 +25,8 @@ const resources = [
   },
 ];
 
+import { FileText } from "lucide-react";
+
 export default function TechnicalLibrary() {
   return (
     <SectionThemeWrapper sectionId="blogs_library" defaultTheme="light">
@@ -32,11 +34,11 @@ export default function TechnicalLibrary() {
         const isDark = theme === "dark";
         return (
           <section
-            className={`py-24 border-t transition-colors duration-300 ${
-              isDark ? "bg-[#121212] text-[#FAFAFA] border-[#1F1F1F]" : "bg-[#FAFAFA] text-[#121212] border-[#E8E8E8]"
+            className={`py-12 lg:py-16 border-t transition-colors duration-300 ${
+              isDark ? "bg-[#0A1128] text-white border-[#1F2C47]" : "bg-white text-slate-900 border-gray-200"
             }`}
           >
-                        <Container>
+            <Container>
               
               {/* Header */}
               <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-12 gap-6">
@@ -46,8 +48,7 @@ export default function TechnicalLibrary() {
                   viewport={{ once: true }}
                   transition={{ duration: 0.5 }}
                 >
-                  <span className="text-primary-red text-xs font-bold uppercase tracking-widest block mb-2">Technical Library</span>
-                  <h2 className={`font-heading text-2xl sm:text-3xl font-bold ${isDark ? "text-[#FFFFFF]" : "text-[#121212]"}`}>
+                  <h2 className={`font-heading text-3xl sm:text-4xl lg:text-5xl tracking-tight font-normal ${isDark ? "text-white" : "text-slate-900"}`}>
                     Whitepapers & Frameworks
                   </h2>
                 </motion.div>
@@ -60,8 +61,8 @@ export default function TechnicalLibrary() {
                 >
                   <a
                     href="#"
-                    className={`inline-flex items-center gap-2 text-sm font-bold transition-colors group ${
-                      isDark ? "text-[#FFFFFF] hover:text-primary-red" : "text-[#121212] hover:text-primary-red"
+                    className={`inline-flex items-center gap-2 text-[15px] font-bold transition-colors group ${
+                      isDark ? "text-white hover:text-[#2563EB]" : "text-slate-900 hover:text-[#2563EB]"
                     }`}
                   >
                     Browse Library
@@ -72,8 +73,10 @@ export default function TechnicalLibrary() {
                 </motion.div>
               </div>
 
-              {/* Cards */}
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {/* Tabular Grid Section (Seamless, No Boxes) */}
+              <div className={`grid grid-cols-1 md:grid-cols-3 w-full border-t border-b transition-colors ${
+                isDark ? "border-[#1F2C47]" : "border-gray-200"
+              }`}>
                 {resources.map((res, idx) => (
                   <motion.div
                     key={idx}
@@ -81,50 +84,40 @@ export default function TechnicalLibrary() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.5, delay: idx * 0.1 }}
-                    className={`border rounded-xl p-8 flex flex-col h-full hover:shadow-lg transition-shadow group relative ${
-                      isDark ? "bg-[#1F1F1F] border-[#3A3A3A]" : "bg-[#FFFFFF] border-[#E8E8E8]"
+                    className={`group py-8 md:py-12 px-6 xl:px-10 flex flex-col xl:flex-row items-start gap-5 transition-colors cursor-pointer ${
+                      isDark ? "hover:bg-[#1A233A]" : "hover:bg-gray-100/50"
+                    } ${
+                      idx < resources.length - 1 
+                        ? (isDark ? "border-b md:border-b-0 md:border-r border-[#1F2C47]" : "border-b md:border-b-0 md:border-r border-gray-200") 
+                        : ""
                     }`}
                   >
-                    {/* Document Icon Top Right */}
-                    <div className={`absolute top-8 right-8 transition-colors ${
-                      isDark ? "text-[#3A3A3A] group-hover:text-primary-red" : "text-[#E8E8E8] group-hover:text-primary-soft"
-                    }`}>
-                      <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                      </svg>
+                    <div className="shrink-0 w-12 h-12 rounded-full border border-[#2563EB]/20 bg-transparent flex items-center justify-center text-[#2563EB]">
+                      <FileText className="w-5 h-5" strokeWidth={1.5} />
                     </div>
 
-                    <span className={`text-[10px] font-bold uppercase tracking-widest mb-4 block ${
-                      isDark ? "text-[#888888]" : "text-[#A0A0A0]"
-                    }`}>
-                      {res.tag}
-                    </span>
-                    
-                    <h3 className={`font-heading font-bold text-lg mb-3 pr-8 leading-snug ${
-                      isDark ? "text-[#FFFFFF]" : "text-[#121212]"
-                    }`}>
-                      {res.title}
-                    </h3>
-                    
-                    <p className={`text-sm leading-relaxed mb-8 ${
-                      isDark ? "text-[#A0A0A0]" : "text-[#7A7A7A]"
-                    }`}>
-                      {res.desc}
-                    </p>
-                    
-                    <div className="mt-auto">
-                      <a href="#" className="inline-flex items-center gap-2 text-primary-red text-xs font-bold uppercase tracking-wider hover:text-[#D10000] transition-colors group/btn">
-                        Download PDF
-                        <svg className="w-3.5 h-3.5 group-hover/btn:translate-y-0.5 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                          <path strokeLinecap="round" strokeLinejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
-                        </svg>
-                      </a>
+                    <div>
+                      <span className={`text-[10px] font-bold uppercase tracking-widest block mb-2 ${
+                        isDark ? "text-gray-400" : "text-gray-500"
+                      }`}>
+                        {res.tag}
+                      </span>
+                      <h4 className={`text-[17px] font-bold mb-1.5 leading-snug ${
+                        isDark ? "text-white group-hover:text-[#2563EB]" : "text-slate-900 group-hover:text-[#2563EB]"
+                      }`}>
+                        {res.title}
+                      </h4>
+                      <p className={`text-[13px] font-normal leading-relaxed ${
+                        isDark ? "text-gray-400" : "text-slate-900"
+                      }`}>
+                        {res.desc}
+                      </p>
                     </div>
                   </motion.div>
                 ))}
               </div>
               
-                        </Container>
+            </Container>
           </section>
         );
       }}

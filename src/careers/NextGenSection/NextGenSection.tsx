@@ -13,11 +13,11 @@ export default function NextGenSection() {
         const isDark = theme === "dark";
         return (
           <section
-            className={`py-24 border-t transition-colors duration-300 overflow-hidden ${
-              isDark ? "bg-[#121212] text-[#FAFAFA] border-[#1F1F1F]" : "bg-[#FFFFFF] text-[#121212] border-[#E8E8E8]"
+            className={`py-12 lg:py-16 border-t transition-colors duration-300 overflow-hidden ${
+              isDark ? "bg-[#0A1128] text-white border-[#1F2C47]" : "bg-white text-gray-900 border-gray-200"
             }`}
           >
-                        <Container>
+            <Container>
               <div className="lg:grid lg:grid-cols-12 lg:gap-16 items-center">
                 
                 {/* Left Text */}
@@ -32,58 +32,58 @@ export default function NextGenSection() {
                     path="careers.nextgen.heading"
                     fallback="The Next Generation of Architects."
                     as="h2"
-                    className={`font-heading text-3xl sm:text-4xl font-extrabold mb-4 leading-tight block ${
-                      isDark ? "text-[#FFFFFF]" : "text-[#121212]"
+                    className={`font-heading text-4xl sm:text-5xl lg:text-6xl font-normal tracking-tight leading-[1.1] mb-6 block ${
+                      isDark ? "text-white" : "text-gray-900"
                     }`}
                   />
                   <EditableText
                     path="careers.nextgen.subheading"
                     fallback="We do not just hire talent; we groom it. Our specialized training programs are designed to transform promising graduates into elite software architects and automation specialists ready for industry challenges."
                     as="p"
-                    className={`text-base leading-relaxed mb-8 max-w-lg block ${
-                      isDark ? "text-[#A0A0A0]" : "text-[#5A5A5A]"
+                    className={`text-lg sm:text-xl leading-relaxed mb-10 max-w-lg block ${
+                      isDark ? "text-gray-300" : "text-gray-600"
                     }`}
                     multiline
                   />
                   
                   <div className="flex flex-col sm:flex-row gap-6">
                     <div className={`border p-6 rounded-xl flex-1 transition-colors ${
-                      isDark ? "bg-[#1F1F1F] border-[#3A3A3A]" : "bg-[#FAFAFA] border-[#E8E8E8]"
+                      isDark ? "bg-[#1A233A] border-[#1F2C47]" : "bg-gray-50 border-gray-200"
                     }`}>
                       <EditableText
                         path="careers.nextgen.stat1Value"
                         fallback="6 Months"
                         as="span"
-                        className={`block text-2xl font-bold mb-1 ${
-                          isDark ? "text-[#FFFFFF]" : "text-[#121212]"
+                        className={`block text-[17px] font-bold mb-1.5 ${
+                          isDark ? "text-white" : "text-slate-900"
                         }`}
                       />
                       <EditableText
                         path="careers.nextgen.stat1Label"
                         fallback="Intense Bootcamp"
                         as="span"
-                        className={`text-xs font-bold uppercase tracking-widest block ${
-                          isDark ? "text-[#A0A0A0]" : "text-[#7A7A7A]"
+                        className={`text-[13px] font-semibold uppercase tracking-widest block ${
+                          isDark ? "text-gray-400" : "text-gray-500"
                         }`}
                       />
                     </div>
                     <div className={`border p-6 rounded-xl flex-1 transition-colors ${
-                      isDark ? "bg-[#1F1F1F] border-[#3A3A3A]" : "bg-[#FAFAFA] border-[#E8E8E8]"
+                      isDark ? "bg-[#1A233A] border-[#1F2C47]" : "bg-gray-50 border-gray-200"
                     }`}>
                       <EditableText
                         path="careers.nextgen.stat2Value"
                         fallback="Paid"
                         as="span"
-                        className={`block text-2xl font-bold mb-1 ${
-                          isDark ? "text-[#FFFFFF]" : "text-[#121212]"
+                        className={`block text-[17px] font-bold mb-1.5 ${
+                          isDark ? "text-white" : "text-slate-900"
                         }`}
                       />
                       <EditableText
                         path="careers.nextgen.stat2Label"
                         fallback="Global Internship"
                         as="span"
-                        className={`text-xs font-bold uppercase tracking-widest block ${
-                          isDark ? "text-[#A0A0A0]" : "text-[#7A7A7A]"
+                        className={`text-[13px] font-semibold uppercase tracking-widest block ${
+                          isDark ? "text-gray-400" : "text-gray-500"
                         }`}
                       />
                     </div>
@@ -99,11 +99,11 @@ export default function NextGenSection() {
                   className="col-span-6 lg:pl-10"
                 >
                   <div className={`border p-10 rounded-2xl relative transition-colors ${
-                    isDark ? "bg-[#1F1F1F] border-[#3A3A3A]" : "bg-[#FAFAFA] border-[#E8E8E8]"
+                    isDark ? "bg-[#1A233A] border-[#1F2C47]" : "bg-gray-50 border-gray-200"
                   }`}>
                     <svg
                       className={`absolute top-6 right-8 w-12 h-12 transition-colors ${
-                        isDark ? "text-[#333333]" : "text-primary-soft"
+                        isDark ? "text-[#2563EB]/20" : "text-gray-300"
                       }`}
                       fill="currentColor"
                       viewBox="0 0 24 24"
@@ -112,7 +112,7 @@ export default function NextGenSection() {
                     </svg>
                     
                     <div className={`relative z-10 text-lg font-medium leading-relaxed mb-8 block ${
-                      isDark ? "text-[#CCCCCC]" : "text-[#121212]"
+                      isDark ? "text-gray-300" : "text-slate-800"
                     }`}>
                       <EditableText
                         path="careers.nextgen.quote"
@@ -124,24 +124,22 @@ export default function NextGenSection() {
                     </div>
                     
                     <div className="flex items-center gap-4">
-                      <div className={`w-12 h-12 rounded-full flex-shrink-0 transition-colors ${
-                        isDark ? "bg-[#333333]" : "bg-[#121212]"
-                      }`} />
+                      <div className="w-12 h-12 rounded-full flex-shrink-0 bg-gradient-to-tr from-[#2563EB] to-blue-400" />
                       <div>
                         <EditableText
                           path="careers.nextgen.quoteAuthor"
                           fallback="Sarah Jenkins"
                           as="h4"
-                          className={`font-bold block ${
-                            isDark ? "text-[#FFFFFF]" : "text-[#121212]"
+                          className={`font-bold block text-[17px] ${
+                            isDark ? "text-white" : "text-slate-900"
                           }`}
                         />
                         <EditableText
                           path="careers.nextgen.quoteRole"
                           fallback="Lead Automation Architect"
                           as="p"
-                          className={`text-xs font-semibold uppercase tracking-wider block ${
-                            isDark ? "text-[#A0A0A0]" : "text-[#7A7A7A]"
+                          className={`text-[13px] font-semibold uppercase tracking-wider block ${
+                            isDark ? "text-gray-400" : "text-gray-500"
                           }`}
                         />
                       </div>
@@ -150,7 +148,7 @@ export default function NextGenSection() {
                 </motion.div>
                 
               </div>
-                        </Container>
+            </Container>
           </section>
         );
       }}

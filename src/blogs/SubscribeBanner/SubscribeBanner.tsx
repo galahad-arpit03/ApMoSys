@@ -1,11 +1,9 @@
 "use client";
 import { subscribebannerData } from "./SubscribeBannerData";
-
 import React from "react";
-import Container from "@/src/components/Container";
 import { motion } from "framer-motion";
 import SectionThemeWrapper from "@/src/admin/components/SectionThemeWrapper";
-
+import Image from "next/image";
 
 export default function SubscribeBanner() {
   return (
@@ -13,57 +11,56 @@ export default function SubscribeBanner() {
       {(theme) => {
         const isDark = theme === "dark";
         return (
-          <section className={`py-16 transition-colors duration-300 ${isDark ? "bg-[#121212]" : "bg-[#FFFFFF]"}`}>
-                        <Container>
+          <section className={`py-12 lg:py-16 transition-colors duration-300 ${isDark ? "bg-[#0A1128]" : "bg-white"} px-4 sm:px-6 lg:px-8`}>
+            <div className="max-w-7xl mx-auto relative rounded-[12px] overflow-hidden shadow-2xl min-h-[300px] md:min-h-[350px] lg:min-h-[380px] flex flex-col justify-center">
               
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6 }}
-                className={`rounded-2xl overflow-hidden shadow-2xl flex flex-col lg:flex-row items-center justify-between p-8 sm:p-12 gap-8 relative border transition-colors ${
-                  isDark ? "bg-[#1F1F1F] border-[#3A3A3A]" : "bg-[#121212] border-[#2A2A2A]"
-                }`}
-              >
-                {/* Subtle background glow */}
-                <div className="absolute top-0 right-0 w-64 h-64 bg-primary-red rounded-full blur-[100px] opacity-20 pointer-events-none" />
+              {/* Background Image & Overlay */}
+              <div className="absolute inset-0 z-0">
+                <Image
+                  src="/assets/images/abstract-waves.png"
+                  alt="Background"
+                  fill
+                  quality={90}
+                  className="object-cover"
+                />
+                <div className="absolute inset-0 bg-[#2563EB]/80 mix-blend-multiply"></div>
+              </div>
 
+              <div className="relative z-10 p-8 sm:p-12 lg:p-16 w-full flex flex-col lg:flex-row items-center justify-between gap-8">
+                
                 {/* Left Text */}
-                <div className="max-w-lg relative z-10">
-                  <h3 className="font-heading font-bold text-2xl text-[#FFFFFF] mb-3">
+                <div className="max-w-2xl text-left w-full">
+                  <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-medium text-white mb-4 tracking-tight leading-tight">
                     Stay Ahead of the Curve
-                  </h3>
-                  <p className="text-[#A0A0A0] text-sm leading-relaxed">
+                  </h2>
+                  <p className="text-white/90 text-sm sm:text-base lg:text-lg leading-relaxed max-w-xl">
                     Get weekly technical intelligence and engineering insights delivered directly to your inbox. No fluff, just engineering.
                   </p>
                 </div>
 
                 {/* Right Form */}
-                <div className="w-full lg:w-auto relative z-10">
+                <div className="w-full lg:w-auto relative z-10 shrink-0">
                   <div className="flex flex-col sm:flex-row gap-4 mb-3">
                     <input 
                       type="email" 
                       placeholder="Work Email Address" 
-                      className={`w-full sm:w-72 border px-4 py-3.5 rounded-md text-sm focus:outline-none focus:border-primary-red transition-colors ${
-                        isDark ? "bg-[#121212] border-[#3A3A3A] text-[#FAFAFA]" : "bg-[#1F1F1F] border-[#3A3A3A] text-[#FAFAFA]"
-                      }`}
+                      className="w-full sm:w-72 bg-white/10 border border-white/20 rounded-md px-4 py-3.5 text-sm text-white placeholder-white/60 focus:outline-none focus:border-white focus:bg-white/20 transition-all backdrop-blur-sm"
                     />
                     <motion.button 
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
-                      className="bg-primary-red hover:bg-primary-hover text-[#FFFFFF] px-8 py-3.5 rounded-md text-sm font-bold transition-colors whitespace-nowrap"
+                      className="bg-white text-[#0F172A] px-8 py-3.5 rounded-md text-sm font-semibold text-center shadow-lg hover:shadow-xl transition-all whitespace-nowrap"
                     >
                       Subscribe
                     </motion.button>
                   </div>
-                  <p className="text-[#5A5A5A] text-xs">
+                  <p className="text-white/60 text-xs">
                     By subscribing, you agree to our privacy policy and terms of service.
                   </p>
                 </div>
                 
-              </motion.div>
-              
-                        </Container>
+              </div>
+            </div>
           </section>
         );
       }}
