@@ -26,7 +26,7 @@ export default function Testimonials() {
     <section className="py-24 bg-[#0A1128] border-b border-[#1A264A] overflow-hidden relative">
       
       {/* Header Area */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16 relative z-10">
+      <div className="max-w-[1600px] mx-auto px-6 sm:px-8 lg:px-16 mb-16 relative z-10">
         <div className="max-w-2xl text-left">
           <h2 className="text-3xl md:text-5xl font-black text-white mb-6 tracking-tight leading-tight">
             Happy <span className="text-[#B40001]">Customers.</span>

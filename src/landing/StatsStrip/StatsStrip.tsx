@@ -11,7 +11,7 @@ export default function StatsStrip() {
       {/* Background Effect */}
       <div className="absolute top-1/2 right-0 w-1/2 h-full bg-[#B40001]/5 rounded-l-full blur-[100px] pointer-events-none -translate-y-1/2" />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="relative z-10 max-w-[1600px] mx-auto px-6 sm:px-8 lg:px-16">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
           
           {/* LHS - Header */}

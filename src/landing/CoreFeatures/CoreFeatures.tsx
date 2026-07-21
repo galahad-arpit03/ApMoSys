@@ -37,7 +37,7 @@ export default function CoreFeatures() {
 
   return (
     <section className="py-24 bg-gray-50 border-y border-gray-200">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-[1600px] mx-auto px-6 sm:px-8 lg:px-16">
         
         <div className="mb-16 text-left max-w-2xl">
           <h2 className="text-4xl font-black text-gray-900 tracking-tight mb-4">

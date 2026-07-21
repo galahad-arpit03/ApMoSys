@@ -13,7 +13,7 @@ export default function SolutionsFunnel() {
   return (
     <section className="py-12 bg-[#0A1128] border-b border-[#1A264A] relative overflow-hidden">
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="max-w-[1600px] mx-auto px-6 sm:px-8 lg:px-16 relative z-10">
         
         {/* Top Header Section */}
         <div className="flex flex-col items-center text-center max-w-4xl mx-auto mb-8">

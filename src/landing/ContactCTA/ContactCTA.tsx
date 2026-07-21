@@ -14,7 +14,7 @@ const locations = [
 export default function ContactCTA() {
   return (
     <section className="py-16 bg-white border-t border-gray-100">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-[1600px] mx-auto px-6 sm:px-8 lg:px-16">
         
         <div className="bg-[#121B31] border border-[#243461] rounded-md p-6 md:p-10 relative overflow-hidden flex flex-col lg:flex-row items-center justify-between gap-8 shadow-xl">
           

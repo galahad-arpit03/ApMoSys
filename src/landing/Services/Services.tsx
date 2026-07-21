@@ -80,7 +80,7 @@ export default function Services() {
       id="services"
       className="bg-[#0A1128] py-20 lg:py-28 border-t border-[#1A264A]"
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-[1600px] mx-auto px-6 sm:px-8 lg:px-16">
 
         {/* Header */}
         <div className="text-center max-w-4xl mx-auto mb-14 lg:mb-20">

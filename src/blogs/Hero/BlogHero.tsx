@@ -39,7 +39,7 @@ export default function BlogHero() {
         return (
           <section
             ref={ref}
-            className={`relative pt-24 pb-16 lg:pt-32 lg:pb-24 overflow-hidden flex items-center min-h-[50vh] border-b transition-colors duration-300 ${
+            className={`relative pt-24 pb-16 lg:pt-32 lg:pb-24 overflow-hidden flex items-center justify-center min-h-[50vh] border-b transition-colors duration-300 ${
               isDark ? "border-slate-700" : "border-gray-200"
             }`}
           >
@@ -60,7 +60,7 @@ export default function BlogHero() {
             </motion.div>
 
             {/* Content Container */}
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
+            <div className="max-w-[1600px] mx-auto px-6 sm:px-8 lg:px-16 relative z-10 w-full">
               <div className="max-w-3xl">
                 <motion.div
                   initial="hidden"

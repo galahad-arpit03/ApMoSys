@@ -15,7 +15,7 @@ export default function NewsroomsPage({ category }: NewsroomsPageProps) {
     <main className="bg-[#0F0F0F] text-white">
       <section className="relative overflow-hidden border-b border-[#1F1F1F] py-16 sm:py-20 lg:py-24">
         <div className={`absolute inset-0 bg-gradient-to-br ${visual.glow} opacity-70`} />
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-[1600px] mx-auto px-6 sm:px-8 lg:px-16">
           <div className="relative grid gap-10 lg:grid-cols-12 lg:gap-12 lg:items-center">
             <div className="lg:col-span-7">
               <span className="text-primary-red text-xs uppercase tracking-[0.2em] font-bold">
@@ -82,7 +82,7 @@ export default function NewsroomsPage({ category }: NewsroomsPageProps) {
 function NewsroomOverview() {
   return (
     <section className="py-16 sm:py-20 lg:py-24">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-[1600px] mx-auto px-6 sm:px-8 lg:px-16">
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {newsroomCategories.map((category) => (
             <div
@@ -115,7 +115,7 @@ function CategoryDetail({
 }) {
   return (
     <section className="py-16 sm:py-20 lg:py-24">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-[1600px] mx-auto px-6 sm:px-8 lg:px-16">
         <div className="mb-10 grid gap-5 md:grid-cols-3">
           {visual.highlights.map((highlight) => (
             <div
