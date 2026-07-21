@@ -1,4 +1,3 @@
-// src/what-we-do/alliance/AllianceOverview/AllianceOverview.tsx
 "use client";
 
 import React from "react";
@@ -78,7 +77,7 @@ export default function AllianceOverview() {
   const items = allianceItems.length > 0 ? allianceItems : fallbackItems;
 
   return (
-    <section id="partners" className="py-16 lg:py-24 bg-white border-t border-gray-100 relative overflow-hidden">
+    <section id="partners" className="py-10 lg:py-16 bg-white border-t border-gray-100 relative overflow-hidden">
       {/* Subtle background glow */}
       <div className="absolute inset-0 opacity-[0.03] pointer-events-none">
         <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#2563EB] rounded-full blur-[120px]" />
@@ -89,7 +88,7 @@ export default function AllianceOverview() {
         {/* Split Header – No Eyebrow */}
         <div className="mb-12 lg:mb-16 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
           <div className="lg:col-span-5">
-            <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-normal text-black leading-[1.1]">
+            <h2 className="font-heading text-4xl sm:text-5xl lg:text-6xl font-normal text-black leading-[1.1]">
               <EditableText
                 path="alliance.overview.heading"
                 fallback="Strategic Partnerships for Enterprise Success"
@@ -139,8 +138,7 @@ export default function AllianceOverview() {
                       as="span"
                     />
                   </h3>
-                  {/* Description - Always visible, larger font */}
-                  <p className="text-sm xl:text-base text-[#5A5A5A] leading-relaxed">
+                  <p className="text-[13px] xl:text-[14px] text-[#5A5A5A] leading-snug opacity-100 translate-y-0 sm:opacity-0 sm:translate-y-3 sm:group-hover:opacity-100 sm:group-hover:translate-y-0 transition-all duration-300 ease-out">
                     <EditableText
                       path={`alliance.overview.items.${idx}.description`}
                       fallback={item.description}

@@ -1,4 +1,3 @@
-// src/what-we-do/coe/InnovationLabs/InnovationLabs.tsx
 "use client";
 
 import React from "react";
@@ -50,7 +49,7 @@ export default function InnovationLabs() {
         return (
           <section
             id="labs"
-            className={`py-16 lg:py-24 border-t transition-colors duration-300 relative overflow-hidden ${
+            className={`py-10 lg:py-16 border-t transition-colors duration-300 relative overflow-hidden ${
               isDark
                 ? "bg-[#0A1128] border-[#1A264A]"
                 : "bg-white border-gray-100"
@@ -68,15 +67,8 @@ export default function InnovationLabs() {
               {/* Split Header */}
               <div className="mb-12 lg:mb-16 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
                 <div className="lg:col-span-5">
-                  {/* <span className="text-[#2563EB] uppercase tracking-[0.25em] text-xs font-semibold">
-                    <EditableText
-                      path="coe.labs.label"
-                      fallback="Innovation Labs"
-                      as="span"
-                    />
-                  </span> */}
                   <h2
-                    className={`font-heading text-3xl sm:text-4xl lg:text-5xl font-normal mt-4 leading-[1.1] ${
+                    className={`font-heading text-4xl sm:text-5xl lg:text-6xl font-normal mt-4 leading-[1.1] ${
                       isDark ? "text-white" : "text-black"
                     }`}
                   >
@@ -131,7 +123,7 @@ export default function InnovationLabs() {
                       </div>
 
                       <h3
-                        className={`text-lg font-bold mb-3 transition-colors ${
+                        className={`text-base xl:text-lg font-medium mb-3 transition-colors ${
                           isDark
                             ? "text-white group-hover:text-[#2563EB]"
                             : "text-black group-hover:text-[#2563EB]"
@@ -145,7 +137,7 @@ export default function InnovationLabs() {
                       </h3>
 
                       <p
-                        className={`text-sm leading-relaxed ${
+                        className={`text-[13px] xl:text-[14px] leading-snug ${
                           isDark ? "text-gray-300" : "text-[#5A5A5A]"
                         }`}
                       >

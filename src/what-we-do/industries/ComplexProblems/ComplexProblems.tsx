@@ -1,4 +1,3 @@
-// src/what-we-do/industries/ComplexProblems/ComplexProblems.tsx
 "use client";
 
 import React from "react";
@@ -24,12 +23,12 @@ const problems = [
 
 export default function ComplexProblems() {
   return (
-    <section className="py-16 lg:py-24 bg-[#FAFAFA] border-b border-gray-100 relative overflow-hidden">
+    <section className="py-10 lg:py-16 bg-[#FAFAFA] border-b border-gray-100 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Split Header – No eyebrow */}
         <div className="mb-12 lg:mb-16 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
           <div className="lg:col-span-5">
-            <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-normal text-black leading-[1.1]">
+            <h2 className="font-heading text-4xl sm:text-5xl lg:text-6xl font-normal text-black leading-[1.1]">
               Complex Problems.<br />Precise Solutions.
             </h2>
           </div>
@@ -56,11 +55,11 @@ export default function ComplexProblems() {
                 {String(idx + 1).padStart(2, "0")}
               </div>
 
-              <h3 className="text-xl font-bold text-black mb-3 group-hover:text-[#2563EB] transition-colors">
+              <h3 className="text-base xl:text-lg font-medium text-black mb-3 group-hover:text-[#2563EB] transition-colors">
                 {problem.title}
               </h3>
 
-              <p className="text-sm text-[#5A5A5A] leading-relaxed">
+              <p className="text-[13px] xl:text-[14px] text-[#5A5A5A] leading-snug">
                 {problem.description}
               </p>
 

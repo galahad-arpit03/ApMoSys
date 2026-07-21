@@ -1,4 +1,3 @@
-// src/what-we-do/services/ServiceProcess/ServiceProcess.tsx
 "use client";
 
 import React, { useRef } from "react";
@@ -51,7 +50,6 @@ const steps = [
 export default function ServiceProcess() {
   const containerRef = useRef<HTMLDivElement>(null);
 
-  // Scroll-driven line animation
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start center", "end center"],
@@ -60,15 +58,12 @@ export default function ServiceProcess() {
   const lineHeight = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
 
   return (
-    <section className="py-16 lg:py-24 bg-[#FAFAFA] border-b border-gray-100 relative overflow-hidden">
+    <section className="py-10 lg:py-16 bg-[#FAFAFA] border-b border-gray-100 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Split Header – following landing page pattern */}
+        {/* Split Header */}
         <div className="mb-12 lg:mb-16 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
           <div className="lg:col-span-5">
-            {/* <span className="text-[#2563EB] uppercase tracking-[0.25em] text-xs font-semibold">
-              Our Process
-            </span> */}
-            <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-normal text-black mt-4 leading-[1.1]">
+            <h2 className="font-heading text-4xl sm:text-5xl lg:text-6xl font-normal text-black leading-[1.1]">
               A Structured Path to Engineering Excellence
             </h2>
           </div>

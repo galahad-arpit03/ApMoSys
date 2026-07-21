@@ -1,4 +1,3 @@
-// src/what-we-do/alliance/FeaturedPartners/FeaturedPartners.tsx
 "use client";
 
 import React from "react";
@@ -43,7 +42,7 @@ export default function FeaturedPartners() {
   const featuredItems = content.alliance?.featured?.items || features;
 
   return (
-    <section className="py-16 lg:py-24 bg-[#0A1128] border-t border-[#1A264A] relative overflow-hidden">
+    <section className="py-10 lg:py-16 bg-[#0A1128] border-t border-[#1A264A] relative overflow-hidden">
       {/* Subtle background glow */}
       <div className="absolute inset-0 opacity-[0.05] pointer-events-none">
         <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#2563EB] rounded-full blur-[120px]" />
@@ -54,14 +53,7 @@ export default function FeaturedPartners() {
         {/* Split Header */}
         <div className="mb-12 lg:mb-16 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
           <div className="lg:col-span-5">
-            {/* <span className="text-[#2563EB] uppercase tracking-[0.25em] text-xs font-semibold">
-              <EditableText
-                path="alliance.featured.label"
-                fallback="Recognized Excellence"
-                as="span"
-              />
-            </span> */}
-            <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-normal text-white mt-4 leading-[1.1]">
+            <h2 className="font-heading text-4xl sm:text-5xl lg:text-6xl font-normal text-white leading-[1.1]">
               <EditableText
                 path="alliance.featured.heading"
                 fallback="Recognized Excellence in Partnerships"
@@ -98,7 +90,7 @@ export default function FeaturedPartners() {
                   <IconComponent className="w-7 h-7" strokeWidth={1.5} />
                 </div>
 
-                <h3 className="text-lg font-bold text-white mb-3 group-hover:text-[#2563EB] transition-colors">
+                <h3 className="text-base xl:text-lg font-medium text-white mb-3 leading-tight group-hover:text-[#2563EB] transition-colors">
                   <EditableText
                     path={`alliance.featured.items.${idx}.title`}
                     fallback={feature.title}
@@ -106,7 +98,7 @@ export default function FeaturedPartners() {
                   />
                 </h3>
 
-                <p className="text-sm text-gray-300 leading-relaxed">
+                <p className="text-[13px] xl:text-[14px] text-gray-300 leading-snug">
                   <EditableText
                     path={`alliance.featured.items.${idx}.description`}
                     fallback={feature.description}

@@ -40,7 +40,7 @@ export default function ResearchPapers() {
   return (
     <section
       id="research"
-      className="py-16 lg:py-24 bg-[#0A1128] border-t border-[#1A264A] relative overflow-hidden"
+      className="py-10 lg:py-16 bg-[#0A1128] border-t border-[#1A264A] relative overflow-hidden"
     >
       {/* Subtle background glow */}
       <div className="absolute inset-0 opacity-[0.05] pointer-events-none">
@@ -52,14 +52,7 @@ export default function ResearchPapers() {
         {/* Split Header */}
         <div className="mb-12 lg:mb-16 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
           <div className="lg:col-span-5">
-            {/* <span className="text-[#2563EB] uppercase tracking-[0.25em] text-xs font-semibold">
-              <EditableText
-                path="coe.papers.label"
-                fallback="Research & Publications"
-                as="span"
-              />
-            </span> */}
-            <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-normal text-white mt-4 leading-[1.1]">
+            <h2 className="font-heading text-4xl sm:text-5xl lg:text-6xl font-normal text-white leading-[1.1]">
               <EditableText
                 path="coe.papers.heading"
                 fallback="Advancing the Frontiers of Technology"
@@ -102,7 +95,7 @@ export default function ResearchPapers() {
               </div>
 
               {/* Title */}
-              <h3 className="text-lg font-bold text-white mb-3 leading-snug transition-colors group-hover:text-[#2563EB]">
+              <h3 className="text-base xl:text-lg font-medium text-white mb-3 leading-snug transition-colors group-hover:text-[#2563EB]">
                 <EditableText
                   path={`coe.papers.items.${idx}.title`}
                   fallback={paper.title}
@@ -111,7 +104,7 @@ export default function ResearchPapers() {
               </h3>
 
               {/* Authors */}
-              <p className="text-sm text-gray-300">
+              <p className="text-[13px] xl:text-[14px] leading-snug text-gray-300">
                 <EditableText
                   path={`coe.papers.items.${idx}.authors`}
                   fallback={paper.authors}
@@ -120,7 +113,7 @@ export default function ResearchPapers() {
               </p>
 
               {/* Publication */}
-              <p className="text-xs text-gray-400">
+              <p className="text-[11px] xl:text-[12px] leading-snug text-gray-400">
                 <EditableText
                   path={`coe.papers.items.${idx}.publication`}
                   fallback={paper.publication}

@@ -28,7 +28,7 @@ export default function TechnicalCapabilities() {
   ];
 
   return (
-    <section className="py-16 lg:py-24 bg-[#0A1128] border-t border-[#1A264A] relative overflow-hidden">
+    <section className="py-10 lg:py-16 bg-[#0A1128] border-t border-[#1A264A] relative overflow-hidden">
       {/* Subtle background glow */}
       <div className="absolute inset-0 opacity-[0.05] pointer-events-none">
         <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#2563EB] rounded-full blur-[120px]" />
@@ -39,7 +39,7 @@ export default function TechnicalCapabilities() {
         {/* Split Header – No eyebrow */}
         <div className="mb-12 lg:mb-16 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
           <div className="lg:col-span-5">
-            <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-normal text-white leading-[1.1]">
+            <h2 className="font-heading text-4xl sm:text-5xl lg:text-6xl font-normal text-white leading-[1.1]">
               <EditableText
                 path="industries.technical.heading"
                 fallback="Technical Capabilities Tailored for Scale"
@@ -76,14 +76,14 @@ export default function TechnicalCapabilities() {
                     <CheckCircle2 className="w-5 h-5" strokeWidth={1.5} />
                   </div>
                   <div>
-                    <h3 className="text-lg font-bold text-white mb-1 group-hover:text-[#2563EB] transition-colors">
+                    <h3 className="text-base xl:text-lg font-medium text-white mb-1 leading-tight group-hover:text-[#2563EB] transition-colors">
                       <EditableText
                         path={item.titlePath}
                         fallback={item.fallbackTitle}
                         as="span"
                       />
                     </h3>
-                    <p className="text-sm text-gray-300 leading-relaxed">
+                    <p className="text-[13px] xl:text-[14px] text-gray-300 leading-snug">
                       <EditableText
                         path={item.descPath}
                         fallback={item.fallbackDesc}

@@ -1,4 +1,3 @@
-// src/what-we-do/services/ServiceApproach/ServiceApproach.tsx
 "use client";
 
 import React from "react";
@@ -31,19 +30,16 @@ const approaches = [
 
 export default function ServiceApproach() {
   return (
-    <section className="py-16 lg:py-24 bg-[#0A1128] border-b border-[#1A264A] relative overflow-hidden">
+    <section className="py-10 lg:py-16 bg-[#0A1128] border-b border-[#1A264A] relative overflow-hidden">
       {/* Ambient Glows */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#2563EB]/10 rounded-full blur-[120px] pointer-events-none" />
       <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-[#2563EB]/5 rounded-full blur-[80px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Split Header – matching landing page pattern */}
+        {/* Split Header */}
         <div className="mb-12 lg:mb-16 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
           <div className="lg:col-span-5">
-            {/* <span className="text-[#2563EB] uppercase tracking-[0.25em] text-xs font-semibold">
-              Our Approach
-            </span> */}
-            <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-normal text-white mt-4 leading-[1.1]">
+            <h2 className="font-heading text-4xl sm:text-5xl lg:text-6xl font-normal text-white leading-[1.1]">
               Engineering Excellence Through a Proven Methodology
             </h2>
           </div>
@@ -54,7 +50,7 @@ export default function ServiceApproach() {
           </div>
         </div>
 
-        {/* Approach Grid – clean 3-column layout */}
+        {/* Approach Grid – 3-column layout */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
           {approaches.map((item, idx) => {
             const Icon = item.icon;
@@ -78,12 +74,12 @@ export default function ServiceApproach() {
                 </div>
 
                 {/* Title */}
-                <h3 className="text-xl font-bold text-white mb-3 group-hover:text-[#2563EB] transition-colors">
+                <h3 className="text-base xl:text-lg font-medium text-white mb-3 group-hover:text-[#2563EB] transition-colors">
                   {item.title}
                 </h3>
 
                 {/* Description */}
-                <p className="text-gray-300 text-sm leading-relaxed">
+                <p className="text-[13px] xl:text-[14px] text-gray-300 leading-snug">
                   {item.description}
                 </p>
 

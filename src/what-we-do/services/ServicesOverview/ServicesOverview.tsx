@@ -1,4 +1,3 @@
-// src/what-we-do/services/ServicesOverview/ServicesOverview.tsx
 "use client";
 
 import React, { useState } from "react";
@@ -76,15 +75,12 @@ export default function ServicesOverview() {
   const paginatedItems = items.slice(startIndex, startIndex + ITEMS_PER_PAGE);
 
   return (
-    <section id="services-grid" className="py-16 lg:py-24 bg-white border-b border-gray-100">
+    <section id="services-grid" className="py-10 lg:py-16 bg-white border-b border-gray-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Split Header */}
         <div className="mb-12 lg:mb-16 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
           <div className="lg:col-span-5">
-            {/* <span className="text-[#2563EB] uppercase tracking-[0.25em] text-xs font-semibold">
-              Our Services
-            </span> */}
-            <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-normal text-black mt-4 leading-[1.1]">
+            <h2 className="font-heading text-4xl sm:text-5xl lg:text-6xl font-normal text-black leading-[1.1]">
               Full-Stack Engineering Services
             </h2>
           </div>
@@ -114,11 +110,11 @@ export default function ServicesOverview() {
                     <IconComponent className="w-7 h-7" strokeWidth={1.5} />
                   </div>
 
-                  <h3 className="text-xl font-bold text-black mb-3 group-hover:text-[#2563EB] transition-colors">
+                  <h3 className="text-base xl:text-lg font-medium text-black mb-3 group-hover:text-[#2563EB] transition-colors">
                     {item.title}
                   </h3>
 
-                  <p className="text-[#5A5A5A] text-sm leading-relaxed flex-grow">
+                  <p className="text-[13px] xl:text-[14px] text-[#5A5A5A] leading-snug flex-grow">
                     {item.description}
                   </p>
 

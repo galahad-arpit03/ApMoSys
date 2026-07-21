@@ -30,7 +30,7 @@ export default function ProductBenefits() {
   const benefitItems = content.products?.benefits?.items || [];
 
   return (
-    <section className="py-16 lg:py-24 bg-[#0A1128] border-t border-[#1A264A] relative overflow-hidden">
+    <section className="py-10 lg:py-16 bg-[#0A1128] border-t border-[#1A264A] relative overflow-hidden">
       {/* Background glow effects */}
       <div className="absolute top-1/2 left-0 w-[500px] h-[500px] bg-[#2563EB]/10 rounded-full blur-[120px] pointer-events-none" />
       <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#2563EB]/10 rounded-full blur-[150px] pointer-events-none" />
@@ -86,7 +86,7 @@ export default function ProductBenefits() {
                           as="span"
                         />
                       </h3>
-                      <p className="text-sm xl:text-base text-gray-300 leading-relaxed opacity-100 translate-y-0 sm:opacity-0 sm:translate-y-3 sm:group-hover:opacity-100 sm:group-hover:translate-y-0 transition-all duration-300 ease-out">
+                      <p className="text-[13px] xl:text-[14px] text-gray-300 leading-snug opacity-100 translate-y-0 sm:opacity-0 sm:translate-y-3 sm:group-hover:opacity-100 sm:group-hover:translate-y-0 transition-all duration-300 ease-out">
                         <EditableText
                           path={`products.benefits.items.${idx}.description`}
                           fallback={benefit.description}

@@ -24,7 +24,7 @@ export default function ProductCategories() {
         const isDark = theme === "dark";
         return (
           <section
-            className={`py-16 transition-colors duration-300 relative ${
+            className={`py-10 lg:py-16 transition-colors duration-300 relative ${
               isDark
                 ? "bg-[#0A1128] text-[#FAFAFA]"
                 : "bg-white text-[#121212]"
@@ -34,15 +34,8 @@ export default function ProductCategories() {
               {/* Split Header – matching landing page pattern */}
               <div className="mb-12 lg:mb-16 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
                 <div className="lg:col-span-5">
-                  {/* <span className="text-[#2563EB] uppercase tracking-[0.25em] text-xs font-semibold">
-                    <EditableText
-                      path="products.categories.label"
-                      fallback="Product Categories"
-                      as="span"
-                    />
-                  </span> */}
                   <h2
-                    className={`font-heading text-3xl sm:text-4xl lg:text-5xl font-normal mt-4 leading-[1.1] ${
+                    className={`font-heading text-4xl sm:text-5xl lg:text-6xl font-normal mt-4 leading-[1.1] ${
                       isDark ? "text-white" : "text-black"
                     }`}
                   >

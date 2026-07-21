@@ -1,4 +1,3 @@
-// src/what-we-do/alliance/PartnerTypes/PartnerTypes.tsx
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
@@ -61,7 +60,6 @@ export default function PartnerTypes() {
   const nextSlide = () => goToSlide(currentIndex + 1);
   const prevSlide = () => goToSlide(currentIndex - 1);
 
-  // Autoplay
   useEffect(() => {
     if (isPaused) return;
     autoplayRef.current = setInterval(nextSlide, 5000);
@@ -70,13 +68,12 @@ export default function PartnerTypes() {
     };
   }, [currentIndex, isPaused]);
 
-  // Get items for current slide
   const startIndex = currentIndex * ITEMS_PER_SLIDE;
   const currentItems = items.slice(startIndex, startIndex + ITEMS_PER_SLIDE);
 
   return (
     <section 
-      className="py-16 lg:py-24 bg-white border-t border-gray-100 relative overflow-hidden"
+      className="py-10 lg:py-16 bg-white border-t border-gray-100 relative overflow-hidden"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
     >
@@ -90,7 +87,7 @@ export default function PartnerTypes() {
         {/* Split Header */}
         <div className="mb-12 lg:mb-16 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
           <div className="lg:col-span-5">
-            <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-normal text-black leading-[1.1]">
+            <h2 className="font-heading text-4xl sm:text-5xl lg:text-6xl font-normal text-black leading-[1.1]">
               <EditableText
                 path="alliance.partners.heading"
                 fallback="Trusted Technology Alliance Partners"
@@ -112,7 +109,6 @@ export default function PartnerTypes() {
 
         {/* Carousel - 2 Items at a Time */}
         <div className="relative">
-          {/* Slide Container */}
           <div className="overflow-hidden rounded-md">
             <div
               className="flex transition-transform duration-500 ease-in-out"
@@ -131,13 +127,12 @@ export default function PartnerTypes() {
                         key={partner.id}
                         className="bg-[#FAFAFA] border border-gray-200 rounded-md p-6 lg:p-8 hover:border-[#2563EB]/30 hover:shadow-lg transition-all group"
                       >
-                        {/* Partner Logo */}
                         <div className="flex items-center gap-4 mb-4">
                           <div className="w-14 h-14 rounded-md bg-[#2563EB]/10 border border-[#2563EB]/20 flex items-center justify-center text-[#2563EB] font-bold text-xl group-hover:bg-[#2563EB] group-hover:text-white transition-colors">
                             {partner.name.charAt(0)}
                           </div>
                           <div>
-                            <h3 className="text-lg font-bold text-black group-hover:text-[#2563EB] transition-colors">
+                            <h3 className="text-base xl:text-lg font-medium text-black leading-tight group-hover:text-[#2563EB] transition-colors">
                               <EditableText
                                 path={`alliance.partners.items.${Number(partner.id) - 1}.name`}
                                 fallback={partner.name}
@@ -154,7 +149,7 @@ export default function PartnerTypes() {
                           </div>
                         </div>
 
-                        <p className="text-sm text-[#5A5A5A] leading-relaxed mb-4 line-clamp-3">
+                        <p className="text-[13px] xl:text-[14px] text-[#5A5A5A] leading-snug mb-4 line-clamp-3">
                           <EditableText
                             path={`alliance.partners.items.${Number(partner.id) - 1}.description`}
                             fallback={partner.description}

@@ -107,7 +107,7 @@ export default function CoEAccordion() {
   const [activeId, setActiveId] = useState<string | null>(items[0]?.id || null);
 
   return (
-    <section className="py-16 lg:py-24 bg-[#0A1128] border-t border-[#1A264A] relative overflow-hidden">
+    <section className="py-10 lg:py-16 bg-[#0A1128] border-t border-[#1A264A] relative overflow-hidden">
       {/* Subtle background glow */}
       <div className="absolute inset-0 opacity-[0.05] pointer-events-none">
         <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#2563EB] rounded-full blur-[120px]" />
@@ -118,14 +118,7 @@ export default function CoEAccordion() {
         {/* Split Header */}
         <div className="mb-12 lg:mb-16 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
           <div className="lg:col-span-5">
-            {/* <span className="text-[#2563EB] uppercase tracking-[0.25em] text-xs font-semibold">
-              <EditableText
-                path="coe.accordion.label"
-                fallback="In-Depth View"
-                as="span"
-              />
-            </span> */}
-            <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-normal text-white mt-4 leading-[1.1]">
+            <h2 className="font-heading text-4xl sm:text-5xl lg:text-6xl font-normal text-white leading-[1.1]">
               <EditableText
                 path="coe.accordion.heading"
                 fallback="Explore Our Centers of Excellence in Depth"
@@ -229,7 +222,7 @@ export default function CoEAccordion() {
                       <div className="px-6 pb-6 pt-2 border-t border-[#1A264A]">
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                           <div>
-                            <p className="text-sm leading-relaxed text-gray-300 mb-4">
+                            <p className="text-[13px] xl:text-[14px] leading-snug text-gray-300 mb-4">
                               <EditableText
                                 path={`coe.overview.items.${idx}.description`}
                                 fallback={item.description}
@@ -244,7 +237,7 @@ export default function CoEAccordion() {
                               {details.map((detail, dIdx) => (
                                 <li
                                   key={dIdx}
-                                  className="flex items-start gap-2 text-sm text-gray-300"
+                                  className="flex items-start gap-2 text-[13px] xl:text-[14px] leading-snug text-gray-300"
                                 >
                                   <span className="text-[#2563EB] mt-0.5">◆</span>
                                   <EditableText

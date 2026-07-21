@@ -1,4 +1,3 @@
-// src/what-we-do/coe/CoEOverview/CoEOverview.tsx
 "use client";
 
 import React from "react";
@@ -84,7 +83,7 @@ export default function CoEOverview() {
   const items = coeItems.length > 0 ? coeItems : fallbackItems;
 
   return (
-    <section id="coe-grid" className="py-16 lg:py-24 bg-white border-t border-gray-100 relative overflow-hidden">
+    <section id="coe-grid" className="py-10 lg:py-16 bg-white border-t border-gray-100 relative overflow-hidden">
       {/* Subtle background glow */}
       <div className="absolute inset-0 opacity-[0.03] pointer-events-none">
         <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#2563EB] rounded-full blur-[120px]" />
@@ -95,7 +94,7 @@ export default function CoEOverview() {
         {/* Split Header – No Eyebrow */}
         <div className="mb-12 lg:mb-16 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
           <div className="lg:col-span-5">
-            <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-normal text-black leading-[1.1]">
+            <h2 className="font-heading text-4xl sm:text-5xl lg:text-6xl font-normal text-black leading-[1.1]">
               <EditableText
                 path="coe.overview.heading"
                 fallback="Specialized Innovation Labs"
@@ -154,8 +153,8 @@ export default function CoEOverview() {
                       />
                     </span>
                   </div>
-                  {/* Description - Always visible, larger font */}
-                  <p className="text-sm xl:text-base text-[#5A5A5A] leading-relaxed">
+                  {/* Description - Always visible, updated font size */}
+                  <p className="text-[13px] xl:text-[14px] text-[#5A5A5A] leading-snug">
                     <EditableText
                       path={`coe.overview.items.${idx}.description`}
                       fallback={item.description}
