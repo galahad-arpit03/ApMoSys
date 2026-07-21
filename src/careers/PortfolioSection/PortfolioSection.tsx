@@ -31,7 +31,7 @@ export default function PortfolioSection() {
               isDark ? "bg-[#0A1128] text-white border-[#1F2C47]" : "bg-white text-gray-900 border-gray-200"
             }`}
           >
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="max-w-[1600px] mx-auto px-6 sm:px-8 lg:px-16">
               <div className="lg:grid lg:grid-cols-12 lg:gap-16 items-start">
                 
                 {/* Left Side: Header & Text */}

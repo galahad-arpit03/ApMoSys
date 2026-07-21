@@ -43,7 +43,7 @@ export default function CoreValues() {
             {/* Decorative Elements */}
             <div className="absolute top-0 right-0 w-[600px] h-[600px] rounded-full blur-[100px] pointer-events-none -translate-y-1/2 translate-x-1/3 bg-gray-200/50" />
             
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div className="max-w-[1600px] mx-auto px-6 sm:px-8 lg:px-16 relative z-10">
               <div className="flex flex-col gap-8">
                 
                 {/* Header - LHS/RHS */}

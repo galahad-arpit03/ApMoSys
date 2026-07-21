@@ -11,8 +11,8 @@ export default function SubscribeBanner() {
       {(theme) => {
         const isDark = theme === "dark";
         return (
-          <section className={`py-12 lg:py-16 transition-colors duration-300 ${isDark ? "bg-[#0A1128]" : "bg-white"} px-4 sm:px-6 lg:px-8`}>
-            <div className="max-w-7xl mx-auto relative rounded-[12px] overflow-hidden shadow-2xl min-h-[300px] md:min-h-[350px] lg:min-h-[380px] flex flex-col justify-center">
+          <section className={`py-12 lg:py-16 transition-colors duration-300 ${isDark ? "bg-[#0A1128]" : "bg-white"} px-6 sm:px-8 lg:px-16`}>
+            <div className="max-w-[1600px] mx-auto relative rounded-[12px] overflow-hidden shadow-2xl min-h-[300px] md:min-h-[350px] lg:min-h-[380px] flex flex-col justify-center">
               
               {/* Background Image & Overlay */}
               <div className="absolute inset-0 z-0">

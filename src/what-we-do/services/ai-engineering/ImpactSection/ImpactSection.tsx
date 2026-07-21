@@ -8,7 +8,7 @@ export default function ImpactSection() {
 
   return (
     <section className="py-16 lg:py-24 bg-[#0A1128] border-t border-[#1A264A]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-[1600px] mx-auto px-6 sm:px-8 lg:px-16">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
           {/* Left: Heading */}
           <div className="lg:col-span-5">

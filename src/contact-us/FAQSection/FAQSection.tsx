@@ -27,7 +27,7 @@ export default function FAQSection() {
           <section className={`py-16 lg:py-24 border-t transition-colors duration-300 overflow-hidden ${
             isDark ? "bg-[#0A1128] border-[#1F2C47] text-white" : "bg-white border-gray-200 text-slate-900"
           }`}>
-            <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="w-full max-w-[1600px] mx-auto px-6 sm:px-8 lg:px-16">
               
               <div className="lg:grid lg:grid-cols-12 lg:gap-16">
                 

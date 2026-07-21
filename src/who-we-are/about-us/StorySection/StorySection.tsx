@@ -27,7 +27,7 @@ export default function StorySection() {
               <div className={`absolute bottom-0 left-0 w-[600px] h-[600px] rounded-full blur-[100px] pointer-events-none translate-y-1/3 -translate-x-1/3 ${isDark ? "bg-blue-900/10" : "bg-blue-50/50"}`} />
             </div>
             
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div className="max-w-[1600px] mx-auto px-6 sm:px-8 lg:px-16 relative z-10">
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
                 
                 <div className="lg:col-span-4 lg:sticky lg:top-32">

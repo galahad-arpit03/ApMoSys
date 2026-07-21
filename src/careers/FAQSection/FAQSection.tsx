@@ -46,7 +46,7 @@ export default function FAQSection() {
           <section className={`py-12 lg:py-16 transition-colors duration-300 overflow-hidden ${
             isDark ? "bg-[#0A1128] text-white" : "bg-white text-gray-900"
           }`}>
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="max-w-[1600px] mx-auto px-6 sm:px-8 lg:px-16">
               <div className="lg:grid lg:grid-cols-12 lg:gap-16 items-start">
 
                 {/* Left Side: Header */}

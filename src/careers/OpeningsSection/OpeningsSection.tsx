@@ -77,7 +77,7 @@ export default function OpeningsSection() {
           <section id="openings" className={`py-12 lg:py-16 border-t transition-colors duration-300 overflow-hidden ${
             isDark ? "bg-[#0A1128] border-[#1F2C47] text-white" : "bg-white border-gray-200 text-gray-900"
           }`}>
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="max-w-[1600px] mx-auto px-6 sm:px-8 lg:px-16">
               
               {/* Header - LHS/RHS Split */}
               <div className="mb-8 lg:mb-12 flex flex-col lg:flex-row lg:items-start justify-between gap-8">

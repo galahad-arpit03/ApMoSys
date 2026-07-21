@@ -36,7 +36,7 @@ const leaders = [
 export default function LeadershipGrid() {
   return (
     <section className="py-16 sm:py-20 lg:py-24 bg-gray-50 border-b border-gray-200">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-[1600px] mx-auto px-6 sm:px-8 lg:px-16">
 
         <div className="text-center mb-10 sm:mb-16">
           <h2 className="text-4xl sm:text-5xl lg:text-6xl font-heading font-normal leading-[1.1] tracking-tight text-gray-800">

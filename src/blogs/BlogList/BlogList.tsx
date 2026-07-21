@@ -55,7 +55,7 @@ export default function BlogList() {
             <div className={`border-b sticky top-0 backdrop-blur-md z-40 transition-colors duration-300 ${
               isDark ? "border-[#1F2C47] bg-[#0A1128]/90" : "border-gray-200 bg-white/90"
             }`}>
-              <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div className="w-full max-w-[1600px] mx-auto px-6 sm:px-8 lg:px-16">
                 <div className="flex flex-col md:flex-row md:items-center justify-between py-4 gap-4">
                   
                   <div className="flex overflow-x-auto hide-scrollbar gap-8">
@@ -105,7 +105,7 @@ export default function BlogList() {
             </div>
 
             {/* Main Content Area */}
-            <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
+            <div className="w-full max-w-[1600px] mx-auto px-6 sm:px-8 lg:px-16 py-12 lg:py-16">
               <div className="lg:grid lg:grid-cols-12 lg:gap-12">
                 
                 {/* Left Grid: Latest Intelligence */}

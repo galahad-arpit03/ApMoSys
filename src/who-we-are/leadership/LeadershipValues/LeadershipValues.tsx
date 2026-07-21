@@ -38,7 +38,7 @@ export default function LeadershipValues() {
               </div>
             )}
 
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div className="max-w-[1600px] mx-auto px-6 sm:px-8 lg:px-16 relative z-10">
               
               <div className="flex flex-col lg:flex-row lg:items-start justify-between gap-8 mb-10 sm:mb-16">
                 <div className="shrink-0">
