@@ -1,5 +1,5 @@
-import NewsroomCategoryRoute from "@/src/news-rooms/NewsroomCategoryRoute";
+import EventsPage from "@/src/news-rooms/events/EventsPage";
 
 export default function Page() {
-  return <NewsroomCategoryRoute slug="events" />;
+  return <EventsPage />;
 }

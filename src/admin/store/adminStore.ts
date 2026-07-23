@@ -762,25 +762,6 @@ export const defaultContent: SiteContent = {
         linkHref: "/newsrooms",
         categories: [
           {
-            id: "press-releases",
-            label: "Press Releases",
-            href: "/newsrooms/press-releases",
-            subLinks: [
-              {
-                label: "Latest Announcements",
-                href: "/newsrooms/press-releases#latest-announcements"
-              },
-              {
-                label: "Company News",
-                href: "/newsrooms/press-releases#company-news"
-              },
-              {
-                label: "Archived Releases",
-                href: "/newsrooms/press-releases#archived-releases"
-              }
-            ]
-          },
-          {
             id: "events",
             label: "Events",
             href: "/newsrooms/events",
@@ -819,63 +800,6 @@ export const defaultContent: SiteContent = {
             ]
           },
           {
-            id: "industry-insights",
-            label: "Industry Insights",
-            href: "/newsrooms/industry-insights",
-            subLinks: [
-              {
-                label: "Tech Trends",
-                href: "/newsrooms/industry-insights#tech-trends"
-              },
-              {
-                label: "Market Analysis",
-                href: "/newsrooms/industry-insights#market-analysis"
-              },
-              {
-                label: "Expert Opinions",
-                href: "/newsrooms/industry-insights#expert-opinions"
-              }
-            ]
-          },
-          {
-            id: "media-coverage",
-            label: "Media Coverage",
-            href: "/newsrooms/media-coverage",
-            subLinks: [
-              {
-                label: "In the News",
-                href: "/newsrooms/media-coverage#in-the-news"
-              },
-              {
-                label: "Press Mentions",
-                href: "/newsrooms/media-coverage#press-mentions"
-              },
-              {
-                label: "Interviews",
-                href: "/newsrooms/media-coverage#interviews"
-              }
-            ]
-          },
-          {
-            id: "podcasts-webinars",
-            label: "Podcasts & Webinars",
-            href: "/newsrooms/podcasts-webinars",
-            subLinks: [
-              {
-                label: "Tech Talks",
-                href: "/newsrooms/podcasts-webinars#tech-talks"
-              },
-              {
-                label: "Leadership Series",
-                href: "/newsrooms/podcasts-webinars#leadership-series"
-              },
-              {
-                label: "Guest Speakers",
-                href: "/newsrooms/podcasts-webinars#guest-speakers"
-              }
-            ]
-          },
-          {
             id: "customer-stories",
             label: "Customer Stories",
             href: "/newsrooms/customer-stories",
@@ -910,25 +834,6 @@ export const defaultContent: SiteContent = {
               {
                 label: "Impact Studies",
                 href: "/newsrooms/success-metrics#impact-studies"
-              }
-            ]
-          },
-          {
-            id: "transformation-journeys",
-            label: "Transformation Journeys",
-            href: "/newsrooms/transformation-journeys",
-            subLinks: [
-              {
-                label: "Digital Transformation",
-                href: "/newsrooms/transformation-journeys#digital-transformation"
-              },
-              {
-                label: "Agile Adoption",
-                href: "/newsrooms/transformation-journeys#agile-adoption"
-              },
-              {
-                label: "Cloud Migration",
-                href: "/newsrooms/transformation-journeys#cloud-migration"
               }
             ]
           }
@@ -3169,7 +3074,7 @@ deleteAllianceFeaturedItem: (id: string) =>
     
     {
       name: "admin-content",
-      version: 10,
+      version: 11,
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
 migrate: (persistedState: any, version: number) => {
   // Migration for version <= 3
@@ -3381,6 +3286,18 @@ if (version <= 9) {
     content.products.categories.items = defaultContent.products.categories.items;
   }
 
+  return {
+    ...persistedState,
+    content,
+  };
+}
+
+// ─── version <= 10: ensure Newsrooms categories contain only active 4 pages ───
+if (version <= 10) {
+  const content = persistedState.content;
+  if (content?.navbar?.megaMenuData?.Newsrooms && defaultContent.navbar.megaMenuData?.Newsrooms) {
+    content.navbar.megaMenuData.Newsrooms = defaultContent.navbar.megaMenuData.Newsrooms;
+  }
   return {
     ...persistedState,
     content,

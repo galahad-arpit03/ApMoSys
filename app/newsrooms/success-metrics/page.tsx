@@ -1,5 +1,5 @@
-import NewsroomCategoryRoute from "@/src/news-rooms/NewsroomCategoryRoute";
+import SuccessMetricsPage from "@/src/news-rooms/success-metrics/SuccessMetricsPage";
 
 export default function Page() {
-  return <NewsroomCategoryRoute slug="success-metrics" />;
+  return <SuccessMetricsPage />;
 }

@@ -1,5 +1,5 @@
-import NewsroomsPage from "@/src/news-rooms/NewsroomsPage";
+import NewsroomHubPage from "@/src/news-rooms/NewsroomHubPage";
 
 export default function Page() {
-  return <NewsroomsPage />;
+  return <NewsroomHubPage />;
 }

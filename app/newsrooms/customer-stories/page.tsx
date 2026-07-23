@@ -1,5 +1,5 @@
-import NewsroomCategoryRoute from "@/src/news-rooms/NewsroomCategoryRoute";
+import CustomerStoriesPage from "@/src/news-rooms/customer-stories/CustomerStoriesPage";
 
 export default function Page() {
-  return <NewsroomCategoryRoute slug="customer-stories" />;
+  return <CustomerStoriesPage />;
 }

@@ -21,7 +21,19 @@ export default function Navbar() {
   const [hoveredWhoWeAre, setHoveredWhoWeAre] = React.useState(0);
 
   const { content } = useContentStore();
-  const megaMenuData = content.navbar.megaMenuData || {};
+  const rawMegaMenuData = content.navbar.megaMenuData || {};
+
+  const megaMenuData = React.useMemo(() => {
+    const allowedNewsroomIds = new Set(["events", "awards-recognition", "customer-stories", "success-metrics"]);
+    if (!rawMegaMenuData.Newsrooms?.categories) return rawMegaMenuData;
+    return {
+      ...rawMegaMenuData,
+      Newsrooms: {
+        ...rawMegaMenuData.Newsrooms,
+        categories: rawMegaMenuData.Newsrooms.categories.filter((cat) => allowedNewsroomIds.has(cat.id)),
+      },
+    };
+  }, [rawMegaMenuData]);
 
   const activeDropdownRef = React.useRef(activeDropdown);
   React.useEffect(() => {

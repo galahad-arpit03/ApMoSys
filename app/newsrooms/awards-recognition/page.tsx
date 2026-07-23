@@ -1,5 +1,5 @@
-import NewsroomCategoryRoute from "@/src/news-rooms/NewsroomCategoryRoute";
+import AwardsPage from "@/src/news-rooms/awards-recognition/AwardsPage";
 
 export default function Page() {
-  return <NewsroomCategoryRoute slug="awards-recognition" />;
+  return <AwardsPage />;
 }
