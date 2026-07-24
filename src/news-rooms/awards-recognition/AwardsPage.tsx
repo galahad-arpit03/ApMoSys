@@ -2,19 +2,19 @@
 
 import React from "react";
 import AwardsHero from "./components/AwardsHero";
-import AwardsIntro from "./components/AwardsIntro";
 import IndustryAwardsShowcase from "./components/IndustryAwardsShowcase";
 import CertificationsBadgeGrid from "./components/CertificationsBadgeGrid";
+import AwardsIntro from "./components/AwardsIntro";
 import PartnerAccoladesWall from "./components/PartnerAccoladesWall";
 import CorporateCTA from "@/src/who-we-are/about-us/CorporateCTA/CorporateCTA";
 
 export default function AwardsPage() {
   return (
-    <main className="min-h-screen bg-white">
+    <main className="min-h-screen bg-[#121212]">
       <AwardsHero />
-      <AwardsIntro />
       <IndustryAwardsShowcase />
       <CertificationsBadgeGrid />
+      <AwardsIntro />
       <PartnerAccoladesWall />
       
       <CorporateCTA

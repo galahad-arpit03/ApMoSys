@@ -1,152 +1,188 @@
 "use client";
 
-import React from "react";
-import { motion } from "framer-motion";
-import { Trophy, CheckCircle2 } from "lucide-react";
-import SectionThemeWrapper from "@/src/admin/components/SectionThemeWrapper";
-import EditableText from "@/src/admin/components/EditableText";
+import React, { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { ArrowRight, Trophy, Sparkles, Shield, Award, CheckCircle, Flame } from "lucide-react";
 
-type AwardCard = {
-  id: string;
-  year: string;
-  category: string;
-  title: string;
-  organization: string;
-  summary: string;
-  points: string[];
-};
+const ITEMS_PER_PAGE = 6;
 
-const awardsData: AwardCard[] = [
+const awardsOverviewItems = [
   {
     id: "qa-excellence-2025",
-    year: "2025",
-    category: "Quality Engineering",
     title: "Best Enterprise Quality Engineering Provider",
-    organization: "Global Tech Excellence Forum",
-    summary:
-      "Acknowledging ApMoSys performance across automated testing, continuous integration, and zero-defect delivery standards.",
-    points: [
-      "Recognition for solution quality and measurable transformation outcomes.",
-      "Awards connected to innovation, delivery rigor, and engineering practices.",
-      "Industry validation of ApMoSys capabilities across enterprise technology programs.",
-    ],
+    description: "Acknowledged by Global Tech Excellence Forum for performance across automated testing, continuous integration, and zero-defect delivery standards.",
+    icon: Trophy,
+    badge: "2025 Winner",
+    linkText: "View Recognition",
+    linkHref: "#awards-timeline",
   },
   {
     id: "ai-automation-innovator",
-    year: "2025",
-    category: "AI & Automation",
     title: "AI Test Automation Pioneer Award",
-    organization: "Digital Assurance Leadership Summit",
-    summary:
-      "Awarded for self-healing automation frameworks that drastically reduce test suite maintenance overhead.",
-    points: [
-      "Pioneering computer vision and machine learning models for test scripting.",
-      "Reducing manual test maintenance effort by over 60%.",
-      "Accelerating release pipelines for Fortune 500 financial clients.",
-    ],
+    description: "Awarded by Digital Assurance Leadership Summit for self-healing automation frameworks that drastically reduce test script maintenance.",
+    icon: Sparkles,
+    badge: "Innovation Award",
+    linkText: "View Citation",
+    linkHref: "#awards-timeline",
   },
   {
     id: "cloud-reliability-2024",
-    year: "2024",
-    category: "Cloud Assurance",
     title: "Cloud Migration Assurance Partner of the Year",
-    organization: "Enterprise Architecture World",
-    summary:
-      "Recognized for pre-migration risk validation, continuous performance testing, and cloud observability.",
-    points: [
-      "Zero-downtime migration assurance for mission-critical banking platforms.",
-      "Comprehensive performance and chaos testing before production cutover.",
-      "Sustained 99.99% system availability post-deployment.",
-    ],
+    description: "Recognized for pre-migration risk validation, continuous performance testing, and chaos engineering for mission-critical banking platforms.",
+    icon: Shield,
+    badge: "Cloud Assurance",
+    linkText: "View Achievement",
+    linkHref: "#awards-timeline",
+  },
+  {
+    id: "devsecops-excellence",
+    title: "DevSecOps Security Governance Excellence",
+    description: "Honored for integrating continuous security scanning, automated compliance checks, and policy enforcement into enterprise CI/CD pipelines.",
+    icon: Award,
+    badge: "Security Leadership",
+    linkText: "View Details",
+    linkHref: "#awards-timeline",
+  },
+  {
+    id: "customer-trust-award",
+    title: "Enterprise Customer Trust & Reliability Award",
+    description: "Voted by enterprise CIOs for outstanding operational uptime, delivery reliability, and transparent SLA compliance across multi-year engagements.",
+    icon: CheckCircle,
+    badge: "Customer Choice",
+    linkText: "Read Story",
+    linkHref: "#awards-timeline",
+  },
+  {
+    id: "green-engineering-milestone",
+    title: "Sustainable Software & Infrastructure Leader",
+    description: "Recognized for eco-friendly cloud lab optimization, reduced test suite compute overhead, and energy-efficient automation execution.",
+    icon: Flame,
+    badge: "Sustainability",
+    linkText: "Explore Milestone",
+    linkHref: "#awards-timeline",
   },
 ];
 
 export default function IndustryAwardsShowcase() {
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const items = awardsOverviewItems;
+  const totalPages = Math.ceil(items.length / ITEMS_PER_PAGE);
+  const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+  const paginatedItems = items.slice(startIndex, startIndex + ITEMS_PER_PAGE);
+
   return (
-    <SectionThemeWrapper sectionId="awards_showcase" defaultTheme="dark">
-      {(theme) => {
-        const isDark = theme === "dark";
-        return (
-          <section
-            id="industry-awards"
-            className={`py-12 lg:py-16 transition-colors duration-300 border-b scroll-mt-20 ${
-              isDark
-                ? "bg-[#0D0D0D] text-[#FAFAFA] border-[#2A2A2A]"
-                : "bg-[#F0F4F8] text-[#121212] border-gray-200"
-            }`}
-          >
-            <div className="max-w-[1600px] mx-auto px-6 sm:px-8 lg:px-16">
-              
-              <div className="mb-12 max-w-3xl">
-                <h2 className="text-4xl sm:text-5xl lg:text-6xl font-heading font-normal tracking-tight leading-[1.1] text-gray-800 dark:text-white">
-                  <EditableText
-                    path="awards.showcase.title"
-                    fallback="Industry Awards & Accolades"
-                    as="span"
-                  />
-                </h2>
-                <p className="mt-3 text-base sm:text-lg font-medium text-black dark:text-gray-300">
-                  <EditableText
-                    path="awards.showcase.subtitle"
-                    fallback="Acknowledgements that reflect ApMoSys performance across quality engineering, automation, innovation, and customer value."
-                    as="span"
-                  />
-                </p>
-              </div>
+    <section id="awards-overview" className="py-10 lg:py-16 bg-white border-b border-gray-100">
+      <div className="max-w-[1600px] mx-auto px-6 sm:px-8 lg:px-16">
+        {/* Split Header */}
+        <div className="mb-12 lg:mb-16 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+          <div className="lg:col-span-5">
+            <h2 className="font-heading text-4xl sm:text-5xl lg:text-6xl font-normal text-black leading-[1.1]">
+              Industry Awards & Global Recognition
+            </h2>
+          </div>
+          <div className="lg:col-span-7">
+            <p className="text-base lg:text-lg text-[#5A5A5A] leading-relaxed">
+              Validated by global analyst firms, technology forums, and enterprise clients for excellence in software quality engineering, cloud automation, and AI innovation.
+            </p>
+          </div>
+        </div>
 
-              <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-                {awardsData.map((item, idx) => (
-                  <motion.div
-                    key={item.id}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: idx * 0.1 }}
-                    className={`rounded-xl border p-8 flex flex-col justify-between transition-all duration-300 hover:-translate-y-1 ${
-                      isDark
-                        ? "bg-[#1A1A1A] border-[#2A2A2A] hover:bg-[#222]"
-                        : "bg-white border-gray-200 shadow-sm hover:shadow-lg"
-                    }`}
-                  >
-                    <div>
-                      <div className="flex items-center justify-between mb-6">
-                        <div className="p-3 rounded-lg bg-amber-500/10 border border-amber-500/20 text-amber-500">
-                          <Trophy className="w-6 h-6" />
-                        </div>
-                        <span className="font-mono text-xs font-bold text-amber-500 px-2.5 py-1 rounded bg-amber-500/10 border border-amber-500/20">
-                          {item.year}
-                        </span>
-                      </div>
+        {/* Services Grid layout */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+          <AnimatePresence mode="popLayout">
+            {paginatedItems.map((item, index) => {
+              const IconComponent = item.icon;
+              return (
+                <motion.div
+                  key={item.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, scale: 0.95 }}
+                  layout
+                  transition={{ duration: 0.4, delay: index * 0.05 }}
+                  className="group bg-white border border-gray-200 rounded-md p-8 hover:border-[#2563EB]/40 hover:shadow-lg transition-all hover:-translate-y-1 flex flex-col h-full relative"
+                >
+                  <span className="absolute top-4 right-4 text-[10px] font-bold text-[#2563EB] bg-[#2563EB]/10 px-3 py-1 rounded-full uppercase tracking-wider">
+                    {item.badge}
+                  </span>
+                  <div className="w-14 h-14 rounded-md bg-[#2563EB]/10 border border-[#2563EB]/20 flex items-center justify-center text-[#2563EB] mb-6 group-hover:bg-[#2563EB] group-hover:text-white transition-colors">
+                    <IconComponent className="w-7 h-7" strokeWidth={1.5} />
+                  </div>
 
-                      <span className="text-[11px] font-bold uppercase tracking-wider text-gray-400">
-                        {item.category} • {item.organization}
-                      </span>
+                  <h3 className="text-base xl:text-lg font-medium text-black mb-3 group-hover:text-[#2563EB] transition-colors">
+                    {item.title}
+                  </h3>
 
-                      <h3 className="font-heading text-xl md:text-2xl font-medium mt-1 mb-3 text-gray-800 dark:text-white">
-                        {item.title}
-                      </h3>
+                  <p className="text-[13px] xl:text-[14px] text-[#5A5A5A] leading-snug flex-grow">
+                    {item.description}
+                  </p>
 
-                      <p className="text-sm font-medium leading-relaxed mb-6 text-black dark:text-gray-300">
-                        {item.summary}
-                      </p>
+                  <div className="pt-6 border-t border-gray-200 mt-auto">
+                    <a
+                      href={item.linkHref}
+                      className="inline-flex items-center text-sm font-bold text-black hover:text-[#2563EB] transition-colors group/link"
+                    >
+                      {item.linkText}
+                      <ArrowRight className="w-4 h-4 ml-2 transform group-hover/link:translate-x-1 transition-transform" />
+                    </a>
+                  </div>
+                </motion.div>
+              );
+            })}
+          </AnimatePresence>
+        </div>
 
-                      <div className="space-y-2 border-t border-gray-200 dark:border-[#2A2A2A] pt-4">
-                        {item.points.map((pt, pIdx) => (
-                          <div key={pIdx} className="flex items-start gap-2 text-xs font-medium text-black dark:text-gray-300">
-                            <CheckCircle2 className="w-3.5 h-3.5 text-amber-500 shrink-0 mt-0.5" />
-                            <span>{pt}</span>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
+        {/* Pagination */}
+        {totalPages > 1 && (
+          <div className="mt-12 flex justify-center items-center gap-3">
+            <button
+              onClick={() => setCurrentPage((p) => Math.max(p - 1, 1))}
+              disabled={currentPage === 1}
+              className={`p-2.5 rounded-md border transition-colors ${
+                currentPage === 1
+                  ? "border-gray-200 text-gray-300 cursor-not-allowed"
+                  : "border-gray-300 text-gray-600 hover:bg-gray-100 cursor-pointer"
+              }`}
+            >
+              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+              </svg>
+            </button>
 
-            </div>
-          </section>
-        );
-      }}
-    </SectionThemeWrapper>
+            {Array.from({ length: totalPages }).map((_, idx) => {
+              const pNum = idx + 1;
+              return (
+                <button
+                  key={pNum}
+                  onClick={() => setCurrentPage(pNum)}
+                  className={`w-10 h-10 rounded-md text-sm font-bold transition-all cursor-pointer ${
+                    currentPage === pNum
+                      ? "bg-[#2563EB] text-white shadow-[0_0_20px_rgba(37,99,235,0.2)]"
+                      : "border border-gray-300 text-gray-600 hover:bg-gray-100"
+                  }`}
+                >
+                  {pNum}
+                </button>
+              );
+            })}
+
+            <button
+              onClick={() => setCurrentPage((p) => Math.min(p + 1, totalPages))}
+              disabled={currentPage === totalPages}
+              className={`p-2.5 rounded-md border transition-colors ${
+                currentPage === totalPages
+                  ? "border-gray-200 text-gray-300 cursor-not-allowed"
+                  : "border-gray-300 text-gray-600 hover:bg-gray-100 cursor-pointer"
+              }`}
+            >
+              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+              </svg>
+            </button>
+          </div>
+        )}
+      </div>
+    </section>
   );
 }

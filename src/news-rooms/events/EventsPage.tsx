@@ -1,30 +1,25 @@
+// src/news-rooms/events/EventsPage.tsx
 "use client";
 
 import React from "react";
 import EventsHero from "./components/EventsHero";
-import EventsIntro from "./components/EventsIntro";
+import EventsCategories from "./components/EventsCategories";
 import UpcomingEventsGrid from "./components/UpcomingEventsGrid";
-import PastWebinarsReplay from "./components/PastWebinarsReplay";
-import AnnualConferences from "./components/AnnualConferences";
-import CorporateCTA from "@/src/who-we-are/about-us/CorporateCTA/CorporateCTA";
+import EventTimeline from "./components/EventTimeline";
+import EventsImpactStats from "./components/EventsImpactStats";
+import PastEventsHighlights from "./components/PastEventsHighlights";
+import EventsCTASection from "./components/EventsCTASection";
 
 export default function EventsPage() {
   return (
-    <main className="min-h-screen bg-white">
+    <main className="min-h-screen bg-[#121212]">
       <EventsHero />
-      <EventsIntro />
+      <EventsCategories />
       <UpcomingEventsGrid />
-      <PastWebinarsReplay />
-      <AnnualConferences />
-      
-      <CorporateCTA
-        tag="Events & Summits"
-        heading="Connect With Our Technology Leaders"
-        description="Schedule a private briefing or roundtable session with ApMoSys quality engineering and platform automation architects."
-        buttonText="Request Event Briefing"
-        sectionId="events_cta"
-        editablePrefix="events.cta"
-      />
+      <EventTimeline />
+      {/* <EventsImpactStats /> */}
+      <PastEventsHighlights />
+      <EventsCTASection />
     </main>
   );
 }

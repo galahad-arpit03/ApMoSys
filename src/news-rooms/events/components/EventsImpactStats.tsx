@@ -1,37 +1,38 @@
+// src/news-rooms/events/components/EventsImpactStats.tsx
 "use client";
 
 import React, { useEffect, useState, useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import { Trophy, Shield, Award, CheckCircle } from "lucide-react";
+import { Users, Calendar, Sparkles, TrendingUp } from "lucide-react";
 
-const achievementMetrics = [
+const eventStats = [
   {
-    value: 35,
+    value: 50,
     suffix: "+",
-    label: "Global Industry Awards",
-    description: "Honored for innovation, delivery quality, and cloud leadership",
-    icon: Trophy,
-  },
-  {
-    value: 100,
-    suffix: "%",
-    label: "Audit Success Rate",
-    description: "Zero non-conformances across multi-year regulatory audits",
-    icon: Shield,
+    label: "Annual Tech Events",
+    description: "Conferences, workshops, and roundtables hosted globally",
+    icon: Calendar,
   },
   {
     value: 15,
-    suffix: "+",
-    label: "Security Certifications",
-    description: "ISO, SOC 2, HIPAA, CMMI, and partner cloud credentials",
-    icon: Award,
+    suffix: "k+",
+    label: "Global Attendees",
+    description: "Engineers, architects, and enterprise leaders connected",
+    icon: Users,
   },
   {
-    value: 250,
+    value: 120,
     suffix: "+",
-    label: "Enterprise Clients",
-    description: "Trusting ApMoSys for mission-critical software assurance",
-    icon: CheckCircle,
+    label: "Expert Speakers",
+    description: "Industry leaders and technology architects",
+    icon: Sparkles,
+  },
+  {
+    value: 98,
+    suffix: "%",
+    label: "Satisfaction Rate",
+    description: "Consistently rated excellent for practical insights",
+    icon: TrendingUp,
   },
 ];
 
@@ -85,10 +86,9 @@ const getBorderClasses = (idx: number, total: number) => {
   return classes;
 };
 
-export default function PartnerAccoladesWall() {
+export default function EventsImpactStats() {
   return (
-    <section id="awards-impact" className="py-10 lg:py-16 bg-[#0A1128] border-t border-[#1A264A] relative overflow-hidden">
-      {/* Subtle atmospheric background for dark mode */}
+    <section className="py-10 lg:py-16 bg-[#0A1128] border-t border-[#1A264A] relative overflow-hidden">
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-0 right-0 w-[600px] h-[600px] rounded-full blur-[100px] pointer-events-none -translate-y-1/2 translate-x-1/3 bg-blue-600/20" />
         <div className="absolute bottom-0 left-0 w-[600px] h-[600px] rounded-full blur-[100px] pointer-events-none translate-y-1/2 -translate-x-1/3 bg-blue-600/10" />
@@ -98,19 +98,20 @@ export default function PartnerAccoladesWall() {
         <div className="flex flex-col lg:flex-row lg:items-start justify-between gap-8 mb-10 sm:mb-16">
           <div className="shrink-0">
             <h2 className="text-4xl sm:text-5xl lg:text-6xl font-heading font-normal tracking-tight leading-[1.1] text-white">
-              Quantifiable Achievement & Trust
+              Our <br className="hidden lg:block" />
+              <span className="text-[#2563EB]">Event Impact</span>
             </h2>
           </div>
           <div className="flex flex-col lg:items-end gap-6 max-w-xl">
             <p className="text-base lg:text-lg leading-relaxed lg:text-left font-medium text-gray-300">
-              Backed by independent benchmark audits, global security accreditations, and long-term client trust.
+              Empowering developers, QA engineers, and enterprise leaders worldwide through continuous learning, collaboration, and knowledge sharing.
             </p>
           </div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 w-full border-t border-b border-[#1A264A]">
-          {achievementMetrics.map((metric, idx) => {
-            const Icon = metric.icon;
+          {eventStats.map((stat, idx) => {
+            const Icon = stat.icon;
             return (
               <motion.div
                 key={idx}
@@ -120,7 +121,7 @@ export default function PartnerAccoladesWall() {
                 transition={{ delay: idx * 0.05, duration: 0.5 }}
                 className={`group py-6 md:py-10 px-6 xl:px-10 flex flex-col items-start gap-3 transition-colors hover:bg-white/[0.02] ${getBorderClasses(
                   idx,
-                  achievementMetrics.length
+                  eventStats.length
                 )}`}
               >
                 <div className="w-12 h-12 rounded-md bg-[#2563EB]/10 border border-[#2563EB]/20 flex items-center justify-center text-[#2563EB] group-hover:bg-[#2563EB] group-hover:text-white transition-colors">
@@ -128,15 +129,15 @@ export default function PartnerAccoladesWall() {
                 </div>
 
                 <div className="text-white">
-                  <Counter end={metric.value} suffix={metric.suffix} />
+                  <Counter end={stat.value} suffix={stat.suffix} />
                 </div>
 
                 <h3 className="text-sm font-bold text-gray-200 group-hover:text-[#2563EB] transition-colors">
-                  {metric.label}
+                  {stat.label}
                 </h3>
 
                 <p className="text-xs text-gray-400 leading-relaxed">
-                  {metric.description}
+                  {stat.description}
                 </p>
               </motion.div>
             );

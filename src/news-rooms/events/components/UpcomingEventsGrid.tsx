@@ -1,222 +1,192 @@
+// src/news-rooms/events/components/UpcomingEventsGrid.tsx
 "use client";
 
 import React, { useState } from "react";
-import { motion } from "framer-motion";
-import { Calendar, Users, ArrowUpRight, CheckCircle2, Filter } from "lucide-react";
-import SectionThemeWrapper from "@/src/admin/components/SectionThemeWrapper";
-import EditableText from "@/src/admin/components/EditableText";
+import { motion, AnimatePresence } from "framer-motion";
+import { Calendar, MapPin, Clock, ArrowRight } from "lucide-react";
 
-type EventItem = {
-  id: string;
-  category: "roundtable" | "workshop" | "partner";
-  categoryLabel: string;
-  date: string;
-  month: string;
-  day: string;
-  title: string;
-  summary: string;
-  targetAudience: string;
-  highlights: string[];
-};
+const ITEMS_PER_PAGE = 6;
 
-const upcomingEventsData: EventItem[] = [
+const upcomingEvents = [
   {
-    id: "executive-qa-roundtable",
-    category: "roundtable",
-    categoryLabel: "Executive Roundtable",
-    date: "August 12, 2026",
-    month: "AUG",
-    day: "12",
-    title: "Executive Roundtable: Quality Engineering Strategy for 2027",
-    summary:
-      "An exclusive interactive discussion for CIOs and VP-level engineering leaders on balancing release velocity with zero-defect governance.",
-    targetAudience: "CIOs, CTOs, VPs of Quality & Engineering",
-    highlights: [
-      "Executive benchmarks for software delivery speed vs defect leakage.",
-      "Navigating AI code generation risks in mission-critical applications.",
-      "Optimizing QA spend across hybrid cloud and legacy estates.",
-    ],
+    id: "1",
+    title: "Executive Roundtable: Quality Strategy 2027",
+    description: "An exclusive discussion for CIOs and VP-level engineering leaders on balancing release velocity with zero-defect governance.",
+    date: "March 15, 2026",
+    time: "10:00 AM EST",
+    location: "Virtual",
   },
   {
-    id: "hands-on-ai-automation",
-    category: "workshop",
-    categoryLabel: "Hands-on Workshop",
-    date: "September 04, 2026",
-    month: "SEP",
-    day: "04",
-    title: "AI-Powered Test Automation & Self-Healing Frameworks",
-    summary:
-      "A technical deep-dive workshop showing QA engineers how to build resilient test suites with intelligent element detection and automated repair.",
-    targetAudience: "QA Leads, SDETs, Automation Architects",
-    highlights: [
-      "Building self-healing UI test scripts with computer vision.",
-      "Integrating continuous quality gates in GitHub Actions & Azure DevOps.",
-      "Reducing flaky test executions by up to 75%.",
-    ],
+    id: "2",
+    title: "AI-Powered Test Automation Workshop",
+    description: "A hands-on workshop showing QA engineers how to build resilient test suites with intelligent element detection and automated repair.",
+    date: "March 22, 2026",
+    time: "2:00 PM IST",
+    location: "Navi Mumbai",
   },
   {
-    id: "partner-assurance-forum",
-    category: "partner",
-    categoryLabel: "Partner Forum",
-    date: "September 22, 2026",
-    month: "SEP",
-    day: "22",
-    title: "Ecosystem Assurance: Scaling Quality Across Enterprise Platforms",
-    summary:
-      "Joint session with enterprise technology partners exploring end-to-end integration testing for SAP, Salesforce, and custom cloud microservices.",
-    targetAudience: "Platform Owners, Solution Architects, Integration Leads",
-    highlights: [
-      "Multi-system E2E test execution strategies.",
-      "Synthetic data generation and privacy compliance.",
-      "Real-time release health dashboards across partner platforms.",
-    ],
+    id: "3",
+    title: "DevSecOps & Platform Summit 2026",
+    description: "A 2-day virtual summit exploring continuous security scanning, infrastructure policy enforcement, and pipeline governance.",
+    date: "April 5-6, 2026",
+    time: "9:00 AM EST",
+    location: "Virtual",
+  },
+  {
+    id: "4",
+    title: "Ecosystem Assurance & Multi-Cloud Meetup",
+    description: "Exploring end-to-end integration testing across SAP, Salesforce, and microservices with enterprise technology partners.",
+    date: "April 18, 2026",
+    time: "11:00 AM IST",
+    location: "Bengaluru",
+  },
+  {
+    id: "5",
+    title: "Global Platform Automation Hackathon",
+    description: "A 48-hour global developer challenge focused on building next-generation test automation plugins and observability tools.",
+    date: "May 1-3, 2026",
+    time: "Starts 9:00 AM GMT",
+    location: "Global (Virtual)",
+  },
+  {
+    id: "6",
+    title: "Observability & AIOps Masterclass",
+    description: "Expert session on real-time anomaly detection, telemetry collection, and AI-assisted root-cause analysis in distributed systems.",
+    date: "May 20, 2026",
+    time: "3:00 PM IST",
+    location: "Virtual",
   },
 ];
 
 export default function UpcomingEventsGrid() {
-  const [filter, setFilter] = useState<string>("all");
+  const [currentPage, setCurrentPage] = useState(1);
 
-  const filteredEvents = filter === "all"
-    ? upcomingEventsData
-    : upcomingEventsData.filter((evt) => evt.category === filter);
+  const totalPages = Math.ceil(upcomingEvents.length / ITEMS_PER_PAGE);
+  const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+  const paginatedItems = upcomingEvents.slice(startIndex, startIndex + ITEMS_PER_PAGE);
 
   return (
-    <SectionThemeWrapper sectionId="events_upcoming" defaultTheme="dark">
-      {(theme) => {
-        const isDark = theme === "dark";
-        return (
-          <section
-            id="upcoming-events"
-            className={`py-12 lg:py-16 transition-colors duration-300 border-b scroll-mt-20 ${
-              isDark
-                ? "bg-[#0D0D0D] text-[#FAFAFA] border-[#2A2A2A]"
-                : "bg-[#F0F4F8] text-[#121212] border-gray-200"
-            }`}
-          >
-            <div className="max-w-[1600px] mx-auto px-6 sm:px-8 lg:px-16">
-              
-              {/* Header & Filter Controls */}
-              <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
-                <div>
-                  <h2 className="text-4xl sm:text-5xl lg:text-6xl font-heading font-normal tracking-tight leading-[1.1] text-gray-800 dark:text-white">
-                    <EditableText
-                      path="events.upcoming.title"
-                      fallback="Upcoming Events & Sessions"
-                      as="span"
-                    />
-                  </h2>
-                  <p className="mt-3 text-base sm:text-lg font-medium text-black dark:text-gray-300 max-w-2xl">
-                    <EditableText
-                      path="events.upcoming.subtitle"
-                      fallback="Planned sessions focused on quality engineering, automation, AI adoption, and enterprise modernization."
-                      as="span"
-                    />
-                  </p>
+    <section id="events-overview" className="py-10 lg:py-16 bg-white border-b border-gray-100">
+      <div className="max-w-[1600px] mx-auto px-6 sm:px-8 lg:px-16">
+        {/* Split Header - No Eyebrow */}
+        <div className="mb-12 lg:mb-16 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+          <div className="lg:col-span-5">
+            <h2 className="font-heading text-4xl sm:text-5xl lg:text-6xl font-normal text-black leading-[1.1]">
+              Join Us at Our <br className="hidden lg:block" />
+              <span className="text-[#2563EB]">Next Tech Events</span>
+            </h2>
+          </div>
+          <div className="lg:col-span-7">
+            <p className="text-base lg:text-lg text-[#5A5A5A] leading-relaxed">
+              Secure your spot at our upcoming summits, workshops, and roundtables. Connect with industry leaders and advance your engineering capabilities.
+            </p>
+          </div>
+        </div>
+
+        {/* Event Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+          <AnimatePresence mode="popLayout">
+            {paginatedItems.map((event, index) => (
+              <motion.div
+                key={event.id}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.95 }}
+                layout
+                transition={{ duration: 0.4, delay: index * 0.05 }}
+                className="group bg-white border border-gray-200 rounded-md p-8 hover:border-[#2563EB]/40 hover:shadow-lg transition-all hover:-translate-y-1 flex flex-col relative"
+              >
+                {/* Title */}
+                <h3 className="text-base xl:text-lg font-medium text-black mb-3 group-hover:text-[#2563EB] transition-colors">
+                  {event.title}
+                </h3>
+
+                {/* Description */}
+                <p className="text-[13px] xl:text-[14px] text-[#5A5A5A] leading-snug flex-grow">
+                  {event.description}
+                </p>
+
+                {/* Event Meta */}
+                <div className="mt-6 space-y-2 border-t border-gray-100 pt-4">
+                  <div className="flex items-center gap-2 text-xs text-gray-500">
+                    <Calendar className="w-3.5 h-3.5 text-[#2563EB]" />
+                    <span>{event.date}</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-xs text-gray-500">
+                    <Clock className="w-3.5 h-3.5 text-[#2563EB]" />
+                    <span>{event.time}</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-xs text-gray-500">
+                    <MapPin className="w-3.5 h-3.5 text-[#2563EB]" />
+                    <span>{event.location}</span>
+                  </div>
                 </div>
 
-                {/* Filter Pills */}
-                <div className="flex items-center gap-2 overflow-x-auto pb-2 md:pb-0">
-                  <Filter className="w-4 h-4 text-gray-400 mr-1 shrink-0" />
-                  {[
-                    { key: "all", label: "All Events" },
-                    { key: "roundtable", label: "Roundtables" },
-                    { key: "workshop", label: "Workshops" },
-                    { key: "partner", label: "Partner Forums" },
-                  ].map((btn) => (
-                    <button
-                      key={btn.key}
-                      onClick={() => setFilter(btn.key)}
-                      className={`px-4 py-2 rounded-md text-xs font-bold transition-all whitespace-nowrap ${
-                        filter === btn.key
-                          ? "bg-[#242A56] text-white shadow-md"
-                          : isDark
-                          ? "bg-[#1A1A1A] border border-[#2A2A2A] text-gray-300 hover:text-white"
-                          : "bg-white border border-gray-200 text-gray-700 hover:bg-gray-50"
-                      }`}
-                    >
-                      {btn.label}
-                    </button>
-                  ))}
-                </div>
-              </div>
-
-              {/* Events Grid */}
-              <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-                {filteredEvents.map((evt, idx) => (
-                  <motion.div
-                    key={evt.id}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: idx * 0.1 }}
-                    className={`rounded-xl border p-8 flex flex-col justify-between transition-all duration-300 hover:-translate-y-1 ${
-                      isDark
-                        ? "bg-[#1A1A1A] border-[#2A2A2A] hover:bg-[#222]"
-                        : "bg-white border-gray-200/80 shadow-[0_4px_20px_rgb(0,0,0,0.03)] hover:shadow-lg"
-                    }`}
+                {/* Register CTA */}
+                <div className="pt-4 mt-2 border-t border-gray-100">
+                  <a
+                    href="#register"
+                    className="inline-flex items-center text-sm font-bold text-[#2563EB] hover:text-[#1E234B] transition-colors group/link"
                   >
-                    <div>
-                      {/* Date Header */}
-                      <div className="flex items-start justify-between gap-4 mb-6">
-                        <div className="flex items-center gap-3">
-                          <div className={`flex flex-col items-center justify-center w-12 h-14 rounded-lg font-bold text-center border ${
-                            isDark ? "bg-[#121212] border-[#2A2A2A]" : "bg-gray-50 border-gray-200"
-                          }`}>
-                            <span className="text-[10px] font-bold text-primary-red">
-                              {evt.month}
-                            </span>
-                            <span className="text-lg font-heading font-extrabold text-gray-800 dark:text-white leading-none">
-                              {evt.day}
-                            </span>
-                          </div>
-                          <div>
-                            <span className="text-xs font-semibold text-gray-500 dark:text-gray-400">
-                              {evt.date}
-                            </span>
-                            <span className="block text-[11px] font-bold text-primary-red mt-0.5">
-                              {evt.categoryLabel}
-                            </span>
-                          </div>
-                        </div>
-                      </div>
+                    Register Now
+                    <ArrowRight className="w-4 h-4 ml-2 transform group-hover/link:translate-x-1 transition-transform" />
+                  </a>
+                </div>
+              </motion.div>
+            ))}
+          </AnimatePresence>
+        </div>
 
-                      <h3 className="font-heading text-xl md:text-2xl font-medium mb-3 text-gray-800 dark:text-white">
-                        {evt.title}
-                      </h3>
+        {/* Pagination */}
+        {totalPages > 1 && (
+          <div className="mt-12 flex justify-center items-center gap-3">
+            <button
+              onClick={() => setCurrentPage((p) => Math.max(p - 1, 1))}
+              disabled={currentPage === 1}
+              className={`p-2.5 rounded-md border transition-colors ${
+                currentPage === 1
+                  ? "border-gray-200 text-gray-300 cursor-not-allowed"
+                  : "border-gray-300 text-gray-600 hover:bg-gray-100 cursor-pointer"
+              }`}
+            >
+              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+              </svg>
+            </button>
 
-                      <p className="text-sm font-medium leading-relaxed mb-6 text-black dark:text-gray-300">
-                        {evt.summary}
-                      </p>
+            {Array.from({ length: totalPages }).map((_, idx) => {
+              const pNum = idx + 1;
+              return (
+                <button
+                  key={pNum}
+                  onClick={() => setCurrentPage(pNum)}
+                  className={`w-10 h-10 rounded-md text-sm font-bold transition-all cursor-pointer ${
+                    currentPage === pNum
+                      ? "bg-[#2563EB] text-white shadow-[0_0_20px_rgba(37,99,235,0.2)]"
+                      : "border border-gray-300 text-gray-600 hover:bg-gray-100"
+                  }`}
+                >
+                  {pNum}
+                </button>
+              );
+            })}
 
-                      <div className="pt-4 border-t border-gray-200 dark:border-[#2A2A2A] flex items-center gap-2 text-xs font-semibold text-gray-500 dark:text-gray-400 mb-4">
-                        <Users className="w-4 h-4 text-primary-red shrink-0" />
-                        <span>Audience: {evt.targetAudience}</span>
-                      </div>
-
-                      <div className="space-y-2">
-                        {evt.highlights.map((pt, pIdx) => (
-                          <div key={pIdx} className="flex items-start gap-2 text-xs font-medium text-black dark:text-gray-300">
-                            <CheckCircle2 className="w-3.5 h-3.5 text-primary-red shrink-0 mt-0.5" />
-                            <span>{pt}</span>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-
-                    <div className="mt-8 pt-5 border-t border-gray-200 dark:border-[#2A2A2A]">
-                      <button className="w-full py-3 rounded-md bg-[#242A56] hover:bg-[#1E234B] text-white text-xs font-bold flex items-center justify-center gap-2 transition-all shadow">
-                        <span>Register Interest</span>
-                        <ArrowUpRight className="w-4 h-4" />
-                      </button>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
-
-            </div>
-          </section>
-        );
-      }}
-    </SectionThemeWrapper>
+            <button
+              onClick={() => setCurrentPage((p) => Math.min(p + 1, totalPages))}
+              disabled={currentPage === totalPages}
+              className={`p-2.5 rounded-md border transition-colors ${
+                currentPage === totalPages
+                  ? "border-gray-200 text-gray-300 cursor-not-allowed"
+                  : "border-gray-300 text-gray-600 hover:bg-gray-100 cursor-pointer"
+              }`}
+            >
+              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+              </svg>
+            </button>
+          </div>
+        )}
+      </div>
+    </section>
   );
 }

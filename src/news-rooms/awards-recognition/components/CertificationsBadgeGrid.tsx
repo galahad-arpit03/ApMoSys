@@ -2,134 +2,94 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { ShieldCheck, CheckCircle2 } from "lucide-react";
-import SectionThemeWrapper from "@/src/admin/components/SectionThemeWrapper";
-import EditableText from "@/src/admin/components/EditableText";
+import { ShieldCheck, Lock, Award } from "lucide-react";
 
-type CertItem = {
-  code: string;
-  name: string;
-  type: string;
-  description: string;
-  points: string[];
-};
-
-const certsData: CertItem[] = [
+const certificationApproaches = [
   {
-    code: "ISO 27001",
-    name: "Information Security Management",
-    type: "Security Standard",
-    description: "International standard for information security risk governance, data protection, and operational safety.",
-    points: [
-      "Rigorous data protection policies across global delivery hubs.",
-      "Annual third-party security audits and penetration testing.",
-      "Strict access control and encrypted customer data handling.",
-    ],
+    id: "iso-certification",
+    title: "ISO 27001 & ISO 9001 Certified",
+    description: "Certified information security and quality management systems guaranteeing strict data governance, physical security, and operational rigor.",
+    icon: ShieldCheck,
+    badge: "Security Standard",
   },
   {
-    code: "CMMI Level 5",
-    name: "Capability Maturity Model Integration",
-    type: "Process Maturity",
-    description: "Highest level of process optimization, continuous improvement, and quantitative delivery management.",
-    points: [
-      "Process and compliance credentials that strengthen delivery confidence.",
-      "Standardized quality engineering methodology across all projects.",
-      "Predictable defect reduction and transparent metrics reporting.",
-    ],
+    id: "soc-compliance",
+    title: "SOC 2 Type II Certified",
+    description: "Independently audited controls covering security, availability, processing integrity, confidentiality, and privacy for cloud delivery.",
+    icon: Lock,
+    badge: "Audited Controls",
   },
   {
-    code: "ISO 9001",
-    name: "Quality Management Systems",
-    type: "Quality Governance",
-    description: "Certified quality management framework guaranteeing customer focus and systematic service quality.",
-    points: [
-      "Structured quality management system across software lifecycle.",
-      "Continuous internal audits and corrective action workflows.",
-      "High customer satisfaction and measurable delivery benchmarks.",
-    ],
+    id: "cmmi-level-5",
+    title: "CMMI Level 5 Maturity Rating",
+    description: "Highest process maturity standard validating continuous process optimization, quantitative performance management, and flaw-free delivery.",
+    icon: Award,
+    badge: "Process Excellence",
   },
 ];
 
 export default function CertificationsBadgeGrid() {
   return (
-    <SectionThemeWrapper sectionId="awards_certifications" defaultTheme="light">
-      {(theme) => {
-        const isDark = theme === "dark";
-        return (
-          <section
-            id="certifications"
-            className={`py-12 lg:py-16 border-b transition-colors duration-300 scroll-mt-20 ${
-              isDark ? "bg-[#0D0D0D] text-[#FAFAFA] border-[#2A2A2A]" : "bg-white text-[#121212] border-gray-100"
-            }`}
-          >
-            <div className="max-w-[1600px] mx-auto px-6 sm:px-8 lg:px-16">
-              
-              <div className="mb-12 max-w-3xl">
-                <h2 className="text-4xl sm:text-5xl lg:text-6xl font-heading font-normal tracking-tight leading-[1.1] text-gray-800 dark:text-white">
-                  <EditableText
-                    path="awards.certifications.title"
-                    fallback="Certifications & Governance Credentials"
-                    as="span"
-                  />
-                </h2>
-                <p className="mt-3 text-base sm:text-lg font-medium text-black dark:text-gray-300">
-                  <EditableText
-                    path="awards.certifications.subtitle"
-                    fallback="Certifications that support trusted delivery, repeatable processes, and compliance governance across customer engagements."
-                    as="span"
-                  />
+    <section id="awards-certifications" className="py-10 lg:py-16 bg-[#0A1128] border-b border-[#1A264A] relative overflow-hidden">
+      {/* Ambient Glows */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#2563EB]/10 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-[#2563EB]/5 rounded-full blur-[80px] pointer-events-none" />
+
+      <div className="max-w-[1600px] mx-auto px-6 sm:px-8 lg:px-16 relative z-10">
+        {/* Split Header */}
+        <div className="mb-12 lg:mb-16 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+          <div className="lg:col-span-5">
+            <h2 className="font-heading text-4xl sm:text-5xl lg:text-6xl font-normal text-white leading-[1.1]">
+              Certified Standards & Rigorous Compliance
+            </h2>
+          </div>
+          <div className="lg:col-span-7">
+            <p className="text-base lg:text-lg text-gray-300 leading-relaxed">
+              Our engineering operations adhere to world-class regulatory standards and security frameworks, providing peace of mind to regulated enterprises globally.
+            </p>
+          </div>
+        </div>
+
+        {/* Approach Grid – 3-column layout */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+          {certificationApproaches.map((item, idx) => {
+            const Icon = item.icon;
+            return (
+              <motion.div
+                key={item.id}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: idx * 0.1, duration: 0.5 }}
+                className="group relative bg-[#121B38] border border-[#1A264A] rounded-md p-8 hover:border-[#2563EB]/40 hover:shadow-[0_0_40px_rgba(37,99,235,0.05)] transition-all hover:-translate-y-1"
+              >
+                {/* Step / Category Badge */}
+                <div className="absolute top-4 right-4 text-[10px] font-bold text-[#2563EB] bg-[#2563EB]/10 px-3 py-1 rounded-full uppercase tracking-wider">
+                  {item.badge}
+                </div>
+
+                {/* Icon */}
+                <div className="w-14 h-14 rounded-md bg-[#2563EB]/10 border border-[#2563EB]/20 flex items-center justify-center text-[#2563EB] mb-5 group-hover:bg-[#2563EB] group-hover:text-white transition-colors">
+                  <Icon className="w-7 h-7" strokeWidth={1.5} />
+                </div>
+
+                {/* Title */}
+                <h3 className="text-base xl:text-lg font-medium text-white mb-3 group-hover:text-[#2563EB] transition-colors">
+                  {item.title}
+                </h3>
+
+                {/* Description */}
+                <p className="text-[13px] xl:text-[14px] text-gray-300 leading-snug">
+                  {item.description}
                 </p>
-              </div>
 
-              <div className="grid gap-8 md:grid-cols-3">
-                {certsData.map((cert, idx) => (
-                  <motion.div
-                    key={cert.code}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: idx * 0.1 }}
-                    className={`rounded-xl border p-8 flex flex-col justify-between transition-all duration-300 hover:-translate-y-1 ${
-                      isDark ? "bg-[#1A1A1A] border-[#2A2A2A]" : "bg-white border-gray-200 shadow-sm hover:shadow-lg"
-                    }`}
-                  >
-                    <div>
-                      <div className="flex items-center justify-between mb-6">
-                        <span className="font-mono text-2xl font-extrabold text-amber-500">
-                          {cert.code}
-                        </span>
-                        <ShieldCheck className="w-6 h-6 text-amber-500" />
-                      </div>
-
-                      <span className="text-[11px] font-bold uppercase tracking-wider text-gray-400">
-                        {cert.type}
-                      </span>
-
-                      <h3 className="font-heading text-xl md:text-2xl font-medium mt-1 mb-3 text-gray-800 dark:text-white">
-                        {cert.name}
-                      </h3>
-
-                      <p className="text-sm font-medium leading-relaxed mb-6 text-black dark:text-gray-300">
-                        {cert.description}
-                      </p>
-
-                      <div className="space-y-2 border-t border-gray-200 dark:border-[#2A2A2A] pt-4">
-                        {cert.points.map((pt, pIdx) => (
-                          <div key={pIdx} className="flex items-start gap-2 text-xs font-medium text-black dark:text-gray-300">
-                            <CheckCircle2 className="w-3.5 h-3.5 text-amber-500 shrink-0 mt-0.5" />
-                            <span>{pt}</span>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
-
-            </div>
-          </section>
-        );
-      }}
-    </SectionThemeWrapper>
+                {/* Decorative line on hover */}
+                <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-[#2563EB]/0 via-[#2563EB]/50 to-[#2563EB]/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              </motion.div>
+            );
+          })}
+        </div>
+      </div>
+    </section>
   );
 }
