@@ -55,63 +55,63 @@ export default function ClientTestimonialsView() {
           >
             <div className="max-w-[1600px] mx-auto px-6 sm:px-8 lg:px-16">
               
-              <div className="mb-12 max-w-3xl">
-                <h2 className="text-4xl sm:text-5xl lg:text-6xl font-heading font-normal tracking-tight leading-[1.1] text-white">
-                  <EditableText
-                    path="customer.testimonials.title"
-                    fallback="Client Interviews & Testimonials"
-                    as="span"
-                  />
-                </h2>
-                <p className="mt-3 text-base sm:text-lg font-medium text-slate-300">
-                  <EditableText
-                    path="customer.testimonials.subtitle"
-                    fallback="Direct customer perspectives on partnership experience, delivery quality, and transformation outcomes."
-                    as="span"
-                  />
-                </p>
+              {/* Header - LHS/RHS Split */}
+              <div className="mb-8 lg:mb-12 grid lg:grid-cols-2 gap-8 lg:gap-16 items-start">
+                <div>
+                  <h2 className="text-4xl sm:text-5xl lg:text-6xl font-heading font-medium tracking-tight leading-[1.15] text-white">
+                    <EditableText
+                      path="customer.testimonials.title"
+                      fallback="Client Interviews & Testimonials"
+                      as="span"
+                    />
+                  </h2>
+                </div>
+                <div className="lg:pt-4">
+                  <p className="text-base sm:text-lg font-medium leading-relaxed text-slate-300">
+                    <EditableText
+                      path="customer.testimonials.subtitle"
+                      fallback="Direct customer perspectives on partnership experience, delivery quality, and transformation outcomes."
+                      as="span"
+                    />
+                  </p>
+                </div>
               </div>
 
-              <div className="grid gap-8 md:grid-cols-2">
-                {clientInterviewsData.map((item, idx) => (
-                  <motion.div
-                    key={item.id}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: idx * 0.1 }}
-                    className="rounded-xl bg-[#1A1A1A] border border-[#2A2A2A] p-8 flex flex-col justify-between transition-all hover:border-gray-600"
-                  >
-                    <div>
-                      <div className="flex items-center justify-between mb-6">
-                        <div>
-                          <h3 className="font-heading font-medium text-white text-lg">
-                            {item.clientRole}
-                          </h3>
-                          <span className="text-xs text-emerald-400 font-bold">
-                            {item.organization}
-                          </span>
-                        </div>
-                        <Building className="w-6 h-6 text-gray-500" />
-                      </div>
-
-                      <Quote className="w-8 h-8 text-emerald-400/30 mb-3" />
-
-                      <p className="text-slate-200 text-base font-medium leading-relaxed italic">
-                        "{item.quote}"
-                      </p>
-
-                      <div className="mt-6 pt-5 border-t border-[#2A2A2A] space-y-2">
-                        {item.points.map((pt, pIdx) => (
-                          <div key={pIdx} className="flex items-center gap-2 text-xs font-medium text-slate-400">
-                            <Sparkles className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
-                            <span>{pt}</span>
+              {/* Auto-scrolling Marquee */}
+              <div className="relative w-full overflow-hidden flex flex-col border-t border-b border-white/10 md:border-b-0 md:border-t-0 mt-8">
+                <motion.div
+                  className="flex w-max"
+                  animate={{ x: ["0%", "-50%"] }}
+                  transition={{ ease: "linear", duration: 30, repeat: Infinity }}
+                >
+                  {[...clientInterviewsData, ...clientInterviewsData, ...clientInterviewsData, ...clientInterviewsData].map((item, idx) => (
+                    <div
+                      key={`${item.id}-${idx}`}
+                      className="w-[350px] sm:w-[450px] lg:w-[500px] shrink-0 bg-white/5 border-r border-t border-b border-white/10 p-8 flex flex-col justify-between transition-all hover:bg-white/10 group"
+                    >
+                      <div>
+                        <div className="flex items-center justify-between mb-6">
+                          <div>
+                            <h3 className="font-heading font-medium text-white text-lg">
+                              {item.clientRole}
+                            </h3>
+                            <span className="text-xs text-emerald-400 font-bold">
+                              {item.organization}
+                            </span>
                           </div>
-                        ))}
+                          <Building className="w-6 h-6 text-gray-500 group-hover:text-emerald-400 transition-colors" />
+                        </div>
+
+                        <Quote className="w-8 h-8 text-emerald-400/30 mb-4" />
+
+                        <p className="text-slate-200 text-base font-medium leading-relaxed italic mb-8">
+                          "{item.quote}"
+                        </p>
+
                       </div>
                     </div>
-                  </motion.div>
-                ))}
+                  ))}
+                </motion.div>
               </div>
 
             </div>

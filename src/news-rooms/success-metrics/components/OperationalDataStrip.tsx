@@ -2,22 +2,20 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { Gauge, CheckCircle2 } from "lucide-react";
-import SectionThemeWrapper from "@/src/admin/components/SectionThemeWrapper";
 import EditableText from "@/src/admin/components/EditableText";
 
 type PerformanceMetric = {
-  name: string;
+  name: string; // Kept in data for reference but removed from UI (eyebrow)
   value: string;
   progress: number;
   description: string;
-  points: string[];
+  points: string[]; // Removed from UI to reduce content
 };
 
 const performanceDataList: PerformanceMetric[] = [
   {
     name: "Application Latency & Speed",
-    value: "140ms Avg Response",
+    value: "140ms",
     progress: 92,
     description: "Application performance, response time, and scalability measurements across peak load.",
     points: [
@@ -28,7 +26,7 @@ const performanceDataList: PerformanceMetric[] = [
   },
   {
     name: "Test Automation Execution Rate",
-    value: "95% Coverage",
+    value: "95%",
     progress: 95,
     description: "Percentage of regression test suites running fully automated in CI/CD build gates.",
     points: [
@@ -39,7 +37,7 @@ const performanceDataList: PerformanceMetric[] = [
   },
   {
     name: "Incident Reduction Benchmark",
-    value: "88% Fewer P1s",
+    value: "88%",
     progress: 88,
     description: "Drastic drop in high-severity production incidents post-release.",
     points: [
@@ -50,89 +48,67 @@ const performanceDataList: PerformanceMetric[] = [
   },
 ];
 
+const getBorderClasses = (idx: number, total: number) => {
+  let classes = "border-gray-200 ";
+
+  // On mobile (1 col), everything except the last item gets a bottom border
+  if (idx < total - 1) classes += "border-b md:border-b-0 ";
+
+  // On desktop (3 cols), everything except the 3rd item in a row gets a right border
+  if ((idx + 1) % 3 !== 0) classes += "md:border-r ";
+
+  return classes;
+};
+
 export default function OperationalDataStrip() {
   return (
-    <SectionThemeWrapper sectionId="metrics_signals" defaultTheme="light">
-      {(theme) => {
-        const isDark = theme === "dark";
-        return (
-          <section
-            id="performance-data"
-            className={`py-12 lg:py-16 border-b transition-colors duration-300 scroll-mt-20 ${
-              isDark ? "bg-[#0D0D0D] text-[#FAFAFA] border-[#2A2A2A]" : "bg-white text-[#121212] border-gray-100"
-            }`}
-          >
-            <div className="max-w-[1600px] mx-auto px-6 sm:px-8 lg:px-16">
-              
-              <div className="mb-12 max-w-3xl">
-                <h2 className="text-4xl sm:text-5xl lg:text-6xl font-heading font-normal tracking-tight leading-[1.1] text-gray-800 dark:text-white">
-                  <EditableText
-                    path="metrics.signals.title"
-                    fallback="Performance Indicators & System Health"
-                    as="span"
-                  />
-                </h2>
-                <p className="mt-3 text-base sm:text-lg font-medium text-black dark:text-gray-300">
-                  <EditableText
-                    path="metrics.signals.subtitle"
-                    fallback="Performance indicators showing how systems, engineering teams, and delivery processes improve over time."
-                    as="span"
-                  />
-                </p>
-              </div>
+    <section id="performance-data" className="py-12 lg:py-16 bg-[#FAFAFA] border-b border-gray-100 scroll-mt-20">
+      <div className="max-w-[1600px] mx-auto px-6 sm:px-8 lg:px-16">
+        
+        {/* Header - LHS/RHS Split */}
+        <div className="mb-8 lg:mb-10 grid lg:grid-cols-2 gap-8 lg:gap-16 items-start">
+          <div>
+            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-heading font-medium tracking-tight leading-[1.15] text-gray-900 whitespace-pre-line">
+              <EditableText
+                path="metrics.signals.title"
+                fallback={`Operational Velocity, \nSystem Reliability`}
+                as="span"
+              />
+            </h2>
+          </div>
+          <div className="lg:pt-4">
+            <p className="text-base sm:text-lg leading-relaxed text-[#5A5A5A]">
+              <EditableText
+                path="metrics.signals.subtitle"
+                fallback="Performance indicators showing how systems, engineering teams, and delivery processes improve over time."
+                as="span"
+              />
+            </p>
+          </div>
+        </div>
 
-              <div className="grid gap-8 md:grid-cols-3">
-                {performanceDataList.map((item, idx) => (
-                  <motion.div
-                    key={item.name}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: idx * 0.1 }}
-                    className={`rounded-xl border p-6 sm:p-8 flex flex-col justify-between transition-all hover:-translate-y-1 ${
-                      isDark ? "bg-[#1A1A1A] border-[#2A2A2A]" : "bg-white border-gray-200 shadow-sm hover:shadow-lg"
-                    }`}
-                  >
-                    <div>
-                      <div className="flex items-center justify-between mb-4">
-                        <span className="text-xs font-bold uppercase tracking-wider text-gray-400">
-                          {item.name}
-                        </span>
-                        <Gauge className="w-5 h-5 text-blue-500" />
-                      </div>
+        {/* Tabular Grid Section - 3 Columns */}
+        <div className="grid grid-cols-1 md:grid-cols-3 w-full border-t border-b border-gray-200">
+          {performanceDataList.map((item, idx) => (
+            <motion.div
+              key={item.name}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: idx * 0.1 }}
+              className={`py-8 md:py-12 px-6 xl:px-10 flex flex-col justify-center ${getBorderClasses(idx, performanceDataList.length)}`}
+            >
+              <span className="text-3xl sm:text-4xl font-heading font-semibold text-gray-900 block tracking-tight mb-3">
+                {item.value}
+              </span>
+              <p className="text-[14px] text-gray-600 leading-relaxed m-0">
+                {item.description}
+              </p>
+            </motion.div>
+          ))}
+        </div>
 
-                      <span className="text-2xl font-heading font-bold text-gray-800 dark:text-white block">
-                        {item.value}
-                      </span>
-
-                      <div className="w-full bg-gray-200 dark:bg-slate-950 rounded-full h-2 my-4 overflow-hidden">
-                        <div
-                          className="bg-blue-500 h-2 rounded-full transition-all duration-1000"
-                          style={{ width: `${item.progress}%` }}
-                        />
-                      </div>
-
-                      <p className="text-sm font-medium leading-relaxed mb-6 text-black dark:text-gray-300">
-                        {item.description}
-                      </p>
-
-                      <div className="space-y-2 border-t border-gray-200 dark:border-[#2A2A2A] pt-4">
-                        {item.points.map((pt, pIdx) => (
-                          <div key={pIdx} className="flex items-start gap-2 text-xs font-medium text-black dark:text-gray-300">
-                            <CheckCircle2 className="w-3.5 h-3.5 text-blue-500 shrink-0 mt-0.5" />
-                            <span>{pt}</span>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
-
-            </div>
-          </section>
-        );
-      }}
-    </SectionThemeWrapper>
+      </div>
+    </section>
   );
 }

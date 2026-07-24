@@ -2,8 +2,7 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { TrendingUp, CheckCircle2 } from "lucide-react";
-import SectionThemeWrapper from "@/src/admin/components/SectionThemeWrapper";
+import { TrendingUp } from "lucide-react";
 import EditableText from "@/src/admin/components/EditableText";
 
 type ROICard = {
@@ -12,7 +11,7 @@ type ROICard = {
   label: string;
   title: string;
   summary: string;
-  points: string[];
+  points: string[]; // Kept for data structure, removed from UI to reduce data/height
 };
 
 const roiReportsData: ROICard[] = [
@@ -23,11 +22,7 @@ const roiReportsData: ROICard[] = [
     title: "Cost Avoidance & Productivity Improvements",
     summary:
       "Reports that connect engineering investments to measurable returns across automated testing, defect prevention, and process maturity.",
-    points: [
-      "Cost avoidance and productivity improvements linked to automation and process maturity.",
-      "Release cycle, defect leakage, and operational efficiency metrics.",
-      "Evidence that helps stakeholders evaluate transformation value with confidence.",
-    ],
+    points: [],
   },
   {
     id: "release-speed-efficiency",
@@ -36,101 +31,91 @@ const roiReportsData: ROICard[] = [
     title: "Release Speed & Operational Efficiency",
     summary:
       "Accelerating software release cycles from quarterly drops to daily automated deployments while maintaining zero production outages.",
-    points: [
-      "Shortening sprint testing duration from days to under 2 hours.",
-      "Eliminating manual regression testing bottlenecks with AI automation.",
-      "Increasing feature throughput by 300% without adding headcount.",
-    ],
+    points: [],
   },
 ];
 
+const getBorderClasses = (idx: number, total: number) => {
+  let classes = "border-gray-200 ";
+
+  if (idx < total - 1) classes += "border-b ";
+
+  // desktop: 2 cols
+  if (idx >= total - (total % 2 === 0 ? 2 : total % 2)) classes += "md:border-b-0 ";
+  else classes += "md:border-b ";
+
+  if ((idx + 1) % 2 !== 0) classes += "md:border-r ";
+  else classes += "md:border-r-0 ";
+
+  return classes;
+};
+
 export default function ROICalculatorSection() {
   return (
-    <SectionThemeWrapper sectionId="metrics_roi" defaultTheme="dark">
-      {(theme) => {
-        const isDark = theme === "dark";
-        return (
-          <section
-            id="roi-reports"
-            className={`py-12 lg:py-16 transition-colors duration-300 border-b scroll-mt-20 ${
-              isDark
-                ? "bg-[#0D0D0D] text-[#FAFAFA] border-[#2A2A2A]"
-                : "bg-[#F0F4F8] text-[#121212] border-gray-200"
-            }`}
-          >
-            <div className="max-w-[1600px] mx-auto px-6 sm:px-8 lg:px-16">
-              
-              <div className="mb-12 max-w-3xl">
-                <h2 className="text-4xl sm:text-5xl lg:text-6xl font-heading font-normal tracking-tight leading-[1.1] text-gray-800 dark:text-white">
-                  <EditableText
-                    path="metrics.roi.title"
-                    fallback="ROI Reports & Financial Impact"
-                    as="span"
-                  />
-                </h2>
-                <p className="mt-3 text-base sm:text-lg font-medium text-black dark:text-gray-300">
-                  <EditableText
-                    path="metrics.roi.subtitle"
-                    fallback="Reports that connect engineering investments to measurable financial and operational returns."
-                    as="span"
-                  />
+    <section id="roi-reports" className="py-12 lg:py-16 bg-[#FAFAFA] border-b border-gray-100 scroll-mt-20">
+      <div className="max-w-[1600px] mx-auto px-6 sm:px-8 lg:px-16">
+        
+        {/* Header - LHS/RHS Split */}
+        <div className="mb-8 lg:mb-10 grid lg:grid-cols-2 gap-8 lg:gap-16 items-start">
+          <div>
+            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-heading font-medium tracking-tight leading-[1.15] text-gray-900">
+              <EditableText
+                path="metrics.roi.title"
+                fallback="ROI Reports & Financial Impact"
+                as="span"
+              />
+            </h2>
+          </div>
+          <div className="lg:pt-4">
+            <p className="text-base sm:text-lg leading-relaxed text-[#5A5A5A]">
+              <EditableText
+                path="metrics.roi.subtitle"
+                fallback="Reports that connect engineering investments to measurable financial and operational returns."
+                as="span"
+              />
+            </p>
+          </div>
+        </div>
+
+        {/* Tabular Grid Section - Compact & No Hover */}
+        <div className="grid grid-cols-1 md:grid-cols-2 w-full border-t border-b border-gray-200">
+          {roiReportsData.map((item, idx) => (
+            <motion.div
+              key={item.id}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: idx * 0.05, duration: 0.5 }}
+              className={`py-8 md:py-10 px-6 xl:px-10 flex flex-col justify-between ${getBorderClasses(idx, roiReportsData.length)}`}
+            >
+              <div>
+                <div className="flex items-center justify-between mb-6">
+                  <div className="p-3 rounded-full border border-gray-200 text-gray-800">
+                    <TrendingUp className="w-5 h-5" />
+                  </div>
+                  <div className="text-right">
+                    <span className="text-3xl sm:text-4xl font-heading font-normal text-gray-900 block tracking-tight">
+                      {item.metric}
+                    </span>
+                    <span className="text-[10px] font-bold text-gray-600 uppercase tracking-widest mt-1 block">
+                      {item.label}
+                    </span>
+                  </div>
+                </div>
+
+                <h3 className="font-heading text-xl md:text-2xl font-semibold mb-4 text-gray-900 leading-snug">
+                  {item.title}
+                </h3>
+
+                <p className="text-[14px] text-gray-600 leading-relaxed m-0">
+                  {item.summary}
                 </p>
               </div>
+            </motion.div>
+          ))}
+        </div>
 
-              <div className="grid gap-8 md:grid-cols-2">
-                {roiReportsData.map((item, idx) => (
-                  <motion.div
-                    key={item.id}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: idx * 0.1 }}
-                    className={`rounded-xl border p-8 flex flex-col justify-between transition-all hover:-translate-y-1 ${
-                      isDark
-                        ? "bg-[#1A1A1A] border-[#2A2A2A] hover:bg-[#222]"
-                        : "bg-white border-gray-200 shadow-sm hover:shadow-lg"
-                    }`}
-                  >
-                    <div>
-                      <div className="flex items-center justify-between mb-6">
-                        <div className="p-3 rounded-lg bg-blue-500/10 border border-blue-500/20 text-blue-500">
-                          <TrendingUp className="w-6 h-6" />
-                        </div>
-                        <div className="text-right">
-                          <span className="text-3xl font-heading font-extrabold text-blue-500 block">
-                            {item.metric}
-                          </span>
-                          <span className="text-[11px] font-bold text-gray-400 uppercase tracking-wider">
-                            {item.label}
-                          </span>
-                        </div>
-                      </div>
-
-                      <h3 className="font-heading text-xl md:text-2xl font-medium mt-1 mb-3 text-gray-800 dark:text-white">
-                        {item.title}
-                      </h3>
-
-                      <p className="text-sm font-medium leading-relaxed mb-6 text-black dark:text-gray-300">
-                        {item.summary}
-                      </p>
-
-                      <div className="space-y-2 border-t border-gray-200 dark:border-[#2A2A2A] pt-4">
-                        {item.points.map((pt, pIdx) => (
-                          <div key={pIdx} className="flex items-start gap-2 text-xs font-medium text-black dark:text-gray-300">
-                            <CheckCircle2 className="w-3.5 h-3.5 text-blue-500 shrink-0 mt-0.5" />
-                            <span>{pt}</span>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
-
-            </div>
-          </section>
-        );
-      }}
-    </SectionThemeWrapper>
+      </div>
+    </section>
   );
 }

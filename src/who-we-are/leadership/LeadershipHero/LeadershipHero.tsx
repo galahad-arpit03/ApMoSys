@@ -43,7 +43,7 @@ export default function LeadershipHero() {
             <h1 className="text-4xl sm:text-5xl lg:text-7xl font-heading font-normal tracking-tight mb-6 leading-[1.1] text-gray-800 drop-shadow-sm">
               <EditableText
                 path="leadership.hero.heading1"
-                fallback="Our Leadership"
+                fallback="Leadership"
                 as="span"
               />{' '}
               <EditableText

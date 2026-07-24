@@ -132,11 +132,18 @@ export default function RoadmapSection() {
                     variants={fadeUp}
                     whileHover={{ y: 0 }}
                     transition={{ duration: 0.3 }}
-                    className={`group py-8 md:py-10 px-6 xl:px-10 flex flex-col sm:flex-row lg:flex-col xl:flex-row items-start gap-5 transition-colors relative ${
+                    className={`group py-8 md:py-10 px-6 xl:px-10 flex flex-col sm:flex-row lg:flex-col xl:flex-row items-start gap-5 transition-colors relative overflow-hidden ${
                       isDark ? "hover:bg-[#121B31]/50" : "hover:bg-gray-100/50"
                     } ${getBorderClasses(index, steps.length, isDark)}`}
                   >
-                    <div>
+                    {/* Big background number */}
+                    <span className={`absolute -top-6 -right-4 text-[120px] leading-none font-semibold pointer-events-none select-none transition-colors ${
+                      isDark ? 'text-white/5 group-hover:text-white/10' : 'text-gray-200 group-hover:text-gray-300'
+                    }`}>
+                      {step.num}
+                    </span>
+
+                    <div className="relative z-10">
                       <EditableText
                         path={step.titlePath}
                         fallback={step.fallbackTitle}

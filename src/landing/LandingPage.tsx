@@ -45,7 +45,7 @@ export default function LandingPage() {
       {/* Footer CTAs */}
       <CareersCTA />
       <div className="bg-white">
-        <InquirySection />
+        {/* <InquirySection /> */}
       </div>
     </div>
   );
