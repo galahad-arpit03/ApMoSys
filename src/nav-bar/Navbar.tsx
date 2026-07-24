@@ -135,21 +135,31 @@ export default function Navbar() {
           {/* Desktop Navigation Links */}
           <div className="hidden lg:flex items-center justify-center space-x-1 z-50 h-full">
             {navigationItems.map((item) => {
+              const isPathActive = (href?: string, currentPath?: string | null) => {
+                if (!href || href === "" || href === "#" || !currentPath) return false;
+                if (currentPath === href) return true;
+                if (href !== "/" && currentPath.startsWith(href)) return true;
+                return false;
+              };
+
               const checkIsActive = () => {
-                if (pathname === item.href || (item.href !== "/" && pathname?.startsWith(item.href))) return true;
+                if (isPathActive(item.href, pathname)) return true;
                 const dropData = megaMenuData[item.label];
                 if (dropData) {
-                  if (pathname === dropData.linkHref || (dropData.linkHref !== "/" && pathname?.startsWith(dropData.linkHref))) return true;
+                  if (isPathActive(dropData.linkHref, pathname)) return true;
                   if (dropData.categories) {
                     for (const cat of dropData.categories) {
-                      for (const sub of cat.subLinks) {
-                        if (pathname === sub.href || (sub.href !== "/" && pathname?.startsWith(sub.href))) return true;
+                      if (isPathActive(cat.href, pathname)) return true;
+                      if (cat.subLinks) {
+                        for (const sub of cat.subLinks) {
+                          if (isPathActive(sub.href, pathname)) return true;
+                        }
                       }
                     }
                   }
                   if (dropData.menuItems) {
                     for (const mi of dropData.menuItems) {
-                      if (pathname === mi.href || (mi.href !== "/" && pathname?.startsWith(mi.href))) return true;
+                      if (isPathActive(mi.href, pathname)) return true;
                     }
                   }
                 }
@@ -451,21 +461,31 @@ export default function Navbar() {
             className="lg:hidden bg-[#0F172A] border-b border-gray-800 px-4 pt-2 pb-6 space-y-2 overflow-y-auto max-h-[calc(100vh-3.5rem)]"
           >
           {navigationItems.map((item) => {
+            const isPathActive = (href?: string, currentPath?: string | null) => {
+              if (!href || href === "" || href === "#" || !currentPath) return false;
+              if (currentPath === href) return true;
+              if (href !== "/" && currentPath.startsWith(href)) return true;
+              return false;
+            };
+
             const checkIsActive = () => {
-              if (pathname === item.href || (item.href !== "/" && pathname?.startsWith(item.href))) return true;
+              if (isPathActive(item.href, pathname)) return true;
               const dropData = megaMenuData[item.label];
               if (dropData) {
-                if (pathname === dropData.linkHref || (dropData.linkHref !== "/" && pathname?.startsWith(dropData.linkHref))) return true;
+                if (isPathActive(dropData.linkHref, pathname)) return true;
                 if (dropData.categories) {
                   for (const cat of dropData.categories) {
-                    for (const sub of cat.subLinks) {
-                      if (pathname === sub.href || (sub.href !== "/" && pathname?.startsWith(sub.href))) return true;
+                    if (isPathActive(cat.href, pathname)) return true;
+                    if (cat.subLinks) {
+                      for (const sub of cat.subLinks) {
+                        if (isPathActive(sub.href, pathname)) return true;
+                      }
                     }
                   }
                 }
                 if (dropData.menuItems) {
                   for (const mi of dropData.menuItems) {
-                    if (pathname === mi.href || (mi.href !== "/" && pathname?.startsWith(mi.href))) return true;
+                    if (isPathActive(mi.href, pathname)) return true;
                   }
                 }
               }
