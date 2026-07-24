@@ -68,12 +68,11 @@ export default function UpcomingEventsGrid() {
   return (
     <section id="events-overview" className="py-10 lg:py-16 bg-white border-b border-gray-100">
       <div className="max-w-[1600px] mx-auto px-6 sm:px-8 lg:px-16">
-        {/* Split Header - No Eyebrow */}
+        {/* Split Header - Single-colored Heading */}
         <div className="mb-12 lg:mb-16 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
           <div className="lg:col-span-5">
             <h2 className="font-heading text-4xl sm:text-5xl lg:text-6xl font-normal text-black leading-[1.1]">
-              Join Us at Our <br className="hidden lg:block" />
-              <span className="text-[#2563EB]">Next Tech Events</span>
+              Join Us at Our Next Tech Events
             </h2>
           </div>
           <div className="lg:col-span-7">
@@ -94,10 +93,10 @@ export default function UpcomingEventsGrid() {
                 exit={{ opacity: 0, scale: 0.95 }}
                 layout
                 transition={{ duration: 0.4, delay: index * 0.05 }}
-                className="group bg-white border border-gray-200 rounded-md p-8 hover:border-[#2563EB]/40 hover:shadow-lg transition-all hover:-translate-y-1 flex flex-col relative"
+                className="group bg-white border border-gray-200 rounded-md p-8 hover:border-[#242A56]/40 hover:shadow-lg transition-all hover:-translate-y-1 flex flex-col relative"
               >
                 {/* Title */}
-                <h3 className="text-base xl:text-lg font-medium text-black mb-3 group-hover:text-[#2563EB] transition-colors">
+                <h3 className="text-base xl:text-lg font-medium text-black mb-3 group-hover:text-[#242A56] transition-colors">
                   {event.title}
                 </h3>
 
@@ -109,15 +108,15 @@ export default function UpcomingEventsGrid() {
                 {/* Event Meta */}
                 <div className="mt-6 space-y-2 border-t border-gray-100 pt-4">
                   <div className="flex items-center gap-2 text-xs text-gray-500">
-                    <Calendar className="w-3.5 h-3.5 text-[#2563EB]" />
+                    <Calendar className="w-3.5 h-3.5 text-gray-400" />
                     <span>{event.date}</span>
                   </div>
                   <div className="flex items-center gap-2 text-xs text-gray-500">
-                    <Clock className="w-3.5 h-3.5 text-[#2563EB]" />
+                    <Clock className="w-3.5 h-3.5 text-gray-400" />
                     <span>{event.time}</span>
                   </div>
                   <div className="flex items-center gap-2 text-xs text-gray-500">
-                    <MapPin className="w-3.5 h-3.5 text-[#2563EB]" />
+                    <MapPin className="w-3.5 h-3.5 text-gray-400" />
                     <span>{event.location}</span>
                   </div>
                 </div>
@@ -126,7 +125,7 @@ export default function UpcomingEventsGrid() {
                 <div className="pt-4 mt-2 border-t border-gray-100">
                   <a
                     href="#register"
-                    className="inline-flex items-center text-sm font-bold text-[#2563EB] hover:text-[#1E234B] transition-colors group/link"
+                    className="inline-flex items-center text-sm font-bold text-[#242A56] hover:text-black transition-colors group/link"
                   >
                     Register Now
                     <ArrowRight className="w-4 h-4 ml-2 transform group-hover/link:translate-x-1 transition-transform" />
@@ -162,7 +161,7 @@ export default function UpcomingEventsGrid() {
                   onClick={() => setCurrentPage(pNum)}
                   className={`w-10 h-10 rounded-md text-sm font-bold transition-all cursor-pointer ${
                     currentPage === pNum
-                      ? "bg-[#2563EB] text-white shadow-[0_0_20px_rgba(37,99,235,0.2)]"
+                      ? "bg-[#242A56] text-white shadow-md"
                       : "border border-gray-300 text-gray-600 hover:bg-gray-100"
                   }`}
                 >

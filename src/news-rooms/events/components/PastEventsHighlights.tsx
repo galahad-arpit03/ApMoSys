@@ -39,12 +39,11 @@ export default function PastEventsHighlights() {
   return (
     <section className="py-10 lg:py-16 bg-white border-b border-gray-100">
       <div className="max-w-[1600px] mx-auto px-6 sm:px-8 lg:px-16">
-        {/* Split Header - No Eyebrow */}
+        {/* Split Header - Single-colored Heading */}
         <div className="mb-12 lg:mb-16 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
           <div className="lg:col-span-5">
             <h2 className="font-heading text-4xl sm:text-5xl lg:text-6xl font-normal text-black leading-[1.1]">
-              Highlights from <br className="hidden lg:block" />
-              <span className="text-[#2563EB]">Our Previous Events</span>
+              Highlights from Our Previous Events
             </h2>
           </div>
           <div className="lg:col-span-7">
@@ -63,7 +62,7 @@ export default function PastEventsHighlights() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: idx * 0.1, duration: 0.5 }}
-              className="group bg-white border border-gray-200 rounded-md overflow-hidden hover:border-[#2563EB]/30 hover:shadow-lg transition-all hover:-translate-y-1"
+              className="group bg-white border border-gray-200 rounded-md overflow-hidden hover:border-[#242A56]/30 hover:shadow-lg transition-all hover:-translate-y-1"
             >
               <div className="relative w-full aspect-video bg-gray-100 overflow-hidden">
                 <img
@@ -74,20 +73,20 @@ export default function PastEventsHighlights() {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               </div>
               <div className="p-6">
-                <h3 className="text-base xl:text-lg font-medium text-black mb-2 group-hover:text-[#2563EB] transition-colors">
+                <h3 className="text-base xl:text-lg font-medium text-black mb-2 group-hover:text-[#242A56] transition-colors">
                   {event.title}
                 </h3>
                 <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-gray-500 mb-3">
                   <span className="flex items-center gap-1">
-                    <Calendar className="w-3.5 h-3.5 text-[#2563EB]" />
+                    <Calendar className="w-3.5 h-3.5 text-gray-400" />
                     {event.date}
                   </span>
                   <span className="flex items-center gap-1">
-                    <MapPin className="w-3.5 h-3.5 text-[#2563EB]" />
+                    <MapPin className="w-3.5 h-3.5 text-gray-400" />
                     {event.location}
                   </span>
                   <span className="flex items-center gap-1">
-                    <Users className="w-3.5 h-3.5 text-[#2563EB]" />
+                    <Users className="w-3.5 h-3.5 text-gray-400" />
                     {event.attendees}
                   </span>
                 </div>
@@ -97,7 +96,7 @@ export default function PastEventsHighlights() {
                 <div className="mt-4 pt-4 border-t border-gray-100">
                   <a
                     href="#"
-                    className="inline-flex items-center text-sm font-bold text-[#2563EB] hover:text-[#1E234B] transition-colors group/link"
+                    className="inline-flex items-center text-sm font-bold text-[#242A56] hover:text-black transition-colors group/link"
                   >
                     <Play className="w-3.5 h-3.5 mr-2" />
                     View Highlights

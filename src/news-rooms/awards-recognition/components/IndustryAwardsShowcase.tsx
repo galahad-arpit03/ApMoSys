@@ -12,54 +12,48 @@ const awardsOverviewItems = [
     title: "Best Enterprise Quality Engineering Provider",
     description: "Acknowledged by Global Tech Excellence Forum for performance across automated testing, continuous integration, and zero-defect delivery standards.",
     icon: Trophy,
-    badge: "2025 Winner",
     linkText: "View Recognition",
-    linkHref: "#awards-timeline",
+    linkHref: "#awards-overview",
   },
   {
     id: "ai-automation-innovator",
     title: "AI Test Automation Pioneer Award",
     description: "Awarded by Digital Assurance Leadership Summit for self-healing automation frameworks that drastically reduce test script maintenance.",
     icon: Sparkles,
-    badge: "Innovation Award",
     linkText: "View Citation",
-    linkHref: "#awards-timeline",
+    linkHref: "#awards-overview",
   },
   {
     id: "cloud-reliability-2024",
     title: "Cloud Migration Assurance Partner of the Year",
     description: "Recognized for pre-migration risk validation, continuous performance testing, and chaos engineering for mission-critical banking platforms.",
     icon: Shield,
-    badge: "Cloud Assurance",
     linkText: "View Achievement",
-    linkHref: "#awards-timeline",
+    linkHref: "#awards-overview",
   },
   {
     id: "devsecops-excellence",
     title: "DevSecOps Security Governance Excellence",
     description: "Honored for integrating continuous security scanning, automated compliance checks, and policy enforcement into enterprise CI/CD pipelines.",
     icon: Award,
-    badge: "Security Leadership",
     linkText: "View Details",
-    linkHref: "#awards-timeline",
+    linkHref: "#awards-overview",
   },
   {
     id: "customer-trust-award",
     title: "Enterprise Customer Trust & Reliability Award",
     description: "Voted by enterprise CIOs for outstanding operational uptime, delivery reliability, and transparent SLA compliance across multi-year engagements.",
     icon: CheckCircle,
-    badge: "Customer Choice",
     linkText: "Read Story",
-    linkHref: "#awards-timeline",
+    linkHref: "#awards-overview",
   },
   {
     id: "green-engineering-milestone",
     title: "Sustainable Software & Infrastructure Leader",
     description: "Recognized for eco-friendly cloud lab optimization, reduced test suite compute overhead, and energy-efficient automation execution.",
     icon: Flame,
-    badge: "Sustainability",
     linkText: "Explore Milestone",
-    linkHref: "#awards-timeline",
+    linkHref: "#awards-overview",
   },
 ];
 
@@ -74,7 +68,7 @@ export default function IndustryAwardsShowcase() {
   return (
     <section id="awards-overview" className="py-10 lg:py-16 bg-white border-b border-gray-100">
       <div className="max-w-[1600px] mx-auto px-6 sm:px-8 lg:px-16">
-        {/* Split Header */}
+        {/* Split Header - Single-colored Heading */}
         <div className="mb-12 lg:mb-16 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
           <div className="lg:col-span-5">
             <h2 className="font-heading text-4xl sm:text-5xl lg:text-6xl font-normal text-black leading-[1.1]">
@@ -101,16 +95,13 @@ export default function IndustryAwardsShowcase() {
                   exit={{ opacity: 0, scale: 0.95 }}
                   layout
                   transition={{ duration: 0.4, delay: index * 0.05 }}
-                  className="group bg-white border border-gray-200 rounded-md p-8 hover:border-[#2563EB]/40 hover:shadow-lg transition-all hover:-translate-y-1 flex flex-col h-full relative"
+                  className="group bg-white border border-gray-200 rounded-md p-8 hover:border-[#242A56]/40 hover:shadow-lg transition-all hover:-translate-y-1 flex flex-col h-full relative"
                 >
-                  <span className="absolute top-4 right-4 text-[10px] font-bold text-[#2563EB] bg-[#2563EB]/10 px-3 py-1 rounded-full uppercase tracking-wider">
-                    {item.badge}
-                  </span>
-                  <div className="w-14 h-14 rounded-md bg-[#2563EB]/10 border border-[#2563EB]/20 flex items-center justify-center text-[#2563EB] mb-6 group-hover:bg-[#2563EB] group-hover:text-white transition-colors">
+                  <div className="w-14 h-14 rounded-md bg-[#242A56]/10 border border-[#242A56]/20 flex items-center justify-center text-[#242A56] mb-6 group-hover:bg-[#242A56] group-hover:text-white transition-colors">
                     <IconComponent className="w-7 h-7" strokeWidth={1.5} />
                   </div>
 
-                  <h3 className="text-base xl:text-lg font-medium text-black mb-3 group-hover:text-[#2563EB] transition-colors">
+                  <h3 className="text-base xl:text-lg font-medium text-black mb-3 group-hover:text-[#242A56] transition-colors">
                     {item.title}
                   </h3>
 
@@ -121,7 +112,7 @@ export default function IndustryAwardsShowcase() {
                   <div className="pt-6 border-t border-gray-200 mt-auto">
                     <a
                       href={item.linkHref}
-                      className="inline-flex items-center text-sm font-bold text-black hover:text-[#2563EB] transition-colors group/link"
+                      className="inline-flex items-center text-sm font-bold text-[#242A56] hover:text-black transition-colors group/link"
                     >
                       {item.linkText}
                       <ArrowRight className="w-4 h-4 ml-2 transform group-hover/link:translate-x-1 transition-transform" />
@@ -158,7 +149,7 @@ export default function IndustryAwardsShowcase() {
                   onClick={() => setCurrentPage(pNum)}
                   className={`w-10 h-10 rounded-md text-sm font-bold transition-all cursor-pointer ${
                     currentPage === pNum
-                      ? "bg-[#2563EB] text-white shadow-[0_0_20px_rgba(37,99,235,0.2)]"
+                      ? "bg-[#242A56] text-white shadow-md"
                       : "border border-gray-300 text-gray-600 hover:bg-gray-100"
                   }`}
                 >

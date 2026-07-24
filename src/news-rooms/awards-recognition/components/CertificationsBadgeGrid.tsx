@@ -10,21 +10,18 @@ const certificationApproaches = [
     title: "ISO 27001 & ISO 9001 Certified",
     description: "Certified information security and quality management systems guaranteeing strict data governance, physical security, and operational rigor.",
     icon: ShieldCheck,
-    badge: "Security Standard",
   },
   {
     id: "soc-compliance",
     title: "SOC 2 Type II Certified",
     description: "Independently audited controls covering security, availability, processing integrity, confidentiality, and privacy for cloud delivery.",
     icon: Lock,
-    badge: "Audited Controls",
   },
   {
     id: "cmmi-level-5",
     title: "CMMI Level 5 Maturity Rating",
     description: "Highest process maturity standard validating continuous process optimization, quantitative performance management, and flaw-free delivery.",
     icon: Award,
-    badge: "Process Excellence",
   },
 ];
 
@@ -32,11 +29,10 @@ export default function CertificationsBadgeGrid() {
   return (
     <section id="awards-certifications" className="py-10 lg:py-16 bg-[#0A1128] border-b border-[#1A264A] relative overflow-hidden">
       {/* Ambient Glows */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#2563EB]/10 rounded-full blur-[120px] pointer-events-none" />
-      <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-[#2563EB]/5 rounded-full blur-[80px] pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#242A56]/20 rounded-full blur-[120px] pointer-events-none" />
 
       <div className="max-w-[1600px] mx-auto px-6 sm:px-8 lg:px-16 relative z-10">
-        {/* Split Header */}
+        {/* Split Header - Single-colored Heading */}
         <div className="mb-12 lg:mb-16 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
           <div className="lg:col-span-5">
             <h2 className="font-heading text-4xl sm:text-5xl lg:text-6xl font-normal text-white leading-[1.1]">
@@ -61,20 +57,15 @@ export default function CertificationsBadgeGrid() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: idx * 0.1, duration: 0.5 }}
-                className="group relative bg-[#121B38] border border-[#1A264A] rounded-md p-8 hover:border-[#2563EB]/40 hover:shadow-[0_0_40px_rgba(37,99,235,0.05)] transition-all hover:-translate-y-1"
+                className="group relative bg-[#121B38] border border-[#1A264A] rounded-md p-8 hover:border-[#242A56] hover:shadow-lg transition-all hover:-translate-y-1"
               >
-                {/* Step / Category Badge */}
-                <div className="absolute top-4 right-4 text-[10px] font-bold text-[#2563EB] bg-[#2563EB]/10 px-3 py-1 rounded-full uppercase tracking-wider">
-                  {item.badge}
-                </div>
-
                 {/* Icon */}
-                <div className="w-14 h-14 rounded-md bg-[#2563EB]/10 border border-[#2563EB]/20 flex items-center justify-center text-[#2563EB] mb-5 group-hover:bg-[#2563EB] group-hover:text-white transition-colors">
+                <div className="w-14 h-14 rounded-md bg-white/5 border border-white/10 flex items-center justify-center text-white mb-5 group-hover:bg-white group-hover:text-[#0A1128] transition-colors">
                   <Icon className="w-7 h-7" strokeWidth={1.5} />
                 </div>
 
                 {/* Title */}
-                <h3 className="text-base xl:text-lg font-medium text-white mb-3 group-hover:text-[#2563EB] transition-colors">
+                <h3 className="text-base xl:text-lg font-medium text-white mb-3 group-hover:text-gray-200 transition-colors">
                   {item.title}
                 </h3>
 
@@ -82,9 +73,6 @@ export default function CertificationsBadgeGrid() {
                 <p className="text-[13px] xl:text-[14px] text-gray-300 leading-snug">
                   {item.description}
                 </p>
-
-                {/* Decorative line on hover */}
-                <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-[#2563EB]/0 via-[#2563EB]/50 to-[#2563EB]/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               </motion.div>
             );
           })}

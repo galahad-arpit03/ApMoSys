@@ -70,14 +70,8 @@ export default function AwardsHero() {
                   >
                     <EditableText
                       path="awards.hero.heading1"
-                      fallback="Recognized for Engineering"
+                      fallback="Recognized for Engineering Excellence & Innovation"
                       as="span"
-                    />{" "}
-                    <EditableText
-                      path="awards.hero.heading2"
-                      fallback="Excellence & Innovation"
-                      as="span"
-                      className="text-[#242A56] drop-shadow-md"
                     />
                   </motion.h1>
 
@@ -113,7 +107,7 @@ export default function AwardsHero() {
                       href="#awards-timeline"
                       className="inline-flex items-center justify-center gap-2 border border-slate-300 text-slate-700 hover:border-[#242A56] hover:text-[#242A56] font-bold text-sm px-8 py-3.5 rounded-md transition-colors duration-200"
                     >
-                      <EditableText path="awards.hero.ctaSecondary" fallback="View Achievement Timeline" as="span" />
+                      <EditableText path="awards.hero.ctaSecondary" fallback="View Key Achievements" as="span" />
                     </a>
                   </motion.div>
                 </motion.div>

@@ -60,9 +60,9 @@ const Counter = ({ end, suffix }: { end: number; suffix: string }) => {
   }, [isInView, end]);
 
   return (
-    <span ref={ref} className="text-5xl sm:text-6xl font-light tracking-tight">
+    <span ref={ref} className="text-5xl sm:text-6xl font-light tracking-tight text-white">
       {count}
-      <span className="text-[#2563EB]">{suffix}</span>
+      <span className="text-gray-300">{suffix}</span>
     </span>
   );
 };
@@ -90,11 +90,11 @@ export default function PartnerAccoladesWall() {
     <section id="awards-impact" className="py-10 lg:py-16 bg-[#0A1128] border-t border-[#1A264A] relative overflow-hidden">
       {/* Subtle atmospheric background for dark mode */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-0 right-0 w-[600px] h-[600px] rounded-full blur-[100px] pointer-events-none -translate-y-1/2 translate-x-1/3 bg-blue-600/20" />
-        <div className="absolute bottom-0 left-0 w-[600px] h-[600px] rounded-full blur-[100px] pointer-events-none translate-y-1/2 -translate-x-1/3 bg-blue-600/10" />
+        <div className="absolute top-0 right-0 w-[600px] h-[600px] rounded-full blur-[100px] pointer-events-none -translate-y-1/2 translate-x-1/3 bg-blue-600/10" />
       </div>
 
       <div className="max-w-[1600px] mx-auto px-6 sm:px-8 lg:px-16 relative z-10">
+        {/* Split Header - Single-colored Heading */}
         <div className="flex flex-col lg:flex-row lg:items-start justify-between gap-8 mb-10 sm:mb-16">
           <div className="shrink-0">
             <h2 className="text-4xl sm:text-5xl lg:text-6xl font-heading font-normal tracking-tight leading-[1.1] text-white">
@@ -123,7 +123,7 @@ export default function PartnerAccoladesWall() {
                   achievementMetrics.length
                 )}`}
               >
-                <div className="w-12 h-12 rounded-md bg-[#2563EB]/10 border border-[#2563EB]/20 flex items-center justify-center text-[#2563EB] group-hover:bg-[#2563EB] group-hover:text-white transition-colors">
+                <div className="w-12 h-12 rounded-md bg-white/5 border border-white/10 flex items-center justify-center text-white group-hover:bg-white group-hover:text-[#0A1128] transition-colors">
                   <Icon className="w-6 h-6" strokeWidth={1.5} />
                 </div>
 
@@ -131,7 +131,7 @@ export default function PartnerAccoladesWall() {
                   <Counter end={metric.value} suffix={metric.suffix} />
                 </div>
 
-                <h3 className="text-sm font-bold text-gray-200 group-hover:text-[#2563EB] transition-colors">
+                <h3 className="text-sm font-bold text-gray-200 group-hover:text-white transition-colors">
                   {metric.label}
                 </h3>
 

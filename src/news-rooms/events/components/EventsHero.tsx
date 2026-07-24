@@ -70,14 +70,8 @@ export default function EventsHero() {
                   >
                     <EditableText
                       path="events.hero.heading1"
-                      fallback="Innovating Together Through"
+                      fallback="Innovating Together Through Tech Summits & Keynotes"
                       as="span"
-                    />{" "}
-                    <EditableText
-                      path="events.hero.heading2"
-                      fallback="Tech Summits & Keynotes"
-                      as="span"
-                      className="text-[#242A56] drop-shadow-md"
                     />
                   </motion.h1>
 

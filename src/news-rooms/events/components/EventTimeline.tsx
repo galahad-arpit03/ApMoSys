@@ -77,18 +77,16 @@ export default function EventTimeline() {
       onMouseLeave={() => setIsPaused(false)}
     >
       {/* Subtle background glow */}
-      <div className="absolute inset-0 opacity-[0.05] pointer-events-none">
-        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#2563EB] rounded-full blur-[120px]" />
-        <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-[#2563EB] rounded-full blur-[120px]" />
+      <div className="absolute inset-0 opacity-[0.03] pointer-events-none">
+        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#242A56] rounded-full blur-[120px]" />
       </div>
 
       <div className="max-w-[1600px] mx-auto px-6 sm:px-8 lg:px-16 relative z-10">
-        {/* Split Header - No Eyebrow */}
+        {/* Split Header - Single-colored Heading */}
         <div className="mb-8 lg:mb-10 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
           <div className="lg:col-span-5">
             <h2 className="font-heading text-4xl sm:text-5xl lg:text-6xl font-normal text-white leading-[1.1]">
-              Our Annual <br className="hidden lg:block" />
-              <span className="text-[#2563EB]">Event Calendar</span>
+              Our Annual Event Calendar
             </h2>
           </div>
           <div className="lg:col-span-7">
@@ -122,7 +120,7 @@ export default function EventTimeline() {
               </motion.div>
             </AnimatePresence>
 
-            {/* Content Overlay - Bottom Left (No Eyebrow/Badge) */}
+            {/* Content Overlay - Bottom Left */}
             <div className="absolute bottom-0 left-0 p-6 sm:p-8 lg:p-10 max-w-2xl z-10">
               <AnimatePresence mode="wait">
                 <motion.div
@@ -155,15 +153,15 @@ export default function EventTimeline() {
                 >
                   <div className="space-y-2">
                     <div className="flex items-center gap-2 text-sm text-gray-300">
-                      <Calendar className="w-4 h-4 text-[#2563EB]" />
+                      <Calendar className="w-4 h-4 text-gray-400" />
                       <span>{currentEvent.date}</span>
                     </div>
                     <div className="flex items-center gap-2 text-sm text-gray-300">
-                      <MapPin className="w-4 h-4 text-[#2563EB]" />
+                      <MapPin className="w-4 h-4 text-gray-400" />
                       <span>{currentEvent.location}</span>
                     </div>
                     <div className="flex items-center gap-2 text-sm text-gray-300">
-                      <Users className="w-4 h-4 text-[#2563EB]" />
+                      <Users className="w-4 h-4 text-gray-400" />
                       <span>{currentEvent.attendees} Attendees</span>
                     </div>
                   </div>
@@ -175,14 +173,14 @@ export default function EventTimeline() {
           {/* Navigation Arrows */}
           <button
             onClick={prevSlide}
-            className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-[#121B38]/80 backdrop-blur-sm border border-[#1A264A] text-white hover:bg-[#2563EB] hover:border-[#2563EB] transition-all z-20 flex items-center justify-center opacity-0 group-hover/carousel:opacity-100 transition-opacity duration-300"
+            className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-[#121B38]/80 backdrop-blur-sm border border-[#1A264A] text-white hover:bg-white hover:text-[#0A1128] transition-all z-20 flex items-center justify-center opacity-0 group-hover/carousel:opacity-100 transition-opacity duration-300"
             aria-label="Previous event"
           >
             <ChevronLeft className="w-5 h-5" />
           </button>
           <button
             onClick={nextSlide}
-            className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-[#121B38]/80 backdrop-blur-sm border border-[#1A264A] text-white hover:bg-[#2563EB] hover:border-[#2563EB] transition-all z-20 flex items-center justify-center opacity-0 group-hover/carousel:opacity-100 transition-opacity duration-300"
+            className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-[#121B38]/80 backdrop-blur-sm border border-[#1A264A] text-white hover:bg-white hover:text-[#0A1128] transition-all z-20 flex items-center justify-center opacity-0 group-hover/carousel:opacity-100 transition-opacity duration-300"
             aria-label="Next event"
           >
             <ChevronRight className="w-5 h-5" />
@@ -191,7 +189,7 @@ export default function EventTimeline() {
           {/* Progress Bar */}
           <div className="absolute bottom-0 left-0 right-0 h-1 bg-[#1A264A] z-20">
             <motion.div
-              className="h-full bg-[#2563EB] rounded-full"
+              className="h-full bg-white/40 rounded-full"
               initial={{ width: "0%" }}
               animate={{ width: "100%" }}
               transition={{ duration: 5, ease: "linear" }}
@@ -208,7 +206,7 @@ export default function EventTimeline() {
               onClick={() => goToSlide(idx)}
               className={`rounded-full transition-all duration-300 ${
                 idx === currentIndex
-                  ? "w-8 h-2.5 bg-[#2563EB]"
+                  ? "w-8 h-2.5 bg-white"
                   : "w-2.5 h-2.5 bg-gray-600 hover:bg-gray-400"
               }`}
               aria-label={`Go to event ${idx + 1}`}
