@@ -1,172 +1,88 @@
 "use client";
-import React, { useRef, useState, useEffect } from "react";
-import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
-import { ChevronLeft, ChevronRight } from "lucide-react";
-
-const slides = [
-  {
-    src: "/landing/Hero/1.jpeg",
-    title: "Engineering Digital Excellence",
-    desc: "Transforming enterprises through AI, Automation, Cloud & Quality Engineering.",
-    imageClass: "object-cover object-center",
-  },
-  {
-    src: "/landing/Hero/3.png",
-    title: "People Behind Every Innovation",
-    desc: "Experienced engineers building next-generation enterprise solutions.",
-    imageClass: "object-cover object-center",
-  },
-  {
-    src: "/landing/Hero/4.png",
-    title: "Recognized for Excellence",
-    desc: "Awards and industry recognition that reflect our commitment to innovation.",
-    imageClass: "object-contain py-10",
-  },
-  {
-    src: "/landing/Hero/5.png",
-    title: "Trusted by Industry & Government",
-    desc: "Collaborating with leaders to shape the future of digital transformation.",
-    imageClass: "object-cover object-center",
-  },
-  {
-    src: "/landing/Hero/7.png",
-    title: "Innovation Beyond Boundaries",
-    desc: "Creating intelligent platforms that solve complex enterprise challenges.",
-    imageClass: "object-cover object-center",
-  },
-  {
-    src: "/landing/Hero/8.jpeg",
-    title: "Your Technology Partner for Growth",
-    desc: "Helping organizations innovate faster, scale smarter, and deliver with confidence.",
-    imageClass: "object-cover object-center",
-  },
-];
-
-const variants = {
-  enter: (direction: number) => ({
-    x: direction > 0 ? "100%" : "-100%",
-    opacity: 0,
-  }),
-  center: {
-    x: 0,
-    opacity: 1,
-  },
-  exit: (direction: number) => ({
-    x: direction < 0 ? "100%" : "-100%",
-    opacity: 0,
-  }),
-};
+import React from "react";
+import { motion } from "framer-motion";
+import { RotatingCards } from "./RotatingCards";
+import { Trophy, Users, Globe, ShieldCheck, Play, ArrowRight } from "lucide-react";
 
 export default function Hero() {
-  const ref = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start start", "end start"],
-  });
-
-  const [[page, direction], setPage] = useState([0, 0]);
-
-  // Wrap around index safely
-  const imageIndex = Math.abs(page % slides.length);
-
-  const paginate = (newDirection: number) => {
-    setPage([page + newDirection, newDirection]);
-  };
-
-  const goToSlide = (idx: number) => {
-    const currentIdx = Math.abs(page % slides.length);
-    const direction = idx > currentIdx ? 1 : -1;
-    setPage([page + (idx - currentIdx), direction]);
-  };
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      paginate(1);
-    }, 4500);
-    return () => clearInterval(timer);
-  }, [page]); 
-
-  // Parallax effect: moves the background downwards slightly as the user scrolls down
-  const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
-
   return (
-    <section ref={ref} className="relative w-full h-screen overflow-hidden bg-[#0A1128] group">
-      {/* Background Carousel with Parallax */}
-      <motion.div
-        className="absolute inset-0 z-0 origin-top"
-        style={{ y: backgroundY }}
-      >
-        <AnimatePresence initial={false} custom={direction}>
-          <motion.div
-            key={page}
-            custom={direction}
-            variants={variants}
-            initial="enter"
-            animate="center"
-            exit="exit"
-            transition={{
-              x: { type: "spring", stiffness: 300, damping: 30 },
-              opacity: { duration: 0.2 }
-            }}
-            className="absolute inset-0 w-full h-full"
-          >
-            {/* The Image */}
-            <img
-              src={slides[imageIndex].src}
-              alt={slides[imageIndex].title}
-              className={`absolute inset-0 w-full h-full ${slides[imageIndex].imageClass}`}
-            />
-            
-            {/* Bottom Fade Layer */}
-            <div className="absolute inset-0 bg-gradient-to-t from-[#0A1128] via-[#0A1128]/30 to-transparent" />
-            
-            {/* Slide Text */}
-            <div className="absolute bottom-16 lg:bottom-24 left-0 right-0 px-6 sm:px-12 lg:px-24 flex flex-col items-center text-center">
-              <h2 className="text-3xl md:text-5xl lg:text-6xl font-heading font-normal text-white mb-4 drop-shadow-md">
-                {slides[imageIndex].title}
-              </h2>
-              <p className="text-base md:text-lg lg:text-xl text-gray-200 drop-shadow-sm max-w-3xl">
-                {slides[imageIndex].desc}
-              </p>
-            </div>
-          </motion.div>
-        </AnimatePresence>
-        
-        {/* Optional dark overlay to ensure navbar/content visibility if needed */}
-        <div className="absolute inset-0 bg-[#0A1128]/20 pointer-events-none z-10" />
-      </motion.div>
-
-      {/* Navigation Arrows */}
-      <div className="absolute inset-0 z-20 flex items-center justify-between px-4 sm:px-8 pointer-events-none">
-        <button 
-          onClick={() => paginate(-1)}
-          className="w-12 h-12 rounded-full bg-black/20 hover:bg-black/50 border border-white/20 text-white flex items-center justify-center backdrop-blur-sm transition-all pointer-events-auto opacity-0 group-hover:opacity-100 hover:scale-110"
-        >
-          <ChevronLeft className="w-6 h-6" />
-        </button>
-        <button 
-          onClick={() => paginate(1)}
-          className="w-12 h-12 rounded-full bg-black/20 hover:bg-black/50 border border-white/20 text-white flex items-center justify-center backdrop-blur-sm transition-all pointer-events-auto opacity-0 group-hover:opacity-100 hover:scale-110"
-        >
-          <ChevronRight className="w-6 h-6" />
-        </button>
-      </div>
-
-      {/* Dot Indicators */}
-      <div className="absolute bottom-6 left-0 right-0 z-20 flex justify-center items-center gap-3">
-        {slides.map((_, idx) => (
-          <button
-            key={idx}
-            onClick={() => goToSlide(idx)}
-            className={`transition-all duration-300 rounded-full ${
-              imageIndex === idx 
-                ? "bg-white w-8 h-2.5" 
-                : "bg-white/40 hover:bg-white/70 w-2.5 h-2.5"
-            }`}
-          />
-        ))}
-      </div>
+    <section className="relative w-full min-h-screen bg-[#F8F9FB] overflow-hidden flex items-center">
       
+      {/* Technical Lines Background */}
+      <div className="absolute inset-0 z-0 [mask-image:linear-gradient(to_bottom,transparent_0%,black_100%)]">
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px)] bg-[size:120px_100%]" />
+        <div className="absolute inset-0 bg-[linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:100%_120px]" />
+        <div className="absolute inset-0 bg-[repeating-linear-gradient(45deg,transparent,transparent_24px,#80808008_24px,#80808008_25px)]" />
+      </div>
+
+      {/* Decorative Animated Gradient Blobs */}
+      <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-0">
+        <motion.div 
+          animate={{ scale: [1, 1.1, 1], opacity: [0.3, 0.5, 0.3] }}
+          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute top-[-10%] left-[-5%] w-[45%] h-[55%] rounded-full bg-blue-400/30 blur-[120px]" 
+        />
+        <motion.div 
+          animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.6, 0.3] }}
+          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+          className="absolute bottom-[-10%] right-[-5%] w-[40%] h-[50%] rounded-full bg-indigo-400/30 blur-[120px]" 
+        />
+        <motion.div 
+          animate={{ scale: [1, 1.15, 1], opacity: [0.2, 0.4, 0.2] }}
+          transition={{ duration: 9, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+          className="absolute top-[20%] right-[15%] w-[35%] h-[35%] rounded-full bg-purple-400/20 blur-[100px]" 
+        />
+      </div>
+
+      <div className="relative max-w-[1600px] mx-auto px-6 sm:px-8 lg:px-16 w-full flex flex-col lg:flex-row items-center justify-between pt-28 pb-12 z-10">
+      {/* LHS Content */}
+      <div className="w-full lg:w-7/12 flex flex-col justify-center items-start z-10 lg:pr-10">
+        
+        {/* Heading */}
+        <motion.h1 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.1 }}
+          className="text-4xl md:text-5xl lg:text-6xl font-heading font-light text-gray-900 leading-tight tracking-tight mb-6"
+        >
+          Engineering the Future of <br />
+          <span className="font-semibold bg-clip-text text-transparent bg-gradient-to-r from-gray-900 to-gray-600">Digital Quality</span>
+        </motion.h1>
+
+        {/* Description */}
+        <motion.p 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="text-base md:text-lg text-gray-600 max-w-xl mb-10 leading-relaxed"
+        >
+          Accelerate releases, eliminate defects, and scale with confidence using ApMoSys — the AI-powered automation backbone for enterprise software teams.
+        </motion.p>
+
+        {/* Action Buttons */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+          className="flex flex-wrap items-center gap-4 mb-16"
+        >
+          <button className="px-6 py-3 bg-[#0066FF] hover:bg-blue-600 text-white font-medium rounded-lg transition-colors flex items-center gap-2 text-sm">
+            Explore Platform
+            <ArrowRight className="w-4 h-4" />
+          </button>
+          <button className="px-6 py-3 bg-transparent border border-gray-300 hover:border-gray-400 text-gray-900 font-medium rounded-lg transition-colors flex items-center gap-2 text-sm">
+            <Play className="w-4 h-4 fill-gray-900" />
+            Book a Demo
+          </button>
+        </motion.div>
+
+      </div>
+
+      {/* RHS Rotating Cards */}
+      <div className="w-full lg:w-5/12 flex items-center justify-center mt-16 lg:mt-0 relative z-10">
+        <RotatingCards />
+      </div>
+      </div>
     </section>
   );
 }

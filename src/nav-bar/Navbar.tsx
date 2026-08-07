@@ -99,7 +99,7 @@ export default function Navbar() {
   });
 
   const isExpanded = activeDropdown !== null;
-  const navBgColor = isExpanded ? "bg-[#0F172A] backdrop-blur-3xl backdrop-saturate-200" : "bg-[#0F172A] backdrop-blur-3xl backdrop-saturate-200 border-b border-gray-800";
+  const navBgColor = isExpanded ? "bg-[#0B0C10] backdrop-blur-3xl backdrop-saturate-200" : "bg-[#0B0C10]/95 backdrop-blur-3xl backdrop-saturate-200 border-b border-gray-800/50";
 
   // Close dropdown on click outside
   React.useEffect(() => {
@@ -252,7 +252,7 @@ export default function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.2 }}
-            className="absolute top-14 left-0 w-full bg-[#0F172A] z-40 pb-16 pt-10 shadow-2xl border-t border-gray-800"
+            className="absolute top-14 left-0 w-full bg-[#0B0C10] z-40 pb-16 pt-10 shadow-2xl border-t border-gray-800"
           >
           <div className="max-w-[1600px] mx-auto px-6 sm:px-8 lg:px-16">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
@@ -458,7 +458,7 @@ export default function Navbar() {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.2 }}
-            className="lg:hidden bg-[#0F172A] border-b border-gray-800 px-4 pt-2 pb-6 space-y-2 overflow-y-auto max-h-[calc(100vh-3.5rem)]"
+            className="lg:hidden bg-[#0B0C10] border-b border-gray-800 px-4 pt-2 pb-6 space-y-2 overflow-y-auto max-h-[calc(100vh-3.5rem)]"
           >
           {navigationItems.map((item) => {
             const isPathActive = (href?: string, currentPath?: string | null) => {
