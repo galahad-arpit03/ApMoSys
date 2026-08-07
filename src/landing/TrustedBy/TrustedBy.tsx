@@ -3,8 +3,6 @@ import React from "react";
 import { Hexagon, Triangle, Circle, Box, Layers, Globe, Activity, Command, Code, Cpu, Landmark, Building2, Shield, Zap } from "lucide-react";
 
 const CLIENTS = [
-  { name: "CRIS", icon: Command },
-  { name: "Axis Bank", icon: Landmark },
   { name: "FDC India", icon: Building2 },
   { name: "Protean eGov Technologies", icon: Hexagon },
   { name: "L&T Finance", icon: Activity },
@@ -20,14 +18,14 @@ const CLIENTS = [
 
 export default function TrustedBy() {
   return (
-    <section className="py-2 bg-white overflow-hidden border-b-[0.5px] border-gray-200">
+    <section className="py-3 bg-[#F8F9FB] overflow-hidden border-b border-gray-200">
       <div className="max-w-[1600px] mx-auto px-6 sm:px-8 lg:px-16">
 
         {/* Carousel Container */}
         <div className="relative flex overflow-x-hidden group">
           {/* Gradient Masks for smooth fade on edges */}
-          <div className="absolute top-0 bottom-0 left-0 w-24 z-10 bg-gradient-to-r from-white to-transparent pointer-events-none" />
-          <div className="absolute top-0 bottom-0 right-0 w-24 z-10 bg-gradient-to-l from-white to-transparent pointer-events-none" />
+          <div className="absolute top-0 bottom-0 left-0 w-24 z-10 bg-gradient-to-r from-[#F8F9FB] to-transparent pointer-events-none" />
+          <div className="absolute top-0 bottom-0 right-0 w-24 z-10 bg-gradient-to-l from-[#F8F9FB] to-transparent pointer-events-none" />
 
           {/* Marquee Track */}
           <div className="flex animate-marquee whitespace-nowrap items-center py-2">
@@ -37,10 +35,10 @@ export default function TrustedBy() {
               return (
                 <div 
                   key={index} 
-                  className="flex items-center gap-2.5 mx-8 md:mx-12 cursor-pointer"
+                  className="flex items-center gap-2.5 mx-8 md:mx-12 cursor-pointer text-gray-500 hover:text-gray-900 transition-colors"
                 >
-                  <Icon className="w-5 h-5 md:w-7 md:h-7 text-black" />
-                  <span className="text-base md:text-lg font-normal font-heading text-black tracking-tight">
+                  <Icon className="w-5 h-5 md:w-6 md:h-6" />
+                  <span className="text-base md:text-lg font-normal font-heading tracking-tight">
                     {client.name}
                   </span>
                 </div>

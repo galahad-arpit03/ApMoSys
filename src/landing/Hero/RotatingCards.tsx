@@ -1,15 +1,17 @@
 "use client";
 import React, { useState, useEffect, useRef } from 'react';
+import { useScroll, useTransform, useMotionValueEvent } from 'framer-motion';
+import Image from 'next/image';
 
 const cards = [
-  { id: 1, title: 'MADRID', subtitle: 'BARCELONA', bottomText: 'SEVILLA', bg: 'bg-[#1a1c1a]', text: 'text-[#e0e3c8]' },
-  { id: 2, title: 'THU', subtitle: '0316 AVE', bottomText: '', bg: 'bg-[#c5c8d4]', text: 'text-white', isImage: true },
-  { id: 3, title: '0034', subtitle: '0095', bottomText: '-', bg: 'bg-[#f4f4f0]', text: 'text-black', isSplit: true },
-  { id: 4, title: '2026', subtitle: 'NOV', bottomText: '', bg: 'bg-[#677054]', text: 'text-white', isImage: true },
-  { id: 5, title: 'BERLIN', subtitle: 'MUNICH', bottomText: 'FRANKFURT', bg: 'bg-[#2a2c2a]', text: 'text-[#e0e3c8]' },
-  { id: 6, title: 'FRI', subtitle: '0417 BLVD', bottomText: '', bg: 'bg-[#b5b8c4]', text: 'text-white', isImage: true },
-  { id: 7, title: '0044', subtitle: '0096', bottomText: '-', bg: 'bg-[#e4e4e0]', text: 'text-black', isSplit: true },
-  { id: 8, title: '2027', subtitle: 'DEC', bottomText: '', bg: 'bg-[#576044]', text: 'text-white', isImage: true },
+  { id: 1, title: 'CliqTest', subtitle: 'AUTOMATION', bottomText: 'AI-POWERED', bg: 'bg-[#0B0C10]', text: 'text-white', isImage: true, img: '/landing/Hero/cards/cliqtest_hero_1786091845488.png' },
+  { id: 2, title: 'Netraa', subtitle: 'VISUAL AI', bottomText: '', bg: 'bg-[#0066FF]', text: 'text-white', isImage: true, img: '/landing/Hero/cards/netraa_hero_1786091859663.png' },
+  { id: 3, title: '99.9%', subtitle: 'UPTIME', bottomText: 'SLA', bg: 'bg-[#F8F9FB]', text: 'text-black', isSplit: true },
+  { id: 4, title: 'ShieldVue', subtitle: 'SECURITY', bottomText: '', bg: 'bg-[#1e293b]', text: 'text-white', isImage: true, img: '/landing/Hero/cards/shieldvue_hero_1786091875222.png' },
+  { id: 5, title: 'Swikrti', subtitle: 'COMPLIANCE', bottomText: 'ZERO DEFECTS', bg: 'bg-[#121212]', text: 'text-white', isImage: true, img: '/landing/Hero/cards/swikruti_hero_1786091888812.png' },
+  { id: 6, title: 'FinXplore', subtitle: 'BFSI SCALE', bottomText: '', bg: 'bg-[#3b82f6]', text: 'text-white', isImage: true, img: '/landing/Hero/cards/finxplore_hero_1786091905041.png' },
+  { id: 7, title: '10x', subtitle: 'SPEED', bottomText: 'ROI', bg: 'bg-white', text: 'text-black', isSplit: true },
+  { id: 8, title: 'Jupiter', subtitle: 'CLOUD OPS', bottomText: '', bg: 'bg-[#0B0C10]', text: 'text-white', isImage: true, img: '/landing/Hero/cards/jupiter_hero_1786091917753.png' },
 ];
 
 export const RotatingCards = () => {
@@ -21,6 +23,14 @@ export const RotatingCards = () => {
 
   const numCards = cards.length;
   const radius = 200; // Distance from center
+
+  const { scrollY } = useScroll();
+  const rotateZValue = useTransform(scrollY, [0, 800], [-10, 10]);
+  const [zTilt, setZTilt] = useState(-10);
+
+  useMotionValueEvent(rotateZValue, "change", (latest) => {
+    setZTilt(latest);
+  });
 
   const startDrag = (e: React.MouseEvent | React.TouchEvent) => {
     setIsDragging(true);
@@ -71,7 +81,7 @@ export const RotatingCards = () => {
         className="relative w-[150px] h-[225px]"
         style={{
           transformStyle: 'preserve-3d',
-          transform: `rotateZ(-10deg) rotateX(-15deg) rotateY(${rotation}deg)`,
+          transform: `rotateZ(${zTilt}deg) rotateX(-15deg) rotateY(${rotation}deg)`,
           transition: isDragging ? 'none' : 'transform 0.1s linear'
         }}
       >
@@ -85,11 +95,16 @@ export const RotatingCards = () => {
                 transform: `rotateY(${angle}deg) translateZ(${radius}px)`,
               }}
             >
-              {card.isImage && (
-                <div 
-                  className="absolute inset-0 opacity-60 z-0 bg-cover bg-center"
-                  style={{ backgroundImage: 'url("https://images.unsplash.com/photo-1490730141103-6cac27aaab94?auto=format&fit=crop&w=400&q=80")' }}
-                />
+              {card.isImage && card.img && (
+                <div className="absolute inset-0 opacity-60 z-0 mix-blend-overlay">
+                  <Image 
+                    src={card.img}
+                    alt={card.title}
+                    fill
+                    className="object-cover object-center"
+                    sizes="(max-width: 768px) 100vw, 300px"
+                  />
+                </div>
               )}
               
               <div className="relative z-10 w-full h-full flex flex-col">
