@@ -6,11 +6,11 @@ import Image from 'next/image';
 const cards = [
   { id: 1, title: 'CliqTest', subtitle: 'AUTOMATION', bottomText: 'AI-POWERED', bg: 'bg-[#0B0C10]', text: 'text-white', isImage: true, img: '/landing/Hero/cards/cliqtest_hero_1786091845488.png' },
   { id: 2, title: 'Netraa', subtitle: 'VISUAL AI', bottomText: '', bg: 'bg-[#0066FF]', text: 'text-white', isImage: true, img: '/landing/Hero/cards/netraa_hero_1786091859663.png' },
-  { id: 3, title: '99.9%', subtitle: 'UPTIME', bottomText: 'SLA', bg: 'bg-[#F8F9FB]', text: 'text-black', isSplit: true },
+  // { id: 3, title: '99.9%', subtitle: 'UPTIME', bottomText: 'SLA', bg: 'bg-[#F8F9FB]', text: 'text-black', isSplit: true },
   { id: 4, title: 'ShieldVue', subtitle: 'SECURITY', bottomText: '', bg: 'bg-[#1e293b]', text: 'text-white', isImage: true, img: '/landing/Hero/cards/shieldvue_hero_1786091875222.png' },
   { id: 5, title: 'Swikrti', subtitle: 'COMPLIANCE', bottomText: 'ZERO DEFECTS', bg: 'bg-[#121212]', text: 'text-white', isImage: true, img: '/landing/Hero/cards/swikruti_hero_1786091888812.png' },
   { id: 6, title: 'FinXplore', subtitle: 'BFSI SCALE', bottomText: '', bg: 'bg-[#3b82f6]', text: 'text-white', isImage: true, img: '/landing/Hero/cards/finxplore_hero_1786091905041.png' },
-  { id: 7, title: '10x', subtitle: 'SPEED', bottomText: 'ROI', bg: 'bg-white', text: 'text-black', isSplit: true },
+  { id: 7, title: 'Saransh', subtitle: 'DATA INSIGHTS', bottomText: '', bg: 'bg-[#0B0C10]', text: 'text-white', isImage: true, img: '/landing/Hero/cards/saransh_hero_1786093425648.png' },
   { id: 8, title: 'Jupiter', subtitle: 'CLOUD OPS', bottomText: '', bg: 'bg-[#0B0C10]', text: 'text-white', isImage: true, img: '/landing/Hero/cards/jupiter_hero_1786091917753.png' },
 ];
 
