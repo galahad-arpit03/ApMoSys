@@ -54,9 +54,11 @@ export default function Navbar() {
   // Scroll visibility logic
   const { scrollY } = useScroll();
   const [navVisible, setNavVisible] = React.useState(true);
+  const [isAtTop, setIsAtTop] = React.useState(true);
   const lastScrollY = React.useRef(0);
 
   useMotionValueEvent(scrollY, "change", (latest) => {
+    setIsAtTop(latest < 50);
     if (activeDropdownRef.current) {
       lastScrollY.current = latest;
       return; // Do not hide if dropdown is open
@@ -99,7 +101,12 @@ export default function Navbar() {
   });
 
   const isExpanded = activeDropdown !== null;
-  const navBgColor = isExpanded ? "bg-[#0B0C10] backdrop-blur-3xl backdrop-saturate-200" : "bg-[#0B0C10]/95 backdrop-blur-3xl backdrop-saturate-200 border-b border-gray-800/50";
+  const isLandingHero = pathname === "/" && isAtTop && !isExpanded;
+  const navBgColor = isExpanded 
+    ? "bg-[#0B0C10] backdrop-blur-3xl backdrop-saturate-200" 
+    : isLandingHero 
+      ? "bg-[linear-gradient(90deg,#050716_0%,#090D28_45%,#3B2269_55%,#C4C0F7_62%,transparent_66%)] border-b border-white/10" 
+      : "bg-[#0B0C10]/95 backdrop-blur-3xl backdrop-saturate-200 border-b border-gray-800/50";
 
   // Close dropdown on click outside
   React.useEffect(() => {
@@ -116,7 +123,7 @@ export default function Navbar() {
   return (
     <nav
       id="navbar-container"
-      className={`${navBgColor} ${isExpanded ? 'border-transparent' : 'border-gray-200'} sticky top-0 z-50 transition-all duration-500 ease-in-out ${navVisible ? "translate-y-0" : "-translate-y-full"}`}
+      className={`${navBgColor} ${isExpanded || isLandingHero ? 'border-transparent' : 'border-gray-800/50'} ${pathname === '/' ? '-mb-14' : ''} sticky top-0 z-50 transition-all duration-500 ease-in-out ${navVisible ? "translate-y-0" : "-translate-y-full"}`}
     >
       <div className="max-w-[1600px] mx-auto px-6 sm:px-8 lg:px-16">
         <div className="flex items-center justify-between h-14">

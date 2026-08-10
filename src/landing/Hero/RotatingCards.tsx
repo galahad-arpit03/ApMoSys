@@ -3,7 +3,19 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useScroll, useTransform, useMotionValueEvent } from 'framer-motion';
 import Image from 'next/image';
 
-const cards = [
+interface CardItem {
+  id: number;
+  title: string;
+  subtitle: string;
+  bottomText: string;
+  bg: string;
+  text: string;
+  isImage?: boolean;
+  img?: string;
+  isSplit?: boolean;
+}
+
+const cards: CardItem[] = [
   { id: 1, title: 'CliqTest', subtitle: 'AUTOMATION', bottomText: 'AI-POWERED', bg: 'bg-[#0B0C10]', text: 'text-white', isImage: true, img: '/landing/Hero/cards/cliqtest_hero_1786091845488.png' },
   { id: 2, title: 'Netraa', subtitle: 'VISUAL AI', bottomText: '', bg: 'bg-[#0066FF]', text: 'text-white', isImage: true, img: '/landing/Hero/cards/netraa_hero_1786091859663.png' },
   // { id: 3, title: '99.9%', subtitle: 'UPTIME', bottomText: 'SLA', bg: 'bg-[#F8F9FB]', text: 'text-black', isSplit: true },

@@ -17,7 +17,7 @@ export default function Hero() {
       <motion.div 
         className="absolute top-0 left-0 w-full h-[130%] bg-cover bg-center bg-no-repeat z-0"
         style={{ 
-          backgroundImage: "url('/landing/bg.png')",
+          backgroundImage: "url('/landing/bg2.png')",
           y: backgroundY
         }}
       />
@@ -30,10 +30,10 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.1 }}
-          className="text-4xl md:text-5xl lg:text-6xl font-heading font-light text-gray-900 leading-tight tracking-tight mb-6"
+          className="text-4xl md:text-5xl lg:text-6xl font-heading font-normal text-white leading-[1.15] tracking-tight mb-6"
         >
           Engineering the Future of <br />
-          <span className="font-semibold bg-clip-text text-transparent bg-gradient-to-r from-gray-900 to-gray-600">Digital Quality</span>
+          <span className="font-semibold bg-clip-text text-transparent bg-gradient-to-r from-[#9353FF] via-[#A855F7] to-[#C084FC]">Digital Quality</span>
         </motion.h1>
 
         {/* Description */}
@@ -41,7 +41,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="text-base md:text-lg text-gray-600 max-w-xl mb-10 leading-relaxed"
+          className="text-base md:text-lg text-slate-300/90 max-w-xl mb-10 leading-relaxed font-normal"
         >
           Accelerate releases, eliminate defects, and scale with confidence using ApMoSys — the AI-powered automation backbone for enterprise software teams.
         </motion.p>
@@ -53,13 +53,13 @@ export default function Hero() {
           transition={{ duration: 0.6, delay: 0.4 }}
           className="flex flex-wrap items-center gap-4 mb-16"
         >
-          <button className="px-6 py-3 bg-[#0066FF] hover:bg-blue-600 text-white font-medium rounded-lg transition-colors flex items-center gap-2 text-sm">
+          <button className="px-6 py-3.5 bg-gradient-to-r from-[#6E44FF] to-[#8B5CF6] hover:from-[#6038F0] hover:to-[#7C3AED] text-white font-medium rounded-xl transition-all duration-300 flex items-center gap-2.5 text-sm shadow-[0_0_25px_rgba(110,68,255,0.45)] hover:shadow-[0_0_35px_rgba(110,68,255,0.7)] hover:scale-[1.02]">
             Explore Services
-            <ArrowRight className="w-4 h-4" />
+            <ArrowRight className="w-4 h-4 text-white" />
           </button>
-          <button className="px-6 py-3 bg-transparent border border-gray-300 hover:border-gray-400 text-gray-900 font-medium rounded-lg transition-colors flex items-center gap-2 text-sm">
-                  Contact Us
-                  <Play className="w-4 h-4 fill-gray-900" />
+          <button className="px-6 py-3.5 bg-[#0E0B1F]/60 border border-[#38265C] hover:border-[#6E44FF]/70 text-slate-200 hover:text-white font-medium rounded-xl backdrop-blur-md transition-all duration-300 flex items-center gap-2.5 text-sm hover:bg-[#181236]/80 hover:scale-[1.02]">
+            Contact Us
+            <Play className="w-3.5 h-3.5 fill-white text-white translate-x-0.5" />
           </button>
         </motion.div>
 
