@@ -71,7 +71,7 @@ graticuleSeries.mapLines.template.setAll({
 
 // ---- Countries ----
 var polygonSeries = chart.series.push(am5map.MapPolygonSeries.new(root, {
-  geoJSON: am5geodata_worldLow
+  geoJSON: am5geodata_worldIndiaLow
 }));
 polygonSeries.mapPolygons.template.setAll({
   fill: slick,
@@ -191,9 +191,11 @@ var uae = { lon: 55.27, lat: 25.20 };
 var mumbai = { lon: 72.88, lat: 19.08 };
 var chennai = { lon: 80.27, lat: 13.08 };
 var bhubaneswar = { lon: 85.82, lat: 20.29 };
+var canada = { lon: -79.38, lat: 43.65 }; // Toronto
 
 sankeySeries.data.setAll([
   flow(mumbai, "Mumbai (HQ)", uae, "UAE", 1000),
+  flow(mumbai, "Mumbai (HQ)", canada, "Canada", 900),
   flow(mumbai, "Mumbai (HQ)", chennai, "Chennai", 800),
   flow(mumbai, "Mumbai (HQ)", bhubaneswar, "Bhubaneswar", 600)
 ]);
