@@ -148,22 +148,27 @@ export default function ServiceProcess() {
     target: containerRef,
     offset: ["start start", "end end"],
   });
+  // Smooth out raw scroll progress for buttery transitions
+  const smoothProgress = useSpring(scrollYProgress, {
+    stiffness: 80,
+    damping: 25,
+    restDelta: 0.001
+  });
 
-  // Since Lenis already smooths the global scroll, we can use raw scrollYProgress directly.
-  // Using useSpring on top of Lenis creates double-interpolation which causes severe lag.
+  // Continuous interpolation for 6 cube faces
   const rotateY = useTransform(
-    scrollYProgress,
+    smoothProgress,
     [0, 0.2, 0.4, 0.6, 0.8, 1],
     [0, -90, -180, -270, -360, -360]
   );
 
   const rotateX = useTransform(
-    scrollYProgress,
+    smoothProgress,
     [0, 0.2, 0.4, 0.6, 0.8, 1],
     [-10, -10, -10, -10, -90, 90]
   );
 
-  const progressWidth = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
+  const progressWidth = useTransform(smoothProgress, [0, 1], ["0%", "100%"]);
 
   // Update active step based on scroll progress
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
