@@ -210,14 +210,35 @@ chart.set("rotationY", -23.5);
 chart.set("zoomLevel", 0.85);
 bgSeries.mapPolygons.template.set("fillOpacity", 0);
 
-// A manual animation loop that forces rotation every frame
-function continuousRotation() {
-  if (chart.get("panX") == "rotateX") {
-    // Subtracting from rotationX gives it the correct East-to-West spin
-    chart.set("rotationX", chart.get("rotationX") - 0.2);
+// Managed auto-rotation that allows for user interaction
+var animation;
+
+function startRotation() {
+  if (animation) {
+    animation.stop();
   }
-  requestAnimationFrame(continuousRotation);
+  animation = chart.animate({
+    key: "rotationX",
+    from: chart.get("rotationX"),
+    to: chart.get("rotationX") - 360,
+    duration: 30000,
+    loops: Infinity
+  });
 }
-requestAnimationFrame(continuousRotation);
+
+// Start rotation after initial load
+setTimeout(startRotation, 500);
+
+// Pause rotation when user clicks to drag
+chart.chartContainer.events.on("pointerdown", function() {
+  if (animation) {
+    animation.stop();
+  }
+});
+
+// Resume rotation when user releases mouse, even if outside iframe (globalpointerup)
+chart.chartContainer.events.on("globalpointerup", function() {
+  startRotation();
+});
 
 chart.appear(1000, 100);

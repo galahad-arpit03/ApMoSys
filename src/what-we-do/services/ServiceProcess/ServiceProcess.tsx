@@ -16,6 +16,7 @@ import {
   Code,
   ShieldCheck,
   Rocket,
+  RefreshCw,
 } from "lucide-react";
 
 const steps = [
@@ -69,16 +70,23 @@ const steps = [
     details: ["Production Deployment", "24/7 Monitoring", "Continuous Optimization"],
     image: "/what-we-do/services/cube/stage_5_deployment.png",
   },
+  {
+    id: "6",
+    shortLabel: "EVOLUTION",
+    title: "Continuous Evolution & Scaling",
+    description:
+      "We proactively monitor, scale, and evolve your systems to ensure long-term resilience and continuous innovation.",
+    icon: RefreshCw,
+    details: ["Performance Tuning", "Elastic Scaling", "Innovation Labs"],
+    image: "/what-we-do/services/cube/stage_6_optimization.png",
+  },
 ];
 
-const decorativeImage = "/what-we-do/services/cube/stage_6_decorative.png";
-
 interface CubeFaceProps {
-  step?: (typeof steps)[number];
+  step: (typeof steps)[number];
   faceIndex: number;
   activeStep: number;
   transformStyle: string;
-  isDecorative?: boolean;
 }
 
 function CubeFace({
@@ -86,10 +94,9 @@ function CubeFace({
   faceIndex,
   activeStep,
   transformStyle,
-  isDecorative,
 }: CubeFaceProps) {
   const isActive = activeStep === faceIndex;
-  const imageSrc = isDecorative ? decorativeImage : step?.image;
+  const imageSrc = step.image;
 
   return (
     <div
@@ -117,16 +124,13 @@ function CubeFace({
       <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent p-3.5 sm:p-4 flex flex-col justify-between">
         <div className="flex items-center justify-between">
           <span className="text-[10px] font-mono font-bold text-white bg-black/60 px-2 py-0.5 border border-white/10 backdrop-blur-md">
-            {isDecorative ? "AP2L" : `0${step?.id}`}
+            {`0${step?.id}`}
           </span>
-          {/* <span className="text-[9px] font-mono font-semibold text-purple-300 bg-[#6E44FF]/50 px-2 py-0.5 border border-[#6E44FF]/60 backdrop-blur-md uppercase tracking-wider">
-            {isDecorative ? "CORE" : step?.shortLabel}
-          </span> */}
         </div>
 
         <div>
           <p className="font-heading font-bold text-xs sm:text-sm text-white drop-shadow-md leading-tight line-clamp-2">
-            {isDecorative ? "AP2L ENGINE" : step?.title}
+            {step?.title}
           </p>
         </div>
       </div>
@@ -161,16 +165,18 @@ export default function ServiceProcess() {
 
   // Update active step based on scroll progress
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
-    if (latest < 0.2) {
+    if (latest < 0.16) {
       setActiveStep(0);
-    } else if (latest < 0.4) {
+    } else if (latest < 0.33) {
       setActiveStep(1);
-    } else if (latest < 0.6) {
+    } else if (latest < 0.50) {
       setActiveStep(2);
-    } else if (latest < 0.8) {
+    } else if (latest < 0.66) {
       setActiveStep(3);
-    } else {
+    } else if (latest < 0.83) {
       setActiveStep(4);
+    } else {
+      setActiveStep(5);
     }
   });
 
@@ -194,9 +200,9 @@ export default function ServiceProcess() {
       <div className="sticky top-0 h-screen flex flex-col justify-center py-6 sm:py-8 overflow-hidden">
         <div className="max-w-[1600px] w-full mx-auto px-6 sm:px-8 lg:px-16">
           {/* Header section */}
-          <div className="mb-6 lg:mb-8">
+          <div className="mb-2 lg:mb-4">
             <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-normal text-black leading-[1.15]">
-              A Structured Path to Engineering Excellence
+              A Structured Path to <br /> Engineering Excellence
             </h2>
           </div>
 
@@ -204,7 +210,7 @@ export default function ServiceProcess() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
             {/* Left Side: Active Stage Card */}
             <div className="lg:col-span-7">
-              <div className="w-full min-h-[240px]">
+              <div className="w-full h-[285px] md:h-[330px] lg:h-[350px]">
                 <AnimatePresence mode="wait">
                   <motion.div
                     key={activeStep}
@@ -212,39 +218,34 @@ export default function ServiceProcess() {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -12 }}
                     transition={{ duration: 0.3, ease: "easeOut" }}
-                    className="bg-white border border-gray-200 rounded-2xl p-6 sm:p-8 shadow-xs hover:border-[#2563EB]/30 transition-all h-full flex flex-col justify-between"
+                    className="bg-gradient-to-br from-white to-purple-50/50 border border-gray-100 rounded-md p-8 sm:p-10 shadow-xl shadow-gray-200/50 hover:border-[#6E44FF]/20 hover:shadow-2xl transition-all h-full flex flex-col justify-center relative overflow-hidden group"
                   >
-                    <div>
-                      {/* Header: Step Pill & Icon */}
-                      <div className="flex items-center justify-between mb-4">
-                        <span className="text-[10px] font-bold text-[#2563EB] uppercase tracking-wider bg-[#2563EB]/10 px-3 py-1 rounded-full">
-                          Step 0{activeData.id}
-                        </span>
-                        <div className="w-10 h-10 rounded-xl bg-[#2563EB]/10 border border-[#2563EB]/20 flex items-center justify-center text-[#2563EB]">
-                          <ActiveIcon className="w-5 h-5" strokeWidth={1.75} />
-                        </div>
-                      </div>
-
-                      {/* Title & Description */}
-                      <h3 className="text-xl sm:text-2xl font-bold text-black font-heading mb-3">
-                        {activeData.title}
-                      </h3>
-                      <p className="text-[#5A5A5A] text-sm sm:text-base leading-relaxed mb-6">
-                        {activeData.description}
-                      </p>
+                    {/* Giant Background Number */}
+                    <div className="absolute right-[-10px] bottom-[-30px] lg:right-[-20px] lg:bottom-[-40px] text-[180px] lg:text-[260px] font-black text-[#6E44FF]/[0.03] font-heading leading-none select-none pointer-events-none z-0 group-hover:text-[#6E44FF]/[0.06] transition-colors duration-500">
+                      {activeData.id}
                     </div>
 
-                    {/* Detail tags */}
-                    <div className="flex flex-wrap gap-2 pt-2 border-t border-gray-100">
-                      {activeData.details.map((detail) => (
-                        <span
-                          key={detail}
-                          className="text-xs font-medium text-gray-700 bg-gray-50 border border-gray-200 px-3 py-1.5 rounded-full flex items-center gap-1.5 shadow-2xs"
-                        >
-                          <CheckCircle2 className="w-3.5 h-3.5 text-[#2563EB]" />
-                          {detail}
-                        </span>
-                      ))}
+                    <div className="relative z-10 w-full lg:w-[95%]">
+                      {/* Title & Description */}
+                      <h3 className="text-2xl sm:text-3xl font-bold text-gray-900 font-heading mb-4 tracking-tight">
+                        {activeData.title}
+                      </h3>
+                      <p className="text-gray-600 text-base sm:text-lg leading-relaxed mb-8 font-light">
+                        {activeData.description}
+                      </p>
+
+                      {/* Detail tags */}
+                      <div className="flex flex-wrap gap-2.5 pt-6 border-t border-gray-200/60">
+                        {activeData.details.map((detail) => (
+                          <span
+                            key={detail}
+                            className="text-xs sm:text-sm font-medium text-gray-700 bg-white border border-gray-200 px-4 py-2 rounded-full flex items-center gap-2 shadow-sm hover:border-gray-300 hover:shadow transition-all"
+                          >
+                            <CheckCircle2 className="w-4 h-4 text-[#6E44FF]" />
+                            {detail}
+                          </span>
+                        ))}
+                      </div>
                     </div>
                   </motion.div>
                 </AnimatePresence>
@@ -252,7 +253,7 @@ export default function ServiceProcess() {
             </div>
 
             {/* Right Side: 3D Cube Container */}
-            <div className="lg:col-span-5 flex flex-col items-center justify-center relative py-2 lg:py-0">
+            <div className="lg:col-span-5 flex flex-col items-center justify-center relative py-2 lg:py-0 h-[285px] md:h-[330px] lg:h-[350px]">
               {/* Ambient purple/blue glow */}
               <div className="absolute w-80 h-80 bg-[#6E44FF]/15 rounded-full blur-3xl pointer-events-none" />
 
@@ -278,13 +279,6 @@ export default function ServiceProcess() {
                       transformStyle={faceTransforms[idx]}
                     />
                   ))}
-                  {/* 6th Decorative Bottom Face */}
-                  <CubeFace
-                    faceIndex={5}
-                    activeStep={activeStep}
-                    transformStyle={faceTransforms[5]}
-                    isDecorative
-                  />
                 </motion.div>
               </div>
             </div>

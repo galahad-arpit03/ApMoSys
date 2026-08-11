@@ -38,8 +38,58 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "ApMoSys | Enterprise Automation & Testing Solutions",
-  description: "Accelerating digital transformation with AI-powered quality assurance and visual analytics.",
+  metadataBase: new URL("https://apmosys.com"),
+  title: {
+    default: "ApMoSys | Enterprise Digital Engineering & Automation",
+    template: "%s | ApMoSys",
+  },
+  description: "Accelerating enterprise digital transformation with AI-powered quality engineering, intelligent automation, and robust software reliability.",
+  keywords: ["Software Reliability", "Quality Engineering", "Test Automation", "AI Testing", "Digital Transformation", "ApMoSys"],
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: "https://apmosys.com",
+    title: "ApMoSys | Enterprise Digital Engineering & Automation",
+    description: "Accelerating enterprise digital transformation with AI-powered quality engineering and robust software reliability.",
+    siteName: "ApMoSys",
+    images: [
+      {
+        url: "/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "ApMoSys - Enterprise Automation & Testing Solutions",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "ApMoSys | Enterprise Digital Engineering & Automation",
+    description: "Accelerating enterprise digital transformation with AI-powered quality engineering.",
+    images: ["/og-image.jpg"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+};
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "ApMoSys",
+  "url": "https://apmosys.com",
+  "logo": "https://apmosys.com/logo.png",
+  "description": "Accelerating enterprise digital transformation with AI-powered quality engineering, intelligent automation, and robust software reliability.",
+  "sameAs": [
+    "https://www.linkedin.com/company/apmosys-technologies-pvt-ltd/"
+  ]
 };
 
 export default function RootLayout({
@@ -53,6 +103,12 @@ export default function RootLayout({
       className={`${outfit.variable} ${manrope.variable} ${inter.variable} ${geist.variable} ${geistMono.variable} h-full antialiased`}
       suppressHydrationWarning
     >
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
       <body className="min-h-full flex flex-col bg-[#121212] text-[#FAFAFA] font-sans selection:bg-[#242A56] selection:text-white" suppressHydrationWarning>
         <ConditionalShell>
           {children}
