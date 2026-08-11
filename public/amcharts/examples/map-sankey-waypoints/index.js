@@ -80,8 +80,8 @@ polygonSeries.mapPolygons.template.setAll({
   strokeOpacity: 0.6
 });
 
-// Highlight India & UAE
-var highlightIds = ["IN", "AE"];
+// Highlight India, UAE & Canada
+var highlightIds = ["IN", "AE", "CA"];
 
 polygonSeries.events.on("datavalidated", function() {
   am5.array.each(polygonSeries.dataItems, function(di) {
