@@ -189,9 +189,9 @@ export default function ServiceProcess() {
   return (
     <section
       ref={containerRef}
-      className="relative h-[250vh] bg-[#FAFAFA] border-b border-gray-100"
+      className="relative h-[170vh] bg-[#FAFAFA] border-b border-gray-100"
     >
-      <div className="sticky top-0 min-h-screen flex flex-col justify-start pt-6 lg:pt-10 pb-8 overflow-hidden">
+      <div className="sticky top-0 h-screen flex flex-col justify-center py-6 sm:py-8 overflow-hidden">
         <div className="max-w-[1600px] w-full mx-auto px-6 sm:px-8 lg:px-16">
           {/* Header section */}
           <div className="mb-6 lg:mb-8">
@@ -202,29 +202,9 @@ export default function ServiceProcess() {
 
           {/* Main interactive grid: Process Cards (Left) & 3D Cube (Right) */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-            {/* Left Side: Process Progress & Active Stage Card */}
-            <div className="lg:col-span-7 space-y-6">
-              {/* Progress Indicator */}
-              {/* <div className="bg-white/80 border border-gray-200/80 rounded-xl p-4 sm:p-5 backdrop-blur-xs shadow-xs"> */}
-                {/* <div className="flex items-center justify-between text-xs font-mono font-semibold tracking-wider text-gray-500 mb-2.5"> */}
-                  {/* <span className="flex items-center gap-2">
-                    <span className="w-2 h-2 rounded-full bg-[#2563EB]" />
-                    PROCESS PROGRESS
-                  </span> */}
-                  {/* <span className="text-[#2563EB] font-bold">
-                    0{activeStep + 1} — 05
-                  </span>
-                </div> */}
-                {/* <div className="w-full h-1.5 bg-gray-100 rounded-full overflow-hidden"> */}
-                  {/* <motion.div
-                    className="h-full bg-[#2563EB] rounded-full origin-left"
-                    style={{ width: progressWidth }}
-                  /> */}
-                {/* </div> */}
-              {/* </div> */}
-
-              {/* Main Active Card */}
-              <div className="w-full min-h-[260px] sm:min-h-[240px]">
+            {/* Left Side: Active Stage Card */}
+            <div className="lg:col-span-7">
+              <div className="w-full min-h-[240px]">
                 <AnimatePresence mode="wait">
                   <motion.div
                     key={activeStep}
@@ -237,14 +217,9 @@ export default function ServiceProcess() {
                     <div>
                       {/* Header: Step Pill & Icon */}
                       <div className="flex items-center justify-between mb-4">
-                        <div className="flex items-center gap-3">
-                          <span className="text-[10px] font-bold text-[#2563EB] uppercase tracking-wider bg-[#2563EB]/10 px-3 py-1 rounded-full">
-                            Step 0{activeData.id}
-                          </span>
-                          {/* <span className="text-xs font-mono font-medium text-gray-400">
-                            STAGE 0{activeData.id} OF 05
-                          </span> */}
-                        </div>
+                        <span className="text-[10px] font-bold text-[#2563EB] uppercase tracking-wider bg-[#2563EB]/10 px-3 py-1 rounded-full">
+                          Step 0{activeData.id}
+                        </span>
                         <div className="w-10 h-10 rounded-xl bg-[#2563EB]/10 border border-[#2563EB]/20 flex items-center justify-center text-[#2563EB]">
                           <ActiveIcon className="w-5 h-5" strokeWidth={1.75} />
                         </div>
@@ -276,14 +251,14 @@ export default function ServiceProcess() {
               </div>
             </div>
 
-            {/* Right Side: 1.5x Larger 3D Cube Container */}
+            {/* Right Side: 3D Cube Container */}
             <div className="lg:col-span-5 flex flex-col items-center justify-center relative py-2 lg:py-0">
               {/* Ambient purple/blue glow */}
               <div className="absolute w-80 h-80 bg-[#6E44FF]/15 rounded-full blur-3xl pointer-events-none" />
 
               {/* 3D Viewport Wrapper */}
               <div className="relative flex items-center justify-center p-2 [perspective:1200px]">
-                {/* 3D Cube Parent (1.5x larger: 285px mobile / 330px md / 375px lg) */}
+                {/* 3D Cube Parent */}
                 <motion.div
                   className="relative w-[285px] h-[285px] md:w-[330px] md:h-[330px] lg:w-[350px] lg:h-[350px] [--cube-half:142.5px] md:[--cube-half:165px] lg:[--cube-half:175px]"
                   style={{
@@ -292,7 +267,7 @@ export default function ServiceProcess() {
                     rotateX: shouldReduceMotion ? 0 : rotateX,
                   }}
                   transition={{ type: "spring", damping: 30, stiffness: 200 }}
-                >375px
+                >
                   {/* 6 Cube Faces with sharp corners */}
                   {steps.map((step, idx) => (
                     <CubeFace
