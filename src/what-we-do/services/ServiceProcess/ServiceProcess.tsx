@@ -8,6 +8,7 @@ import {
   useMotionValueEvent,
   useReducedMotion,
   AnimatePresence,
+  useSpring,
 } from "framer-motion";
 import {
   CheckCircle2,
@@ -148,17 +149,18 @@ export default function ServiceProcess() {
     offset: ["start start", "end end"],
   });
 
-  // Continuous interpolation for cube rotation
+  // Since Lenis already smooths the global scroll, we can use raw scrollYProgress directly.
+  // Using useSpring on top of Lenis creates double-interpolation which causes severe lag.
   const rotateY = useTransform(
     scrollYProgress,
-    [0, 0.25, 0.5, 0.75, 1],
-    [0, -90, -180, -270, -360]
+    [0, 0.2, 0.4, 0.6, 0.8, 1],
+    [0, -90, -180, -270, -360, -360]
   );
 
   const rotateX = useTransform(
     scrollYProgress,
-    [0, 0.75, 0.9, 1],
-    [-10, -10, -45, -90]
+    [0, 0.2, 0.4, 0.6, 0.8, 1],
+    [-10, -10, -10, -10, -90, 90]
   );
 
   const progressWidth = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);

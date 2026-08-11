@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Outfit, Manrope, Inter } from "next/font/google";
 import "@/app/globals.css";
 import ConditionalShell from "@/src/components/ConditionalShell";
+import SmoothScroll from "@/src/components/SmoothScroll";
 import { Geist, Geist_Mono } from "next/font/google";
 
 
@@ -110,9 +111,11 @@ export default function RootLayout({
         />
       </head>
       <body className="min-h-full flex flex-col bg-[#121212] text-[#FAFAFA] font-sans selection:bg-[#242A56] selection:text-white" suppressHydrationWarning>
-        <ConditionalShell>
-          {children}
-        </ConditionalShell>
+        <SmoothScroll>
+          <ConditionalShell>
+            {children}
+          </ConditionalShell>
+        </SmoothScroll>
       </body>
     </html>
   );
