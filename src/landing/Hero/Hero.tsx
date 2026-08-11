@@ -33,7 +33,7 @@ export default function Hero() {
       <motion.div 
         className="absolute top-0 left-0 w-full h-[130%] bg-cover bg-center bg-no-repeat z-0"
         style={{ 
-          backgroundImage: "url('/amcharts/image.png')",
+          backgroundImage: "url('/amcharts/image2.png')",
           y: backgroundY
         }}
       />
@@ -46,10 +46,10 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.1 }}
-          className="text-4xl md:text-5xl lg:text-6xl font-heading font-normal text-white leading-[1.15] tracking-tight mb-6"
+          className="text-4xl md:text-5xl lg:text-6xl font-heading font-normal text-white leading-[1.15] tracking-tight mb-3"
         >
           Engineering the Future of <br />
-          <span className="inline-block relative w-full h-[1.3em] overflow-hidden mt-2">
+          <span className="inline-block relative w-full h-[1.3em] overflow-hidden mt-0">
             <AnimatePresence mode="popLayout">
               <motion.span
                 key={textIndex}
@@ -86,7 +86,7 @@ export default function Hero() {
             Discover Solutions
             <ArrowRight className="w-4 h-4 text-white" />
           </button>
-          <button className="px-6 py-3.5 bg-[#0E0B1F]/60 border border-[#38265C] hover:border-[#6E44FF]/70 text-slate-200 hover:text-white font-medium rounded-md backdrop-blur-md transition-all duration-300 flex items-center gap-2.5 text-sm hover:bg-[#181236]/80 hover:scale-[1.02]">
+          <button className="px-6 py-3.5 bg-white/5 backdrop-blur-xl border border-white/10 hover:border-white/20 hover:bg-white/10 text-white font-medium rounded-md transition-all duration-300 flex items-center gap-2.5 text-sm shadow-lg hover:scale-[1.02]">
             Talk to an Expert
             <Play className="w-3.5 h-3.5 fill-white text-white translate-x-0.5" />
           </button>
@@ -98,7 +98,7 @@ export default function Hero() {
       <div className="w-full lg:w-5/12 flex items-center justify-center mt-16 lg:mt-0 relative z-10">
         <iframe 
           src="/amcharts/examples/map-sankey-waypoints/index.html" 
-          className="w-[600px] h-[600px] border-none overflow-hidden scale-90 lg:scale-100 origin-center"
+          className="w-full aspect-square max-w-[650px] border-none overflow-hidden"
           style={{ background: "transparent" }}
           title="ApMoSys Global Network"
         />

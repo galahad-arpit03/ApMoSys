@@ -103,10 +103,10 @@ export default function Navbar() {
   const isExpanded = activeDropdown !== null;
   const isLandingHero = pathname === "/" && isAtTop && !isExpanded;
   const navBgColor = isExpanded 
-    ? "bg-[#0B0C10] backdrop-blur-3xl backdrop-saturate-200" 
+    ? "bg-black/60 backdrop-blur-3xl" 
     : isLandingHero 
       ? "bg-white/5 backdrop-blur-md border-b border-white/10" 
-      : "bg-[#0B0C10]/95 backdrop-blur-3xl backdrop-saturate-200 border-b border-gray-800/50";
+      : "bg-[#0B0C10]/95 backdrop-blur-3xl backdrop-saturate-200 border-b border-white/10";
 
   // Close dropdown on click outside
   React.useEffect(() => {
@@ -259,7 +259,7 @@ export default function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.2 }}
-            className="absolute top-14 left-0 w-full bg-[#0B0C10] z-40 pb-16 pt-10 shadow-2xl border-t border-gray-800"
+            className="absolute top-14 left-0 w-full bg-black/60 backdrop-blur-3xl z-40 pb-16 pt-10 shadow-2xl border-t border-white/10"
           >
           <div className="max-w-[1600px] mx-auto px-6 sm:px-8 lg:px-16">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
@@ -289,14 +289,14 @@ export default function Navbar() {
               {activeDropdown === "Who we are" ? (
                 <>
                   {/* Column 2 - Menu Items */}
-                  <div className="lg:col-span-3 border-t border-gray-800">
+                  <div className="lg:col-span-3 border-t border-white/10">
                     {megaMenuData["Who we are"].menuItems?.map((item, index) => (
                       <Link
                         key={item.id}
                         href={item.href}
                         onMouseEnter={() => setHoveredWhoWeAre(index)}
                         onClick={() => setActiveDropdown(null)}
-                        className={`flex items-center justify-between px-4 py-4 border-b border-gray-800 transition-all duration-200 ${hoveredWhoWeAre === index
+                        className={`flex items-center justify-between px-4 py-4 border-b border-white/10 transition-all duration-200 ${hoveredWhoWeAre === index
                             ? "bg-white/10 text-white"
                             : "text-gray-300 hover:text-white"
                           }`}
@@ -346,10 +346,10 @@ export default function Navbar() {
               ) : (
                 <>
                   {/* Existing Categories Column */}
-                  <div className="lg:col-span-3 flex flex-col border-t border-gray-800">
+                  <div className="lg:col-span-3 flex flex-col border-t border-white/10">
                     {megaMenuData[activeDropdown]?.categories?.map((category) => {
                       const isActive = activeCategory === category.id;
-                      const categoryClasses = `flex items-center justify-between cursor-pointer border-b border-gray-800 px-4 py-3 transition-colors duration-200 ${isActive
+                      const categoryClasses = `flex items-center justify-between cursor-pointer border-b border-white/10 px-4 py-3 transition-colors duration-200 ${isActive
                         ? "bg-white/10 text-white"
                         : "text-gray-300 hover:text-white"
                         }`;
@@ -461,11 +461,11 @@ export default function Navbar() {
       <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.2 }}
-            className="lg:hidden bg-[#0B0C10] border-b border-gray-800 px-4 pt-2 pb-6 space-y-2 overflow-y-auto max-h-[calc(100vh-3.5rem)]"
+            className="lg:hidden bg-black/60 backdrop-blur-3xl border-b border-white/10 px-4 pt-2 pb-6 space-y-2 overflow-y-auto max-h-[calc(100vh-3.5rem)]"
           >
           {navigationItems.map((item) => {
             const isPathActive = (href?: string, currentPath?: string | null) => {

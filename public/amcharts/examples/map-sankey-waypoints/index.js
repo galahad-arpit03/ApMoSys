@@ -45,10 +45,10 @@ var chart = root.container.children.push(am5map.MapChart.new(root, {
   homeGeoPoint: { longitude: 0, latitude: 0 },
   homeRotationX: 0,
   homeRotationY: 0,
-  homeZoomLevel: 1,
-  minZoomLevel: 1,
-  maxZoomLevel: 1,
-  zoomLevel: 1
+  homeZoomLevel: 0.85,
+  minZoomLevel: 0.85,
+  maxZoomLevel: 0.85,
+  zoomLevel: 0.85
 }));
 
 // ---- Ocean background ----
@@ -207,22 +207,12 @@ chart.set("panX", "rotateX");
 chart.set("panY", "rotateY");
 chart.set("rotationX", -74);
 chart.set("rotationY", -23.5);
-chart.set("zoomLevel", 1.0);
+chart.set("zoomLevel", 0.85);
 bgSeries.mapPolygons.template.set("fillOpacity", 0);
-
-var isDragging = false;
-
-chart.chartContainer.events.on("pointerdown", function() {
-  isDragging = true;
-});
-
-chart.chartContainer.events.on("globalpointerup", function() {
-  isDragging = false;
-});
 
 // A manual animation loop that forces rotation every frame
 function continuousRotation() {
-  if (!isDragging && chart.get("panX") == "rotateX") {
+  if (chart.get("panX") == "rotateX") {
     // Subtracting from rotationX gives it the correct East-to-West spin
     chart.set("rotationX", chart.get("rotationX") - 0.2);
   }
