@@ -105,7 +105,7 @@ export default function Navbar() {
   const navBgColor = isExpanded 
     ? "bg-[#0B0C10] backdrop-blur-3xl backdrop-saturate-200" 
     : isLandingHero 
-      ? "bg-[linear-gradient(90deg,#050716_0%,#090D28_45%,#3B2269_55%,#C4C0F7_62%,transparent_66%)] border-b border-white/10" 
+      ? "bg-white/5 backdrop-blur-md border-b border-white/10" 
       : "bg-[#0B0C10]/95 backdrop-blur-3xl backdrop-saturate-200 border-b border-gray-800/50";
 
   // Close dropdown on click outside
