@@ -1,172 +1,268 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { usePathname } from "next/navigation";
 import { useContentStore } from "@/src/admin/store/adminStore";
 import EditableText from "@/src/admin/components/EditableText";
-import { ArrowRight } from "lucide-react";
+import {
+  ArrowRight,
+  ChevronLeft,
+  ChevronRight,
+  CheckCircle2,
+  Sparkles,
+  Layers,
+  ShieldCheck,
+  Search,
+  Code,
+  Rocket,
+  Activity,
+  Smartphone,
+} from "lucide-react";
+import Image from "next/image";
 
-// Icon mapping - inherits color from parent
+// Icon mapping
 const updatedIconMap: Record<string, React.ReactNode> = {
-  "cliqtest": (
-    <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-      <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-    </svg>
-  ),
-  "netraa": (
-    <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-      <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
-      <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
-    </svg>
-  ),
-  "jupiter": (
-    <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-      <path strokeLinecap="round" strokeLinejoin="round" d="M20.25 6.375c0 2.278-3.694 4.125-8.25 4.125S3.75 8.653 3.75 6.375m16.5 0c0-2.278-3.694-4.125-8.25-4.125S3.75 4.097 3.75 6.375m16.5 0v11.25c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125V6.375m16.5 0v3.75m-16.5-3.75v3.75m16.5 0v3.75C20.25 16.153 16.556 18 12 18s-8.25-1.847-8.25-4.125v-3.75m16.5 0c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125" />
-    </svg>
-  ),
-  "shieldvue": (
-    <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-      <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
-    </svg>
-  ),
-  "swikrti": (
-    <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-      <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
-    </svg>
-  ),
-  "finxplore": (
-    <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-      <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 18.75a60.07 60.07 0 0115.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 013 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 00-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 01-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 003 15h-.75M15 10.5a3 3 0 11-6 0 3 3 0 016 0zm3 0h.008v.008H18V10.5zm-12 0h.008v.008H6V10.5z" />
-    </svg>
-  ),
-  "saransh": (
-    <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-      <path strokeLinecap="round" strokeLinejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5" />
-    </svg>
-  ),
-  "protean": (
-    <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-      <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12a7.5 7.5 0 0015 0m-15 0a7.5 7.5 0 1115 0m-15 0H3m16.5 0H21m-1.5 0H12m-8.457 3.077l1.41-.513m14.095-5.13l1.41-.513M5.106 17.785l1.15-.964m11.49-9.642l1.149-.964M7.501 19.795l.75-1.3m7.5-12.99l.75-1.3m-6.063 16.658l.26-1.477m2.605-14.772l.26-1.477m0 17.726l-.26-1.477M10.698 4.614l-.26-1.477M16.5 19.794l-.75-1.299M7.5 4.205L12 12m6.894 5.785l-1.149-.964M6.256 7.178l-1.15-.964m15.352 8.864l-1.41-.513M4.954 9.435l-1.41-.514M12.002 12l-3.75 6.495" />
-    </svg>
-  ),
+  cliqtest: <Search className="w-5 h-5" strokeWidth={1.75} />,
+  netraa: <Sparkles className="w-5 h-5" strokeWidth={1.75} />,
+  jupiter: <Layers className="w-5 h-5" strokeWidth={1.75} />,
+  shieldvue: <ShieldCheck className="w-5 h-5" strokeWidth={1.75} />,
+  swikrti: <Code className="w-5 h-5" strokeWidth={1.75} />,
+  finxplore: <Rocket className="w-5 h-5" strokeWidth={1.75} />,
+  saransh: <Activity className="w-5 h-5" strokeWidth={1.75} />,
+  protean: <Smartphone className="w-5 h-5" strokeWidth={1.75} />,
 };
 
-const ITEMS_PER_PAGE = 6;
+interface ProductItem {
+  id: string;
+  title: string;
+  subtitle?: string;
+  category?: string;
+  description: string;
+  icon: string;
+  img?: string;
+  bg?: string;
+  details?: string[];
+  linkText?: string;
+}
 
-// Helper to determine border classes based on grid position
-const getBorderClasses = (idx: number, total: number) => {
-  let classes = "border-gray-200 ";
-
-  if (idx < total - 1) classes += "border-b ";
-
-  if (idx === total - 2) classes += "sm:border-b-0 ";
-  if (idx % 2 === 0) classes += "sm:border-r ";
-  else classes += "sm:border-r-0 ";
-
-  if (idx >= total - 3) classes += "lg:border-b-0 ";
-  else classes += "lg:border-b ";
-
-  if ((idx + 1) % 3 !== 0) classes += "lg:border-r ";
-  else classes += "lg:border-r-0 ";
-
-  return classes;
-};
+const defaultProducts: ProductItem[] = [
+  {
+    id: "1",
+    title: "CliqTest",
+    subtitle: "AUTOMATION & AI",
+    category: "AI-Powered Test Automation",
+    description:
+      "Intelligent test automation platform that accelerates quality engineering with AI-driven test generation, self-healing execution, and continuous maintenance.",
+    icon: "cliqtest",
+    img: "/landing/Hero/cards/cliqtest_hero_1786091845488.png",
+    bg: "bg-[#0B0C10]",
+    details: ["AI Test Generation", "Self-Healing Execution", "CI/CD Integration"],
+    linkText: "Explore CliqTest",
+  },
+  {
+    id: "2",
+    title: "Netraa",
+    subtitle: "VISUAL AI & UI TESTING",
+    category: "Visual AI Testing & Monitoring",
+    description:
+      "AI-powered visual testing and monitoring platform that detects UI anomalies, layout regressions, and ensures pixel-perfect user experiences across devices.",
+    icon: "netraa",
+    img: "/landing/Hero/cards/netraa_hero_1786091859663.png",
+    bg: "bg-[#0066FF]",
+    details: ["Pixel-Match AI", "Layout Regression Audit", "Cross-Browser Check"],
+    linkText: "Explore Netraa",
+  },
+  {
+    id: "3",
+    title: "Jupiter",
+    subtitle: "PERFORMANCE & SCALABILITY",
+    category: "Enterprise Load & Stress Testing",
+    description:
+      "Enterprise-grade performance engineering platform for load testing, stress testing, bottleneck detection, and scalability validation at massive scale.",
+    icon: "jupiter",
+    img: "/landing/Hero/cards/jupiter_hero_1786091917753.png",
+    bg: "bg-[#0B0C10]",
+    details: ["High-Scale Load Simulation", "Bottleneck AI", "Real-Time Telemetry"],
+    linkText: "Explore Jupiter",
+  },
+  {
+    id: "4",
+    title: "ShieldVue",
+    subtitle: "CYBER SECURITY & DEFENSE",
+    category: "Automated Security & Compliance",
+    description:
+      "Comprehensive security validation platform that automates vulnerability scanning, penetration testing, security posture analysis, and compliance verification.",
+    icon: "shieldvue",
+    img: "/landing/Hero/cards/shieldvue_hero_1786091875222.png",
+    bg: "bg-[#1e293b]",
+    details: ["Vulnerability Scanning", "Penetration Audit", "SOC2 Compliance"],
+    linkText: "Explore ShieldVue",
+  },
+  {
+    id: "5",
+    title: "Swikrti",
+    subtitle: "WORKFLOW & COMPLIANCE",
+    category: "Intelligent Document Automation",
+    description:
+      "Intelligent document processing and workflow automation platform that streamlines complex business operations with AI, OCR, and RPA integration.",
+    icon: "swikrti",
+    img: "/landing/Hero/cards/swikruti_hero_1786091888812.png",
+    bg: "bg-[#121212]",
+    details: ["AI Document OCR", "Workflow Automation", "Zero-Defect Audit"],
+    linkText: "Explore Swikrti",
+  },
+  {
+    id: "6",
+    title: "FinXplore",
+    subtitle: "FINANCIAL ANALYTICS & BFSI",
+    category: "BFSI Analytics & Reporting",
+    description:
+      "Advanced financial analytics and reporting platform that provides real-time transaction insights, predictive risk modeling, and regulatory compliance.",
+    icon: "finxplore",
+    img: "/landing/Hero/cards/finxplore_hero_1786091905041.png",
+    bg: "bg-[#3b82f6]",
+    details: ["Predictive Risk AI", "Real-Time Analytics", "BFSI Compliance"],
+    linkText: "Explore FinXplore",
+  },
+  {
+    id: "7",
+    title: "Saransh",
+    subtitle: "OBSERVABILITY & AIOPS",
+    category: "Unified Observability & Insights",
+    description:
+      "Unified observability and AIOps platform that delivers end-to-end telemetry monitoring, incident intelligence, and automated root-cause analysis.",
+    icon: "saransh",
+    img: "/landing/Hero/cards/saransh_hero_1786093425648.png",
+    bg: "bg-[#0B0C10]",
+    details: ["End-to-End Tracing", "AIOps Root-Cause", "Incident Alerting"],
+    linkText: "Explore Saransh",
+  },
+  {
+    id: "8",
+    title: "Protean Device Lab",
+    subtitle: "CLOUD DEVICE LAB",
+    category: "On-Demand Device Cloud",
+    description:
+      "Cloud-based device testing lab providing on-demand access to thousands of real mobile devices, OS versions, and screen resolutions for validation.",
+    icon: "protean",
+    img: "/landing/Hero/cards/protean_hero.png",
+    bg: "bg-[#1e1b4b]",
+    details: ["Real Devices Cloud", "Cross-Platform AI", "Parallel Execution"],
+    linkText: "Explore Protean",
+  },
+];
 
 export default function ProductsOverview() {
-  const [currentPage, setCurrentPage] = useState(1);
+  const [rotation, setRotation] = useState(0);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [isDragging, setIsDragging] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
+
+  const startX = useRef(0);
+  const currentRotation = useRef(0);
+  const autoRotateRef = useRef<number | null>(null);
+
   const pathname = usePathname();
   const isEditRoute = pathname?.startsWith("/administrator");
 
   const { content } = useContentStore();
-  const productItems = content.products?.overview?.items || [];
+  const cmsItems = (content.products?.overview?.items || []) as ProductItem[];
 
-  const totalPages = Math.ceil(productItems.length / ITEMS_PER_PAGE);
-  const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
-  const paginatedItems = productItems.slice(startIndex, startIndex + ITEMS_PER_PAGE);
+  const products: ProductItem[] = defaultProducts.map((def, idx) => {
+    const cms = cmsItems[idx];
+    if (!cms) return def;
+    return {
+      ...def,
+      ...cms,
+      img: cms.img || def.img,
+      bg: cms.bg || def.bg,
+      subtitle: cms.subtitle || def.subtitle,
+      category: cms.category || def.category,
+      details: cms.details || def.details,
+    };
+  });
 
-  const defaultItems = [
-    {
-      id: "1",
-      title: "CliqTest",
-      description:
-        "Intelligent test automation platform that accelerates quality engineering with AI-driven test generation, execution, and maintenance.",
-      icon: "cliqtest",
-      linkText: "Explore CliqTest",
-    },
-    {
-      id: "2",
-      title: "Netraa",
-      description:
-        "AI-powered visual testing and monitoring platform that detects UI anomalies and ensures pixel-perfect user experiences across devices.",
-      icon: "netraa",
-      linkText: "Explore Netraa",
-    },
-    {
-      id: "3",
-      title: "Jupiter",
-      description:
-        "Enterprise-grade performance engineering platform for load testing, stress testing, and scalability validation at massive scale.",
-      icon: "jupiter",
-      linkText: "Explore Jupiter",
-    },
-    {
-      id: "4",
-      title: "ShieldVue",
-      description:
-        "Comprehensive security validation platform that automates vulnerability scanning, penetration testing, and compliance verification.",
-      icon: "shieldvue",
-      linkText: "Explore ShieldVue",
-    },
-    {
-      id: "5",
-      title: "Swikrti",
-      description:
-        "Intelligent document processing and workflow automation platform that streamlines complex business operations with AI and RPA.",
-      icon: "swikrti",
-      linkText: "Explore Swikrti",
-    },
-    {
-      id: "6",
-      title: "FinXplore",
-      description:
-        "Advanced financial analytics and reporting platform that provides real-time insights, predictive modeling, and regulatory compliance.",
-      icon: "finxplore",
-      linkText: "Explore FinXplore",
-    },
-    {
-      id: "7",
-      title: "Saransh",
-      description:
-        "Unified observability and AIOps platform that delivers end-to-end monitoring, incident intelligence, and root-cause analysis.",
-      icon: "saransh",
-      linkText: "Explore Saransh",
-    },
-    {
-      id: "8",
-      title: "Protean Device Lab",
-      description:
-        "Cloud-based device testing lab that provides on-demand access to thousands of real devices for cross-platform testing and validation.",
-      icon: "protean",
-      linkText: "Explore Protean",
-    },
-  ];
+  const numCards = products.length;
+  const radius = 210; // 3D cylinder radius
 
-  const items = paginatedItems.length > 0 ? paginatedItems : defaultItems.slice(0, ITEMS_PER_PAGE);
+  // Determine which card is facing front based on net rotation angle
+  useEffect(() => {
+    let bestIdx = 0;
+    let minDiff = Infinity;
+    for (let i = 0; i < numCards; i++) {
+      const angle = (360 / numCards) * i;
+      let net = (angle + rotation) % 360;
+      if (net > 180) net -= 360;
+      if (net < -180) net += 360;
+      const diff = Math.abs(net);
+      if (diff < minDiff) {
+        minDiff = diff;
+        bestIdx = i;
+      }
+    }
+    if (bestIdx !== activeIndex) {
+      setActiveIndex(bestIdx);
+    }
+  }, [rotation, numCards, activeIndex]);
+
+  // Moderate speed auto rotation (pauses on drag or hover)
+  useEffect(() => {
+    if (!isDragging && !isHovered) {
+      const animate = () => {
+        setRotation((prev) => prev - 0.22);
+        autoRotateRef.current = requestAnimationFrame(animate);
+      };
+      autoRotateRef.current = requestAnimationFrame(animate);
+    }
+    return () => {
+      if (autoRotateRef.current) cancelAnimationFrame(autoRotateRef.current);
+    };
+  }, [isDragging, isHovered]);
+
+  const startDrag = (e: React.MouseEvent | React.TouchEvent) => {
+    setIsDragging(true);
+    startX.current = "touches" in e ? e.touches[0].clientX : e.clientX;
+    currentRotation.current = rotation;
+  };
+
+  const onDrag = (e: React.MouseEvent | React.TouchEvent) => {
+    if (!isDragging) return;
+    const x = "touches" in e ? e.touches[0].clientX : e.clientX;
+    const delta = x - startX.current;
+    setRotation(currentRotation.current + delta * 0.45);
+  };
+
+  const stopDrag = () => {
+    setIsDragging(false);
+  };
+
+  const selectProduct = (index: number) => {
+    const targetAngle = -(360 / numCards) * index;
+    setRotation(targetAngle);
+    setActiveIndex(index);
+  };
+
+  const activeProduct = products[activeIndex] || products[0];
+  const ActiveIconNode =
+    updatedIconMap[activeProduct.icon] || updatedIconMap["cliqtest"];
 
   return (
-    <section id="products-grid" className="py-10 lg:py-16 bg-white border-t border-gray-100 relative overflow-hidden">
-      {/* Subtle background glow */}
+    <section
+      id="products-grid"
+      className="py-12 lg:py-20 bg-white border-t border-gray-100 relative overflow-hidden"
+    >
+      {/* Background ambient accents */}
       <div className="absolute inset-0 opacity-[0.03] pointer-events-none">
         <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#2563EB] rounded-full blur-[120px]" />
-        <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-[#2563EB] rounded-full blur-[120px]" />
+        <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-[#6E44FF] rounded-full blur-[120px]" />
       </div>
 
       <div className="max-w-[1600px] mx-auto px-6 sm:px-8 lg:px-16 relative z-10">
-        {/* Split Header – No Eyebrow */}
-        <div className="mb-12 lg:mb-16 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+        {/* Header section */}
+        <div className="mb-10 lg:mb-14 grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-12 items-start">
           <div className="lg:col-span-5">
-            <h2 className="font-heading text-4xl sm:text-5xl lg:text-6xl font-normal text-black leading-[1.1]">
+            <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-normal text-black leading-[1.15]">
               <EditableText
                 path="products.overview.heading"
                 fallback="Purpose-Built Platforms for Enterprise Excellence"
@@ -174,8 +270,8 @@ export default function ProductsOverview() {
               />
             </h2>
           </div>
-          <div className="lg:col-span-7">
-            <p className="text-base lg:text-lg text-[#5A5A5A] leading-relaxed">
+          <div className="lg:col-span-7 flex items-end">
+            <p className="text-sm sm:text-base text-[#5A5A5A] leading-relaxed max-w-2xl">
               <EditableText
                 path="products.overview.description"
                 fallback="From AI-powered testing and observability to security validation and device labs — our products are designed to solve real-world enterprise challenges."
@@ -186,117 +282,242 @@ export default function ProductsOverview() {
           </div>
         </div>
 
-        {/* Tabular Grid – Light Theme - Spacious */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 w-full border-t border-b border-gray-200">
-          <AnimatePresence mode="popLayout">
-            {items.map((item, index) => {
-              const actualIdx = startIndex + index;
-              return (
-                <motion.div
-                  key={item.id}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, scale: 0.95 }}
-                  layout
-                  transition={{ duration: 0.3, delay: index * 0.05 }}
-                  className={`group flex items-start gap-5 p-6 xl:p-10 hover:bg-gray-50/50 transition-all duration-300 cursor-pointer ${getBorderClasses(
-                    actualIdx,
-                    items.length
-                  )}`}
-                >
-                  {/* Icon - Larger */}
-                  <div className="flex-shrink-0 w-12 h-12 rounded-md bg-[#2563EB]/10 border border-[#2563EB]/20 flex items-center justify-center text-[#2563EB] group-hover:bg-[#2563EB] group-hover:text-white transition-colors">
-                    {updatedIconMap[item.icon] || updatedIconMap["cliqtest"]}
-                  </div>
+        {/* Product selector quick pills */}
+        {/* <div className="mb-10 flex flex-wrap items-center gap-2 pb-2 border-b border-gray-100">
+          {products.map((item, idx) => {
+            const isSelected = activeIndex === idx;
+            return (
+              <button
+                key={item.id || idx}
+                onClick={() => selectProduct(idx)}
+                className={`text-xs font-medium px-3.5 py-1.5 rounded-full transition-all duration-300 cursor-pointer flex items-center gap-1.5 ${
+                  isSelected
+                    ? "bg-[#2563EB] text-white shadow-xs font-semibold"
+                    : "bg-gray-100 text-gray-600 hover:bg-gray-200/80"
+                }`}
+              >
+                <span>0{idx + 1}</span>
+                <span>{item.title}</span>
+              </button>
+            );
+          })}
+        </div> */}
 
-                  {/* Text Content - More breathing room */}
-                  <div className="flex-grow min-w-0">
-                    <h3 className="text-base xl:text-lg font-medium text-black mb-2 leading-tight group-hover:text-[#2563EB] transition-colors duration-300">
-                      <EditableText
-                        path={`products.overview.items.${actualIdx}.title`}
-                        fallback={item.title}
-                        as="span"
-                      />
-                    </h3>
-                    {/* Description - Always visible, updated font size */}
-                    <p className="text-[13px] xl:text-[14px] text-[#5A5A5A] leading-snug">
-                      <EditableText
-                        path={`products.overview.items.${actualIdx}.description`}
-                        fallback={item.description}
-                        as="span"
-                        multiline
-                      />
-                    </p>
-                    {/* Learn More link - Always visible */}
-                    <div className="mt-3">
-                      <a
-                        href="#"
-                        className="inline-flex items-center text-xs font-bold text-[#2563EB] hover:text-blue-700 transition-colors group/link"
+        {/* Main Grid Layout: 3D Rotating Cards (Left) & Active Product Info (Right) */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+          {/* Left Side: 3D Rotating Cards Carousel */}
+          <div
+            className="lg:col-span-5 flex flex-col items-center justify-center relative py-4 lg:py-0 select-none cursor-grab active:cursor-grabbing"
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => {
+              setIsHovered(false);
+              stopDrag();
+            }}
+            onMouseDown={startDrag}
+            onMouseMove={onDrag}
+            onMouseUp={stopDrag}
+            onTouchStart={startDrag}
+            onTouchMove={onDrag}
+            onTouchEnd={stopDrag}
+          >
+            {/* Ambient subtle glow behind cards */}
+            <div className="absolute w-72 h-72 bg-[#2563EB]/10 rounded-full blur-3xl pointer-events-none" />
+
+            {/* 3D Viewport Wrapper */}
+            <div
+              className="relative w-full h-[360px] flex items-center justify-center overflow-hidden"
+              style={{ perspective: "1200px" }}
+            >
+              {/* 3D Rotating Cylinder Parent */}
+              <div
+                className="relative w-[160px] h-[240px]"
+                style={{
+                  transformStyle: "preserve-3d",
+                  transform: `rotateX(-10deg) rotateY(${rotation}deg)`,
+                  transition: isDragging ? "none" : "transform 0.15s linear",
+                }}
+              >
+                {products.map((item, index) => {
+                  const angle = (360 / numCards) * index;
+                  const isCurrentActive = activeIndex === index;
+                  const cardBg = item.bg || "bg-[#0B0C10]";
+                  const cardImage = item.img || "/landing/Hero/cards/cliqtest_hero_1786091845488.png";
+
+                  return (
+                    <div
+                      key={item.id || index}
+                      onClick={() => selectProduct(index)}
+                      className={`absolute top-0 left-0 w-full h-full rounded-xl p-4 flex flex-col justify-between overflow-hidden shadow-xl transition-all duration-300 cursor-pointer ${cardBg} text-white ${
+                        isCurrentActive
+                          ? "ring-2 ring-[#2563EB] shadow-[0_0_30px_rgba(37,99,235,0.4)]"
+                          : "opacity-80 border border-white/10"
+                      }`}
+                      style={{
+                        transform: `rotateY(${angle}deg) translateZ(${radius}px)`,
+                      }}
+                    >
+                      {/* Background Hero Image */}
+                      {cardImage && (
+                        <div className="absolute inset-0 opacity-55 z-0">
+                          <Image
+                            src={cardImage}
+                            alt={item.title}
+                            fill
+                            className="object-cover object-center rounded-xl"
+                            sizes="200px"
+                          />
+                        </div>
+                      )}
+
+                      {/* Card Overlay & Text Content */}
+                      <div className="relative z-10 w-full h-full flex flex-col justify-between bg-gradient-to-t from-black/85 via-black/30 to-transparent p-1 rounded-lg">
+                        <div className="flex items-center justify-between">
+                          <span className="text-[10px] font-mono font-bold text-white bg-black/60 px-2 py-0.5 rounded border border-white/10">
+                            0{index + 1}
+                          </span>
+                          <span className="text-[9px] font-mono font-semibold text-blue-300 bg-[#2563EB]/40 px-2 py-0.5 rounded uppercase tracking-wider">
+                            {item.subtitle || "PLATFORM"}
+                          </span>
+                        </div>
+
+                        <div>
+                          <h4 className="text-lg font-bold text-white leading-tight drop-shadow-md">
+                            {item.title}
+                          </h4>
+                          <p className="text-[10px] text-gray-300 font-mono tracking-wider mt-0.5">
+                            AP2L PRODUCT
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* Rotation interaction hint */}
+            {/* <div className="mt-2 flex items-center gap-2 text-xs font-mono text-gray-400 bg-white/80 border border-gray-200 px-3 py-1 rounded-full shadow-2xs">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#2563EB] animate-ping" />
+              <span>ROTATE CARDS TO EXPLORE PRODUCTS</span>
+            </div> */}
+          </div>
+
+          {/* Right Side: Active Designated Product Information Card */}
+          <div className="lg:col-span-7">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={activeIndex}
+                initial={{ opacity: 0, y: 15 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -15 }}
+                transition={{ duration: 0.35, ease: "easeOut" }}
+                className="bg-white border border-gray-200 rounded-2xl p-6 sm:p-8 xl:p-10 shadow-sm hover:border-[#2563EB]/30 transition-all flex flex-col justify-between min-h-[380px]"
+              >
+                <div>
+                  {/* Top Badge & Controls */}
+                  <div className="flex items-center justify-between mb-6 pb-4 border-b border-gray-100">
+                    <div className="flex items-center gap-3">
+                      <span className="text-[10px] font-bold text-[#2563EB] uppercase tracking-wider bg-[#2563EB]/10 px-3 py-1 rounded-full flex items-center gap-1.5">
+                        <span className="w-1.5 h-1.5 rounded-full bg-[#2563EB]" />
+                         {activeIndex + 1} 
+                      </span>
+                      <span className="text-xs font-mono font-semibold text-gray-400 uppercase tracking-wider">
+                        {activeProduct.subtitle || "PLATFORM"}
+                      </span>
+                    </div>
+
+                    {/* Manual Navigation Controls */}
+                    <div className="flex items-center gap-2">
+                      <button
+                        onClick={() =>
+                          selectProduct(
+                            (activeIndex - 1 + products.length) % products.length
+                          )
+                        }
+                        className="p-1.5 rounded-lg border border-gray-200 text-gray-600 hover:bg-gray-100 transition-colors cursor-pointer"
+                        aria-label="Previous Product"
                       >
-                        <EditableText
-                          path={`products.overview.items.${actualIdx}.linkText`}
-                          fallback="Learn More"
-                          as="span"
-                        />
-                        <ArrowRight className="w-3.5 h-3.5 ml-1.5 transform group-hover/link:translate-x-1 transition-transform" />
-                      </a>
+                        <ChevronLeft className="w-4 h-4" />
+                      </button>
+                      <button
+                        onClick={() =>
+                          selectProduct((activeIndex + 1) % products.length)
+                        }
+                        className="p-1.5 rounded-lg border border-gray-200 text-gray-600 hover:bg-gray-100 transition-colors cursor-pointer"
+                        aria-label="Next Product"
+                      >
+                        <ChevronRight className="w-4 h-4" />
+                      </button>
                     </div>
                   </div>
-                </motion.div>
-              );
-            })}
-          </AnimatePresence>
-        </div>
 
-        {/* Pagination – Light Theme */}
-        {totalPages > 1 && (
-          <div className="mt-12 flex justify-center items-center gap-3">
-            <button
-              onClick={() => setCurrentPage((p) => Math.max(p - 1, 1))}
-              disabled={currentPage === 1}
-              className={`p-2.5 rounded-md border transition-colors ${
-                currentPage === 1
-                  ? "border-gray-200 text-gray-300 cursor-not-allowed"
-                  : "border-gray-300 text-gray-600 hover:bg-gray-100 cursor-pointer"
-              }`}
-            >
-              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
-              </svg>
-            </button>
+                  {/* Icon & Title Row */}
+                  <div className="flex items-start gap-4 mb-4">
+                    <div className="w-12 h-12 rounded-xl bg-[#2563EB]/10 border border-[#2563EB]/20 flex items-center justify-center text-[#2563EB] shrink-0">
+                      {ActiveIconNode}
+                    </div>
+                    <div>
+                      <span className="text-xs font-mono font-semibold text-[#2563EB] uppercase tracking-wider">
+                        {activeProduct.category || "Enterprise Platform"}
+                      </span>
+                      <h3 className="text-2xl sm:text-3xl font-bold text-black font-heading leading-tight mt-0.5">
+                        <EditableText
+                          path={`products.overview.items.${activeIndex}.title`}
+                          fallback={activeProduct.title}
+                          as="span"
+                        />
+                      </h3>
+                    </div>
+                  </div>
 
-            {Array.from({ length: totalPages }).map((_, idx) => {
-              const pNum = idx + 1;
-              return (
-                <button
-                  key={pNum}
-                  onClick={() => setCurrentPage(pNum)}
-                  className={`w-10 h-10 rounded-md text-sm font-bold transition-all cursor-pointer ${
-                    currentPage === pNum
-                      ? "bg-[#2563EB] text-white shadow-[0_0_20px_rgba(37,99,235,0.2)]"
-                      : "border border-gray-300 text-gray-600 hover:bg-gray-100"
-                  }`}
-                >
-                  {pNum}
-                </button>
-              );
-            })}
+                  {/* Full Description */}
+                  <p className="text-[#5A5A5A] text-sm sm:text-base leading-relaxed mb-6">
+                    <EditableText
+                      path={`products.overview.items.${activeIndex}.description`}
+                      fallback={activeProduct.description}
+                      as="span"
+                      multiline
+                    />
+                  </p>
 
-            <button
-              onClick={() => setCurrentPage((p) => Math.min(p + 1, totalPages))}
-              disabled={currentPage === totalPages}
-              className={`p-2.5 rounded-md border transition-colors ${
-                currentPage === totalPages
-                  ? "border-gray-200 text-gray-300 cursor-not-allowed"
-                  : "border-gray-300 text-gray-600 hover:bg-gray-100 cursor-pointer"
-              }`}
-            >
-              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-              </svg>
-            </button>
+                  {/* Feature Detail Tags */}
+                  {activeProduct.details && (
+                    <div className="flex flex-wrap gap-2 mb-8">
+                      {activeProduct.details.map((detail: string) => (
+                        <span
+                          key={detail}
+                          className="text-xs font-medium text-gray-700 bg-gray-50 border border-gray-200 px-3 py-1.5 rounded-full flex items-center gap-1.5 shadow-2xs"
+                        >
+                          <CheckCircle2 className="w-3.5 h-3.5 text-[#2563EB]" />
+                          {detail}
+                        </span>
+                      ))}
+                    </div>
+                  )}
+                </div>
+
+                {/* Explore Action CTA Button */}
+                <div className="pt-4 border-t border-gray-100 flex items-center justify-between">
+                  <a
+                    href="#"
+                    className="px-6 py-3 bg-[#2563EB] hover:bg-blue-700 text-white font-medium text-sm rounded-xl transition-all duration-300 flex items-center gap-2 shadow-sm hover:shadow-md hover:scale-[1.01]"
+                  >
+                    <EditableText
+                      path={`products.overview.items.${activeIndex}.linkText`}
+                      fallback={activeProduct.linkText || `Explore ${activeProduct.title}`}
+                      as="span"
+                    />
+                    <ArrowRight className="w-4 h-4 text-white" />
+                  </a>
+
+                  <span className="text-xs font-mono text-gray-400">
+                    ApMoSys Platform Engine
+                  </span>
+                </div>
+              </motion.div>
+            </AnimatePresence>
           </div>
-        )}
+        </div>
       </div>
     </section>
   );
