@@ -79,24 +79,21 @@ export default function ProductsInnovations() {
     <section className="py-10 lg:py-16 bg-white">
       <div className="max-w-[1600px] mx-auto px-6 sm:px-8 lg:px-16">
         
-        {/* Header - LHS/RHS Split with Navigation */}
-        <div className="mb-8 lg:mb-10 flex flex-col lg:flex-row lg:items-start justify-between gap-8">
-          {/* Left Side: Heading */}
-          <div className="shrink-0">
-            <h2 className="font-heading text-4xl sm:text-5xl lg:text-6xl font-normal text-black leading-[1.1]">
-              Products & <br className="hidden lg:block" />
-              <span>Innovations</span>
+        {/* Header Section */}
+        <div className="mb-10 lg:mb-14 flex flex-col md:flex-row items-center justify-between gap-10 md:gap-16">
+          <div className="w-full md:w-1/2">
+            <h2 className="font-heading text-4xl sm:text-5xl lg:text-6xl font-normal text-black leading-[1.1] tracking-tight text-left">
+              Products & Innovations
             </h2>
           </div>
           
-          {/* Right Side: Paragraph & Arrows */}
-          <div className="flex flex-col lg:items-end gap-6 max-w-xl">
-            <p className="text-base lg:text-lg leading-relaxed text-[#5A5A5A] lg:text-left">
+          <div className="w-full md:w-1/2 md:border-l border-gray-300 md:pl-8 flex flex-col gap-6">
+            <p className="text-base lg:text-lg leading-relaxed text-[#5A5A5A] text-left font-medium">
               Discover our suite of enterprise-grade platforms engineered to accelerate automation, fortify security, and scale your digital operations with AI-driven precision.
             </p>
             
             {/* Navigation Arrows */}
-            <div className="flex gap-4 shrink-0">
+            {/* <div className="flex gap-4 shrink-0">
               <button
                 onClick={() => scroll("left")}
                 className="w-12 h-12 rounded-full border border-gray-200 flex items-center justify-center text-gray-600 hover:bg-[#2563EB] hover:text-white hover:border-[#2563EB] transition-colors shadow-sm"
@@ -109,7 +106,7 @@ export default function ProductsInnovations() {
               >
                 <ChevronRight className="w-5 h-5" />
               </button>
-            </div>
+            </div> */}
           </div>
         </div>
 

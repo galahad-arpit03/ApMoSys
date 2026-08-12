@@ -11,19 +11,15 @@ export default function CoESection() {
     <section className="py-10 lg:py-16 bg-white border-b border-gray-100 relative overflow-hidden">
       <div className="max-w-[1600px] mx-auto px-6 sm:px-8 lg:px-16 relative z-10">
         
-        {/* Header - LHS/RHS Split */}
-        <div className="mb-8 lg:mb-4 flex flex-col lg:flex-row lg:items-start justify-between gap-8">
-          {/* Left Side: Heading */}
-          <div className="shrink-0">
-            <h2 className="font-heading text-4xl sm:text-5xl lg:text-6xl font-normal text-black leading-[1.1]">
-              Centers of <br className="hidden lg:block" />
-              <span>Excellence</span>
+        {/* Header Section */}
+        <div className="mb-10 lg:mb-14 flex flex-col md:flex-row items-center justify-between gap-10 md:gap-16">
+          <div className="w-full md:w-1/2">
+            <h2 className="font-heading text-4xl sm:text-5xl lg:text-6xl font-normal text-black leading-[1.1] tracking-tight text-left">
+              Centers of Excellence
             </h2>
           </div>
-          
-          {/* Right Side: Paragraph */}
-          <div className="flex flex-col lg:items-end gap-6 max-w-xl">
-            <p className="text-base lg:text-lg leading-relaxed text-[#5A5A5A] lg:text-left">
+          <div className="w-full md:w-1/2 md:border-l border-gray-300 md:pl-8">
+            <p className="text-base lg:text-lg leading-relaxed text-[#5A5A5A] text-left font-medium">
               We operate dedicated innovation labs to establish best practices, develop specialized tools, and drive thought leadership across critical domains.
             </p>
           </div>

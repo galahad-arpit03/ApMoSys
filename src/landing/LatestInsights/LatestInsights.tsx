@@ -79,26 +79,30 @@ export default function LatestInsights() {
       <div className="max-w-[1600px] mx-auto px-6 sm:px-8 lg:px-16">
 
         {/* Header Section */}
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-10">
-          <div>
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-light text-black leading-none tracking-tight">
-              From the <br /> Newsroom.
+        <div className="mb-10 lg:mb-14 flex flex-col md:flex-row items-center justify-between gap-10 md:gap-16">
+          <div className="w-full md:w-1/2">
+            <h2 className="font-heading text-4xl sm:text-5xl lg:text-6xl font-normal text-black leading-[1.1] tracking-tight text-left">
+              From the Newsroom
             </h2>
           </div>
-
-          <div className="flex items-center gap-3 mt-6 md:mt-0">
-            <button
-              onClick={() => scroll("left")}
-              className="w-10 h-10 border border-slate-300 rounded-full flex items-center justify-center hover:bg-slate-100 transition-colors text-slate-600 bg-white shadow-sm"
-            >
-              <ChevronLeft className="w-5 h-5" />
-            </button>
-            <button
-              onClick={() => scroll("right")}
-              className="w-10 h-10 bg-[#121212]  rounded-full text-white flex items-center justify-center hover:bg-slate-800 transition-colors shadow-sm"
-            >
-              <ChevronRight className="w-5 h-5" />
-            </button>
+          <div className="w-full md:w-1/2 md:border-l border-gray-300 md:pl-8 flex flex-col gap-6">
+            <p className="text-base lg:text-lg leading-relaxed text-[#5A5A5A] text-left font-medium">
+              Stay updated with our latest announcements, enterprise insights, and technological advancements shaping the future of digital engineering.
+            </p>
+            {/* <div className="flex items-center gap-3">
+              <button
+                onClick={() => scroll("left")}
+                className="w-10 h-10 border border-slate-300 rounded-full flex items-center justify-center hover:bg-slate-100 transition-colors text-slate-600 bg-white shadow-sm"
+              >
+                <ChevronLeft className="w-5 h-5" />
+              </button>
+              <button
+                onClick={() => scroll("right")}
+                className="w-10 h-10 bg-[#121212] rounded-full text-white flex items-center justify-center hover:bg-slate-800 transition-colors shadow-sm"
+              >
+                <ChevronRight className="w-5 h-5" />
+              </button>
+            </div> */}
           </div>
         </div>
 
