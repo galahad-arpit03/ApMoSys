@@ -4,7 +4,7 @@
 
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
-import { executiveteamData } from "@/src/who-we-are/leadership/ExecutiveTeam/ExecutiveTeamData";
+import { executiveteamData } from "@/src/data/who-we-are/leadership/ExecutiveTeam/ExecutiveTeamData";
 
 // ─── Auth ───────────────────────────────────────────────────────────────────
 

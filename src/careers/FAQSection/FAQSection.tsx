@@ -1,5 +1,5 @@
 "use client";
-import { faqsectionData } from "./FAQSectionData";
+import { faqsectionData } from "@/src/data/careers/FAQSection/FAQSectionData";
 
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";

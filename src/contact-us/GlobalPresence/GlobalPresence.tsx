@@ -1,5 +1,5 @@
 "use client";
-import { globalpresenceData } from "./GlobalPresenceData";
+import { globalpresenceData } from "@/src/data/contact-us/GlobalPresence/GlobalPresenceData";
 
 import React from "react";
 import Container from "@/src/components/Container";

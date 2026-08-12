@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { motion } from "framer-motion";
-import { impactData } from "./ImpactSectionData";
+import { impactData } from "@/src/data/what-we-do/services/ai-engineering/ImpactSection/ImpactSectionData";
 
 export default function ImpactSection() {
   const { heading, description, metrics } = impactData;

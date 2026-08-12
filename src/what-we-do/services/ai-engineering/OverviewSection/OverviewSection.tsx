@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { motion } from "framer-motion";
-import { overviewData } from "./OverviewSectionData";
+import { overviewData } from "@/src/data/what-we-do/services/ai-engineering/OverviewSection/OverviewSectionData";
 
 export default function OverviewSection() {
   const { heading, description, stats } = overviewData;

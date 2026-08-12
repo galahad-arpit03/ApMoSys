@@ -1,5 +1,5 @@
 "use client";
-import { initiativesData } from "./InitiativesData";
+import { initiativesData } from "@/src/data/who-we-are/community/Initiatives/InitiativesData";
 
 
 const initiatives = [

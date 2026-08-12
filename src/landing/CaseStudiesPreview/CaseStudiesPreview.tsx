@@ -1,5 +1,5 @@
 "use client";
-import { casestudiespreviewData } from "./CaseStudiesPreviewData";
+import { casestudiespreviewData } from "@/src/data/landing/CaseStudiesPreview/CaseStudiesPreviewData";
 
 import { motion } from "framer-motion";
 

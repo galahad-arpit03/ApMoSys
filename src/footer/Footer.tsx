@@ -1,5 +1,5 @@
 "use client";
-import { footerData } from "./FooterData";
+import { footerData } from "@/src/data/footer/FooterData";
 
 import React from "react";
 import { motion, AnimatePresence } from "framer-motion";

@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { corporateCTAData } from "./CorporateCTAData";
+import { corporateCTAData } from "@/src/data/who-we-are/about-us/CorporateCTA/CorporateCTAData";
 import EditableText from "@/src/admin/components/EditableText";
 import SectionThemeWrapper from "@/src/admin/components/SectionThemeWrapper";
 import { ArrowRight } from "lucide-react";

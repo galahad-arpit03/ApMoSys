@@ -1,5 +1,5 @@
 "use client";
-import { worldmapsectionData } from "./WorldMapSectionData";
+import { worldmapsectionData } from "@/src/data/contact-us/WorldMapSection/WorldMapSectionData";
 
 import React from "react";
 import { motion } from "framer-motion";

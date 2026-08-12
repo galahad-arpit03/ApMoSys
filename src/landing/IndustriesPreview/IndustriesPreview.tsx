@@ -1,5 +1,5 @@
 "use client";
-import { industriespreviewData } from "./IndustriesPreviewData";
+import { industriespreviewData } from "@/src/data/landing/IndustriesPreview/IndustriesPreviewData";
 
 import { motion } from "framer-motion";
 

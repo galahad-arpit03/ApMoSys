@@ -2,7 +2,7 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { statsStripData } from "./StatsStripData";
+import { statsStripData } from "@/src/data/landing/StatsStrip/StatsStripData";
 import { ArrowRight } from "lucide-react";
 
 export default function StatsStrip() {

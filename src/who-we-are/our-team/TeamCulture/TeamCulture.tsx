@@ -1,7 +1,7 @@
 "use client";
 
 import EditableText from "@/src/admin/components/EditableText";
-import { teamcultureData } from "./TeamCultureData";
+import { teamcultureData } from "@/src/data/who-we-are/our-team/TeamCulture/TeamCultureData";
 
 
 import SectionThemeWrapper from "@/src/admin/components/SectionThemeWrapper";

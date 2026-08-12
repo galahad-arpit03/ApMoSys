@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { motion } from "framer-motion";
-import { benefitsData } from "./BenefitsSectionData";
+import { benefitsData } from "@/src/data/what-we-do/services/ai-engineering/BenefitsSection/BenefitsSectionData";
 
 export default function BenefitsSection() {
   const { heading, description, benefits } = benefitsData;

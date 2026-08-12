@@ -1,4 +1,4 @@
-import { nextgensectionData } from "./NextGenSectionData";
+import { nextgensectionData } from "@/src/data/careers/NextGenSection/NextGenSectionData";
 import React from "react";
 import Container from "@/src/components/Container";
 import { motion } from "framer-motion";

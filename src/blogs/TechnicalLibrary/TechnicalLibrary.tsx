@@ -1,5 +1,5 @@
 "use client";
-import { technicallibraryData } from "./TechnicalLibraryData";
+import { technicallibraryData } from "@/src/data/blogs/TechnicalLibrary/TechnicalLibraryData";
 
 import React from "react";
 import Container from "@/src/components/Container";

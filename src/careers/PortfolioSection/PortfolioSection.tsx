@@ -1,5 +1,5 @@
 "use client";
-import { portfoliosectionData } from "./PortfolioSectionData";
+import { portfoliosectionData } from "@/src/data/careers/PortfolioSection/PortfolioSectionData";
 
 import React, { useState } from "react";
 import { motion } from "framer-motion";

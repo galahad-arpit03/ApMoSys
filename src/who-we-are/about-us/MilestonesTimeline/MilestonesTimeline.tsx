@@ -6,7 +6,7 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useContentStore } from "@/src/admin/store/adminStore";
 import EditableText from "@/src/admin/components/EditableText";
 import SectionThemeWrapper from "@/src/admin/components/SectionThemeWrapper";
-import { milestonesData } from "./MilestonesTimelineData";
+import { milestonesData } from "@/src/data/who-we-are/about-us/MilestonesTimeline/MilestonesTimelineData";
 
 export default function MilestonesTimeline() {
   const pathname = usePathname();

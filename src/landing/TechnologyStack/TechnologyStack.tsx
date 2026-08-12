@@ -1,5 +1,5 @@
 "use client";
-import { technologystackData } from "./TechnologyStackData";
+import { technologystackData } from "@/src/data/landing/TechnologyStack/TechnologyStackData";
 
 import { motion } from "framer-motion";
 

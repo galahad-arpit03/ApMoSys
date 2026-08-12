@@ -1,5 +1,5 @@
 "use client";
-import { leadershipvaluesData } from "./LeadershipValuesData";
+import { leadershipvaluesData } from "@/src/data/who-we-are/leadership/LeadershipValues/LeadershipValuesData";
 import SectionThemeWrapper from "@/src/admin/components/SectionThemeWrapper";
 import { motion } from "framer-motion";
 

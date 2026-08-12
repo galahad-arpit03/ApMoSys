@@ -1,5 +1,5 @@
 "use client";
-import { roadmapsectionData } from "./RoadmapSectionData";
+import { roadmapsectionData } from "@/src/data/careers/RoadmapSection/RoadmapSectionData";
 
 import React from "react";
 import Container from "@/src/components/Container";

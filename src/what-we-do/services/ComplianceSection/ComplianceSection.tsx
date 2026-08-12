@@ -1,5 +1,5 @@
 "use client";
-import { compliancesectionData } from "./ComplianceSectionData";
+import { compliancesectionData } from "@/src/data/what-we-do/services/ComplianceSection/ComplianceSectionData";
 
 import React from "react";
 import Container from "@/src/components/Container";

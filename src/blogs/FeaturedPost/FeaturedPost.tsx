@@ -1,4 +1,4 @@
-import { featuredpostData } from "./FeaturedPostData";
+import { featuredpostData } from "@/src/data/blogs/FeaturedPost/FeaturedPostData";
 import React from "react";
 import Image from "next/image";
 import Container from "@/src/components/Container";

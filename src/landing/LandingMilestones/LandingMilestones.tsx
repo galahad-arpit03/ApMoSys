@@ -2,7 +2,7 @@
 
 import React, { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { landingMilestonesData } from "./LandingMilestonesData";
+import { landingMilestonesData } from "@/src/data/landing/LandingMilestones/LandingMilestonesData";
 
 export default function LandingMilestones() {
   const containerRef = useRef<HTMLDivElement>(null);

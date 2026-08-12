@@ -6,7 +6,7 @@ import { CheckCircle2, Cpu, Shield, Zap } from "lucide-react";
 import { useContentStore } from "@/src/admin/store/adminStore";
 import EditableText from "@/src/admin/components/EditableText";
 import SectionThemeWrapper from "@/src/admin/components/SectionThemeWrapper";
-import { coreValuesData } from "./CoreValuesData";
+import { coreValuesData } from "@/src/data/who-we-are/about-us/CoreValues/CoreValuesData";
 
 const getBorderClasses = (idx: number, total: number) => {
   let classes = "border-gray-200 ";

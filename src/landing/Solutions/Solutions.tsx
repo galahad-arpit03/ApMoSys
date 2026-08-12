@@ -1,5 +1,5 @@
 "use client";
-import { solutionsData } from "./SolutionsData";
+import { solutionsData } from "@/src/data/landing/Solutions/SolutionsData";
 
 import React from "react";
 import { motion } from "framer-motion";

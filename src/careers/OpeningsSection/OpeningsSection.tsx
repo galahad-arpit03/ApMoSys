@@ -1,5 +1,5 @@
 "use client";
-import { openingssectionData } from "./OpeningsSectionData";
+import { openingssectionData } from "@/src/data/careers/OpeningsSection/OpeningsSectionData";
 
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";

@@ -1,5 +1,5 @@
 "use client";
-import { growthsectionData } from "./GrowthSectionData";
+import { growthsectionData } from "@/src/data/careers/GrowthSection/GrowthSectionData";
 
 import React, { useState } from "react";
 import Container from "@/src/components/Container";

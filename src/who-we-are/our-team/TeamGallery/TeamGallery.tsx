@@ -1,5 +1,5 @@
 "use client";
-import { teamgalleryData } from "./TeamGalleryData";
+import { teamgalleryData } from "@/src/data/who-we-are/our-team/TeamGallery/TeamGalleryData";
 
 
 import Image from "next/image";

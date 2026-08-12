@@ -1,5 +1,5 @@
 "use client";
-import { eventssectionData } from "./EventsSectionData";
+import { eventssectionData } from "@/src/data/who-we-are/community/EventsSection/EventsSectionData";
 
 
 import Image from "next/image";

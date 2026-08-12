@@ -1,5 +1,5 @@
 "use client";
-import { navbarData } from "./NavbarData";
+import { navbarData } from "@/src/data/nav-bar/NavbarData";
 
 import React from "react";
 import { useContentStore } from "@/src/admin/store/adminStore";

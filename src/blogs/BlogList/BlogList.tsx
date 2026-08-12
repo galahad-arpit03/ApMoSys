@@ -1,5 +1,5 @@
 "use client";
-import { bloglistData } from "./BlogListData";
+import { bloglistData } from "@/src/data/blogs/BlogList/BlogListData";
 
 import React, { useState } from "react";
 import { motion, AnimatePresence, Variants } from "framer-motion";

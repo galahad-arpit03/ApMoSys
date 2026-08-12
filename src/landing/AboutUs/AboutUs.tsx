@@ -1,5 +1,5 @@
 "use client";
-import { aboutusData } from "./AboutUsData";
+import { aboutusData } from "@/src/data/landing/AboutUs/AboutUsData";
 
 import React from "react";
 import { motion } from "framer-motion";

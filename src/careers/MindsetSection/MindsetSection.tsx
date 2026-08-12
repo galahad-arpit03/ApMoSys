@@ -1,5 +1,5 @@
 "use client";
-import { mindsetsectionData } from "./MindsetSectionData";
+import { mindsetsectionData } from "@/src/data/careers/MindsetSection/MindsetSectionData";
 
 import React from "react";
 import Container from "@/src/components/Container";

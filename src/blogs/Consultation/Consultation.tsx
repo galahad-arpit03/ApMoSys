@@ -1,5 +1,5 @@
 "use client";
-import { consultationData } from "./ConsultationData";
+import { consultationData } from "@/src/data/blogs/Consultation/ConsultationData";
 
 import React from "react";
 import { motion } from "framer-motion";

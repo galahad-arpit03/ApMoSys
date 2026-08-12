@@ -1,5 +1,5 @@
 "use client";
-import { subscribebannerData } from "./SubscribeBannerData";
+import { subscribebannerData } from "@/src/data/blogs/SubscribeBanner/SubscribeBannerData";
 import React from "react";
 import { motion } from "framer-motion";
 import SectionThemeWrapper from "@/src/admin/components/SectionThemeWrapper";

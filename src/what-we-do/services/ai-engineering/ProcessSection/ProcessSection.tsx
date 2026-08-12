@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { motion } from "framer-motion";
-import { processData } from "./ProcessSectionData";
+import { processData } from "@/src/data/what-we-do/services/ai-engineering/ProcessSection/ProcessSectionData";
 
 export default function ProcessSection() {
   const { heading, description, steps } = processData;

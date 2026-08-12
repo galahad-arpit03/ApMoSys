@@ -1,5 +1,5 @@
 "use client";
-import { lifesectionData } from "./LifeSectionData";
+import { lifesectionData } from "@/src/data/careers/LifeSection/LifeSectionData";
 
 import React from "react";
 import Container from "@/src/components/Container";

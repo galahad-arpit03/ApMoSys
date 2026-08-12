@@ -1,5 +1,5 @@
 "use client";
-import { productsData } from "./ProductsData";
+import { productsData } from "@/src/data/landing/Products/ProductsData";
 
 import React from "react";
 import { motion } from "framer-motion";

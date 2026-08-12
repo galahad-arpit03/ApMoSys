@@ -1,5 +1,5 @@
 "use client";
-import { testimonialsectionData } from "./TestimonialSectionData";
+import { testimonialsectionData } from "@/src/data/what-we-do/services/TestimonialSection/TestimonialSectionData";
 import React from "react";
 import { motion } from "framer-motion";
 import SectionThemeWrapper from "@/src/admin/components/SectionThemeWrapper";

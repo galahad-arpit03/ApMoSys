@@ -1,5 +1,5 @@
 "use client";
-import { inquirysectionData } from "./InquirySectionData";
+import { inquirysectionData } from "@/src/data/contact-us/InquirySection/InquirySectionData";
 
 import React, { useState } from "react";
 import Container from "@/src/components/Container";

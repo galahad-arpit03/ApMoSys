@@ -1,5 +1,5 @@
 "use client";
-import { leadershipintroData } from "./LeadershipIntroData";
+import { leadershipintroData } from "@/src/data/who-we-are/leadership/LeadershipIntro/LeadershipIntroData";
 import SectionThemeWrapper from "@/src/admin/components/SectionThemeWrapper";
 
 export default function LeadershipIntro() {

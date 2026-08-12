@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 import { useContentStore } from "@/src/admin/store/adminStore";
 import EditableText from "@/src/admin/components/EditableText";
 import SectionThemeWrapper from "@/src/admin/components/SectionThemeWrapper";
-import { storyData } from "./StorySectionData"; // keep for fallback if needed
+import { storyData } from "@/src/data/who-we-are/about-us/StorySection/StorySectionData"; // keep for fallback if needed
 
 export default function StorySection() {
   const pathname = usePathname();

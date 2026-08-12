@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { ArrowRight } from "lucide-react";
-import { coeData } from "./CoESectionData";
+import { coeData } from "@/src/data/landing/CoESection/CoESectionData";
 
 export default function CoESection() {
   const [activeId, setActiveId] = useState<string | null>(coeData[0].id);

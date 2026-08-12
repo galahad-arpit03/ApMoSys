@@ -1,5 +1,5 @@
 "use client";
-import { techdeepdiveData } from "./TechDeepDiveData";
+import { techdeepdiveData } from "@/src/data/contact-us/TechDeepDive/TechDeepDiveData";
 
 import React, { useState } from "react";
 import Container from "@/src/components/Container";

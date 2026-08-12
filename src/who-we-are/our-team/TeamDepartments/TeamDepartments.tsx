@@ -2,7 +2,7 @@
 
 import EditableText from "@/src/admin/components/EditableText";
 import SectionThemeWrapper from "@/src/admin/components/SectionThemeWrapper";
-import { teamdepartmentsData } from "./TeamDepartmentsData";
+import { teamdepartmentsData } from "@/src/data/who-we-are/our-team/TeamDepartments/TeamDepartmentsData";
 
 
 const departments = [

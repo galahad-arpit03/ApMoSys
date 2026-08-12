@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { solutionsServicesData, solutionsProductsData } from "./SolutionsFunnelData";
+import { solutionsServicesData, solutionsProductsData } from "@/src/data/landing/SolutionsFunnel/SolutionsFunnelData";
 import { ArrowRight, Box, Layers } from "lucide-react";
 
 export default function SolutionsFunnel() {

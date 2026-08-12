@@ -7,7 +7,7 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { usePathname } from "next/navigation";
 
-import { executiveteamData } from "./ExecutiveTeamData";
+import { executiveteamData } from "@/src/data/who-we-are/leadership/ExecutiveTeam/ExecutiveTeamData";
 
 export default function ExecutiveTeam() {
   const { content, addLeadershipExecutive, deleteLeadershipExecutive } = useContentStore();

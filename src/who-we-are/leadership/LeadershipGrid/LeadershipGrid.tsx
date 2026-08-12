@@ -1,5 +1,5 @@
 "use client";
-import { leadershipgridData } from "./LeadershipGridData";
+import { leadershipgridData } from "@/src/data/who-we-are/leadership/LeadershipGrid/LeadershipGridData";
 
 
 const leaders = [
