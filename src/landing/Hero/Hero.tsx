@@ -57,7 +57,7 @@ export default function Hero() {
                   animate={{ y: 0, opacity: 1 }}
                   exit={{ y: "-100%", opacity: 0 }}
                   transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-                  className="absolute left-0 font-semibold bg-clip-text text-transparent bg-gradient-to-r from-[#9353FF] via-[#A855F7] to-[#C084FC]"
+                  className="absolute left-0 font-medium bg-clip-text text-transparent bg-gradient-to-r from-[#1f0bf8] via-[#1d60ff] to-[#a9afff]"
                 >
                   {rotatingTexts[textIndex]}
                 </motion.span>
@@ -82,7 +82,7 @@ export default function Hero() {
             transition={{ duration: 0.6, delay: 0.4 }}
             className="flex flex-wrap items-center gap-4 mb-16"
           >
-            <button aria-label="Discover ApMoSys Enterprise Solutions" className="px-6 py-3.5 bg-gradient-to-r from-[#6E44FF] to-[#8B5CF6] hover:from-[#6038F0] hover:to-[#7C3AED] text-white font-medium rounded-md transition-all duration-300 flex items-center gap-2.5 text-sm shadow-[0_0_10px_rgba(110,68,255,0.2)] hover:shadow-[0_0_15px_rgba(110,68,255,0.35)] hover:scale-[1.02]">
+            <button aria-label="Discover ApMoSys Enterprise Solutions" className="px-6 py-3.5 bg-[#1E18F8]/30  border border-[#1E18F8]/60  text-white font-medium rounded-md transition-all duration-300 flex items-center gap-2.5 text-sm shadow-[0_0_15px_rgba(30,24,248,0.3)] hover:scale-[1.02]">
               Discover Solutions
               <ArrowRight className="w-4 h-4 text-white" aria-hidden="true" />
             </button>
