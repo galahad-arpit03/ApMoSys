@@ -1,24 +1,25 @@
 "use client";
 import React from "react";
-import { Hexagon, Triangle, Circle, Box, Layers, Globe, Activity, Command, Code, Cpu, Landmark, Building2, Shield, Zap } from "lucide-react";
+import Image from "next/image";
 
 const CLIENTS = [
-  { name: "FDC India", icon: Building2 },
-  { name: "Protean eGov Technologies", icon: Hexagon },
-  { name: "L&T Finance", icon: Activity },
-  { name: "Bank of Maharashtra", icon: Landmark },
-  { name: "UCO Bank", icon: Landmark },
-  { name: "RBL Bank", icon: Landmark },
-  { name: "ABCD Bank", icon: Landmark },
-  { name: "Generali Central Life Insurance (GCLI)", icon: Shield },
-  { name: "NSDL Payments Bank", icon: Landmark },
-  { name: "IDBI Bank", icon: Landmark },
-  { name: "Muscat Finance", icon: Zap },
+  { name: "Protean eGov Technologies", img: "/assets/images/client-logo/protean.svg" },
+  { name: "Bank of Maharashtra", img: "/assets/images/client-logo/bank_of_maharashtra.svg" },
+  { name: "FDC India", img: "/assets/images/client-logo/fdc.jpeg" },
+  { name: "Axis Bank", img: "/assets/images/client-logo/axis_bank.png" },
+  { name: "UCO Bank", img: "/assets/images/client-logo/uco_bank.svg" },
+  { name: "RBL Bank", img: "/assets/images/client-logo/rbl_bank.svg" },
+  { name: "ABCD Bank", img: "/assets/images/client-logo/abcd_bank.png" },
+  { name: "CRIS", img: "/assets/images/client-logo/cris_logo.png" },
+  { name: "Generali Central Life Insurance", img: "/assets/images/client-logo/generali_centeral.png" },
+  { name: "NSDL Payments Bank", img: "/assets/images/client-logo/nsdl.png" },
+  { name: "IDBI Bank", img: "/assets/images/client-logo/idbi_bank.png" },
+  { name: "Muscat Finance", img: "/assets/images/client-logo/muscat_finance.png" },
 ];
 
 export default function TrustedBy() {
   return (
-    <section className="py-3 bg-[#F8F9FB] overflow-hidden border-b border-gray-200">
+    <section className="py-2 bg-[#F8F9FB] overflow-hidden border-b border-gray-200">
       <div className="max-w-[1600px] mx-auto px-6 sm:px-8 lg:px-16">
 
         {/* Carousel Container */}
@@ -31,14 +32,20 @@ export default function TrustedBy() {
           <div className="flex animate-marquee whitespace-nowrap items-center py-2">
             {/* Render list 3 times for seamless infinite scroll */}
             {[...CLIENTS, ...CLIENTS, ...CLIENTS].map((client, index) => {
-              const Icon = client.icon;
               return (
                 <div 
                   key={index} 
-                  className="flex items-center gap-2.5 mx-8 md:mx-12 cursor-pointer text-gray-500 hover:text-gray-900 transition-colors"
+                  className="flex items-center gap-3 mx-8 md:mx-12 cursor-pointer opacity-70 hover:opacity-100 transition-opacity duration-300 grayscale hover:grayscale-0"
                 >
-                  <Icon className="w-5 h-5 md:w-6 md:h-6" />
-                  <span className="text-base md:text-lg font-normal font-heading tracking-tight">
+                  <div className="relative h-6 w-6 md:h-8 md:w-8 flex-shrink-0 flex items-center justify-center">
+                    <Image
+                      src={client.img}
+                      alt={`${client.name} Logo`}
+                      fill
+                      className="object-contain"
+                    />
+                  </div>
+                  <span className="text-base md:text-lg font-normal font-heading tracking-tight text-gray-700">
                     {client.name}
                   </span>
                 </div>
