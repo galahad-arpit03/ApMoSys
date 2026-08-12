@@ -411,19 +411,27 @@ export default function ProductsOverview() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -15 }}
                 transition={{ duration: 0.35, ease: "easeOut" }}
-                className="bg-white border border-gray-200 rounded-2xl p-6 sm:p-8 xl:p-10 shadow-sm hover:border-[#2563EB]/30 transition-all flex flex-col justify-between min-h-[380px]"
+                className="bg-gradient-to-br from-white to-blue-50/40 border border-gray-100 rounded-2xl p-8 sm:p-10 shadow-xl shadow-gray-200/50 hover:border-[#2563EB]/20 hover:shadow-2xl transition-all flex flex-col justify-between min-h-[380px] relative overflow-hidden group"
               >
-                <div>
-                  {/* Top Badge & Controls */}
-                  <div className="flex items-center justify-between mb-6 pb-4 border-b border-gray-100">
-                    <div className="flex items-center gap-3">
-                      <span className="text-[10px] font-bold text-[#2563EB] uppercase tracking-wider bg-[#2563EB]/10 px-3 py-1 rounded-full flex items-center gap-1.5">
-                        <span className="w-1.5 h-1.5 rounded-full bg-[#2563EB]" />
-                         {activeIndex + 1} 
-                      </span>
-                      <span className="text-xs font-mono font-semibold text-gray-400 uppercase tracking-wider">
-                        {activeProduct.subtitle || "PLATFORM"}
-                      </span>
+                {/* Giant Background Number */}
+                <div className="absolute right-[-10px] bottom-[-30px] lg:right-[-20px] lg:bottom-[-40px] text-[180px] lg:text-[260px] font-black text-[#2563EB]/[0.03] font-heading leading-none select-none pointer-events-none z-0 group-hover:text-[#2563EB]/[0.06] transition-colors duration-500">
+                  {activeIndex + 1}
+                </div>
+
+                <div className="relative z-10">
+                  {/* Header Row with Icon, Title & Navigation Controls */}
+                  <div className="flex items-center justify-between mb-6">
+                    <div className="flex items-center gap-4">
+                      <div className="w-12 h-12 rounded-xl bg-[#2563EB]/10 border border-[#2563EB]/20 flex items-center justify-center text-[#2563EB] shrink-0">
+                        {ActiveIconNode}
+                      </div>
+                      <h3 className="text-2xl sm:text-3xl font-bold text-gray-900 font-heading tracking-tight">
+                        <EditableText
+                          path={`products.overview.items.${activeIndex}.title`}
+                          fallback={activeProduct.title}
+                          as="span"
+                        />
+                      </h3>
                     </div>
 
                     {/* Manual Navigation Controls */}
@@ -434,7 +442,7 @@ export default function ProductsOverview() {
                             (activeIndex - 1 + products.length) % products.length
                           )
                         }
-                        className="p-1.5 rounded-lg border border-gray-200 text-gray-600 hover:bg-gray-100 transition-colors cursor-pointer"
+                        className="p-2 rounded-lg border border-gray-200 text-gray-600 hover:bg-white hover:border-gray-300 transition-colors cursor-pointer shadow-xs"
                         aria-label="Previous Product"
                       >
                         <ChevronLeft className="w-4 h-4" />
@@ -443,7 +451,7 @@ export default function ProductsOverview() {
                         onClick={() =>
                           selectProduct((activeIndex + 1) % products.length)
                         }
-                        className="p-1.5 rounded-lg border border-gray-200 text-gray-600 hover:bg-gray-100 transition-colors cursor-pointer"
+                        className="p-2 rounded-lg border border-gray-200 text-gray-600 hover:bg-white hover:border-gray-300 transition-colors cursor-pointer shadow-xs"
                         aria-label="Next Product"
                       >
                         <ChevronRight className="w-4 h-4" />
@@ -451,27 +459,8 @@ export default function ProductsOverview() {
                     </div>
                   </div>
 
-                  {/* Icon & Title Row */}
-                  <div className="flex items-start gap-4 mb-4">
-                    <div className="w-12 h-12 rounded-xl bg-[#2563EB]/10 border border-[#2563EB]/20 flex items-center justify-center text-[#2563EB] shrink-0">
-                      {ActiveIconNode}
-                    </div>
-                    <div>
-                      <span className="text-xs font-mono font-semibold text-[#2563EB] uppercase tracking-wider">
-                        {activeProduct.category || "Enterprise Platform"}
-                      </span>
-                      <h3 className="text-2xl sm:text-3xl font-bold text-black font-heading leading-tight mt-0.5">
-                        <EditableText
-                          path={`products.overview.items.${activeIndex}.title`}
-                          fallback={activeProduct.title}
-                          as="span"
-                        />
-                      </h3>
-                    </div>
-                  </div>
-
                   {/* Full Description */}
-                  <p className="text-[#5A5A5A] text-sm sm:text-base leading-relaxed mb-6">
+                  <p className="text-gray-600 text-base sm:text-lg leading-relaxed mb-6 font-light">
                     <EditableText
                       path={`products.overview.items.${activeIndex}.description`}
                       fallback={activeProduct.description}
@@ -482,13 +471,13 @@ export default function ProductsOverview() {
 
                   {/* Feature Detail Tags */}
                   {activeProduct.details && (
-                    <div className="flex flex-wrap gap-2 mb-8">
+                    <div className="flex flex-wrap gap-2.5 pt-6 border-t border-gray-200/60 mb-6">
                       {activeProduct.details.map((detail: string) => (
                         <span
                           key={detail}
-                          className="text-xs font-medium text-gray-700 bg-gray-50 border border-gray-200 px-3 py-1.5 rounded-full flex items-center gap-1.5 shadow-2xs"
+                          className="text-xs sm:text-sm font-medium text-gray-700 bg-white border border-gray-200 px-4 py-2 rounded-full flex items-center gap-2 shadow-xs hover:border-gray-300 transition-all"
                         >
-                          <CheckCircle2 className="w-3.5 h-3.5 text-[#2563EB]" />
+                          <CheckCircle2 className="w-4 h-4 text-[#2563EB]" />
                           {detail}
                         </span>
                       ))}
@@ -497,7 +486,7 @@ export default function ProductsOverview() {
                 </div>
 
                 {/* Explore Action CTA Button */}
-                <div className="pt-4 border-t border-gray-100 flex items-center justify-between">
+                <div className="relative z-10 pt-4 flex items-center justify-between">
                   <a
                     href="#"
                     className="px-6 py-3 bg-[#2563EB] hover:bg-blue-700 text-white font-medium text-sm rounded-xl transition-all duration-300 flex items-center gap-2 shadow-sm hover:shadow-md hover:scale-[1.01]"
@@ -509,10 +498,6 @@ export default function ProductsOverview() {
                     />
                     <ArrowRight className="w-4 h-4 text-white" />
                   </a>
-
-                  <span className="text-xs font-mono text-gray-400">
-                    ApMoSys Platform Engine
-                  </span>
                 </div>
               </motion.div>
             </AnimatePresence>
