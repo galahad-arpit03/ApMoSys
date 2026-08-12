@@ -106,7 +106,7 @@ export default function Navbar() {
     ? "bg-black/60 backdrop-blur-3xl" 
     : isLandingHero 
       ? "bg-white/5 backdrop-blur-md border-b border-white/10" 
-      : "bg-[#0B0C10]/95 backdrop-blur-3xl backdrop-saturate-200 border-b border-white/10";
+      : "bg-black/30 backdrop-blur-xl border-b border-white/10";
 
   // Close dropdown on click outside
   React.useEffect(() => {
@@ -135,7 +135,7 @@ export default function Navbar() {
               onClick={() => setActiveDropdown(null)}
               className="font-heading font-semibold text-3xl tracking-normal text-white hover:text-gray-200 transition-colors"
             >
-              ApMoSys<span className="text-primary-red">.</span>
+              ApMoSys<span className="text-[#ffffff]">.</span>
             </Link>
           </div>
 
@@ -188,7 +188,7 @@ export default function Navbar() {
                         setActiveDropdown(null);
                       }
                     }}
-                    className={`group flex items-center gap-1 px-2 py-2 text-sm font-medium transition-colors duration-200 shrink-0 ${isActive || activeDropdown === item.label ? 'text-white' : 'text-gray-300 hover:text-white'}`}
+                    className={`group flex items-center gap-1 px-2 py-2 text-sm font-medium transition-colors duration-200 shrink-0 text-white`}
                   >
                     <span className="whitespace-nowrap relative pb-1">
                       {item.label}
@@ -221,7 +221,7 @@ export default function Navbar() {
           <div className="hidden lg:flex items-center justify-end lg:flex-1 z-50 space-x-6">
             <Link
               href="/contact"
-              className="px-5 py-2 text-sm font-medium rounded-md transition-all duration-300 overflow-hidden bg-white text-[#0F172A] hover:bg-gray-100"
+              className="px-5 py-2 text-sm font-medium rounded-md transition-all duration-300 overflow-hidden bg-[#0F172A] text-[#white] hover:bg-[#0F172A]"
             >
               Contact Us
             </Link>
