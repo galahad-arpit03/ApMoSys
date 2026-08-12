@@ -160,38 +160,37 @@ export default function CoreServices() {
                 <div className={`w-[1.5px] h-[35px] bg-gradient-to-b transition-all duration-500 ${isActive ? 'from-[#2617C9]' : 'from-[#2617C9]/30'} to-transparent`} />
 
                 {/* The Card */}
-                <div 
+                <div
                   onClick={() => {
                     // Click to rotate directly to this card
                     setRotationCount((prev) => prev + Math.round(globalAngle / 10));
                   }}
-                  className={`relative overflow-hidden w-full h-[240px] mt-6 border rounded-2xl flex flex-col justify-between items-start p-6 backdrop-blur-[20px] pointer-events-auto cursor-pointer transition-all duration-500 group ${
-                    isActive 
-                      ? "opacity-100 scale-105 bg-[#dddddd] border-[#727272] shadow-[0_8px_32px_rgba(255,255,255,0.15)] -translate-y-[20px]" 
-                      : "opacity-50 scale-95 bg-[#334155]/30 border-[#334155]/50 shadow-none hover:border-[#334155]/70 hover:opacity-100 hover:bg-[#334155]/40 transform-none"
-                  }`}
+                  className={`relative overflow-hidden w-full h-[240px] mt-6 border rounded-xl flex flex-col justify-between items-start p-6 backdrop-blur-[20px] pointer-events-auto cursor-pointer transition-all duration-500 group ${isActive
+                    ? "opacity-100 scale-105 bg-[#dddddd] border-[#727272] shadow-[0_8px_32px_rgba(255,255,255,0.15)] -translate-y-[20px]"
+                    : "opacity-50 scale-95 bg-[#334155]/30 border-[#334155]/50 shadow-none hover:border-[#334155]/70 hover:opacity-100 hover:bg-[#334155]/40 transform-none"
+                    }`}
                 >
                   {/* Top row: Icon and Number */}
                   <div className="flex justify-between items-start w-full">
-                     {/* Icon Background */}
-                     <div className={`w-12 h-12 rounded-md flex items-center justify-center border bg-gradient-to-br transition-colors duration-500 ${isActive ? 'border-gray-200 from-gray-100 to-white shadow-sm' : 'border-white/20 from-white/10 to-transparent'}`}>
-                        {React.createElement(service.icon, { className: `w-6 h-6 transition-colors duration-500 ${isActive ? 'text-gray-800' : 'text-white'}` })}
-                     </div>
-                     {/* Number top right */}
-                     <span className={`font-bold text-5xl transition-colors duration-500 ${isActive ? 'text-slate-900/50' : 'text-white/10'}`}>
-                       {String(service.id).padStart(2, '0')}
-                     </span>
+                    {/* Icon Background */}
+                    <div className={`w-12 h-12 rounded-md flex items-center justify-center border bg-gradient-to-br transition-colors duration-500 ${isActive ? 'border-gray-200 from-gray-100 to-white shadow-sm' : 'border-white/20 from-white/10 to-transparent'}`}>
+                      {React.createElement(service.icon, { className: `w-6 h-6 transition-colors duration-500 ${isActive ? 'text-gray-800' : 'text-white'}` })}
+                    </div>
+                    {/* Number top right */}
+                    <span className={`font-bold text-5xl transition-colors duration-500 ${isActive ? 'text-slate-900/50' : 'text-white/10'}`}>
+                      {String(service.id).padStart(2, '0')}
+                    </span>
                   </div>
-                  
+
                   {/* Text Content at bottom */}
                   <div className="mt-auto">
-                    <h3 
+                    <h3
                       className={`font-medium text-[18px] leading-tight mb-2 transition-colors duration-300 ${isActive ? 'text-gray-900' : 'text-gray-200 group-hover:text-white'}`}
                       style={{ fontFamily: '"Geist", sans-serif' }}
                     >
                       {service.name}
                     </h3>
-                    <p 
+                    <p
                       className={`text-[14px] leading-relaxed transition-colors duration-300 ${isActive ? 'text-gray-600' : 'text-gray-500 group-hover:text-gray-400'}`}
                       style={{ fontFamily: '"Manrope", sans-serif' }}
                     >
