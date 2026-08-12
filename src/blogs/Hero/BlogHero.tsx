@@ -50,7 +50,7 @@ export default function BlogHero() {
             >
               <EditableImage label="Blogs Hero Background" className="relative w-full h-full">
                 <Image
-                  src="/blogs/blogs_hero.png"
+                  src="/assets/images/heroes/blogs-hero.png"
                   alt="Blogs at ApMoSys"
                   fill
                   priority

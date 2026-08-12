@@ -38,7 +38,7 @@ export default function HeroSection() {
       >
         <EditableImage label="CoE Hero Background" className="relative w-full h-full">
           <Image
-            src="/what-we-do/coe.png"
+            src="/assets/images/domains/coe.png"
             alt="CoE Background"
             fill
             priority

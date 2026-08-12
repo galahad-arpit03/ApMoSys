@@ -33,7 +33,7 @@ export default function Hero() {
       <motion.div
         className="absolute top-0 left-0 w-full h-[130%] bg-cover bg-center bg-no-repeat z-0"
         style={{
-          backgroundImage: "url('/amcharts/image1.png')",
+          backgroundImage: "url('/assets/images/amcharts/image1.png')",
           y: backgroundY
         }}
       />

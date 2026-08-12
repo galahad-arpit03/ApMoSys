@@ -24,7 +24,7 @@ export default function TeamHero() {
       >
         <EditableImage label="Hero Background Image" className="relative w-full h-full">
           <Image
-            src="/who-we-are/our-team/TeamHero/team.png"
+            src="/assets/images/heroes/team.png"
             alt="Our Team"
             fill
             priority

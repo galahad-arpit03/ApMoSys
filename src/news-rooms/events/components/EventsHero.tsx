@@ -47,7 +47,7 @@ export default function EventsHero() {
             >
               <EditableImage label="Events Hero Background" className="relative w-full h-full">
                 <Image
-                  src="/newsroom/events/events.png"
+                  src="/assets/images/news/events.png"
                   alt="Events Background"
                   fill
                   priority

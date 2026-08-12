@@ -49,7 +49,7 @@ export default function AboutApmosys() {
         >
           {/* Optimized Next.js Background Image */}
           <Image
-            src="/assets/images/abstract-waves.png"
+            src="/assets/images/assets/abstract-waves.png"
             alt="Abstract Waves Background"
             fill
             quality={90}

@@ -47,7 +47,7 @@ export default function AwardsHero() {
             >
               <EditableImage label="Awards Hero Background" className="relative w-full h-full">
                 <Image
-                  src="/what-we-do/Services.png"
+                  src="/assets/images/domains/services.png"
                   alt="Awards & Recognition Background"
                   fill
                   priority

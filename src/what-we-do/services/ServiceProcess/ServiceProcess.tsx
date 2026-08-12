@@ -29,7 +29,7 @@ const steps = [
       "We analyze your current systems, processes, and challenges to identify opportunities for automation, optimization, and modernization.",
     icon: Search,
     details: ["Technical Audit", "Stakeholder Interviews", "Process Mapping"],
-    image: "/what-we-do/services/cube/stage_1_discovery.png",
+    image: "/assets/images/cube/stage-1-discovery.png",
   },
   {
     id: "2",
@@ -39,7 +39,7 @@ const steps = [
       "We design a tailored engineering strategy and architectural blueprint aligned with your business goals and technical requirements.",
     icon: Layers,
     details: ["Architecture Design", "Technology Selection", "Roadmap Planning"],
-    image: "/what-we-do/services/cube/stage_2_strategy.png",
+    image: "/assets/images/cube/stage-2-strategy.png",
   },
   {
     id: "3",
@@ -49,7 +49,7 @@ const steps = [
       "Our engineering teams execute the strategy using agile methodologies, delivering value incrementally with continuous feedback.",
     icon: Code,
     details: ["Agile Sprints", "CI/CD Pipeline", "Code Reviews"],
-    image: "/what-we-do/services/cube/stage_3_development.png",
+    image: "/assets/images/cube/stage-3-development.png",
   },
   {
     id: "4",
@@ -59,7 +59,7 @@ const steps = [
       "Comprehensive testing, security scanning, and performance validation ensure your systems meet the highest quality standards.",
     icon: ShieldCheck,
     details: ["Automated Testing", "Security Audit", "Performance Testing"],
-    image: "/what-we-do/services/cube/stage_4_validation.png",
+    image: "/assets/images/cube/stage-4-validation.png",
   },
   {
     id: "5",
@@ -69,7 +69,7 @@ const steps = [
       "We deploy your solutions and provide ongoing monitoring, support, and optimization to ensure long-term success and reliability.",
     icon: Rocket,
     details: ["Production Deployment", "24/7 Monitoring", "Continuous Optimization"],
-    image: "/what-we-do/services/cube/stage_5_deployment.png",
+    image: "/assets/images/cube/stage-5-deployment.png",
   },
   {
     id: "6",
@@ -79,7 +79,7 @@ const steps = [
       "We proactively monitor, scale, and evolve your systems to ensure long-term resilience and continuous innovation.",
     icon: RefreshCw,
     details: ["Performance Tuning", "Elastic Scaling", "Innovation Labs"],
-    image: "/what-we-do/services/cube/stage_6_optimization.png",
+    image: "/assets/images/cube/stage-6-optimization.png",
   },
 ];
 

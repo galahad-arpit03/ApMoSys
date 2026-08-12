@@ -47,7 +47,7 @@ export default function HeroSection() {
             >
               <EditableImage label="AI Engineering Hero Background" className="relative w-full h-full">
                 <Image
-                  src="/what-we-do/ai-engineering.png" // You can replace with a custom AI-specific image
+                  src="/assets/images/domains/ai-engineering.png" // You can replace with a custom AI-specific image
                   alt="AI Engineering Background"
                   fill
                   priority

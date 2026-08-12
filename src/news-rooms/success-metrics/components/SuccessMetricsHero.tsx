@@ -25,7 +25,7 @@ export default function SuccessMetricsHero() {
       >
         <EditableImage label="Hero Background Image" className="relative w-full h-full">
           <Image
-            src="/news-rooms/success-metrics/image.png"
+            src="/assets/images/news/image.png"
             alt="Success Metrics"
             fill
             priority

@@ -38,7 +38,7 @@ export default function HeroSection() {
       >
         <EditableImage label="Industries Hero Background" className="relative w-full h-full">
           <Image
-            src="/what-we-do/industries.png"
+            src="/assets/images/domains/industries.png"
             alt="Industries Background"
             fill
             priority
