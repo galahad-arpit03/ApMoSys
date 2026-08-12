@@ -13,7 +13,7 @@ const timelineEvents = [
     date: "November 2026",
     location: "Hyderabad + Virtual",
     attendees: "3,000+",
-    image: "/newsroom/events/event1.jpg",
+    image: "/assets/images/news/event1.jpg",
   },
   {
     id: "2",
@@ -22,7 +22,7 @@ const timelineEvents = [
     date: "September 2026",
     location: "Bengaluru",
     attendees: "1,500+",
-    image: "/newsroom/events/event2.jpg",
+    image: "/assets/images/news/event2.jpg",
   },
   {
     id: "3",
@@ -31,7 +31,7 @@ const timelineEvents = [
     date: "June 2026",
     location: "Virtual",
     attendees: "800+",
-    image: "/newsroom/events/event3.jpg",
+    image: "/assets/images/news/event3.jpg",
   },
   {
     id: "4",
@@ -40,7 +40,7 @@ const timelineEvents = [
     date: "August 2026",
     location: "Global (Virtual)",
     attendees: "2,000+",
-    image: "/newsroom/events/event4.jpg",
+    image: "/assets/images/news/event4.jpg",
   },
 ];
 

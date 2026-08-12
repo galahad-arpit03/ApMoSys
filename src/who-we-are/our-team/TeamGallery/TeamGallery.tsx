@@ -7,12 +7,12 @@ import SectionThemeWrapper from "@/src/admin/components/SectionThemeWrapper";
 import EditableText from "@/src/admin/components/EditableText";
 
 const gallery = [
-  "/team/team1.png",
-  "/team/team2.png",
-  "/team/team3.png",
-  "/team/team4.png",
-  "/team/team5.png",
-  "/team/team6.png",
+  "/assets/images/team/team1.png",
+  "/assets/images/team/team2.png",
+  "/assets/images/team/team3.png",
+  "/assets/images/team/team4.png",
+  "/assets/images/team/team5.png",
+  "/assets/images/team/team6.png",
 ];
 
 const getBorderClasses = (idx: number, total: number) => {

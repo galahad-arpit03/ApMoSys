@@ -25,7 +25,7 @@ export default function CustomerStoriesHero() {
       >
         <EditableImage label="Hero Background Image" className="relative w-full h-full">
           <Image
-            src="/news-rooms/customer-stories/image.png"
+            src="/assets/images/news/image-1.png"
             alt="Customer Stories"
             fill
             priority

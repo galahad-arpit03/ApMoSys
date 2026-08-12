@@ -17,7 +17,7 @@ export default function SubscribeBanner() {
               {/* Background Image & Overlay */}
               <div className="absolute inset-0 z-0">
                 <Image
-                  src="/assets/images/abstract-waves.png"
+                  src="/assets/images/assets/abstract-waves.png"
                   alt="Background"
                   fill
                   quality={90}

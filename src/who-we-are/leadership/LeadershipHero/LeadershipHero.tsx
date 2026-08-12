@@ -24,7 +24,7 @@ export default function LeadershipHero() {
       >
         <EditableImage label="Hero Background Image" className="relative w-full h-full">
           <Image
-            src="/who-we-are/leadership/LeadershipHero/leadership3.png"
+            src="/assets/images/heroes/leadership3.png"
             alt="Our Leadership"
             fill
             priority

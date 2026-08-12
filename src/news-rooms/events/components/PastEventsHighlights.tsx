@@ -12,7 +12,7 @@ const pastEvents = [
     date: "November 2025",
     location: "Virtual + Hyderabad",
     attendees: "2,800+",
-    image: "/community/tech-leadership-summit.png",
+    image: "/assets/images/team/tech-leadership-summit.png",
     description: "Keynotes from industry leaders, live automation demos, and deep-dive workshops on AI-driven testing.",
   },
   {
@@ -21,7 +21,7 @@ const pastEvents = [
     date: "September 2025",
     location: "Bengaluru",
     attendees: "1,200+",
-    image: "/community/community-tech-day.png",
+    image: "/assets/images/community/community-tech-day.png",
     description: "Two days of technical sessions on Kubernetes security, policy-as-code, and chaos engineering.",
   },
   {
@@ -30,7 +30,7 @@ const pastEvents = [
     date: "June 2025",
     location: "Virtual",
     attendees: "900+",
-    image: "/community/student-innovation-challenge.png",
+    image: "/assets/images/community/student-innovation-challenge.png",
     description: "Executive discussions on predictive analytics, real-time telemetry, and incident automation.",
   },
 ];

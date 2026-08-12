@@ -94,7 +94,7 @@ export default function FeaturedPost() {
                 >
                   <div className="relative w-full aspect-[4/3] rounded-xl overflow-hidden shadow-2xl">
                     <Image
-                      src="/blogs/blogs_featured.png"
+                      src="/assets/images/blogs/blogs-featured.png"
                       alt="Featured Post"
                       fill
                       className="object-cover"

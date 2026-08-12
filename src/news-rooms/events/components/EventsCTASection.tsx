@@ -12,7 +12,7 @@ export default function EventsCTASection() {
       <div className="max-w-[1600px] mx-auto relative rounded-[12px] overflow-hidden shadow-2xl min-h-[300px] md:min-h-[350px] lg:min-h-[380px] flex flex-col justify-center">
         <div className="absolute inset-0 z-0">
           <Image
-            src="/assets/images/abstract-waves.png"
+            src="/assets/images/assets/abstract-waves.png"
             alt="Background"
             fill
             quality={90}

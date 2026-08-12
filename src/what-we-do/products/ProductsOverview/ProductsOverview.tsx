@@ -55,7 +55,7 @@ const defaultProducts: ProductItem[] = [
     description:
       "Intelligent test automation platform that accelerates quality engineering with AI-driven test generation, self-healing execution, and continuous maintenance.",
     icon: "cliqtest",
-    img: "/landing/Hero/cards/cliqtest_hero_1786091845488.png",
+    img: "/assets/images/heroes/cliqtest-hero.png",
     bg: "bg-[#0B0C10]",
     details: ["AI Test Generation", "Self-Healing Execution", "CI/CD Integration"],
     linkText: "Explore CliqTest",
@@ -68,7 +68,7 @@ const defaultProducts: ProductItem[] = [
     description:
       "AI-powered visual testing and monitoring platform that detects UI anomalies, layout regressions, and ensures pixel-perfect user experiences across devices.",
     icon: "netraa",
-    img: "/landing/Hero/cards/netraa_hero_1786091859663.png",
+    img: "/assets/images/heroes/netraa-hero.png",
     bg: "bg-[#0066FF]",
     details: ["Pixel-Match AI", "Layout Regression Audit", "Cross-Browser Check"],
     linkText: "Explore Netraa",
@@ -81,7 +81,7 @@ const defaultProducts: ProductItem[] = [
     description:
       "Enterprise-grade performance engineering platform for load testing, stress testing, bottleneck detection, and scalability validation at massive scale.",
     icon: "jupiter",
-    img: "/landing/Hero/cards/jupiter_hero_1786091917753.png",
+    img: "/assets/images/heroes/jupiter-hero.png",
     bg: "bg-[#0B0C10]",
     details: ["High-Scale Load Simulation", "Bottleneck AI", "Real-Time Telemetry"],
     linkText: "Explore Jupiter",
@@ -94,7 +94,7 @@ const defaultProducts: ProductItem[] = [
     description:
       "Comprehensive security validation platform that automates vulnerability scanning, penetration testing, security posture analysis, and compliance verification.",
     icon: "shieldvue",
-    img: "/landing/Hero/cards/shieldvue_hero_1786091875222.png",
+    img: "/assets/images/heroes/shieldvue-hero.png",
     bg: "bg-[#1e293b]",
     details: ["Vulnerability Scanning", "Penetration Audit", "SOC2 Compliance"],
     linkText: "Explore ShieldVue",
@@ -107,7 +107,7 @@ const defaultProducts: ProductItem[] = [
     description:
       "Intelligent document processing and workflow automation platform that streamlines complex business operations with AI, OCR, and RPA integration.",
     icon: "swikrti",
-    img: "/landing/Hero/cards/swikruti_hero_1786091888812.png",
+    img: "/assets/images/heroes/swikruti-hero.png",
     bg: "bg-[#121212]",
     details: ["AI Document OCR", "Workflow Automation", "Zero-Defect Audit"],
     linkText: "Explore Swikrti",
@@ -120,7 +120,7 @@ const defaultProducts: ProductItem[] = [
     description:
       "Advanced financial analytics and reporting platform that provides real-time transaction insights, predictive risk modeling, and regulatory compliance.",
     icon: "finxplore",
-    img: "/landing/Hero/cards/finxplore_hero_1786091905041.png",
+    img: "/assets/images/heroes/finxplore-hero.png",
     bg: "bg-[#3b82f6]",
     details: ["Predictive Risk AI", "Real-Time Analytics", "BFSI Compliance"],
     linkText: "Explore FinXplore",
@@ -133,7 +133,7 @@ const defaultProducts: ProductItem[] = [
     description:
       "Unified observability and AIOps platform that delivers end-to-end telemetry monitoring, incident intelligence, and automated root-cause analysis.",
     icon: "saransh",
-    img: "/landing/Hero/cards/saransh_hero_1786093425648.png",
+    img: "/assets/images/heroes/saransh-hero.png",
     bg: "bg-[#0B0C10]",
     details: ["End-to-End Tracing", "AIOps Root-Cause", "Incident Alerting"],
     linkText: "Explore Saransh",
@@ -146,7 +146,7 @@ const defaultProducts: ProductItem[] = [
     description:
       "Cloud-based device testing lab providing on-demand access to thousands of real mobile devices, OS versions, and screen resolutions for validation.",
     icon: "protean",
-    img: "/landing/Hero/cards/protean_hero.png",
+    img: "/assets/images/heroes/protean-hero.png",
     bg: "bg-[#1e1b4b]",
     details: ["Real Devices Cloud", "Cross-Platform AI", "Parallel Execution"],
     linkText: "Explore Protean",
@@ -341,7 +341,7 @@ export default function ProductsOverview() {
                   const angle = (360 / numCards) * index;
                   const isCurrentActive = activeIndex === index;
                   const cardBg = item.bg || "bg-[#0B0C10]";
-                  const cardImage = item.img || "/landing/Hero/cards/cliqtest_hero_1786091845488.png";
+                  const cardImage = item.img || "/assets/images/heroes/cliqtest-hero.png";
 
                   return (
                     <div

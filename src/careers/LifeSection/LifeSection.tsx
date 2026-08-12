@@ -84,7 +84,7 @@ export default function LifeSection() {
                   }`}
                 >
                   <Image
-                    src="/team/team1.png"
+                    src="/assets/images/team/team1.png"
                     alt="Office Workspace"
                     fill
                     className="object-cover transition-transform duration-700 group-hover:scale-105"
@@ -112,7 +112,7 @@ export default function LifeSection() {
                   }`}
                 >
                   <Image
-                    src="/team/team2.png"
+                    src="/assets/images/team/team2.png"
                     alt="Infrastructure"
                     fill
                     className="object-cover transition-transform duration-700 group-hover:scale-105"

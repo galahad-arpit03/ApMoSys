@@ -10,17 +10,17 @@ const events = [
   {
     title: "Technology Leadership Summit",
     description: "Bringing together technology leaders and innovators to discuss future trends.",
-    image: "/community/tech-leadership-summit.png"
+    image: "/assets/images/team/tech-leadership-summit.png"
   },
   {
     title: "Student Innovation Challenge",
     description: "Encouraging young minds to solve real-world problems through technology.",
-    image: "/community/student-innovation-challenge.png"
+    image: "/assets/images/community/student-innovation-challenge.png"
   },
   {
     title: "Community Tech Day",
     description: "A collaborative event focused on learning, networking, and innovation.",
-    image: "/community/community-tech-day.png"
+    image: "/assets/images/community/community-tech-day.png"
   },
 ];
 

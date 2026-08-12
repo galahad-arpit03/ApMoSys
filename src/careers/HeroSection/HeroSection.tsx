@@ -47,7 +47,7 @@ export default function HeroSection() {
             >
               <EditableImage label="Careers Hero Background" className="relative w-full h-full">
                 <Image
-                  src="/careers/careers.png"
+                  src="/assets/images/careers/careers.png"
                   alt="Careers at ApMoSys"
                   fill
                   priority

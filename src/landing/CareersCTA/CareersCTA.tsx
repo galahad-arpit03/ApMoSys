@@ -10,7 +10,7 @@ export default function CareersCTA() {
         {/* Background Image & Overlay */}
         <div className="absolute inset-0 z-0">
           <Image
-            src="/landing/careers-bg.png"
+            src="/assets/images/backgrounds/careers-bg.png"
             alt="Office"
             fill
             className="object-cover"

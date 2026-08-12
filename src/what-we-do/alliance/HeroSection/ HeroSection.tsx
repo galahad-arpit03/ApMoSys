@@ -38,7 +38,7 @@ export default function HeroSection() {
       >
         <EditableImage label="Alliance Hero Background" className="relative w-full h-full">
           <Image
-            src="/what-we-do/alliance.png"
+            src="/assets/images/domains/alliance.png"
             alt="Alliance Background"
             fill
             priority

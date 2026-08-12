@@ -29,7 +29,7 @@ export default function AboutHero() {
       >
         <EditableImage label="Hero Background Image" className="relative w-full h-full">
           <Image
-            src="/who-we-are/about-us/AboutHero/about-hero3.png"
+            src="/assets/images/heroes/about-hero3.png"
             alt="About ApMoSys"
             fill
             priority
