@@ -2,36 +2,36 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
+import { ArrowRight } from "lucide-react";
 import {
-  ShieldCheck,
-  Settings,
-  Gauge,
-  Code2,
-  Infinity as InfinityIcon,
-  Monitor,
-  ShieldAlert,
-  Bot,
-  Headset,
-  Cloud,
-  BarChart3,
-  BrainCircuit,
-  ArrowRight,
-  Box
-} from "lucide-react";
+  AutomationTestingIcon,
+  QualityEngineeringIcon,
+  PerformanceEngineeringIcon,
+  SecurityTestingIcon,
+  ApplicationDevelopmentIcon,
+  DevOpsIcon,
+  CloudMigrationIcon,
+  DataAnalyticsIcon,
+  EnterpriseAIIcon,
+  ITServiceManagementIcon,
+  RPAIcon,
+  ApplicationMonitoringIcon,
+  CTABoxIcon,
+} from "./HoverIcons";
 
 const services = [
-  { id: 1, name: "Automation Testing", desc: "Accelerate release cycles with intelligent test automation.", icon: Settings },
-  { id: 2, name: "Quality Engineering", desc: "Delivering defect-free, high-quality software solutions.", icon: ShieldCheck },
-  { id: 3, name: "Performance Engineering", desc: "Ensure scalability, speed, and reliability under any load.", icon: Gauge },
-  { id: 4, name: "Security Testing", desc: "Identify vulnerabilities and strengthen your application security.", icon: ShieldAlert },
-  { id: 5, name: "Application Development", desc: "Building robust, scalable, and future-ready applications.", icon: Code2 },
-  { id: 6, name: "DevOps & CI/CD", desc: "Streamline delivery with automation, integration, and continuous delivery.", icon: InfinityIcon },
-  { id: 7, name: "Cloud Migration", desc: "Migrate, modernize, and manage workloads in the cloud.", icon: Cloud },
-  { id: 8, name: "Data & Analytics", desc: "Transform data into actionable insights that drive growth.", icon: BarChart3 },
-  { id: 9, name: "Enterprise AI Solutions", desc: "Leverage AI to innovate, automate, and stay ahead of the curve.", icon: BrainCircuit },
-  { id: 10, name: "IT Service Management", desc: "Optimize IT services to improve efficiency and end-user satisfaction.", icon: Headset },
-  { id: 11, name: "Robotic Process Automation", desc: "Automate repetitive tasks and improve operational efficiency.", icon: Bot },
-  { id: 12, name: "Application Monitoring", desc: "Proactive monitoring for performance, availability, and user experience.", icon: Monitor },
+  { id: 1, name: "Automation Testing", desc: "Accelerate release cycles with intelligent test automation.", icon: AutomationTestingIcon },
+  { id: 2, name: "Quality Engineering", desc: "Delivering defect-free, high-quality software solutions.", icon: QualityEngineeringIcon },
+  { id: 3, name: "Performance Engineering", desc: "Ensure scalability, speed, and reliability under any load.", icon: PerformanceEngineeringIcon },
+  { id: 4, name: "Security Testing", desc: "Identify vulnerabilities and strengthen your application security.", icon: SecurityTestingIcon },
+  { id: 5, name: "Application Development", desc: "Building robust, scalable, and future-ready applications.", icon: ApplicationDevelopmentIcon },
+  { id: 6, name: "DevOps & CI/CD", desc: "Streamline delivery with automation, integration, and continuous delivery.", icon: DevOpsIcon },
+  { id: 7, name: "Cloud Migration", desc: "Migrate, modernize, and manage workloads in the cloud.", icon: CloudMigrationIcon },
+  { id: 8, name: "Data & Analytics", desc: "Transform data into actionable insights that drive growth.", icon: DataAnalyticsIcon },
+  { id: 9, name: "Enterprise AI Solutions", desc: "Leverage AI to innovate, automate, and stay ahead of the curve.", icon: EnterpriseAIIcon },
+  { id: 10, name: "IT Service Management", desc: "Optimize IT services to improve efficiency and end-user satisfaction.", icon: ITServiceManagementIcon },
+  { id: 11, name: "Robotic Process Automation", desc: "Automate repetitive tasks and improve operational efficiency.", icon: RPAIcon },
+  { id: 12, name: "Application Monitoring", desc: "Proactive monitoring for performance, availability, and user experience.", icon: ApplicationMonitoringIcon },
 ];
 
 export default function CoreServices() {
@@ -96,7 +96,7 @@ export default function CoreServices() {
       <div className="absolute bottom-[40px] left-1/2 -translate-x-1/2 w-[90%] max-w-[800px] bg-[#1E18F8]/10 backdrop-blur-xl border border-[#334155]/30 rounded-xl p-6 flex flex-col sm:flex-row items-center justify-between z-40 shadow-[0_10px_40px_rgba(0,0,0,0.5)]">
         <div className="flex items-center gap-5 mb-4 sm:mb-0">
           <div className="w-14 h-14 bg-[#334155]/20 rounded-xl flex items-center justify-center border border-[#334155]/40">
-            <Box className="text-white w-7 h-7" />
+            <CTABoxIcon className="text-white w-7 h-7" />
           </div>
           <div className="text-left">
             <h4 className="text-white font-semibold text-lg">Need a tailored solution?</h4>
