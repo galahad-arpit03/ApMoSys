@@ -57,7 +57,7 @@ export default function Hero() {
                   animate={{ y: 0, opacity: 1 }}
                   exit={{ y: "-100%", opacity: 0 }}
                   transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-                  className="absolute left-0 font-medium bg-clip-text text-transparent bg-gradient-to-r from-[#1f0bf8] via-[#1d60ff] to-[#a9afff]"
+                  className="absolute left-0 font-medium bg-clip-text text-transparent  bg-gradient-to-r from-[#1f0bf8] via-[#1d60ff] to-[#a9afff]"
                 >
                   {rotatingTexts[textIndex]}
                 </motion.span>
