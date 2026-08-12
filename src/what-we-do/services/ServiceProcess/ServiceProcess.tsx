@@ -101,11 +101,10 @@ function CubeFace({
 
   return (
     <div
-      className={`absolute inset-0 rounded-none overflow-hidden select-none transition-all duration-300 ${
-        isActive
+      className={`absolute inset-0 rounded-none overflow-hidden select-none transition-all duration-300 ${isActive
           ? "border-2 border-[#6E44FF] shadow-[0_0_35px_rgba(110,68,255,0.4)] z-10"
           : "border border-gray-800/80 shadow-md opacity-90"
-      }`}
+        }`}
       style={{
         transform: transformStyle,
         backfaceVisibility: "hidden",
@@ -122,7 +121,7 @@ function CubeFace({
       )}
 
       {/* Sleek Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent p-3.5 sm:p-4 flex flex-col justify-between">
+      <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-transparent p-3.5 sm:p-4 flex flex-col justify-between">
         <div className="flex items-center justify-between">
           <span className="text-[10px] font-mono font-bold text-white bg-black/60 px-2 py-0.5 border border-white/10 backdrop-blur-md">
             {`0${step?.id}`}
