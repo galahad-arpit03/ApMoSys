@@ -325,12 +325,12 @@ export default function ProductsOverview() {
 
             {/* 3D Viewport Wrapper */}
             <div
-              className="relative w-full h-[360px] flex items-center justify-center overflow-hidden"
+              className="relative w-full h-[440px] flex items-center justify-center overflow-visible py-2"
               style={{ perspective: "1200px" }}
             >
               {/* 3D Rotating Cylinder Parent */}
               <div
-                className="relative w-[160px] h-[240px]"
+                className="relative w-[160px] h-[240px] -translate-y-8"
                 style={{
                   transformStyle: "preserve-3d",
                   transform: `rotateX(-10deg) rotateY(${rotation}deg)`,
@@ -343,22 +343,60 @@ export default function ProductsOverview() {
                   const cardBg = item.bg || "bg-[#0B0C10]";
                   const cardImage = item.img || "/assets/images/heroes/cliqtest-hero.png";
 
+                  // Calculate net angle relative to front (0 deg facing viewer)
+                  let net = (angle + rotation) % 360;
+                  if (net > 180) net -= 360;
+                  if (net < -180) net += 360;
+                  
+                  // Cosine value for 3D depth (-1 at 180 deg back, +1 at 0 deg front)
+                  const rad = (net * Math.PI) / 180;
+                  const cosVal = Math.cos(rad);
+
+                  // Smoothstep transition curve for depth fading
+                  let norm = 0;
+                  if (cosVal < 0.57) {
+                    norm = Math.min(1, (0.57 - cosVal) / 1.57);
+                  }
+                  const smoothFade = norm * norm * (3 - 2 * norm);
+
+                  // Tiered Opacity Hierarchy:
+                  // 1. Highlighted/Active card: 1.0 opacity (100% opaque, main focal point)
+                  // 2. Adjacent 2 front cards: ~0.78 opacity (softened so highlighted card gets primary attention)
+                  // 3. Behind cards: Smoothly fades down to 0.20 opacity
+                  let cardOpacity = 1.0;
+                  let imgOpacity = 0.85;
+
+                  if (!isCurrentActive) {
+                    cardOpacity = 0.78 - smoothFade * 0.58; // 0.78 down to 0.20
+                    imgOpacity = 0.50 - smoothFade * 0.25;  // 0.50 down to 0.25
+                  }
+
+                  const cardZIndex = Math.round((cosVal + 1) * 10);
+                  const isFront = cosVal >= 0.57;
+
                   return (
                     <div
                       key={item.id || index}
                       onClick={() => selectProduct(index)}
-                      className={`absolute top-0 left-0 w-full h-full rounded-xl p-4 flex flex-col justify-between overflow-hidden shadow-xl transition-all duration-300 cursor-pointer ${cardBg} text-white ${
+                      className={`absolute top-0 left-0 w-full h-full rounded-xl p-4 flex flex-col justify-between overflow-hidden shadow-xl cursor-pointer ${cardBg} text-white transition-all duration-300 ease-out ${
                         isCurrentActive
-                          ? "ring-2 ring-[#2563EB] shadow-[0_0_30px_rgba(37,99,235,0.4)]"
-                          : "opacity-80 border border-white/10"
+                          ? "ring-2 ring-[#2563EB] shadow-[0_0_35px_rgba(37,99,235,0.6)] scale-[1.04]"
+                          : isFront
+                          ? "border border-white/20 shadow-md"
+                          : "border border-white/5"
                       }`}
                       style={{
                         transform: `rotateY(${angle}deg) translateZ(${radius}px)`,
+                        opacity: cardOpacity,
+                        zIndex: isCurrentActive ? 40 : cardZIndex,
                       }}
                     >
                       {/* Background Hero Image */}
                       {cardImage && (
-                        <div className="absolute inset-0 opacity-55 z-0">
+                        <div
+                          className="absolute inset-0 z-0 transition-opacity duration-200 ease-out"
+                          style={{ opacity: imgOpacity }}
+                        >
                           <Image
                             src={cardImage}
                             alt={item.title}
@@ -370,12 +408,12 @@ export default function ProductsOverview() {
                       )}
 
                       {/* Card Overlay & Text Content */}
-                      <div className="relative z-10 w-full h-full flex flex-col justify-between bg-gradient-to-t from-black/85 via-black/30 to-transparent p-1 rounded-lg">
+                      <div className="relative z-10 w-full h-full flex flex-col justify-between bg-gradient-to-t from-black/90 via-black/45 to-black/10 p-1 rounded-lg">
                         <div className="flex items-center justify-between">
-                          <span className="text-[10px] font-mono font-bold text-white bg-black/60 px-2 py-0.5 rounded border border-white/10">
+                          <span className="text-[10px] font-mono font-bold text-white bg-black/75 px-2 py-0.5 rounded border border-white/20 shadow-xs">
                             0{index + 1}
                           </span>
-                          <span className="text-[9px] font-mono font-semibold text-blue-300 bg-[#2563EB]/40 px-2 py-0.5 rounded uppercase tracking-wider">
+                          <span className="text-[9px] font-mono font-semibold text-blue-300 bg-[#2563EB]/60 px-2 py-0.5 rounded uppercase tracking-wider">
                             {item.subtitle || "PLATFORM"}
                           </span>
                         </div>
