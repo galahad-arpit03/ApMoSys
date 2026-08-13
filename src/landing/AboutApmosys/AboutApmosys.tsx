@@ -31,7 +31,7 @@ export default function AboutApmosys() {
               We architect scalable, secure, and intelligent solutions that simplify complex enterprise challenges. Experience seamless technology designed to fit effortlessly into your business model.
             </p>
             <div className="w-full lg:text-left flex lg:justify-start">
-              <button className="group flex items-center gap-2 bg-[#2563EB] text-white px-7 py-3 rounded-md font-bold text-sm hover:bg-blue-700 transition-all shadow-[0_0_15px_rgba(37,99,235,0.2)]">
+              <button className="group flex items-center gap-2 bg-[#AC6AFF] text-white px-7 py-3 rounded-md font-bold text-sm hover:bg-blue-700 transition-all shadow-[0_0_15px_rgba(37,99,235,0.2)]">
                 Discover Our Story
                 <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" />
               </button>

@@ -15,7 +15,7 @@ const WhyApmosys = dynamic(() => import("./WhyApmosys/WhyApmosys"));
 const SuccessMetrics = dynamic(() => import("./SuccessMetrics/SuccessMetrics"));
 const AwardsCertifications = dynamic(() => import("./AwardsCertifications/AwardsCertifications"));
 const LatestInsights = dynamic(() => import("./LatestInsights/LatestInsights"));
-const MilestonesTimeline = dynamic(() => import("@/src/who-we-are/about-us/MilestonesTimeline/MilestonesTimeline"));
+const LandingMilestones = dynamic(() => import("./LandingMilestones/LandingMilestones"));
 const ExecutiveTeam = dynamic(() => import("@/src/who-we-are/leadership/ExecutiveTeam/ExecutiveTeam"));
 const CareersCTA = dynamic(() => import("./CareersCTA/CareersCTA"));
 const InquirySection = dynamic(() => import("@/src/contact-us/InquirySection/InquirySection"));
@@ -39,7 +39,7 @@ export default function LandingPage() {
       <LatestInsights />
       
       {/* Deep Dives (Moved to bottom for better conversion UX) */}
-      <MilestonesTimeline />
+      <LandingMilestones />
       <ExecutiveTeam />
       
       {/* Footer CTAs */}

@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import { ArrowRight } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 import { coeData } from "@/src/data/landing/CoESection/CoESectionData";
 
 export default function CoESection() {
@@ -25,28 +26,36 @@ export default function CoESection() {
           </div>
         </div>
 
-        {/* Horizontal Accordion */}
-        <div className="flex flex-col md:flex-row items-center justify-start w-full h-[550px] md:h-[450px] lg:h-[500px] xl:h-[520px] gap-2 md:gap-4">
-          {coeData.map((item, idx) => {
+        {/* Horizontal Accordion with Framer Motion Layout */}
+        <div className="flex flex-col md:flex-row items-center justify-start w-full h-[650px] md:h-[450px] lg:h-[500px] xl:h-[520px] gap-2 md:gap-4">
+          {coeData.map((item) => {
             const isActive = activeId === item.id;
             
             return (
-              <div
+              <motion.div
+                layout
                 key={item.id}
                 onClick={() => setActiveId(item.id)}
-                className={`relative overflow-hidden cursor-pointer rounded-md bg-white transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+                transition={{ type: "spring", stiffness: 200, damping: 25, mass: 0.8 }}
+                className={`relative overflow-hidden cursor-pointer rounded-md bg-white ${
                   isActive 
-                    ? "flex-grow w-full h-full shadow-2xl z-10 border border-gray-200 scale-100" 
+                    ? "flex-grow w-full h-full shadow-xl z-10 border border-gray-200" 
                     : "h-14 md:h-[90%] w-full md:w-20 flex-shrink-0 shadow-sm border border-gray-100 z-0"
                 }`}
               >
+                <AnimatePresence mode="popLayout" initial={false}>
                   {isActive ? (
-                    <div className="absolute inset-0 flex w-full max-w-full h-full bg-white animate-in fade-in duration-500 overflow-y-auto md:overflow-hidden hide-scroll">
+                    <motion.div
+                      key="active"
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                      transition={{ duration: 0.2 }}
+                      className="absolute inset-0 flex w-full h-full bg-white overflow-hidden"
+                    >
                       {/* Left Spine (Maintained in Active State) */}
                       <div className="hidden md:flex flex-col items-center w-20 h-full py-8 border-r border-gray-100 flex-shrink-0 bg-gray-50/50">
-                        <div className="text-[#2563EB] font-medium text-lg mb-auto tracking-wider">
-                          {item.shortName}
-                        </div>
+                        <div className="mb-auto" />
                         <span 
                           className="text-black font-medium text-base tracking-widest uppercase whitespace-nowrap mt-auto rotate-180"
                           style={{ writingMode: "vertical-rl" }}
@@ -56,24 +65,19 @@ export default function CoESection() {
                       </div>
                       
                       {/* Right Content Area */}
-                      <div className="flex flex-col flex-grow p-6 md:p-8 w-full">
-                        {/* Heading */}
-                        <div className="flex items-center gap-4 mb-2">
-                          <div className="w-8 h-6 bg-[#2563EB]/10 rounded-sm flex items-center justify-center text-[#2563EB] font-bold text-xs md:hidden">
-                            {item.shortName}
-                          </div>
-                          <h3 className="font-heading text-2xl md:text-3xl lg:text-4xl text-black font-normal leading-tight">
-                            {item.title}
-                          </h3>
-                        </div>
+                      <div className="flex flex-col flex-grow p-5 md:p-8 w-full overflow-y-auto md:overflow-hidden hide-scroll">
+                        <h3 className="font-heading text-2xl md:text-3xl lg:text-4xl text-black font-normal leading-tight mb-2">
+                          {item.title}
+                        </h3>
                         
                         <div className="text-gray-500 text-sm font-semibold tracking-wide mb-6">
                           ApMoSys Innovation Lab | Global Access
                         </div>
 
                         {/* Image */}
-                        <div className="w-full h-[150px] md:h-[200px] lg:h-[220px] rounded-md overflow-hidden mb-6 flex-shrink-0 bg-gray-100 border border-gray-200">
-                          <div 
+                        <div className="w-full h-[150px] md:h-[200px] lg:h-[220px] rounded-md overflow-hidden mb-6 flex-shrink-0 bg-gray-100 border border-gray-200 relative">
+                          <motion.div 
+                            layoutId={`img-${item.id}`}
                             className="w-full h-full bg-cover bg-center transition-transform duration-700 hover:scale-105"
                             style={{ backgroundImage: `url(${item.image})` }}
                           />
@@ -85,27 +89,29 @@ export default function CoESection() {
                         </p>
                         
                         {/* Read More Link */}
-                        <div className="mt-auto flex items-center text-black font-bold text-[13px] tracking-widest uppercase hover:text-[#2563EB] transition-colors cursor-pointer group/link w-max">
+                        <div className="mt-auto flex items-center text-black font-bold text-[13px] tracking-widest uppercase hover:text-[#2563EB] transition-colors group/link w-max">
                           READ MORE 
                           <ArrowRight className="w-4 h-4 ml-2 transform group-hover/link:translate-x-1 transition-transform" />
                         </div>
                       </div>
-                    </div>
+                    </motion.div>
                   ) : (
-                    <div className="absolute inset-0 flex items-center justify-center md:justify-center justify-start px-4 md:px-0 bg-gray-50 hover:bg-gray-100 group">
+                    <motion.div
+                      key="inactive"
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                      transition={{ duration: 0.2 }}
+                      className="absolute inset-0 flex items-center justify-start md:justify-center px-4 md:px-0 bg-gray-50 hover:bg-gray-100 group"
+                    >
                       {/* Mobile View: Horizontal Text */}
                       <span className="md:hidden text-black font-semibold text-sm tracking-wide uppercase">
                         {item.title}
                       </span>
 
-                      {/* Desktop View: Vertical Text & Short Name */}
+                      {/* Desktop View: Vertical Text */}
                       <div className="hidden md:flex flex-col items-center w-full h-full py-8">
-                        {/* Top Short Name */}
-                        <div className="text-[#2563EB] font-medium text-lg mb-auto tracking-wider">
-                          {item.shortName}
-                        </div>
-                        
-                        {/* Bottom Vertical Full Text */}
+                        <div className="mb-auto" />
                         <span 
                           className="text-black font-medium text-base tracking-widest uppercase whitespace-nowrap mt-auto rotate-180"
                           style={{ writingMode: "vertical-rl" }}
@@ -113,9 +119,10 @@ export default function CoESection() {
                           {item.title}
                         </span>
                       </div>
-                    </div>
+                    </motion.div>
                   )}
-              </div>
+                </AnimatePresence>
+              </motion.div>
             );
           })}
         </div>

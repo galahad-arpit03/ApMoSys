@@ -103,10 +103,8 @@ export default function Navbar() {
   const isExpanded = activeDropdown !== null;
   const isLandingHero = pathname === "/" && isAtTop && !isExpanded;
   const navBgColor = isExpanded 
-    ? "bg-black/60 backdrop-blur-3xl" 
-    : isLandingHero 
-      ? "bg-white/5 backdrop-blur-md border-b border-white/10" 
-      : "bg-black/30 backdrop-blur-xl border-b border-white/10";
+    ? "bg-[#0B1121]/95 backdrop-blur-xl border-b border-gray-800/50 shadow-2xl" 
+    : "bg-[#0B1121]/80 backdrop-blur-xl border-b border-gray-800/50 shadow-md";
 
   // Close dropdown on click outside
   React.useEffect(() => {
@@ -221,7 +219,7 @@ export default function Navbar() {
           <div className="hidden lg:flex items-center justify-end lg:flex-1 z-50 space-x-6">
             <Link
               href="/contact"
-              className="px-5 py-2 text-sm font-medium rounded-md transition-all duration-300 overflow-hidden bg-[#0F172A] text-[#white] hover:bg-[#0F172A]"
+              className="px-5 py-2 text-sm font-medium rounded-md transition-all duration-300 overflow-hidden bg-[#001a57] text-[#white] hover:bg-[#0F172A]"
             >
               Contact Us
             </Link>
