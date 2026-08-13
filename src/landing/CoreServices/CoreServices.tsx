@@ -79,7 +79,7 @@ export default function CoreServices() {
               className={`group py-6 md:py-10 px-6 xl:px-10 flex flex-col sm:flex-row lg:flex-col xl:flex-row items-start gap-5 hover:bg-gray-100/50 transition-colors ${getBorderClasses(idx, services.length)}`}
             >
               <div className="shrink-0 w-12 h-12 rounded-full border border-[#2563EB]/20 bg-transparent flex items-center justify-center text-[#2563EB]">
-                {React.createElement(service.icon, { className: "w-5 h-5", strokeWidth: 1.5 })}
+                {React.createElement(service.icon as any, { className: "w-5 h-5", strokeWidth: 1.5 })}
               </div>
 
               <div>

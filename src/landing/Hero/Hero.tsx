@@ -26,11 +26,11 @@ export default function Hero() {
     <section ref={ref} className="relative w-full min-h-screen overflow-hidden flex items-center bg-[#FAFAFA]">
       <div className="absolute top-0 left-0 w-full h-full z-0 opacity-100 pointer-events-none">
         <Image 
-          src="/assets/images/amcharts/f1.png" 
+          src="/assets/images/amcharts/f6.png" 
           alt="Abstract Background" 
           fill 
           priority
-          className="object-cover object-[center_10%]"
+          className="object-cover object-[center_30%]"
         />
       </div>
       
@@ -57,7 +57,7 @@ export default function Hero() {
                     animate={{ y: 0, opacity: 1 }}
                     exit={{ y: "-100%", opacity: 0 }}
                     transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-                    className="absolute left-0 font-semibold text-[#2563EB]"
+                    className="absolute left-0 font-semibold text-[#002575]"
                   >
                     {rotatingTexts[textIndex]}
                   </motion.span>
@@ -87,9 +87,9 @@ export default function Hero() {
               Explore AI Solutions
               <ArrowRight className="w-4 h-4 text-white/70 group-hover:text-white transition-colors" aria-hidden="true" />
             </button>
-            <button aria-label="Learn More" className="group px-6 py-3 bg-white border border-gray-200 hover:border-gray-300 hover:bg-gray-50 text-slate-800 font-medium rounded-md transition-all duration-300 flex items-center gap-2 text-[14px] shadow-sm hover:shadow-md hover:-translate-y-0.5">
+            <button aria-label="Learn More" className="group px-6 py-3 bg-white border border-slate-300 hover:border-slate-400 hover:bg-slate-50 text-slate-900 font-semibold rounded-md transition-all duration-300 flex items-center gap-2 text-[14px] shadow-md hover:shadow-lg hover:-translate-y-0.5">
               Learn More
-              <ArrowRight className="w-4 h-4 text-slate-400 group-hover:text-slate-700 transition-colors" aria-hidden="true" />
+              <ArrowRight className="w-4 h-4 text-slate-500 group-hover:text-slate-800 transition-colors" aria-hidden="true" />
             </button>
           </motion.div>
 
