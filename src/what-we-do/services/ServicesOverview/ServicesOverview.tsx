@@ -317,14 +317,14 @@ export default function ServicesOverview() {
     >
       <div className="sticky top-0 h-screen w-full overflow-hidden flex flex-col justify-between py-6 sm:py-8 lg:py-10 px-4 sm:px-8 lg:px-16 max-w-[1600px] mx-auto select-none">
         {/* Split Header */}
-        <div className="mb-4 sm:mb-6 lg:mb-8 grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-12 items-start z-30 relative flex-shrink-0">
+        <div className="mb-6 sm:mb-8 lg:mb-10 grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-12 items-center z-30 relative flex-shrink-0">
           <div className="lg:col-span-5">
-            <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-normal text-black leading-[1.1]">
+            <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-normal text-black leading-[1.1] tracking-tight text-left">
               Full-Stack Engineering Services
             </h2>
           </div>
-          <div className="lg:col-span-7 flex flex-col justify-end h-full">
-            <p className="text-sm sm:text-base lg:text-lg text-[#5A5A5A] leading-relaxed">
+          <div className="lg:col-span-7 lg:border-l border-gray-200 lg:pl-8">
+            <p className="text-sm sm:text-base lg:text-lg text-[#5A5A5A] leading-relaxed text-left font-normal max-w-3xl">
               End-to-end engineering capabilities spanning quality assurance, automation, cloud, security, and AI — designed to accelerate your enterprise transformation.
             </p>
           </div>
