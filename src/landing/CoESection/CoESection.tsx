@@ -1,21 +1,79 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useRef } from "react";
+import { motion, useAnimationFrame } from "framer-motion";
 import { ArrowRight } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
 import { coeData } from "@/src/data/landing/CoESection/CoESectionData";
 
-export default function CoESection() {
-  const [activeId, setActiveId] = useState<string | null>(coeData[0].id);
+function PositionAwareCard({ item }: { item: any }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const innerRef = useRef<HTMLDivElement>(null);
+
+  useAnimationFrame(() => {
+    if (!ref.current || !innerRef.current) return;
+    const rect = ref.current.getBoundingClientRect();
+    const centerX = rect.left + rect.width / 2;
+    const windowCenterX = window.innerWidth / 2;
+    const signedDist = (centerX - windowCenterX) / (windowCenterX * 0.8);
+    // Clamp between -1 and 1 to prevent over-rotation off-screen
+    const clampedDist = Math.max(-1, Math.min(1, signedDist));
+    
+    // Calculate 3D Curve (Amphitheater / Inverse Cylinder Effect)
+    // 1. Rotation: Center faces forward (0deg). Edges tilt inwards (e.g., -35deg on right, 35deg on left).
+    const rotateY = clampedDist * -40;
+    
+    // 2. Depth (Z-axis): Center is pushed deeply back (far away), edges come forward.
+    const absDist = Math.abs(clampedDist);
+    const translateZ = (absDist - 1) * 300; // at center (absDist=0) -> -300px. at edges (absDist=1) -> 0px.
+    
+    // Apply true 3D perspective transforms
+    innerRef.current.style.transform = `perspective(1200px) translateZ(${translateZ}px) rotateY(${rotateY}deg)`;
+  });
 
   return (
-    <section className="py-10 lg:py-16 bg-white border-b border-gray-100 relative overflow-hidden">
-      <div className="max-w-[1600px] mx-auto px-6 sm:px-8 lg:px-16 relative z-10">
-        
-        {/* Header Section */}
-        <div className="mb-10 lg:mb-14 flex flex-col md:flex-row items-center justify-between gap-10 md:gap-16">
+    <div ref={ref} className="relative shrink-0 w-[240px] h-[240px] sm:w-[280px] sm:h-[280px] md:w-[300px] md:h-[300px] lg:w-[340px] lg:h-[340px] xl:w-[360px] xl:h-[360px]">
+      <div 
+        ref={innerRef}
+        className="w-full h-full rounded-md overflow-hidden bg-[#0A1128] group/card flex flex-col justify-between p-6 md:p-8 shadow-2xl origin-center will-change-transform border border-slate-800 relative hover:bg-[#0f1730] transition-colors duration-300"
+      >
+        {/* Glowing 3D Background Icon in Bottom Right */}
+        <div 
+          className="absolute -bottom-10 -right-10 w-48 h-48 md:w-64 md:h-64 bg-contain bg-no-repeat bg-center opacity-30 mix-blend-screen transition-transform duration-700 group-hover/card:scale-110 group-hover/card:opacity-50"
+          style={{ backgroundImage: `url(${item.image})` }}
+        />
+
+        <div className="relative z-10">
+          <div className="text-[10px] md:text-xs font-bold text-slate-400 mb-2 uppercase tracking-widest flex items-center gap-2">
+            <span className="w-2 h-2 rounded-full bg-blue-500" />
+            Innovation Lab
+          </div>
+          <h3 className="font-heading text-xl md:text-3xl text-white font-semibold leading-tight max-w-[90%] mt-4">
+            {item.title}
+          </h3>
+        </div>
+
+        <div className="relative z-10">
+          <p className="text-slate-300 text-xs md:text-sm font-medium line-clamp-4 leading-relaxed mb-6">
+            {item.description}
+          </p>
+          
+          <div className="flex items-center text-blue-400 font-bold text-xs tracking-widest uppercase hover:text-blue-300 transition-colors w-max cursor-pointer">
+            EXPLORE
+            <ArrowRight className="w-4 h-4 ml-1.5 transform group-hover/card:translate-x-2 transition-transform" />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default function CoESection() {
+  return (
+    <section className="py-16 lg:py-24 bg-[#FAFAFA] relative overflow-hidden">
+      <div className="max-w-[1600px] mx-auto px-6 sm:px-8 lg:px-16 relative z-10 mb-12 lg:mb-16">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-10">
           <div className="w-full md:w-1/2">
-            <h2 className="font-heading text-4xl sm:text-5xl lg:text-6xl font-normal text-black leading-[1.1] tracking-tight text-left">
+            <h2 className="font-heading text-4xl sm:text-5xl lg:text-6xl font-semibold text-black leading-[1.1] tracking-tight text-left">
               Centers of Excellence
             </h2>
           </div>
@@ -25,108 +83,41 @@ export default function CoESection() {
             </p>
           </div>
         </div>
+      </div>
 
-        {/* Horizontal Accordion with Framer Motion Layout */}
-        <div className="flex flex-col md:flex-row items-center justify-start w-full h-[650px] md:h-[450px] lg:h-[500px] xl:h-[520px] gap-2 md:gap-4">
-          {coeData.map((item) => {
-            const isActive = activeId === item.id;
-            
-            return (
-              <motion.div
-                layout
-                key={item.id}
-                onClick={() => setActiveId(item.id)}
-                transition={{ type: "spring", stiffness: 200, damping: 25, mass: 0.8 }}
-                className={`relative overflow-hidden cursor-pointer rounded-md bg-white ${
-                  isActive 
-                    ? "flex-grow w-full h-full shadow-xl z-10 border border-gray-200" 
-                    : "h-14 md:h-[90%] w-full md:w-20 flex-shrink-0 shadow-sm border border-gray-100 z-0"
-                }`}
-              >
-                <AnimatePresence mode="popLayout" initial={false}>
-                  {isActive ? (
-                    <motion.div
-                      key="active"
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      exit={{ opacity: 0 }}
-                      transition={{ duration: 0.2 }}
-                      className="absolute inset-0 flex w-full h-full bg-white overflow-hidden"
-                    >
-                      {/* Left Spine (Maintained in Active State) */}
-                      <div className="hidden md:flex flex-col items-center w-20 h-full py-8 border-r border-gray-100 flex-shrink-0 bg-gray-50/50">
-                        <div className="mb-auto" />
-                        <span 
-                          className="text-black font-medium text-base tracking-widest uppercase whitespace-nowrap mt-auto rotate-180"
-                          style={{ writingMode: "vertical-rl" }}
-                        >
-                          {item.title}
-                        </span>
-                      </div>
-                      
-                      {/* Right Content Area */}
-                      <div className="flex flex-col flex-grow p-5 md:p-8 w-full overflow-y-auto md:overflow-hidden hide-scroll">
-                        <h3 className="font-heading text-2xl md:text-3xl lg:text-4xl text-black font-normal leading-tight mb-2">
-                          {item.title}
-                        </h3>
-                        
-                        <div className="text-gray-500 text-sm font-semibold tracking-wide mb-6">
-                          ApMoSys Innovation Lab | Global Access
-                        </div>
+      {/* Infinite Animated Marquee (Film Strip) */}
+      <div className="relative w-full flex overflow-hidden group">
+        <div className="absolute top-0 left-0 w-24 md:w-48 h-full bg-gradient-to-r from-[#FAFAFA] to-transparent z-20 pointer-events-none" />
+        <div className="absolute top-0 right-0 w-24 md:w-48 h-full bg-gradient-to-l from-[#FAFAFA] to-transparent z-20 pointer-events-none" />
 
-                        {/* Image */}
-                        <div className="w-full h-[150px] md:h-[200px] lg:h-[220px] rounded-md overflow-hidden mb-6 flex-shrink-0 bg-gray-100 border border-gray-200 relative">
-                          <motion.div 
-                            layoutId={`img-${item.id}`}
-                            className="w-full h-full bg-cover bg-center transition-transform duration-700 hover:scale-105"
-                            style={{ backgroundImage: `url(${item.image})` }}
-                          />
-                        </div>
-                        
-                        {/* Paragraph */}
-                        <p className="text-[#5A5A5A] text-sm md:text-base leading-relaxed mb-6">
-                          {item.description}
-                        </p>
-                        
-                        {/* Read More Link */}
-                        <div className="mt-auto flex items-center text-black font-bold text-[13px] tracking-widest uppercase hover:text-[#2563EB] transition-colors group/link w-max">
-                          READ MORE 
-                          <ArrowRight className="w-4 h-4 ml-2 transform group-hover/link:translate-x-1 transition-transform" />
-                        </div>
-                      </div>
-                    </motion.div>
-                  ) : (
-                    <motion.div
-                      key="inactive"
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      exit={{ opacity: 0 }}
-                      transition={{ duration: 0.2 }}
-                      className="absolute inset-0 flex items-center justify-start md:justify-center px-4 md:px-0 bg-gray-50 hover:bg-gray-100 group"
-                    >
-                      {/* Mobile View: Horizontal Text */}
-                      <span className="md:hidden text-black font-semibold text-sm tracking-wide uppercase">
-                        {item.title}
-                      </span>
-
-                      {/* Desktop View: Vertical Text */}
-                      <div className="hidden md:flex flex-col items-center w-full h-full py-8">
-                        <div className="mb-auto" />
-                        <span 
-                          className="text-black font-medium text-base tracking-widest uppercase whitespace-nowrap mt-auto rotate-180"
-                          style={{ writingMode: "vertical-rl" }}
-                        >
-                          {item.title}
-                        </span>
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </motion.div>
-            );
-          })}
-        </div>
-
+        {/* 
+          To achieve a flawless "film strip" loop, we animate a wrapper from 0 to -50%.
+          Inside the wrapper, we place TWO identical sets of our items side-by-side. 
+          By wrapping them in a flex container with explicit gap handling, the loop jump is invisible.
+        */}
+        <motion.div
+          className="flex w-max"
+          animate={{ x: ["0%", "-50%"] }}
+          transition={{
+            repeat: Infinity,
+            ease: "linear",
+            duration: 50,
+          }}
+          whileHover={{ animationPlayState: "paused" }} 
+        >
+          {/* First Set */}
+          <div className="flex gap-1 md:gap-2 pr-1 md:pr-2">
+            {coeData.map((item, idx) => (
+              <PositionAwareCard key={`set1-${item.id}-${idx}`} item={item} />
+            ))}
+          </div>
+          {/* Second Set (Identical Clone for seamless loop) */}
+          <div className="flex gap-1 md:gap-2 pr-1 md:pr-2">
+            {coeData.map((item, idx) => (
+              <PositionAwareCard key={`set2-${item.id}-${idx}`} item={item} />
+            ))}
+          </div>
+        </motion.div>
       </div>
     </section>
   );

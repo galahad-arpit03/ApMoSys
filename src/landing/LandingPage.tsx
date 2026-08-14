@@ -4,7 +4,6 @@ import dynamic from "next/dynamic";
 // Eagerly loaded components (Above the fold)
 import Hero from "./Hero/Hero";
 import TrustedBy from "./TrustedBy/TrustedBy";
-import AboutApmosys from "./AboutApmosys/AboutApmosys";
 
 // Lazy-loaded components (Below the fold)
 const CoreServices = dynamic(() => import("./CoreServices/CoreServices"));
@@ -26,7 +25,6 @@ export default function LandingPage() {
       {/* Above the fold - loaded instantly */}
       <Hero />
       <TrustedBy />
-      <AboutApmosys />
 
       {/* Core Offerings & Value - loaded on scroll */}
       <CoreServices />
