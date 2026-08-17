@@ -101,10 +101,11 @@ function CubeFace({
 
   return (
     <div
-      className={`absolute inset-0 rounded-none overflow-hidden select-none transition-all duration-300 ${isActive
+      className={`absolute inset-0 rounded-none overflow-hidden select-none transition-all duration-300 ${
+        isActive
           ? "border-2 border-[#6E44FF] shadow-[0_0_35px_rgba(110,68,255,0.4)] z-10"
           : "border border-gray-800/80 shadow-md opacity-90"
-        }`}
+      }`}
       style={{
         transform: transformStyle,
         backfaceVisibility: "hidden",
@@ -154,7 +155,6 @@ export default function ServiceProcess() {
     restDelta: 0.001
   });
 
-  // Continuous interpolation for 6 cube faces
   const rotateY = useTransform(
     smoothProgress,
     [0, 0.2, 0.4, 0.6, 0.8, 1],
@@ -167,15 +167,12 @@ export default function ServiceProcess() {
     [-10, -10, -10, -10, -90, 90]
   );
 
-  const progressWidth = useTransform(smoothProgress, [0, 1], ["0%", "100%"]);
-
-  // Update active step based on scroll progress
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
     if (latest < 0.16) {
       setActiveStep(0);
     } else if (latest < 0.33) {
       setActiveStep(1);
-    } else if (latest < 0.50) {
+    } else if (latest < 0.5) {
       setActiveStep(2);
     } else if (latest < 0.66) {
       setActiveStep(3);
@@ -187,7 +184,6 @@ export default function ServiceProcess() {
   });
 
   const activeData = steps[activeStep];
-  const ActiveIcon = activeData.icon;
 
   const faceTransforms = [
     "rotateY(0deg) translateZ(var(--cube-half))",
@@ -203,20 +199,20 @@ export default function ServiceProcess() {
       ref={containerRef}
       className="relative h-[170vh] bg-[#FAFAFA] border-b border-gray-100"
     >
-      <div className="sticky top-0 h-screen flex flex-col justify-center py-6 sm:py-8 overflow-hidden">
-        <div className="max-w-[1600px] w-full mx-auto px-6 sm:px-8 lg:px-16">
+      <div className="sticky top-0 h-screen flex flex-col justify-center py-4 sm:py-8 overflow-hidden">
+        <div className="max-w-[1600px] w-full mx-auto px-4 sm:px-8 lg:px-16 select-none">
           {/* Header section */}
           <div className="mb-2 lg:mb-4">
-            <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-normal text-black leading-[1.15]">
-              A Structured Path to <br /> Engineering Excellence
+            <h2 className="font-heading text-2xl sm:text-4xl lg:text-5xl font-normal text-black leading-[1.15]">
+              A Structured Path to <br className="hidden sm:inline" /> Engineering Excellence
             </h2>
           </div>
 
           {/* Main interactive grid: Process Cards (Left) & 3D Cube (Right) */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-12 items-center">
             {/* Left Side: Active Stage Card */}
             <div className="lg:col-span-7">
-              <div className="w-full h-[285px] md:h-[330px] lg:h-[350px]">
+              <div className="w-full h-auto min-h-[220px] sm:h-[330px] lg:h-[350px]">
                 <AnimatePresence mode="wait">
                   <motion.div
                     key={activeStep}
@@ -224,30 +220,30 @@ export default function ServiceProcess() {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -12 }}
                     transition={{ duration: 0.3, ease: "easeOut" }}
-                    className="bg-gradient-to-br from-white to-purple-50/50 border border-gray-100 rounded-md p-8 sm:p-10 shadow-xl shadow-gray-200/50 hover:border-[#6E44FF]/20 hover:shadow-2xl transition-all h-full flex flex-col justify-center relative overflow-hidden group"
+                    className="bg-gradient-to-br from-white to-purple-50/50 border border-gray-100 rounded-md p-5 sm:p-10 shadow-xl shadow-gray-200/50 hover:border-[#6E44FF]/20 hover:shadow-2xl transition-all h-full flex flex-col justify-center relative overflow-hidden group"
                   >
                     {/* Giant Background Number */}
-                    <div className="absolute right-[-10px] bottom-[-30px] lg:right-[-20px] lg:bottom-[-40px] text-[180px] lg:text-[260px] font-black text-[#6E44FF]/[0.03] font-heading leading-none select-none pointer-events-none z-0 group-hover:text-[#6E44FF]/[0.06] transition-colors duration-500">
+                    <div className="absolute right-[-10px] bottom-[-30px] lg:right-[-20px] lg:bottom-[-40px] text-[120px] sm:text-[180px] lg:text-[260px] font-black text-[#6E44FF]/[0.03] font-heading leading-none select-none pointer-events-none z-0 group-hover:text-[#6E44FF]/[0.06] transition-colors duration-500">
                       {activeData.id}
                     </div>
 
                     <div className="relative z-10 w-full lg:w-[95%]">
                       {/* Title & Description */}
-                      <h3 className="text-2xl sm:text-3xl font-bold text-gray-900 font-heading mb-4 tracking-tight">
+                      <h3 className="text-xl sm:text-3xl font-bold text-gray-900 font-heading mb-2 sm:mb-4 tracking-tight">
                         {activeData.title}
                       </h3>
-                      <p className="text-gray-600 text-base sm:text-lg leading-relaxed mb-8 font-light">
+                      <p className="text-gray-600 text-sm sm:text-lg leading-relaxed mb-4 sm:mb-8 font-light">
                         {activeData.description}
                       </p>
 
                       {/* Detail tags */}
-                      <div className="flex flex-wrap gap-2.5 pt-6 border-t border-gray-200/60">
+                      <div className="flex flex-wrap gap-2 sm:gap-2.5 pt-4 sm:pt-6 border-t border-gray-200/60">
                         {activeData.details.map((detail) => (
                           <span
                             key={detail}
-                            className="text-xs sm:text-sm font-medium text-gray-700 bg-white border border-gray-200 px-4 py-2 rounded-full flex items-center gap-2 shadow-sm hover:border-gray-300 hover:shadow transition-all"
+                            className="text-xs sm:text-sm font-medium text-gray-700 bg-white border border-gray-200 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full flex items-center gap-1.5 sm:gap-2 shadow-sm hover:border-gray-300 hover:shadow transition-all"
                           >
-                            <CheckCircle2 className="w-4 h-4 text-[#6E44FF]" />
+                            <CheckCircle2 className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#6E44FF]" />
                             {detail}
                           </span>
                         ))}
@@ -259,15 +255,15 @@ export default function ServiceProcess() {
             </div>
 
             {/* Right Side: 3D Cube Container */}
-            <div className="lg:col-span-5 flex flex-col items-center justify-center relative py-2 lg:py-0 h-[285px] md:h-[330px] lg:h-[350px]">
+            <div className="lg:col-span-5 flex flex-col items-center justify-center relative py-2 lg:py-0 h-auto sm:h-[330px] lg:h-[350px]">
               {/* Ambient purple/blue glow */}
-              <div className="absolute w-80 h-80 bg-[#6E44FF]/15 rounded-full blur-3xl pointer-events-none" />
+              <div className="absolute w-56 sm:w-80 h-56 sm:h-80 bg-[#6E44FF]/15 rounded-full blur-3xl pointer-events-none" />
 
               {/* 3D Viewport Wrapper */}
               <div className="relative flex items-center justify-center p-2 [perspective:1200px]">
                 {/* 3D Cube Parent */}
                 <motion.div
-                  className="relative w-[285px] h-[285px] md:w-[330px] md:h-[330px] lg:w-[350px] lg:h-[350px] [--cube-half:142.5px] md:[--cube-half:165px] lg:[--cube-half:175px]"
+                  className="relative w-[180px] h-[180px] sm:w-[330px] sm:h-[330px] lg:w-[350px] lg:h-[350px] [--cube-half:90px] sm:[--cube-half:165px] lg:[--cube-half:175px]"
                   style={{
                     transformStyle: "preserve-3d",
                     rotateY: shouldReduceMotion ? 0 : rotateY,

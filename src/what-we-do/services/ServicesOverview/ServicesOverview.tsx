@@ -104,35 +104,36 @@ function useWindowDimensions() {
 function getCardStageLayout(width: number, height: number) {
   if (width >= 1280) {
     return {
-      activeCenterX: -width * 0.16,
+      activeCenterX: -width * 0.18,
       activeCenterY: 0,
-      targetX: width * 0.26,
-      targetY: height * 0.18,
-      scale: 0.66,
+      targetX: width * 0.25,
+      targetY: height * 0.16,
+      scale: 0.65,
     };
   } else if (width >= 1024) {
     return {
-      activeCenterX: -width * 0.14,
+      activeCenterX: -width * 0.15,
       activeCenterY: 0,
-      targetX: width * 0.24,
-      targetY: height * 0.16,
-      scale: 0.64,
-    };
-  } else if (width >= 768) {
-    return {
-      activeCenterX: -width * 0.10,
-      activeCenterY: 0,
-      targetX: width * 0.18,
+      targetX: width * 0.22,
       targetY: height * 0.14,
       scale: 0.60,
     };
-  } else {
+  } else if (width >= 768) {
     return {
-      activeCenterX: 0,
-      activeCenterY: -height * 0.05,
-      targetX: width * 0.12,
+      activeCenterX: -width * 0.12,
+      activeCenterY: 0,
+      targetX: width * 0.18,
       targetY: height * 0.12,
       scale: 0.55,
+    };
+  } else {
+    // Small / Mobile screens: Top (Active Card) vs Bottom (Stacked Deck) Split
+    return {
+      activeCenterX: 0,
+      activeCenterY: -height * 0.16,
+      targetX: 0,
+      targetY: height * 0.18,
+      scale: 0.48,
     };
   }
 }
@@ -270,46 +271,46 @@ function ServiceCardItem({
         translateX: "-50%",
         translateY: "-50%",
       }}
-      className="absolute left-1/2 top-1/2 w-[300px] h-[300px] sm:w-[360px] sm:h-[360px] md:w-[420px] md:h-[420px] lg:w-[460px] lg:h-[460px] xl:w-[480px] xl:h-[480px] origin-center pointer-events-auto"
+      className="absolute left-1/2 top-1/2 w-[260px] h-[260px] xs:w-[285px] xs:h-[285px] sm:w-[360px] sm:h-[360px] md:w-[420px] md:h-[420px] lg:w-[460px] lg:h-[460px] xl:w-[480px] xl:h-[480px] origin-center pointer-events-auto"
     >
-      <div className="w-full h-full rounded-md overflow-hidden bg-[#0A1128] group/card flex flex-col justify-between p-6 sm:p-8 md:p-9 lg:p-10 shadow-2xl origin-center will-change-transform border border-slate-800 relative hover:bg-[#0f1730] transition-colors duration-300">
+      <div className="w-full h-full rounded-md overflow-hidden bg-[#0A1128] group/card flex flex-col justify-between p-3.5 xs:p-4 sm:p-8 md:p-9 lg:p-10 shadow-2xl origin-center will-change-transform border border-slate-800 relative hover:bg-[#0f1730] transition-colors duration-300">
         {/* Glowing 3D Background Image in Bottom Right */}
         <div
-          className="absolute -bottom-10 -right-10 w-52 h-52 md:w-68 md:h-68 bg-contain bg-no-repeat bg-center opacity-30 mix-blend-screen transition-transform duration-700 group-hover/card:scale-110 group-hover/card:opacity-50 pointer-events-none"
+          className="absolute -bottom-10 -right-10 w-32 h-32 xs:w-40 xs:h-40 md:w-68 md:h-68 bg-contain bg-no-repeat bg-center opacity-30 mix-blend-screen transition-transform duration-700 group-hover/card:scale-110 group-hover/card:opacity-50 pointer-events-none"
           style={{ backgroundImage: `url(${item.image})` }}
         />
 
         {/* Top Header & Icon */}
         <div className="relative z-10">
-          <div className="text-[10px] md:text-xs font-bold text-slate-400 mb-2 uppercase tracking-widest flex items-center justify-between">
-            <div className="flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-blue-500" />
+          <div className="text-[9px] xs:text-[10px] md:text-xs font-bold text-slate-400 mb-1 xs:mb-2 uppercase tracking-widest flex items-center justify-between">
+            <div className="flex items-center gap-1.5 xs:gap-2">
+              <span className="w-1.5 h-1.5 xs:w-2 xs:h-2 rounded-full bg-blue-500" />
               <span>ENGINEERING SERVICE</span>
             </div>
             <span className="font-mono text-blue-400 font-bold">0{index + 1}</span>
           </div>
 
-          <div className="w-11 h-11 sm:w-13 sm:h-13 rounded-lg bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400 my-3 group-hover/card:bg-blue-500 group-hover/card:text-white transition-colors duration-300">
-            <IconComponent className="w-6 h-6 sm:w-7 sm:h-7" strokeWidth={1.5} />
+          <div className="w-8 h-8 xs:w-9 xs:h-9 sm:w-13 sm:h-13 rounded-lg bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400 my-1 xs:my-2 sm:my-3 group-hover/card:bg-blue-500 group-hover/card:text-white transition-colors duration-300">
+            <IconComponent className="w-4 h-4 xs:w-5 xs:h-5 sm:w-7 sm:h-7" strokeWidth={1.5} />
           </div>
 
-          <h3 className="font-heading text-xl sm:text-2xl md:text-3xl xl:text-4xl text-white font-semibold leading-tight mt-3 mb-2">
+          <h3 className="font-heading text-sm xs:text-lg sm:text-2xl md:text-3xl xl:text-4xl text-white font-semibold leading-tight mt-1 xs:mt-2 mb-1">
             {item.title}
           </h3>
         </div>
 
         {/* Bottom Content & Link */}
         <div className="relative z-10">
-          <p className="text-slate-300 text-xs sm:text-sm md:text-base font-medium line-clamp-3 leading-relaxed mb-5 sm:mb-6">
+          <p className="text-slate-300 text-[10px] xs:text-xs sm:text-sm md:text-base font-medium line-clamp-2 sm:line-clamp-3 leading-relaxed mb-2 xs:mb-4">
             {item.description}
           </p>
 
           <a
             href={`/services/${item.title.toLowerCase().replace(/\s+/g, "-")}`}
-            className="flex items-center text-blue-400 font-bold text-xs sm:text-sm tracking-widest uppercase hover:text-blue-300 transition-colors w-max cursor-pointer group/link"
+            className="flex items-center text-blue-400 font-bold text-[9px] xs:text-xs sm:text-sm tracking-widest uppercase hover:text-blue-300 transition-colors w-max cursor-pointer group/link"
           >
             LEARN MORE
-            <ArrowRight className="w-4 h-4 ml-1.5 transform group-hover/card:translate-x-2 transition-transform" />
+            <ArrowRight className="w-3 h-3 xs:w-4 xs:h-4 ml-1.5 transform group-hover/card:translate-x-2 transition-transform" />
           </a>
         </div>
       </div>
@@ -339,23 +340,23 @@ export default function ServicesOverview() {
       id="services-grid"
       className="relative h-[800vh] bg-white border-b border-gray-100 overflow-x-clip"
     >
-      <div className="sticky top-0 h-screen w-full overflow-hidden flex flex-col justify-between py-6 sm:py-8 lg:py-10 px-4 sm:px-8 lg:px-16 max-w-[1600px] mx-auto select-none">
+      <div className="sticky top-0 h-screen w-full overflow-hidden flex flex-col justify-between py-3 xs:py-4 sm:py-8 lg:py-10 px-3 xs:px-4 sm:px-8 lg:px-16 max-w-[1600px] mx-auto select-none">
         {/* Split Header */}
-        <div className="mb-6 sm:mb-8 lg:mb-10 grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-12 items-center z-30 relative flex-shrink-0">
+        <div className="mb-2 xs:mb-4 sm:mb-8 lg:mb-10 grid grid-cols-1 lg:grid-cols-12 gap-2 sm:gap-6 lg:gap-12 items-center z-30 relative flex-shrink-0">
           <div className="lg:col-span-5">
-            <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-normal text-black leading-[1.1] tracking-tight text-left">
+            <h2 className="font-heading text-xl xs:text-2xl sm:text-4xl lg:text-5xl font-normal text-black leading-tight tracking-tight text-left">
               Full-Stack Engineering Services
             </h2>
           </div>
           <div className="lg:col-span-7 lg:border-l border-gray-200 lg:pl-8">
-            <p className="text-sm sm:text-base lg:text-lg text-[#5A5A5A] leading-relaxed text-left font-normal max-w-3xl">
+            <p className="text-xs xs:text-sm sm:text-base lg:text-lg text-[#5A5A5A] leading-relaxed text-left font-normal max-w-3xl line-clamp-2 sm:line-clamp-none">
               End-to-end engineering capabilities spanning quality assurance, automation, cloud, security, and AI — designed to accelerate your enterprise transformation.
             </p>
           </div>
         </div>
 
         {/* Card Stage / Deck Container */}
-        <div className="relative flex-grow w-full flex items-center justify-center min-h-[400px] sm:min-h-[460px]">
+        <div className="relative flex-grow w-full flex items-center justify-center min-h-[300px] xs:min-h-[350px] sm:min-h-[460px]">
           {fallbackItems.map((item, index) => (
             <ServiceCardItem
               key={item.id}
