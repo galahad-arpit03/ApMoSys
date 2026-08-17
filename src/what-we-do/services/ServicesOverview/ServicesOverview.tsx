@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useRef, useState, useEffect } from "react";
-import { motion, useScroll, useTransform, MotionValue } from "framer-motion";
+import { motion, useScroll, useTransform, useSpring, MotionValue } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { serviceIconMap, defaultServiceIcon } from "../icons";
 
@@ -137,6 +137,14 @@ function getCardStageLayout(width: number, height: number) {
   }
 }
 
+// Helper easing curve for smooth velocity transitions (acceleration -> cruise -> deceleration)
+const easeInOutCubic = (t: number): number => {
+  const clamped = Math.max(0, Math.min(1, t));
+  return clamped < 0.5
+    ? 4 * clamped * clamped * clamped
+    : 1 - Math.pow(-2 * clamped + 2, 3) / 2;
+};
+
 interface ServiceCardItemProps {
   item: typeof fallbackItems[0];
   index: number;
@@ -170,67 +178,76 @@ function ServiceCardItem({
   const moveStart = index * slotSize + 0.01;
   const moveEnd = index * slotSize + 0.09;
 
-  // X position mapping (Last card stays at activeCenterX forever)
+  // X position mapping with smooth cubic easing
   const x = useTransform(scrollYProgress, (progress) => {
     if (isLastCard) {
       if (progress <= entryStart) return activeCenterX - 50;
       if (progress >= entryEnd) return activeCenterX;
-      const p = (progress - entryStart) / (entryEnd - entryStart);
+      const rawP = (progress - entryStart) / (entryEnd - entryStart);
+      const p = easeInOutCubic(rawP);
       return activeCenterX - 50 + p * 50;
     }
     if (progress <= entryStart && index > 0) return activeCenterX - 50;
     if (progress <= entryEnd && index > 0) {
-      const p = (progress - entryStart) / (entryEnd - entryStart);
+      const rawP = (progress - entryStart) / (entryEnd - entryStart);
+      const p = easeInOutCubic(rawP);
       return activeCenterX - 50 + p * 50;
     }
     if (progress <= moveStart) return activeCenterX;
     if (progress >= moveEnd) return finalDeckX;
-    const p = (progress - moveStart) / (moveEnd - moveStart);
+    const rawP = (progress - moveStart) / (moveEnd - moveStart);
+    const p = easeInOutCubic(rawP);
     return activeCenterX + p * (finalDeckX - activeCenterX);
   });
 
-  // Y position mapping
+  // Y position mapping with smooth cubic easing
   const y = useTransform(scrollYProgress, (progress) => {
     if (isLastCard) return activeCenterY;
     if (progress <= moveStart) return activeCenterY;
     if (progress >= moveEnd) return finalDeckY;
-    const p = (progress - moveStart) / (moveEnd - moveStart);
+    const rawP = (progress - moveStart) / (moveEnd - moveStart);
+    const p = easeInOutCubic(rawP);
     return activeCenterY + p * (finalDeckY - activeCenterY);
   });
 
-  // Scale mapping (Last card stays enlarged at 1.0 forever)
+  // Scale mapping with smooth cubic easing
   const scale = useTransform(scrollYProgress, (progress) => {
     if (isLastCard) {
       if (progress <= entryStart) return 0.85;
       if (progress >= entryEnd) return 1.0;
-      const p = (progress - entryStart) / (entryEnd - entryStart);
+      const rawP = (progress - entryStart) / (entryEnd - entryStart);
+      const p = easeInOutCubic(rawP);
       return 0.85 + p * 0.15;
     }
     if (progress <= entryStart && index > 0) return 0.85;
     if (progress <= entryEnd && index > 0) {
-      const p = (progress - entryStart) / (entryEnd - entryStart);
+      const rawP = (progress - entryStart) / (entryEnd - entryStart);
+      const p = easeInOutCubic(rawP);
       return 0.85 + p * 0.15;
     }
     if (progress <= moveStart) return 1.0;
     if (progress >= moveEnd) return deckScale;
-    const p = (progress - moveStart) / (moveEnd - moveStart);
+    const rawP = (progress - moveStart) / (moveEnd - moveStart);
+    const p = easeInOutCubic(rawP);
     return 1.0 - p * (1.0 - deckScale);
   });
 
-  // Rotation mapping
+  // Rotation mapping with smooth cubic easing
   const rotate = useTransform(scrollYProgress, (progress) => {
     if (isLastCard || progress <= moveStart) return 0;
     if (progress >= moveEnd) return finalRotate;
-    const p = (progress - moveStart) / (moveEnd - moveStart);
+    const rawP = (progress - moveStart) / (moveEnd - moveStart);
+    const p = easeInOutCubic(rawP);
     return p * finalRotate;
   });
 
-  // Opacity mapping (Once entered, NEVER drops or disappears!)
+  // Opacity mapping with smooth cubic easing
   const opacity = useTransform(scrollYProgress, (progress) => {
     if (index === 0) return 1;
     if (progress <= entryStart) return 0;
     if (progress >= entryEnd) return 1;
-    return (progress - entryStart) / (entryEnd - entryStart);
+    const rawP = (progress - entryStart) / (entryEnd - entryStart);
+    return easeInOutCubic(rawP);
   });
 
   // Z-Index mapping
@@ -256,7 +273,7 @@ function ServiceCardItem({
       className="absolute left-1/2 top-1/2 w-[300px] h-[300px] sm:w-[360px] sm:h-[360px] md:w-[420px] md:h-[420px] lg:w-[460px] lg:h-[460px] xl:w-[480px] xl:h-[480px] origin-center pointer-events-auto"
     >
       <div className="w-full h-full rounded-md overflow-hidden bg-[#0A1128] group/card flex flex-col justify-between p-6 sm:p-8 md:p-9 lg:p-10 shadow-2xl origin-center will-change-transform border border-slate-800 relative hover:bg-[#0f1730] transition-colors duration-300">
-        {/* Glowing 3D Background Image in Bottom Right (CoESection style) */}
+        {/* Glowing 3D Background Image in Bottom Right */}
         <div
           className="absolute -bottom-10 -right-10 w-52 h-52 md:w-68 md:h-68 bg-contain bg-no-repeat bg-center opacity-30 mix-blend-screen transition-transform duration-700 group-hover/card:scale-110 group-hover/card:opacity-50 pointer-events-none"
           style={{ backgroundImage: `url(${item.image})` }}
@@ -307,6 +324,13 @@ export default function ServicesOverview() {
     offset: ["start start", "end end"],
   });
 
+  const smoothProgress = useSpring(scrollYProgress, {
+    stiffness: 70,
+    damping: 26,
+    mass: 0.5,
+    restDelta: 0.0001,
+  });
+
   const dimensions = useWindowDimensions();
 
   return (
@@ -338,7 +362,7 @@ export default function ServicesOverview() {
               item={item}
               index={index}
               totalCards={fallbackItems.length}
-              scrollYProgress={scrollYProgress}
+              scrollYProgress={smoothProgress}
               dimensions={dimensions}
             />
           ))}
