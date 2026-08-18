@@ -213,42 +213,52 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Divider */}
-        <div className="h-px w-full bg-slate-800 mb-8"></div>
-
-        {/* Bottom Section */}
-        <div className="flex flex-col lg:flex-row items-center justify-between gap-6 text-[13px] text-slate-500">
-          <div className="flex-1 text-center lg:text-left">
-            <p>
-              © {new Date().getFullYear()} ApMoSys Technologies Pvt. Ltd. All rights reserved.
-            </p>
-          </div>
-          
-          <div className="hidden lg:block text-slate-500 flex-1 text-center font-medium">
-            Mumbai · Bhubneswar · Chennai · UAE
+        {/* Bottom Section Wrapper */}
+        <div className="relative overflow-hidden border-t border-slate-800 pt-8 pb-4 mt-8 w-full flex items-start min-h-[120px] sm:min-h-[160px] md:min-h-[200px] lg:min-h-[250px]">
+          {/* Background Outlined Text */}
+          <div className="absolute inset-0 w-full h-full pointer-events-none select-none flex justify-center items-start pt-2 z-0 opacity-60">
+            <span 
+              className="text-[35vw] md:text-[26vw] lg:text-[22vw] xl:text-[24vw] 2xl:text-[320px] font-black text-transparent leading-[0.75] tracking-tighter whitespace-nowrap" 
+              style={{ WebkitTextStroke: "2px rgba(255,255,255,0.09)" }}
+            >
+              ApMoSys
+            </span>
           </div>
 
-          <div className="flex flex-col sm:flex-row items-center gap-6 flex-1 justify-center lg:justify-end">
-            <div className="flex gap-4 text-[13px] text-slate-500 font-medium">
-              <a href="/privacy-policy" className="hover:text-white transition-colors">Privacy Policy</a>
-              <a href="/terms-and-conditions" className="hover:text-white transition-colors">Terms & Conditions</a>
+          {/* Bottom Section Content */}
+          <div className="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-6 text-[13px] text-slate-500 w-full">
+            <div className="flex-1 text-center lg:text-left">
+              <p>
+                © {new Date().getFullYear()} ApMoSys Technologies Pvt. Ltd. All rights reserved.
+              </p>
             </div>
-            <div className="flex gap-4">
-              <a href="#" className="w-8 h-8 rounded-full border border-slate-700 flex items-center justify-center text-slate-400 hover:text-white hover:border-slate-500 transition-colors">
-                <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452z" />
-                </svg>
-              </a>
-              <a href="#" className="w-8 h-8 rounded-full border border-slate-700 flex items-center justify-center text-slate-400 hover:text-white hover:border-slate-500 transition-colors">
-                <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723 10.054 10.054 0 01-3.127 1.184 4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z" />
-                </svg>
-              </a>
-              <a href="#" className="w-8 h-8 rounded-full border border-slate-700 flex items-center justify-center text-slate-400 hover:text-white hover:border-slate-500 transition-colors">
-                <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M22.675 0h-21.35C.597 0 0 .597 0 1.325v21.351C0 23.403.597 24 1.325 24H12.82v-9.294H9.692v-3.622h3.128V8.413c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12V24h6.116c.73 0 1.323-.597 1.323-1.324V1.325C24 .597 23.403 0 22.675 0z" />
-                </svg>
-              </a>
+            
+            <div className="hidden lg:block text-slate-500 flex-1 text-center font-medium">
+              Mumbai · Bhubneswar · Chennai · UAE
+            </div>
+
+            <div className="flex flex-col sm:flex-row items-center gap-6 flex-1 justify-center lg:justify-end">
+              <div className="flex gap-4 text-[13px] text-slate-500 font-medium">
+                <a href="/privacy-policy" className="hover:text-white transition-colors">Privacy Policy</a>
+                <a href="/terms-and-conditions" className="hover:text-white transition-colors">Terms & Conditions</a>
+              </div>
+              <div className="flex gap-4">
+                <a href="#" className="w-8 h-8 rounded-full border border-slate-700 flex items-center justify-center text-slate-400 hover:text-white hover:border-slate-500 transition-colors">
+                  <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452z" />
+                  </svg>
+                </a>
+                <a href="#" className="w-8 h-8 rounded-full border border-slate-700 flex items-center justify-center text-slate-400 hover:text-white hover:border-slate-500 transition-colors">
+                  <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723 10.054 10.054 0 01-3.127 1.184 4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z" />
+                  </svg>
+                </a>
+                <a href="#" className="w-8 h-8 rounded-full border border-slate-700 flex items-center justify-center text-slate-400 hover:text-white hover:border-slate-500 transition-colors">
+                  <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M22.675 0h-21.35C.597 0 0 .597 0 1.325v21.351C0 23.403.597 24 1.325 24H12.82v-9.294H9.692v-3.622h3.128V8.413c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12V24h6.116c.73 0 1.323-.597 1.323-1.324V1.325C24 .597 23.403 0 22.675 0z" />
+                  </svg>
+                </a>
+              </div>
             </div>
           </div>
         </div>
