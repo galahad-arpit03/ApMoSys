@@ -19,7 +19,7 @@ export default function ExecutiveTeam() {
     <SectionThemeWrapper sectionId="leadership_executive" defaultTheme="light">
       {() => {
         return (
-          <section className="py-10 lg:py-16 relative overflow-clip transition-colors duration-300 bg-white border-gray-100">
+          <section id="leadership" className="py-10 lg:py-16 relative overflow-clip transition-colors duration-300 bg-white border-gray-100">
             <div className="max-w-[1600px] mx-auto px-6 sm:px-8 lg:px-16">
 
               {/* Header Section */}

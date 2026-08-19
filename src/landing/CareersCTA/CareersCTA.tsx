@@ -19,7 +19,7 @@ export default function CareersCTA() {
   };
 
   return (
-    <section className="py-8 lg:py-16 bg-[#FAFBFC] border-t border-gray-100 relative overflow-hidden">
+    <section id="careers" className="py-8 lg:py-16 bg-[#FAFBFC] border-t border-gray-100 relative overflow-hidden">
       {/* Decorative background elements */}
       <div className="absolute top-0 right-0 w-1/2 h-full bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-blue-50/50 via-transparent to-transparent pointer-events-none" />
       

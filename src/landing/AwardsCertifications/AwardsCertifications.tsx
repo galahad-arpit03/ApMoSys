@@ -34,7 +34,7 @@ const RosetteSVG = ({ className }: { className?: string }) => (
 
 export default function AwardsCertifications() {
   return (
-    <section className="py-10 lg:py-16 bg-[#FAFAFA] overflow-hidden">
+    <section id="awards" className="py-10 lg:py-16 bg-[#FAFAFA] overflow-hidden">
       <div className="max-w-[1600px] mx-auto px-6 sm:px-8 lg:px-16">
         
         {/* Header Section */}

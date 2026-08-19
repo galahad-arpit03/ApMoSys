@@ -25,7 +25,7 @@ export default function LandingMilestones() {
   const activeIndex = ((rotationCount % landingMilestonesData.length) + landingMilestonesData.length) % landingMilestonesData.length;
 
   return (
-    <section className="bg-white relative overflow-hidden h-[825px] w-full font-sans border-b border-gray-100">
+    <section id="milestones" className="bg-white relative overflow-hidden h-[825px] w-full font-sans border-b border-gray-100">
 
       {/* CSS Background Elements */}
       <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">

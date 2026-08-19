@@ -76,7 +76,7 @@ export default function ProductsInnovations() {
   }, []);
 
   return (
-    <section className="py-10 lg:py-16 bg-white">
+    <section id="products" className="py-10 lg:py-16 bg-white">
       <div className="max-w-[1600px] mx-auto px-6 sm:px-8 lg:px-16">
         
         {/* Header Section */}

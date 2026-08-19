@@ -23,7 +23,7 @@ export default function Hero() {
   }, []);
 
   return (
-    <section ref={ref} className="relative w-full min-h-screen overflow-hidden flex items-center bg-[#FAFAFA]">
+    <section id="hero" ref={ref} className="relative w-full min-h-screen overflow-hidden flex items-center bg-[#FAFAFA]">
       <div className="absolute top-0 left-0 w-full h-full z-0 opacity-100 pointer-events-none">
         <Image 
           src="/assets/images/amcharts/f6.png" 
@@ -83,11 +83,11 @@ export default function Hero() {
             transition={{ duration: 0.6, delay: 0.4 }}
             className="flex flex-wrap items-center gap-4 mb-16"
           >
-            <button aria-label="Explore AI Solutions" className="group px-6 py-3 bg-[#0B1121] hover:bg-[#1A233A] text-white font-medium rounded-md transition-all duration-300 flex items-center gap-2 text-[14px] shadow-md hover:shadow-lg hover:-translate-y-0.5">
+            <button data-scroll-to="#services" aria-label="Explore AI Solutions" className="group px-6 py-3 bg-[#0B1121] hover:bg-[#1A233A] text-white font-medium rounded-md transition-all duration-300 flex items-center gap-2 text-[14px] shadow-md hover:shadow-lg hover:-translate-y-0.5 cursor-pointer">
               Explore AI Solutions
               <ArrowRight className="w-4 h-4 text-white/70 group-hover:text-white transition-colors" aria-hidden="true" />
             </button>
-            <button aria-label="Learn More" className="group px-6 py-3 bg-white border border-slate-300 hover:border-slate-400 hover:bg-slate-50 text-slate-900 font-semibold rounded-md transition-all duration-300 flex items-center gap-2 text-[14px] shadow-md hover:shadow-lg hover:-translate-y-0.5">
+            <button data-scroll-to="#why-apmosys" aria-label="Learn More" className="group px-6 py-3 bg-white border border-slate-300 hover:border-slate-400 hover:bg-slate-50 text-slate-900 font-semibold rounded-md transition-all duration-300 flex items-center gap-2 text-[14px] shadow-md hover:shadow-lg hover:-translate-y-0.5 cursor-pointer">
               Learn More
               <ArrowRight className="w-4 h-4 text-slate-500 group-hover:text-slate-800 transition-colors" aria-hidden="true" />
             </button>

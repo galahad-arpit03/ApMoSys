@@ -50,7 +50,7 @@ const getBorderClasses = (idx: number, total: number) => {
 
 export default function CoreServices() {
   return (
-    <section className="py-10 lg:py-16 bg-[#FAFAFA]">
+    <section id="services" className="py-10 lg:py-16 bg-[#FAFAFA]">
       <div className="max-w-[1600px] mx-auto px-6 sm:px-8 lg:px-16">
 
         {/* Header Section */}

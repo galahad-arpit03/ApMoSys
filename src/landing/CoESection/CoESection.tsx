@@ -69,7 +69,7 @@ function PositionAwareCard({ item }: { item: any }) {
 
 export default function CoESection() {
   return (
-    <section className="py-16 lg:py-24 bg-[#FAFAFA] relative overflow-hidden">
+    <section id="coe" className="py-16 lg:py-24 bg-[#FAFAFA] relative overflow-hidden">
       <div className="max-w-[1600px] mx-auto px-6 sm:px-8 lg:px-16 relative z-10 mb-12 lg:mb-16">
         <div className="flex flex-col md:flex-row items-center justify-between gap-10">
           <div className="w-full md:w-1/2">
