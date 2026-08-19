@@ -1,6 +1,5 @@
 import React from "react";
 import dynamic from "next/dynamic";
-import SmoothScroll from "@/src/components/SmoothScroll";
 
 // Eagerly loaded components (Above the fold)
 import Hero from "./Hero/Hero";
@@ -22,32 +21,30 @@ const InquirySection = dynamic(() => import("@/src/contact-us/InquirySection/Inq
 
 export default function LandingPage() {
   return (
-    <SmoothScroll>
-      <div className="relative bg-[#0A1128] overflow-x-hidden w-full max-w-[100vw]">
-        {/* Above the fold - loaded instantly */}
-        <Hero />
-        <TrustedBy />
+    <div className="relative bg-[#0A1128] overflow-x-hidden w-full max-w-[100vw]">
+      {/* Above the fold - loaded instantly */}
+      <Hero />
+      <TrustedBy />
 
-        {/* Core Offerings & Value - loaded on scroll */}
-        <CoreServices />
-        <Industries />
-        <CoESection />
-        <ProductsInnovations />
-        <WhyApmosys />
-        <SuccessMetrics />
-        <AwardsCertifications />
-        <LatestInsights />
-        
-        {/* Deep Dives (Moved to bottom for better conversion UX) */}
-        <LandingMilestones />
-        <ExecutiveTeam />
-        
-        {/* Footer CTAs */}
-        <CareersCTA />
-        <div className="bg-white">
-          {/* <InquirySection /> */}
-        </div>
+      {/* Core Offerings & Value - loaded on scroll */}
+      <CoreServices />
+      <Industries />
+      <CoESection />
+      <ProductsInnovations />
+      <WhyApmosys />
+      <SuccessMetrics />
+      <AwardsCertifications />
+      <LatestInsights />
+      
+      {/* Deep Dives (Moved to bottom for better conversion UX) */}
+      <LandingMilestones />
+      <ExecutiveTeam />
+      
+      {/* Footer CTAs */}
+      <CareersCTA />
+      <div className="bg-white">
+        {/* <InquirySection /> */}
       </div>
-    </SmoothScroll>
+    </div>
   );
 }

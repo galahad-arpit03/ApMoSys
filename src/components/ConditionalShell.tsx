@@ -6,6 +6,7 @@ import Navbar from "@/src/nav-bar/Navbar";
 import Footer from "@/src/footer/Footer";
 import ThemeApplicator from "@/src/admin/components/ThemeApplicator";
 import AnnouncementBar from "@/src/landing/AnnouncementBar/AnnouncementBar";
+import SmoothScroll from "@/src/components/SmoothScroll";
 
 export default function ConditionalShell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
@@ -17,7 +18,7 @@ export default function ConditionalShell({ children }: { children: React.ReactNo
   }
 
   return (
-    <>
+    <SmoothScroll>
       <ThemeApplicator />
       <AnnouncementBar />
       <Navbar />
@@ -25,6 +26,6 @@ export default function ConditionalShell({ children }: { children: React.ReactNo
         {children}
       </main>
       <Footer />
-    </>
+    </SmoothScroll>
   );
 }
