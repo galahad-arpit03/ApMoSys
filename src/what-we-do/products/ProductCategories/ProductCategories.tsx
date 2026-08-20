@@ -1,13 +1,23 @@
 "use client";
 
 import React, { useState } from "react";
+import Image from "next/image";
 import Container from "@/src/components/Container";
 import { motion, AnimatePresence } from "framer-motion";
 import EditableText from "@/src/admin/components/EditableText";
 import SectionThemeWrapper from "@/src/admin/components/SectionThemeWrapper";
 import { useContentStore } from "@/src/admin/store/adminStore";
 import { productIconMap, defaultProductIcon } from "../icons";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Layers } from "lucide-react";
+
+const categoryImageMap: Record<string, string> = {
+  "1": "/assets/images/products/cat_ai_automation.png",
+  "2": "/assets/images/products/cat_quality_engineering.png",
+  "3": "/assets/images/products/cat_observability.png",
+  "4": "/assets/images/products/cat_security.png",
+  "5": "/assets/images/products/cat_analytics.png",
+  "6": "/assets/images/products/cat_device_infra.png",
+};
 
 export default function ProductCategories() {
   const { content } = useContentStore();
@@ -140,7 +150,7 @@ export default function ProductCategories() {
                 {/* Right: Products in category */}
                 <div className="relative">
                   <div
-                    className={`rounded-xl border p-6 h-full flex flex-col transition-all duration-300 ${
+                    className={`rounded-xl border p-6 h-full flex flex-col justify-between transition-all duration-300 ${
                       isDark
                         ? "bg-[#121B38] border-[#1A264A]"
                         : "bg-white/80 backdrop-blur-md border-gray-200/60 shadow-[0_4px_20px_rgb(0,0,0,0.03)]"
@@ -154,69 +164,105 @@ export default function ProductCategories() {
                           animate={{ opacity: 1, y: 0 }}
                           exit={{ opacity: 0, y: -10 }}
                           transition={{ duration: 0.3 }}
-                          className="flex flex-col h-full"
+                          className="flex flex-col h-full justify-between"
                         >
-                          {/* Icon & Title */}
-                          <div className="flex items-center gap-4 mb-4">
-                            <div className="text-[#2563EB]">
-                              {(() => {
-                                const Icon = productIconMap[activeCategoryData.icon] || defaultProductIcon;
-                                return <Icon className="w-10 h-10" />;
-                              })()}
+                          <div>
+                            {/* Icon & Title */}
+                            <div className="flex items-center gap-4 mb-3">
+                              <div className="text-[#2563EB]">
+                                {(() => {
+                                  const Icon = productIconMap[activeCategoryData.icon] || defaultProductIcon;
+                                  return <Icon className="w-9 h-9" />;
+                                })()}
+                              </div>
+                              <h4
+                                className={`text-2xl font-medium ${
+                                  isDark ? "text-white" : "text-slate-800"
+                                }`}
+                              >
+                                <EditableText
+                                  path={`products.categories.items.${Number(activeCategoryData.id) - 1}.title`}
+                                  fallback={activeCategoryData.title}
+                                  as="span"
+                                />
+                              </h4>
                             </div>
-                            <h4
-                              className={`text-2xl font-medium ${
-                                isDark ? "text-white" : "text-slate-800"
+
+                            {/* Category Description */}
+                            <p
+                              className={`text-sm leading-relaxed mb-5 ${
+                                isDark ? "text-gray-300" : "text-slate-600"
                               }`}
                             >
                               <EditableText
-                                path={`products.categories.items.${Number(activeCategoryData.id) - 1}.title`}
-                                fallback={activeCategoryData.title}
+                                path={`products.categories.items.${Number(activeCategoryData.id) - 1}.description`}
+                                fallback={activeCategoryData.description}
                                 as="span"
+                                multiline
                               />
-                            </h4>
-                          </div>
+                            </p>
 
-                          {/* Category Description */}
-                          <p
-                            className={`text-sm leading-relaxed mb-6 ${
-                              isDark ? "text-gray-300" : "text-slate-600"
-                            }`}
-                          >
-                            <EditableText
-                              path={`products.categories.items.${Number(activeCategoryData.id) - 1}.description`}
-                              fallback={activeCategoryData.description}
-                              as="span"
-                              multiline
-                            />
-                          </p>
-
-                          {/* Products List */}
-                          <div className="flex-1">
-                            <h5
-                              className={`text-xs font-semibold uppercase tracking-widest mb-3 ${
-                                isDark ? "text-gray-400" : "text-slate-500"
-                              }`}
-                            >
-                              Products in this category
-                            </h5>
-                            <ul className="space-y-2">
-                              {activeCategoryData.products.map((product) => (
-                                <li
-                                  key={product}
-                                  className={`flex items-center gap-3 text-sm ${
-                                    isDark ? "text-gray-300" : "text-slate-600"
+                            {/* Products Chips/Badges List */}
+                            <div className="mb-5">
+                              <div className="flex items-center gap-2 mb-2.5">
+                                <Layers className="w-3.5 h-3.5 text-[#2563EB]" />
+                                <h5
+                                  className={`text-xs font-semibold uppercase tracking-widest ${
+                                    isDark ? "text-gray-400" : "text-slate-500"
                                   }`}
                                 >
-                                  <span className="text-[#2563EB]">◆</span>
-                                  <span>{product}</span>
-                                </li>
-                              ))}
-                            </ul>
+                                  Products in this category
+                                </h5>
+                              </div>
+                              <div className="flex flex-wrap gap-2">
+                                {activeCategoryData.products.map((product) => (
+                                  <div
+                                    key={product}
+                                    className={`px-3 py-1.5 rounded-lg border text-xs font-medium flex items-center gap-2 transition-all duration-200 ${
+                                      isDark
+                                        ? "bg-[#0A1128]/80 border-[#1A264A] text-gray-200 hover:border-[#2563EB]/50"
+                                        : "bg-slate-50 border-slate-200 text-slate-700 hover:border-[#2563EB]/50 hover:bg-white shadow-xs"
+                                    }`}
+                                  >
+                                    <span className="w-1.5 h-1.5 rounded-full bg-[#2563EB]" />
+                                    <span>{product}</span>
+                                  </div>
+                                ))}
+                              </div>
+                            </div>
+
+                            {/* Featured Category Dashboard Preview Image */}
+                            {(() => {
+                              const activeImage =
+                                (activeCategoryData as any).image ||
+                                categoryImageMap[activeCategoryData.id] ||
+                                "/assets/images/products/cat_ai_automation.png";
+                              return (
+                                <div className="relative w-full rounded-xl overflow-hidden border border-slate-200/40 dark:border-white/10 shadow-md group aspect-[16/9] bg-slate-950">
+                                  <Image
+                                    src={activeImage}
+                                    alt={activeCategoryData.title}
+                                    fill
+                                    className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                                    sizes="(max-width: 768px) 100vw, 50vw"
+                                  />
+                                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-80 transition-opacity group-hover:opacity-60" />
+                                  <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between">
+                                    <span className="px-2.5 py-1 text-[11px] font-semibold rounded-md bg-[#2563EB]/90 text-white backdrop-blur-md shadow-sm">
+                                      {activeCategoryData.title} Preview
+                                    </span>
+                                    <span className="text-[10px] font-medium text-slate-200 bg-black/50 backdrop-blur-md px-2 py-0.5 rounded-md">
+                                      {activeCategoryData.products.length}{" "}
+                                      {activeCategoryData.products.length === 1 ? "Product" : "Products"}
+                                    </span>
+                                  </div>
+                                </div>
+                              );
+                            })()}
                           </div>
 
                           {/* CTA Button */}
-                          <div className="mt-6 pt-4 border-t border-[#1A264A]">
+                          <div className="mt-5 pt-3 border-t border-slate-200/60 dark:border-[#1A264A]">
                             <a
                               href="/products"
                               className={`inline-flex items-center gap-2 text-sm font-semibold transition-colors group ${

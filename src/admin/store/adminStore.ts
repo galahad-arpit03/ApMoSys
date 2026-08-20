@@ -472,6 +472,7 @@ export interface ProductCategoryItem {
   description: string;
   icon: string;
   products: string[];
+  image?: string;
 }
 
 interface ServiceOverviewItem {
@@ -1606,6 +1607,7 @@ export const defaultContent: SiteContent = {
       description: "AI-driven platforms that automate testing...",
       icon: "ai",
       products: ["CliqTest", "Swikrti", "FinXplore"],
+      image: "/assets/images/products/cat_ai_automation.png",
     },
     {
       id: "2",
@@ -1613,6 +1615,7 @@ export const defaultContent: SiteContent = {
       description: "Comprehensive testing platforms for functional, visual...",
       icon: "scale",
       products: ["CliqTest", "Protean Device Lab", "Jupiter"],
+      image: "/assets/images/products/cat_quality_engineering.png",
     },
     {
       id: "3",
@@ -1620,6 +1623,7 @@ export const defaultContent: SiteContent = {
       description: "Real-time monitoring, anomaly detection...",
       icon: "insights",
       products: ["Saransh", "Netraa"],
+      image: "/assets/images/products/cat_observability.png",
     },
     {
       id: "4",
@@ -1627,6 +1631,7 @@ export const defaultContent: SiteContent = {
       description: "Security validation platforms that automate vulnerability scanning...",
       icon: "security",
       products: ["ShieldVue"],
+      image: "/assets/images/products/cat_security.png",
     },
     {
       id: "5",
@@ -1634,6 +1639,7 @@ export const defaultContent: SiteContent = {
       description: "Advanced analytics platforms that deliver real-time insights...",
       icon: "ai",
       products: ["FinXplore", "Saransh"],
+      image: "/assets/images/products/cat_analytics.png",
     },
     {
       id: "6",
@@ -1641,6 +1647,7 @@ export const defaultContent: SiteContent = {
       description: "Cloud-based device labs and infrastructure platforms...",
       icon: "support",
       products: ["Protean Device Lab"],
+      image: "/assets/images/products/cat_device_infra.png",
     },
   ],
   },
